@@ -1,0 +1,221 @@
+# =====================================================================
+#  Samya Traveler — Hugo site configuration (theme: PaperMod)
+#  Docs: https://gohugo.io/getting-started/configuration/
+#        https://github.com/adityatelange/hugo-PaperMod/wiki
+#  Anything marked "TODO" is a placeholder to fill in.
+# =====================================================================
+
+baseURL: "https://samya-traveler.github.io/"   # CI overrides this with the real Pages URL
+title: "Samya Traveler"
+theme: "PaperMod"
+copyright: "© Samya Traveler"
+
+locale: "zh-TW"                # Switch to "en-US" (+ defaultContentLanguage: en) for an English UI
+defaultContentLanguage: "zh-tw"
+hasCJKLanguage: true           # accurate word count / reading time for Chinese text
+timeZone: "Asia/Taipei"
+
+enableRobotsTXT: true
+enableEmoji: true
+enableGitInfo: true            # "last updated" dates from git history
+buildDrafts: false
+buildFuture: false
+pagination:
+  pagerSize: 9
+
+# ---------------------------------------------------------------------
+#  URLs: /posts/2026/09/nantou-aowanda/
+# ---------------------------------------------------------------------
+permalinks:
+  page:
+    posts: "/posts/:year/:month/:slug/"
+
+# ---------------------------------------------------------------------
+#  Taxonomies — categories = trip type/region, tags = free keywords,
+#  destinations = country/city (gets its own /destinations/ index page)
+# ---------------------------------------------------------------------
+taxonomies:
+  category: categories
+  tag: tags
+  destination: destinations
+
+# ---------------------------------------------------------------------
+#  Full-text search: the home page also emits /index.json, which the
+#  /search/ page (content/search.md) queries with Fuse.js in the browser.
+# ---------------------------------------------------------------------
+outputs:
+  home: [HTML, RSS, JSON]
+
+# ---------------------------------------------------------------------
+#  Analytics — Google Analytics 4 (Hugo's built-in template).
+#  Only injected in production builds (hugo / CI), never on `hugo server`.
+# ---------------------------------------------------------------------
+services:
+  googleAnalytics:
+    ID: ""                     # TODO: "G-XXXXXXXXXX"
+  rss:
+    limit: 20
+
+privacy:
+  googleAnalytics:
+    respectDoNotTrack: true
+
+minify:
+  disableXML: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true             # allow raw HTML inside Markdown posts
+    parser:
+      attribute:
+        block: true            # enables {.class} attributes on blocks
+  highlight:
+    noClasses: false
+    lineNos: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+
+imaging:
+  jpeg:
+    quality: 82
+  webp:
+    quality: 82
+  resampleFilter: Lanczos
+  anchor: Smart
+
+# ---------------------------------------------------------------------
+#  Navigation
+# ---------------------------------------------------------------------
+menus:
+  main:
+    - identifier: posts
+      name: "遊記"
+      url: /posts/
+      weight: 10
+    - identifier: destinations
+      name: "目的地"
+      url: /destinations/
+      weight: 20
+    - identifier: categories
+      name: "分類"
+      url: /categories/
+      weight: 30
+    - identifier: tags
+      name: "標籤"
+      url: /tags/
+      weight: 40
+    - identifier: archives
+      name: "彙整"
+      url: /archives/
+      weight: 50
+    - identifier: search
+      name: "搜尋"
+      url: /search/
+      weight: 60
+    - identifier: about
+      name: "關於"
+      url: /about/
+      weight: 70
+
+# ---------------------------------------------------------------------
+#  Theme parameters
+# ---------------------------------------------------------------------
+params:
+  env: production
+  title: "Samya Traveler"
+  description: "樂天小熊 Samya 的慢旅日誌 — 森林、海岸、老宅民宿與不趕行程的旅行提案。"
+  keywords: [旅行, 慢旅, 遊記, 旅遊攻略, 台灣旅遊, travel blog]
+  author: "Samya"
+  images: ["images/og-default.jpg"]   # fallback social-share image
+  DateFormat: "2006-01-02"
+  defaultTheme: auto                  # light | dark | auto
+  disableThemeToggle: false
+  mainSections: [posts]
+
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShareButtons: [facebook, x, whatsapp, telegram]
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: false
+  ShowWordCount: false
+  ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: false
+  ShowPageNums: true
+  ShowToc: true
+  TocOpen: false
+  UseHugoToc: true
+  comments: false                     # set true after filling in giscus below
+
+  assets:
+    favicon: "images/favicon.png"
+    apple_touch_icon: "images/favicon.png"
+    theme_color: "#2f6f5e"
+
+  homeInfoParams:
+    Title: "嗨，我是 Samya 🧸"
+    Content: >
+      一隻愛慢旅行的小熊。這裡收藏我走過的森林步道、海邊小鎮與老宅民宿，
+      附上實際的行程時間軸與不踩雷小提醒，希望陪你把假期過得更慢一點。
+
+  socialIcons:                        # TODO: replace with real handles; delete unused rows
+    - name: instagram
+      url: "https://www.instagram.com/your-handle/"
+    - name: facebook
+      url: "https://www.facebook.com/your-page/"
+    - name: youtube
+      url: "https://www.youtube.com/@your-channel"
+    - name: threads
+      url: "https://www.threads.net/@your-handle"
+    - name: github
+      url: "https://github.com/Samya-Traveler"
+    - name: email
+      url: "mailto:hello@example.com"
+    - name: rss
+      url: "index.xml"
+
+  cover:
+    responsiveImages: true            # srcset for covers stored in the post folder
+    linkFullImages: true
+    hiddenInList: false
+
+  # Full-text search (Fuse.js) — https://www.fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    ignoreLocation: true              # match anywhere in long articles
+    threshold: 0.3
+    minMatchCharLength: 1
+    limit: 20
+    keys: ["title", "summary", "content", "permalink"]
+
+  editPost:
+    URL: "https://github.com/Samya-Traveler/Samya-Traveler.github.io/edit/main/content"
+    Text: "建議修改"
+    appendFilePath: true
+
+  # Search-engine ownership verification (optional)
+  analytics:
+    google:
+      SiteVerificationTag: ""         # TODO
+    bing:
+      SiteVerificationTag: ""
+
+  # Cookie-less analytics alternatives, rendered by layouts/_partials/extend_head.html.
+  # Fill in only the ones you use; empty values render nothing.
+  privacyAnalytics:
+    plausibleDomain: ""               # e.g. "samya-traveler.github.io"
+    umamiWebsiteId: ""                # e.g. "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    umamiScriptSrc: "https://cloud.umami.is/script.js"
+    goatcounterCode: ""               # e.g. "samya" -> samya.goatcounter.com
+
+  # Comments via giscus (GitHub Discussions) — generate values at https://giscus.app
+  giscus:
+    repo: "Samya-Traveler/Samya-Traveler.github.io"
+    repoId: ""                        # TODO
+    category: "Announcements"
+    categoryId: ""                    # TODO
+    mapping: "pathname"
+    lang: "zh-TW"

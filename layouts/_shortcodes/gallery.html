@@ -1,0 +1,30 @@
+{{- /*
+  Responsive photo grid built from images in the post folder.
+  {{< gallery match="gallery/*" cols="3" ratio="4x3" >}}
+  Captions come from the file name ("forest-trail.jpg" -> "forest trail"),
+  or from the post front matter:
+    resources:
+      - src: gallery/forest-trail.jpg
+        title: "清晨六點的步道"
+*/ -}}
+{{- $cols := .Get "cols" | default "3" -}}
+{{- $ratio := .Get "ratio" | default "4x3" -}}
+{{- $parts := split $ratio "x" -}}
+{{- $w := 600 -}}
+{{- $h := div (mul $w (int (index $parts 1))) (int (index $parts 0)) -}}
+{{- $images := (.Page.Resources.Match (.Get "match" | default "gallery/*")).ByType "image" -}}
+{{- if not $images }}{{ warnf "gallery: no images match %q in %s" (.Get "match") .Page.File.Path }}{{ end -}}
+<div class="gallery" style="--gallery-cols: {{ $cols | safeCSS }}">
+  {{- range $images }}
+    {{- $caption := .Title | default (path.BaseName .Name | replaceRE "[-_]" " ") }}
+    {{- $thumb := .Fill (printf "%dx%d webp" $w $h) }}
+    {{- $full := .Fit "1920x1920 webp" }}
+    <figure class="gallery-item">
+      <a href="{{ $full.RelPermalink }}" target="_blank" rel="noopener">
+        <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}"
+             alt="{{ $caption }}" loading="lazy">
+      </a>
+      <figcaption>{{ $caption }}</figcaption>
+    </figure>
+  {{- end }}
+</div>

@@ -1,0 +1,10 @@
+{{- /*
+  Itinerary timeline wrapper; put {{< stop >}} entries inside.
+  {{< timeline title="Day 1" >}} ... {{< /timeline >}}
+*/ -}}
+<section class="timeline">
+  {{- with .Get "title" }}<h3 class="timeline-heading">{{ . }}</h3>{{ end }}
+  <ol class="timeline-list">
+    {{ .Inner }}
+  </ol>
+</section>

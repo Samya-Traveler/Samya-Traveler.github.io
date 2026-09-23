@@ -1,0 +1,17 @@
+{{- /*
+  One stop in an itinerary timeline; the body is Markdown.
+  {{< stop time="08:30" title="Suspension bridge" icon="🌉" place="Aowanda" >}}Markdown{{< /stop >}}
+*/ -}}
+<li class="timeline-item">
+  <span class="timeline-dot" aria-hidden="true">{{ .Get "icon" | default "📍" }}</span>
+  <div class="timeline-body">
+    <p class="timeline-meta">
+      {{- with .Get "time" }}<time class="timeline-time">{{ . }}</time>{{ end }}
+      {{- with .Get "place" }}<span class="timeline-place">{{ . }}</span>{{ end }}
+    </p>
+    {{- with .Get "title" }}<p class="timeline-title">{{ . }}</p>{{ end }}
+    {{- with .Inner }}
+    <div class="timeline-content">{{ $.Page.RenderString (dict "display" "block") (trim . "\n") }}</div>
+    {{- end }}
+  </div>
+</li>

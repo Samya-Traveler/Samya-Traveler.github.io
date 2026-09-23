@@ -1,0 +1,17 @@
+{{- /* GitHub-style callouts: "> [!TIP]", "> [!NOTE]", "> [!IMPORTANT]", "> [!WARNING]", "> [!CAUTION]". Plain blockquotes render unchanged. */ -}}
+{{- if eq .Type "alert" -}}
+  {{- $icons := dict "note" "ℹ️" "tip" "💡" "important" "📌" "warning" "⚠️" "caution" "⛔" -}}
+  {{- $titles := dict "note" "筆記" "tip" "小提醒" "important" "重要" "warning" "注意" "caution" "小心" -}}
+  {{- $type := lower .AlertType -}}
+  <div class="callout callout-{{ $type }}" role="note">
+    <p class="callout-title">
+      <span class="callout-icon" aria-hidden="true">{{ index $icons $type | default "💬" }}</span>
+      {{ with .AlertTitle }}{{ . }}{{ else }}{{ index $titles $type | default (title $type) }}{{ end }}
+    </p>
+    {{ .Text }}
+  </div>
+{{- else -}}
+  <blockquote {{- with .Attributes.id }} id="{{ . }}"{{ end }}>
+    {{ .Text }}
+  </blockquote>
+{{- end -}}

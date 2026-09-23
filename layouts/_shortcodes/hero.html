@@ -1,0 +1,29 @@
+{{- /*
+  Full-width hero banner with overlay text.
+  {{< hero src="cover.jpg" title="..." subtitle="..." alt="..." position="center 60%" >}}
+  `src` is resolved against the post folder first, then /assets; remote URLs are used as-is.
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default (.Get "title") | default .Page.Title -}}
+{{- $img := or (.Page.Resources.Get $src) (resources.Get $src) -}}
+<figure class="hero" style="--hero-pos: {{ .Get "position" | default "center" | safeCSS }}">
+  {{- if and $img (in (slice "jpeg" "png" "webp") $img.MediaType.SubType) }}
+    {{- $small := $img.Resize "720x webp" }}
+    {{- $medium := $img.Resize "1200x webp" }}
+    {{- $large := $img.Resize "1920x webp" }}
+    <img src="{{ $medium.RelPermalink }}"
+         srcset="{{ $small.RelPermalink }} 720w, {{ $medium.RelPermalink }} 1200w, {{ $large.RelPermalink }} 1920w"
+         sizes="100vw" width="{{ $medium.Width }}" height="{{ $medium.Height }}"
+         alt="{{ $alt }}" fetchpriority="high">
+  {{- else if $img }}
+    <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" fetchpriority="high">
+  {{- else }}
+    <img src="{{ $src }}" alt="{{ $alt }}" fetchpriority="high">
+  {{- end }}
+  {{- if or (.Get "title") (.Get "subtitle") }}
+  <figcaption class="hero-text">
+    {{- with .Get "title" }}<span class="hero-title">{{ . }}</span>{{ end }}
+    {{- with .Get "subtitle" }}<span class="hero-subtitle">{{ . | markdownify }}</span>{{ end }}
+  </figcaption>
+  {{- end }}
+</figure>
