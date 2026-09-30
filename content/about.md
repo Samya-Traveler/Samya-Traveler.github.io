@@ -17,5 +17,5 @@ searchHidden: true
 每篇遊記都會附上 **實際走過的時間軸**、交通與住宿資訊，以及我踩過雷之後整理的小提醒，
 希望能幫你安排一趟不趕行程的旅行。
 
-- 📷 Instagram：[@your-handle](https://www.instagram.com/your-handle/)
-- ✉️ 合作邀約：hello@example.com
+- 📷 Instagram：[@samya_traveler](https://www.instagram.com/samya_traveler/)
+- ✉️ 合作邀約：	littlebear.samya@gmail.com
