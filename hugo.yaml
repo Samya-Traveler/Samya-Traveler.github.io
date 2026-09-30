@@ -6,9 +6,9 @@
 # =====================================================================
 
 baseURL: "https://samya-traveler.github.io/"   # CI overrides this with the real Pages URL
-title: "Samya Traveler"
+title: "樂天小熊 Samya Traveler"
 theme: "PaperMod"
-copyright: "© Samya Traveler"
+copyright: "🧸 Samya Traveler"
 
 locale: "zh-TW"                # Switch to "en-US" (+ defaultContentLanguage: en) for an English UI
 defaultContentLanguage: "zh-tw"
@@ -155,24 +155,28 @@ params:
     theme_color: "#2f6f5e"
 
   homeInfoParams:
-    Title: "嗨，我是 Samya 🧸"
+    Title: "嗨，我是樂天小熊Samya 🧸"
     Content: >
       一隻愛慢旅行的小熊。這裡收藏我走過的森林步道、海邊小鎮與老宅民宿，
       附上實際的行程時間軸與不踩雷小提醒，希望陪你把假期過得更慢一點。
+      🧸 離線中的工程師，用寫程式的腦規劃慢旅
+      🏞️ 專注「高質感、不趕行程」的深度慢旅
+      🗺️ 把複雜行程，變成你帶得走的旅遊藍圖
+      🍽️ 收藏隱藏版的氛圍感秘境與角落
 
   socialIcons:                        # TODO: replace with real handles; delete unused rows
     - name: instagram
-      url: "https://www.instagram.com/your-handle/"
-    - name: facebook
-      url: "https://www.facebook.com/your-page/"
+      url: "https://www.instagram.com/samya_traveler/"
+    - name: tiktok
+      url: "https://www.tiktok.com/@samya_traveler"
     - name: youtube
-      url: "https://www.youtube.com/@your-channel"
+      url: "https://www.youtube.com/channel/UCw-Fwnb_9S0JE_7biBXv-RQ/about"
     - name: threads
-      url: "https://www.threads.net/@your-handle"
+      url: "https://www.threads.com/@samya_traveler"
     - name: github
       url: "https://github.com/Samya-Traveler"
     - name: email
-      url: "mailto:hello@example.com"
+      url: "mailto:littlebear.samya@gmail.com"
     - name: rss
       url: "index.xml"
 
