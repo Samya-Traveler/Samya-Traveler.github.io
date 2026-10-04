@@ -91,7 +91,7 @@ cover:
 
 ## ① 吉卜力公園 {#ghibli-park}
 
-<gallery/01-ghibli-park.jpg>
+{{< figure src="gallery/01-ghibli-park.jpg" caption="吉卜力公園" align="center" >}}
 
 宮崎駿迷一定要來朝聖。園區在愛知萬博的舊址，也就是「愛・地球博記念公園」裡，
 分成幾個區域，要先看清楚每種票能進哪些區再買。
@@ -112,12 +112,9 @@ cover:
 | 🚗 停車 | **沒有專用停車場** |
 {.trip-facts}
 
-> [!WARNING] 避雷
-> 大倉庫的**貓公車**和**機器人兵**要先排，下午人會多一倍。連假的票一開賣就要搶。
-
 ## ② 熱田神宮 {#atsuta-jingu}
 
-<gallery/02-atsuta-jingu.jpg>
+{{< figure src="gallery/02-atsuta-jingu.jpg" caption="熱田神宮" align="center" >}}
 
 名古屋最重要的神社，境內都是大樹，走進來會安靜很多。
 
@@ -134,7 +131,7 @@ cover:
 
 ## ③ 矢場とん：名古屋味噌豬排 {#yabaton}
 
-<gallery/03-yabaton.jpg>
+{{< figure src="gallery/03-yabaton.jpg" caption="矢場とん" align="center" >}}
 
 來名古屋一定要吃一次味噌豬排，矢場とん是最有名的一家，本店就在大須一帶，逛街前後順路去吃。
 
@@ -150,7 +147,7 @@ cover:
 
 ## ④ 大須觀音＋大須商店街 {#osu}
 
-<gallery/04-osu.jpg>
+{{< figure src="gallery/04-osu.jpg" caption="大須商店街" align="center" >}}
 
 先到大須觀音參拜，再走進旁邊的大須商店街。這裡新舊混在一起，
 可以從老舖一路逛到古著和球鞋店，很適合下午慢慢晃。
@@ -163,7 +160,7 @@ cover:
 
 ## ⑤ 綠洲21＋中部電力 MIRAI TOWER {#oasis21}
 
-<gallery/05-oasis21.jpg>
+{{< figure src="gallery/05-oasis21.jpg" caption="綠洲21" align="center" >}}
 
 榮站東口直通，是名古屋最好拍的夜景組合：透明的「水之宇宙船」和旁邊的 MIRAI TOWER（舊名古屋電視塔）。
 
@@ -179,7 +176,7 @@ cover:
 
 ## ⑥ 國寶犬山城＋城下町 {#inuyama}
 
-<gallery/06-inuyama-castle.jpg>
+{{< figure src="gallery/06-inuyama-castle.jpg" caption="犬山城" align="center" >}}
 
 犬山城是日本現存的國寶天守之一，從名古屋出發很方便，半天就能玩完城和城下町。
 
@@ -202,7 +199,7 @@ cover:
 
 比分開買划算，要去犬山城就直接買這張。
 
-<gallery/07-inuyama-castle.jpg>
+{{< figure src="gallery/07-inuyama-castle.jpg" caption="犬山城下町きっぷ" align="center" >}}
 
 > [!WARNING] 避雷
 > - 天守內的樓梯**又窄又陡**，而且要**脫鞋**，建議穿好穿脫的鞋。
