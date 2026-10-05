@@ -109,7 +109,7 @@ cover:
 約 30 分鐘，09:48 到犬山站。
 {{< /stop >}}
 {{< stop time="09:48" title="走到犬山城" icon="🚶" place="犬山站 → 犬山城" >}}
-穿過城下町的本町通，約 10～15 分鐘走到城門。
+穿過城下町的本町通，約 15～20 分鐘走到城門。
 {{< /stop >}}
 {{< stop time="10:00" title="登國寶犬山城天守" icon="🏯" place="犬山城" >}}
 用套票裡的入場券進城。天守最上層的迴廊可以 360° 看木曽川和濃尾平原。我們待了 **1 小時 20 分**。
@@ -161,7 +161,7 @@ cover:
 
 ### 三光稲荷神社 {#sanko-inari}
 
-<!-- 📷 照片：紅鳥居、粉紅愛心繪馬 -->
+{{< figure src="gallery/03-sanko-inari.jpg" caption="三光稲荷神社" align="center" >}}
 
 就在犬山城山腳下，以**粉紅色愛心繪馬**和整排紅鳥居聞名。
 境內還有「銭洗池」：把錢放在竹籃裡用神水洗過，據說錢會加倍回來。
@@ -170,7 +170,6 @@ cover:
 |---|---|
 | 📍 地址 | 愛知県犬山市犬山北古券 65-18<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=三光稲荷神社+犬山) |
 | 🕘 參拜 | 境內自由參拜 |
-| 💰 洗錢 | 8:30–16:30 |
 | 💗 愛心繪馬 | **¥500**／個 |
 {.trip-facts}
 
@@ -212,13 +211,13 @@ cover:
 
 ### うな久（鰻魚飯） {#unakyu}
 
-<!-- 📷 照片：鰻魚飯 -->
+{{< figure src="gallery/04-unakyu.jpg" caption="うな久" align="center" >}}
 
 創業約 100 年的鰻魚老舖，**我們半日遊的午餐**。離犬山站走路約 6 分鐘，午餐時段人多，建議早點去。
 
 | 項目 | 內容 |
 |---|---|
-| 📍 地址 | 愛知県犬山市犬山東古券 113<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=うな久+犬山) |
+| 📍 地址 | 愛知県犬山市犬山東古券 113<br>[Google 地圖](https://maps.app.goo.gl/ePm52a7fTsBfCWCx7) |
 | 🕘 時間 | 11:00–14:00（L.O. 13:30）<br>17:00–20:00（L.O. 19:30） |
 | 😴 公休 | **週三、週四** |
 | 📞 電話 | 0568-61-0272 |
@@ -226,13 +225,14 @@ cover:
 
 ### うし若丸（飛驒牛章魚燒） {#ushiwakamaru}
 
-<!-- 📷 照片：牛たこ焼 -->
+{{< figure src="gallery/05-nikubei.jpg" caption="飛驒牛" align="center" >}}
+
 
 把章魚換成**大塊飛驒牛**的「牛たこ焼」，外脆內燙，是城下町人氣第一名的小吃之一。
 
 | 項目 | 內容 |
 |---|---|
-| 📍 本店 | 愛知県犬山市犬山西古券 21-2<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=うし若丸+犬山) |
+| 📍 本店 | 愛知県犬山市犬山西古券 21-2<br>[Google 地圖](https://maps.app.goo.gl/YxXzM1my1NYZSXKu5) |
 | 🕘 時間 | 10:00–17:30 |
 | 😴 公休 | 無休 |
 | 💰 價格 | 6 個 **¥550**／8 個 **¥680** |
