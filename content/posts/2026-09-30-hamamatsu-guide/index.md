@@ -316,7 +316,7 @@ cover:
 
 ---
 
-還想順便玩名古屋？可以看：[名古屋景點介紹]({{< relref "posts/2026-09-23-nagoya-attractions" >}})、[犬山城一日遊]({{< relref "posts/2026-09-30-inuyama-day-trip" >}})
+還想順便玩名古屋？可以看：[名古屋景點介紹]({{< relref "posts/2026-09-23-nagoya-attractions" >}})、[犬山城半日遊]({{< relref "posts/2026-09-30-inuyama-day-trip" >}})
 
 吃一碗鰻魚、看一場湖上的夕陽，濱松值得你多留一晚。下一站見 🧸
 
