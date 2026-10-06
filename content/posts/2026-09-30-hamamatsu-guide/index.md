@@ -200,7 +200,7 @@ cover:
 
 ### 濱松市樂器博物館 {#instrument-museum}
 
-<!-- 📷 照片：樂器博物館展示廳 -->
+{{< figure src="gallery/10-instrument-museum.jpg" caption="樂器博物館入口，我們去的時候有「ジャワとバリ」特別展，門票 ¥800" align="center" >}}
 
 濱松是 YAMAHA、河合的故鄉，被稱為「**樂器之城**」。
 這座公立博物館收藏世界各地的樂器，從日本傳統樂器到歐洲古鋼琴都有，
@@ -273,7 +273,7 @@ cover:
 
 ### かんざんじ纜車・舘山寺 {#ropeway}
 
-{{< figure src="gallery/05-ropeway.jpg" caption="かんざんじ纜車，從濱名湖湖面上空經過" align="center" >}}
+{{< figure src="gallery/05-ropeway.jpg" caption="從大草山展望台看出去的濱名湖，左上是橫越湖面的纜車" align="center" >}}
 
 舘山寺溫泉是濱名湖畔的溫泉街。
 **かんざんじ纜車**是日本少見的**橫跨湖面**纜車，坐到大草山頂的展望台，整個濱名湖一覽無遺。
