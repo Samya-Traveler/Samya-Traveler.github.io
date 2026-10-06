@@ -16,12 +16,12 @@ comments: true
 
 cover:
   image: "cover.jpg"
-  alt: "濱名湖夕陽與湖中紅色大鳥居（插圖）"
+  alt: "弁天島大鳥居、濱松城、中田島砂丘拼貼"
   relative: true
   hiddenInSingle: true
 ---
 
-{{< hero src="cover.jpg" title="濱松慢旅" subtitle="一天看湖上鳥居的夕陽，一天看砂丘的夕陽，中間吃鰻魚和餃子。" position="center 45%" >}}
+{{< hero src="cover.jpg" title="濱松慢旅" subtitle="一天看湖上鳥居的夕陽，一天看砂丘的夕陽，中間吃鰻魚和餃子。" position="center" >}}
 
 濱松在東京和名古屋中間，新幹線一站就到，常常被當成「路過」的城市。
 但我們這次住了三晚才發現，這裡很適合慢慢玩：
