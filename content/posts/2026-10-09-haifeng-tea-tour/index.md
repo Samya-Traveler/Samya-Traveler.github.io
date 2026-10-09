@@ -16,12 +16,12 @@ comments: true
 
 cover:
   image: "cover.jpg"
-  alt: "沿著茶園和海邊行駛的馬卡龍色列車（插圖）"
+  alt: "新寮瀑布、星源茶園採茶、海風號列車"
   relative: true
   hiddenInSingle: true
 ---
 
-{{< hero src="cover.jpg" title="帶長輩搭海風號" subtitle="遊覽車接送、住溫泉飯店，最後坐甜點列車看著海回台北。" position="center 60%" >}}
+{{< hero src="cover.jpg" title="帶長輩搭海風號" subtitle="遊覽車接送、住溫泉飯店，最後坐甜點列車看著海回台北。" position="center 40%" >}}
 
 想帶爸媽出去走走，又怕自由行太累、轉車太多？
 這次我們參加了雄獅旅遊的「**海風號｜茶境匠心．製茶風土之旅｜製茶師體驗．礁溪寒沐酒店二日**」，
@@ -81,8 +81,6 @@ cover:
 
 ### 集合：南港車站 1 樓北 2 出口
 
-<!-- 📷 照片：集合處、遊覽車 -->
-
 | 項目 | 內容 |
 |---|---|
 | 🕗 時間 | **08:30** |
@@ -95,7 +93,9 @@ cover:
 
 ### 新寮瀑布：簡單好走的森林步道
 
-<!-- 📷 照片：新寮瀑布步道、吊橋 -->
+{{< figure src="gallery/01-xinliao-waterfall.jpg" caption="新寮瀑布第一層，水量很大" align="center" >}}
+
+{{< figure src="gallery/02-xinliao-trail.jpg" caption="步道平緩好走，觀瀑平台可以拍全家福" align="center" >}}
 
 宜蘭冬山鄉的熱門步道，沿著溪谷走，樹蔭很多、水聲很近，被叫作蘭陽平原的「綠色鑽石」。
 
@@ -109,13 +109,15 @@ cover:
 
 ### 午餐：一佳村・山間養生料理
 
-<!-- 📷 照片：養生料理 -->
+{{< figure src="gallery/03-lunch-day1.jpg" caption="一佳村的山間養生料理" align="center" >}}
 
 行程安排的山間養生料理，吃完就前往茶園。
 
 ### 星源茶園：當一日製茶師
 
-<!-- 📷 照片：採茶裝、手揉茶、評茶 -->
+{{< figure src="gallery/04-tea-picking.jpg" caption="換上採茶裝進茶園，學採「一心二葉」" align="center" >}}
+
+{{< figure src="gallery/05-tea-making.jpg" caption="手揉茶葉，再用評茶杯比較不同茶款" align="center" >}}
 
 這天的重頭戲，**整套體驗將近 3 小時**：
 
@@ -129,7 +131,7 @@ cover:
 
 ### 住宿：礁溪寒沐酒店（一泊二食）
 
-<!-- 📷 照片：飯店外觀、房間、溫泉、晚餐 -->
+{{< figure src="gallery/06-mu-hotel.jpg" caption="寒沐酒店：房間、夜晚的泳池、晚餐和隔天早餐" align="center" >}}
 
 寒舍集團第一個自有品牌的**五星級溫泉飯店**，把自然、藝術和在地文化融合在一起，
 離礁溪火車站和礁溪溫泉公園都很近。這團是**一泊二食**，晚餐和隔天早餐都在飯店吃，
@@ -174,7 +176,7 @@ cover:
 
 ### 龍潭湖：蘭陽十二勝之一
 
-<!-- 📷 照片：龍潭湖、跨湖棧道 -->
+{{< figure src="gallery/07-longtan-lake.jpg" caption="藍天下的龍潭湖，湖邊步道很平" align="center" >}}
 
 宜蘭五大湖中**面積最大的天然湖**（約 17 公頃），三面環山、湖水清澈，舊稱「大埤湖」。
 近年完成改善工程，新增**人車分離的跨湖棧道**，走起來很安全。
@@ -189,7 +191,7 @@ cover:
 
 ### 午餐：喜浪鐵沐料理廚坊（原民風味套餐）
 
-<!-- 📷 照片：鹹豬肉、竹筒飯 -->
+{{< figure src="gallery/08-lunch-day2.jpg" caption="原民風味套餐：鹹豬肉＆竹筒飯" align="center" >}}
 
 宜蘭市一家由**南澳泰雅族青年返鄉**經營的原住民料理餐廳，
 用馬告、刺蔥等傳統食材，搭配現代的做法。這團安排的是**鹹豬肉＆竹筒飯套餐**。
@@ -199,7 +201,11 @@ cover:
 
 ### 海風號甜點列車：坐著看海回台北
 
-<!-- 📷 照片：海風號車廂、甜點、窗外海景 -->
+{{< figure src="gallery/09-haifeng-train.jpg" caption="薄荷綠的海風號，車廂是一張張面窗的沙發座" align="center" >}}
+
+{{< figure src="gallery/10-haifeng-dessert.jpg" caption="車上的甜點和茶" align="center" >}}
+
+{{< figure src="gallery/11-haifeng-stops.jpg" caption="途中停靠站：海邊看得到龜山島，車站裡還有貓" align="center" >}}
 
 這趟的壓軸。**海風號**是台鐵的甜點觀光列車，馬卡龍色的車廂配上**全景落地窗沙發座椅**，
 一路吃列車專屬的**匠心甜點**、看山海風景，途中還會停靠秘境車站，有**深度導覽**和「**海風管家**」的貼心服務。
