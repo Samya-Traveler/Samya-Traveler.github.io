@@ -16,7 +16,7 @@ comments: true
 
 cover:
   image: "cover.jpg"
-  alt: "新寮瀑布、星源茶園採茶、海風號列車"
+  alt: "新寮瀑布、龍潭湖、海風號列車"
   relative: true
   hiddenInSingle: true
 ---
@@ -95,7 +95,7 @@ cover:
 
 {{< figure src="gallery/01-xinliao-waterfall.jpg" caption="新寮瀑布第一層，水量很大" align="center" >}}
 
-{{< figure src="gallery/02-xinliao-trail.jpg" caption="步道平緩好走，觀瀑平台可以拍全家福" align="center" >}}
+{{< figure src="gallery/02-xinliao-trail.jpg" caption="步道平緩好走，第一層瀑布前還有吊橋" align="center" >}}
 
 宜蘭冬山鄉的熱門步道，沿著溪谷走，樹蔭很多、水聲很近，被叫作蘭陽平原的「綠色鑽石」。
 
@@ -115,9 +115,9 @@ cover:
 
 ### 星源茶園：當一日製茶師
 
-{{< figure src="gallery/04-tea-picking.jpg" caption="換上採茶裝進茶園，學採「一心二葉」" align="center" >}}
+{{< figure src="gallery/04-tea-picking.jpg" caption="在茶園學採「一心二葉」，放進竹簍" align="center" >}}
 
-{{< figure src="gallery/05-tea-making.jpg" caption="手揉茶葉，再用評茶杯比較不同茶款" align="center" >}}
+{{< figure src="gallery/05-tea-making.jpg" caption="手揉茶葉，再玩海風號限定的評茶連連看" align="center" >}}
 
 這天的重頭戲，**整套體驗將近 3 小時**：
 
@@ -162,8 +162,8 @@ cover:
 {{< stop time="12:00" title="午餐：喜浪鐵沐料理廚坊・原民風味套餐" icon="🍖" place="宜蘭市" >}}
 鹹豬肉＆竹筒飯套餐。**我們覺得只有「尚可」**。
 {{< /stop >}}
-{{< stop time="14:22" title="搭乘海風號甜點列車" icon="🚃" >}}
-約 3 小時的列車行程，吃甜點、看海景。
+{{< stop time="14:22" title="搭乘海風號甜點列車" icon="🚃" place="宜蘭 → 南港" >}}
+約 3 小時，吃車上現做的甜點、看海景，中途在**大里**和**猴硐**下車走走。
 {{< /stop >}}
 {{< stop time="18:00" title="抵達南港車站，賦歸" icon="🏁" place="南港車站" >}}
 列車 17:21 結束行程，約 18:00 後抵達南港。晚餐自理。
@@ -199,28 +199,48 @@ cover:
 > [!WARNING] 我們的評價：尚可
 > 這一餐**中規中矩，只有「尚可」**，沒有特別驚豔。整趟旅程的亮點還是在茶園體驗、飯店和海風號，對這餐不用期待太高。
 
-### 海風號甜點列車：坐著看海回台北
+### 海風號甜點列車：宜蘭坐到南港
 
-{{< figure src="gallery/09-haifeng-train.jpg" caption="薄荷綠的海風號，車廂是一張張面窗的沙發座" align="center" >}}
+{{< figure src="gallery/09-haifeng-train.jpg" caption="薄荷綠的海風號和紀念車票；座位桌上還有蓋章區" align="center" >}}
 
-{{< figure src="gallery/10-haifeng-dessert.jpg" caption="車上的甜點和茶" align="center" >}}
+這趟的壓軸。**海風號**是台鐵的甜點觀光列車，我們這班從**宜蘭**開往**南港**，
+薄荷綠的車廂配上**全景落地窗沙發座椅**，有「**海風管家**」在車上服務。
 
-{{< figure src="gallery/11-haifeng-stops.jpg" caption="途中停靠站：海邊看得到龜山島，車站裡還有貓" align="center" >}}
+#### 🍰 甜點是在車上現做的！
 
-這趟的壓軸。**海風號**是台鐵的甜點觀光列車，馬卡龍色的車廂配上**全景落地窗沙發座椅**，
-一路吃列車專屬的**匠心甜點**、看山海風景，途中還會停靠秘境車站，有**深度導覽**和「**海風管家**」的貼心服務。
+甜點裝在抽屜式的禮盒裡，一層甜、一層鹹，附上菜單，還有一杯冰淇淋。
+**茶可以無限續杯**，坐三個小時也不怕口渴。
+
+{{< figure src="gallery/10-haifeng-dessert.jpg" caption="車上現做的甜點：冰淇淋和抽屜式甜點盒（附菜單）" align="center" >}}
+
+#### 🚉 中途下車：大里、猴硐
+
+列車會在**大里**和**猴硐**停靠，可以下車走走：大里在海邊，看得到**龜山島**；猴硐是有名的**貓村**，車站就遇到貓。
+
+{{< figure src="gallery/11-haifeng-stops.jpg" caption="左：大里海邊看龜山島；右：猴硐車站的貓" align="center" >}}
+
+#### 🎁 海風號送的紀念品
+
+
+- 🎫 **紀念車票**：透明的海風號車票，印著日期和「宜蘭－南港」
+- 🥄 **冰淇淋湯匙**：吃冰淇淋用的湯匙可以帶走
+- 📜 **甜點菜單**：當天的甜點菜單卡
+- 📮 **紀念蓋章明信片**：用座位旁的印章**疊蓋三次**，蓋出完整圖案
+
+{{< figure src="gallery/12-haifeng-stamp.jpg" caption="蓋好三層印章的紀念明信片" align="center" >}}
 
 | 項目 | 內容 |
 |---|---|
+| 🛤️ 路線 | **宜蘭 → 南港**（中途停大里、猴硐） |
 | 🕑 時間 | **14:22～17:21**（以台鐵當日公告為準） |
 | 🏁 終點 | 南港車站，約 18:00 後抵達 |
 | 🪑 座位 | 依訂單順序安排，**無法指定車廂或靠窗**，可能和其他旅客併桌 |
-| 🍰 餐點 | 列車甜點；**不提供全素** |
+| 🍰 餐點 | 車上現做甜點、**茶無限續**；**不提供全素** |
 {.trip-facts}
 
 > [!TIP] 長輩提醒
 > - 同行家人**分開下訂**的話，訂購時記得在備註寫明要坐一起。
-> - 停靠車站下車拍照時，**一定要跟著領隊**，不能穿越軌道。
+> - 大里、猴硐下車時，**一定要跟著領隊**，準時回到車上，不能穿越軌道。
 > - 坐三個小時的車，**上車前先去一趟廁所**比較安心。
 
 ---
