@@ -261,3 +261,21 @@ body {
 .comments {
     margin-top: 32px;
 }
+
+/* ---------- Instagram Reels embed ---------- */
+.md-content .reel-embed {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 var(--content-gap);
+}
+
+.md-content .reel-embed .instagram-media {
+    width: 100%;
+    max-width: 400px !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+}

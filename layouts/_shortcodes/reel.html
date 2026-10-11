@@ -1,0 +1,15 @@
+{{- /*
+  Instagram post / Reels embed with a plain link fallback.
+  {{< reel url="https://www.instagram.com/p/XXXX/" >}}
+  The embed script is added once per page.
+*/ -}}
+{{- $url := .Get "url" -}}
+<div class="reel-embed">
+  <blockquote class="instagram-media" data-instgrm-permalink="{{ $url }}?utm_source=ig_embed" data-instgrm-version="14">
+    <a href="{{ $url }}" target="_blank" rel="noopener">▶ 在 Instagram 觀看這支 Reels</a>
+  </blockquote>
+</div>
+{{- if not (.Page.Store.Get "igEmbedScript") }}
+{{- .Page.Store.Set "igEmbedScript" true }}
+<script async src="https://www.instagram.com/embed.js"></script>
+{{- end }}
