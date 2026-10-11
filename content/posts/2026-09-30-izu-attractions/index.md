@@ -61,7 +61,6 @@ cover:
 | ⛩️ [來宮神社](#kinomiya)<br><small>熱海・免費</small> | ✅ 2026 年 7 月 |
 | 🖼️ [MOA 美術館](#moa)<br><small>熱海・¥2,000</small> | ✅ 2023 年 6 月 |
 | 🎆 [熱海海上花火](#atami-hanabi)<br><small>熱海・免費</small> | ✅ 2026 年 7 月 |
-| 🐟 [釜鶴干物店](#kamatsuru)<br><small>熱海</small> | ❌ 還沒去過 |
 | 🌋 [大室山](#omuroyama)<br><small>伊豆高原・纜椅 ¥700</small> | ✅ 2026 年 7 月 |
 | 🌤️ [小室山 MISORA](#komuroyama)<br><small>伊東・纜車 ¥1,000</small> | ✅ 2026 年 7 月 |
 | 🌿 [一碧湖](#ippekiko)<br><small>伊東・免費</small> | ✅ 2026 年 7 月 |
@@ -134,20 +133,6 @@ cover:
 | 📍 看點 | **親水公園**一帶（熱海站走路約 20 分） |
 {.trip-facts}
 
-### 釜鶴干物店（伴手禮） {#kamatsuru}
-
-> 🙈 **我還沒去過**，以下資訊整理自網路資料。
-
-熱海銀座傳了 5 代的干物（魚乾）老舖，用近海的魚做，很適合買回飯店或帶回家。
-
-| 項目 | 內容 |
-|---|---|
-| 📍 地址 | 静岡県熱海市銀座町 10-18<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=釜鶴ひもの店+熱海) |
-| 🕘 時間 | 8:00–16:00 |
-| 😴 公休 | **週二、週三** |
-| 📞 電話 | 0557-81-2172 |
-{.trip-facts}
-
 ---
 
 ## 🌋 伊東・伊豆高原
@@ -156,7 +141,9 @@ cover:
 
 > 📅 **我的造訪紀錄：2026 年 7 月**
 
-{{< figure src="gallery/03-omuroyama.jpg" caption="大室山山頂的火山口步道和紅鳥居" align="center" >}}
+{{< figure src="gallery/03-omuroyama.jpg" caption="左：山頂的火山口；右：纜椅票（2026/7/25）" align="center" >}}
+
+{{< figure src="gallery/03b-omuroyama.jpg" caption="左：大室山山頂 580m 標示；右：火山口步道旁的五智如來" align="center" >}}
 
 像倒扣的碗一樣的圓形火山，**只能搭纜椅上山**。
 山頂可以繞火山口走一圈（約 1 公里、20 分鐘），天氣好時看得到富士山和伊豆七島。
@@ -174,7 +161,7 @@ cover:
 
 > 📅 **我的造訪紀錄：2026 年 7 月**
 
-{{< figure src="gallery/04-komuroyama.jpg" caption="小室山山頂的木棧道 MISORA" align="center" >}}
+{{< figure src="gallery/04-komuroyama.jpg" caption="小室山山頂的咖啡廳和木棧道" align="center" >}}
 
 小室山山頂的**木棧道展望台＋咖啡廳**，360 度看相模灘、伊豆的海岸線和遠方的山。
 比大室山人少，可以慢慢走、坐下來喝杯飲料。
@@ -405,7 +392,7 @@ cover:
 
 ## 出發前檢查清單
 
-- [ ] 對好公休日：MOA 美術館**週四**、釜鶴**週二三**、徳造丸**週四**
+- [ ] 對好公休日：MOA 美術館**週四**、徳造丸**週四**
 - [ ] 6 月去下田看紫陽花、夏天去熱海看海上花火
 - [ ] 大室山纜椅 10 月～3 月中**16:15 就停**
 - [ ] 下田纜車**上山末班 16:15**
@@ -416,4 +403,4 @@ cover:
 
 下一篇：怎麼把這些景點排成兩天、要買什麼票 → [伊豆兩日遊推薦與交通攻略]({{< relref "posts/2026-09-30-izu-2day-trip" >}})
 
-<small>資料來源：[來宮神社（和樂）](https://intojapanwaraku.com/rock/travel-rock/35824/)、[MOA美術館（るるぶ）](https://rurubu.jp/andmore/spot/80022187)、[釜鶴（at-s）](https://www.at-s.com/gourmet/article/1160658)、[大室山（MAPPLE）](https://www.mapple.net/article/24974/)、[城ヶ崎海岸（at-s）](https://www.at-s.com/spot/article/133509)、[下田あじさい祭（日本旅行）](https://www.nta.co.jp/kokunai/special/eventinfo/10622621.htm)、[伊豆シャボテン動物公園（ジョルダン）](https://sp.jorudan.co.jp/zoo_aqua/spot_7019.html)、[徳造丸（icotto）](https://icotto.jp/restaurants/51956)、[河津七滝（るるぶ）](https://rurubu.jp/andmore/spot/80023052)、[修善寺（MAPPLE）](https://www.mapple.net/region/a0304050600/spot/)、[堂ヶ島マリン（skyticket）](https://skyticket.jp/guide/381705/)</small>
+<small>資料來源：[來宮神社（和樂）](https://intojapanwaraku.com/rock/travel-rock/35824/)、[MOA美術館（るるぶ）](https://rurubu.jp/andmore/spot/80022187)、[大室山（MAPPLE）](https://www.mapple.net/article/24974/)、[城ヶ崎海岸（at-s）](https://www.at-s.com/spot/article/133509)、[下田あじさい祭（日本旅行）](https://www.nta.co.jp/kokunai/special/eventinfo/10622621.htm)、[伊豆シャボテン動物公園（ジョルダン）](https://sp.jorudan.co.jp/zoo_aqua/spot_7019.html)、[徳造丸（icotto）](https://icotto.jp/restaurants/51956)、[河津七滝（るるぶ）](https://rurubu.jp/andmore/spot/80023052)、[修善寺（MAPPLE）](https://www.mapple.net/region/a0304050600/spot/)、[堂ヶ島マリン（skyticket）](https://skyticket.jp/guide/381705/)</small>
