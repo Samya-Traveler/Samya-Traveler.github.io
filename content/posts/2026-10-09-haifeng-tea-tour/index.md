@@ -131,7 +131,7 @@ cover:
 
 ### 住宿：礁溪寒沐酒店（一泊二食）
 
-{{< figure src="gallery/06-mu-hotel.jpg" caption="寒沐酒店：房間、夜晚的泳池、晚餐和隔天早餐" align="center" >}}
+{{< figure src="gallery/06-mu-hotel.jpg" caption="寒沐酒店：房間、夜晚的泳池、晚餐和海風號專屬迎賓調酒" align="center" >}}
 
 寒舍集團第一個自有品牌的**五星級溫泉飯店**，把自然、藝術和在地文化融合在一起，
 離礁溪火車站和礁溪溫泉公園都很近。這團是**一泊二食**，晚餐和隔天早餐都在飯店吃，
