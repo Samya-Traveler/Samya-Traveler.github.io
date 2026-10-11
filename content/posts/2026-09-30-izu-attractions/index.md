@@ -43,7 +43,7 @@ cover:
 |---|---|
 | ♨️ **熱海**<br><small>溫泉街、美術館</small> | 來宮神社、MOA 美術館、熱海海上花火 |
 | 🌋 **伊東・伊豆高原**<br><small>火山、斷崖海岸</small> | 大室山、小室山、一碧湖、城之崎海岸、泰迪熊博物館 |
-| 🐟 **東伊豆（稲取・河津）**<br><small>金目鯛、瀑布</small> | 徳造丸、河津七瀑布 |
+| 🌸 **東伊豆（河津）**<br><small>瀑布、早開櫻花</small> | 河津七瀑布、河津櫻 |
 | ⚓ **下田**<br><small>開港歷史、紫陽花</small> | 下田公園、Perry Road、下田纜車 |
 | 🎋 **修善寺（中伊豆）**<br><small>竹林溫泉</small> | 竹林小徑、修禪寺 |
 | 🌊 **西伊豆**<br><small>海蝕洞、夕陽</small> | 堂之島天窗洞 |
@@ -61,13 +61,12 @@ cover:
 | ⛩️ [來宮神社](#kinomiya)<br><small>熱海・免費</small> | ✅ 2026 年 7 月 |
 | 🖼️ [MOA 美術館](#moa)<br><small>熱海・¥2,000</small> | ✅ 2023 年 6 月 |
 | 🎆 [熱海海上花火](#atami-hanabi)<br><small>熱海・免費</small> | ✅ 2026 年 7 月 |
-| 🌋 [大室山](#omuroyama)<br><small>伊豆高原・纜椅 ¥700</small> | ✅ 2026 年 7 月 |
+| 🌋 [大室山](#omuroyama)<br><small>伊豆高原・纜椅 ¥1,000</small> | ✅ 2026 年 7 月 |
 | 🌤️ [小室山 MISORA](#komuroyama)<br><small>伊東・纜車 ¥1,000</small> | ✅ 2026 年 7 月 |
 | 🌿 [一碧湖](#ippekiko)<br><small>伊東・免費</small> | ✅ 2026 年 7 月 |
 | 🌉 [城之崎海岸](#jogasaki)<br><small>伊豆高原・免費</small> | ✅ 2022 年 4 月、2026 年 7 月 |
 | 🧸 [伊豆泰迪熊博物館](#teddy-bear)<br><small>伊豆高原・¥1,500</small> | ✅ 2026 年 7 月 |
 | 🦫 [伊豆仙人掌動物公園](#shaboten)<br><small>伊豆高原・¥2,200</small> | ❌ 還沒去過 |
-| 🍱 [徳造丸本店](#tokuzomaru)<br><small>稲取</small> | ❌ 還沒去過 |
 | 🌸 [河津](#nanadaru)<br><small>河津七瀑布・河津櫻</small> | ✅ 2020 年 2 月 |
 | 💠 [下田公園](#shimoda-park)<br><small>下田・免費</small> | ✅ 2023 年 6 月 |
 | 🏮 [Perry Road](#perry-road)<br><small>下田・免費</small> | ✅ 2022 年 4 月、2023 年 6 月 |
@@ -153,9 +152,12 @@ cover:
 |---|---|
 | 📍 地址 | 静岡県伊東市池 672-2<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=大室山リフト) |
 | 🕘 時間 | 9:00–17:15<br>（**10/1～3/15 到 16:15**） |
-| 🎫 纜椅 | 來回 大人 **¥700**／4 歲～小學 ¥350 |
+| 🎫 纜椅 | 來回 大人（國中以上）**¥1,000**<br>小學生 **¥500**<br>20 人以上團體：大人 ¥900／小孩 ¥400 |
 | 😴 停駛 | 天候不佳時；6 月、12 月的 2～12 日檢修 |
 {.trip-facts}
+
+> [!TIP] 纜椅折 ¥100
+> 我買了「**伊豆高原・城ヶ崎 1日券**」，出示就能用 **¥900** 搭纜椅（大人原價 ¥1,000）。
 
 ### 小室山 MISORA {#komuroyama}
 
@@ -196,6 +198,8 @@ cover:
 > 📅 **我的造訪紀錄：2022 年 4 月、2026 年 7 月**
 
 {{< figure src="gallery/06-jogasaki.jpg" caption="城之崎海岸的黑色熔岩斷崖" align="center" >}}
+
+{{< figure src="gallery/06b-jogasaki.jpg" caption="門脇吊橋，左上角是門脇埼燈塔" align="center" >}}
 
 火山熔岩流進海裡形成的**黑色斷崖海岸**。
 門脇吊橋長 48 公尺、高 23 公尺，走上去可以看海浪直接打在腳下的岩壁上。
@@ -249,25 +253,7 @@ cover:
 
 ---
 
-## 🐟 東伊豆（稲取・河津）
-
-### 網元料理 徳造丸 本店（金目鯛） {#tokuzomaru}
-
-> 🙈 **我還沒去過**，以下資訊整理自網路資料。
-
-稲取是**金目鯛**的產地。徳造丸是 1926 年創業的網元（漁船主）料理店，
-招牌是甜鹹濃郁的「**金目鯛煮付**」。
-
-| 項目 | 內容 |
-|---|---|
-| 📍 地址 | 静岡県賀茂郡東伊豆町稲取 798（2 樓）<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=徳造丸本店+稲取) |
-| 🕘 時間 | 平日 9:30–16:45<br>週末假日 10:30–20:30 |
-| 😴 公休 | **週四**（遇假日營業） |
-| 🚃 交通 | 伊豆急「**伊豆稲取站**」走路約 10 分鐘 |
-| 📞 電話 | 0557-95-1688 |
-{.trip-facts}
-
-<small>※ 各網站列出的營業時間不太一致，建議出發前先打電話確認。</small>
+## 🌸 東伊豆（河津）
 
 ### 河津（河津櫻・河津七瀑布） {#nanadaru}
 
@@ -392,7 +378,7 @@ cover:
 
 ## 出發前檢查清單
 
-- [ ] 對好公休日：MOA 美術館**週四**、徳造丸**週四**
+- [ ] 對好公休日：MOA 美術館**週四**
 - [ ] 6 月去下田看紫陽花、夏天去熱海看海上花火
 - [ ] 大室山纜椅 10 月～3 月中**16:15 就停**
 - [ ] 下田纜車**上山末班 16:15**
@@ -403,4 +389,4 @@ cover:
 
 下一篇：怎麼把這些景點排成兩天、要買什麼票 → [伊豆兩日遊推薦與交通攻略]({{< relref "posts/2026-09-30-izu-2day-trip" >}})
 
-<small>資料來源：[來宮神社（和樂）](https://intojapanwaraku.com/rock/travel-rock/35824/)、[MOA美術館（るるぶ）](https://rurubu.jp/andmore/spot/80022187)、[大室山（MAPPLE）](https://www.mapple.net/article/24974/)、[城ヶ崎海岸（at-s）](https://www.at-s.com/spot/article/133509)、[下田あじさい祭（日本旅行）](https://www.nta.co.jp/kokunai/special/eventinfo/10622621.htm)、[伊豆シャボテン動物公園（ジョルダン）](https://sp.jorudan.co.jp/zoo_aqua/spot_7019.html)、[徳造丸（icotto）](https://icotto.jp/restaurants/51956)、[河津七滝（るるぶ）](https://rurubu.jp/andmore/spot/80023052)、[修善寺（MAPPLE）](https://www.mapple.net/region/a0304050600/spot/)、[堂ヶ島マリン（skyticket）](https://skyticket.jp/guide/381705/)</small>
+<small>資料來源：[來宮神社（和樂）](https://intojapanwaraku.com/rock/travel-rock/35824/)、[MOA美術館（るるぶ）](https://rurubu.jp/andmore/spot/80022187)、[大室山（MAPPLE）](https://www.mapple.net/article/24974/)、[城ヶ崎海岸（at-s）](https://www.at-s.com/spot/article/133509)、[下田あじさい祭（日本旅行）](https://www.nta.co.jp/kokunai/special/eventinfo/10622621.htm)、[伊豆シャボテン動物公園（ジョルダン）](https://sp.jorudan.co.jp/zoo_aqua/spot_7019.html)、[河津七滝（るるぶ）](https://rurubu.jp/andmore/spot/80023052)、[修善寺（MAPPLE）](https://www.mapple.net/region/a0304050600/spot/)、[堂ヶ島マリン（skyticket）](https://skyticket.jp/guide/381705/)</small>
