@@ -76,20 +76,6 @@ cover:
 | 🎋 [修善寺竹林小徑・修禪寺](#shuzenji)<br><small>修善寺・免費</small> | ❌ 還沒去過 |
 | 🚤 [堂之島天窗洞](#dogashima)<br><small>西伊豆・¥1,500 起</small> | ❌ 還沒去過 |
 
----|---|
-| ⛩️ [來宮神社](#kinomiya)<br><small>熱海</small> | 免費 |
-| 🖼️ [MOA 美術館](#moa)<br><small>熱海</small> | ¥2,000 |
-| 🐟 [釜鶴干物店](#kamatsuru)<br><small>熱海</small> | 伴手禮 |
-| 🌋 [大室山](#omuroyama)<br><small>伊豆高原</small> | 纜椅 ¥700 |
-| 🌉 [城之崎海岸](#jogasaki)<br><small>伊豆高原</small> | 免費 |
-| 🦫 [伊豆仙人掌動物公園](#shaboten)<br><small>伊豆高原</small> | ¥2,200 |
-| 🍱 [徳造丸本店](#tokuzomaru)<br><small>稲取</small> | 午餐 |
-| 💦 [河津七瀑布](#nanadaru)<br><small>河津</small> | 免費 |
-| 🚡 [下田纜車・寢姿山](#shimoda-ropeway)<br><small>下田</small> | 來回 ¥1,030 |
-| 🏮 [Perry Road](#perry-road)<br><small>下田</small> | 免費 |
-| 🎋 [修善寺竹林小徑・修禪寺](#shuzenji)<br><small>修善寺</small> | 免費 |
-| 🚤 [堂之島天窗洞](#dogashima)<br><small>西伊豆</small> | 遊船 ¥1,500 起 |
-
 ---
 
 ## ♨️ 熱海
