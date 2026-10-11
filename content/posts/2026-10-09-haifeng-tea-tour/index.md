@@ -206,6 +206,8 @@ cover:
 這趟的壓軸。**海風號**是台鐵的甜點觀光列車，我們這班從**宜蘭**開往**南港**，
 薄荷綠的車廂配上**全景落地窗沙發座椅**，有「**海風管家**」在車上服務。
 
+{{< figure src="gallery/16-haifeng-interior.jpg" caption="薄荷綠的車廂：面窗的單人沙發座和四人沙發座" align="center" >}}
+
 #### 🍰 甜點是在車上現做的！
 
 甜點裝在抽屜式的禮盒裡，一層甜、一層鹹，附上菜單，還有一杯冰淇淋。
@@ -223,21 +225,16 @@ cover:
 
 海風號送了一整套紀念品，帶回家當旅行回憶剛剛好：
 
-**🎫 紀念車票**：透明壓克力材質的海風號車票，印著日期和「宜蘭－南港」，對著海拍照很好看。
+- 🎫 **紀念車票**：透明壓克力材質的海風號車票，印著日期和「宜蘭－南港」，對著海拍照很好看。
+- 🥄 **冰淇淋湯匙**：和 MINIMAL 聯名的冰淇淋附的湯匙，裝在小紙套裡，可以帶走。
+- 📜 **甜點菜單**：做成立體卡片，打開會立起海風號車頭和台灣，當天的甜點菜單就夾在中間。
+- 📮 **紀念蓋章明信片**：座位旁有三個印章，照著說明**疊蓋三次**，就會蓋出完整的圖案。
 
 {{< figure src="gallery/13-haifeng-ticket.jpg" caption="透明的紀念車票，在大里海邊拍" align="center" >}}
 
-**🥄 冰淇淋湯匙**：和 MINIMAL 聯名的冰淇淋附的湯匙，裝在小紙套裡，可以帶走。
-
-{{< figure src="gallery/14-haifeng-spoon.jpg" caption="海風 × MINIMAL 的冰淇淋湯匙" align="center" >}}
-
-**📜 甜點菜單**：做成立體卡片，打開會立起海風號車頭和台灣，當天的甜點菜單就夾在中間。
-
 {{< figure src="gallery/15-haifeng-menu.jpg" caption="打開會立起來的立體甜點菜單" align="center" >}}
 
-**📮 紀念蓋章明信片**：座位旁有三個印章，照著說明**疊蓋三次**，就會蓋出完整的圖案。
-
-{{< figure src="gallery/12-haifeng-stamp.jpg" caption="蓋好三層印章的紀念明信片" align="center" >}}
+{{< figure src="gallery/17-haifeng-spoon-stamp.jpg" caption="左：海風 × MINIMAL 的冰淇淋湯匙；右：蓋好三層印章的紀念明信片" align="center" >}}
 
 | 項目 | 內容 |
 |---|---|
