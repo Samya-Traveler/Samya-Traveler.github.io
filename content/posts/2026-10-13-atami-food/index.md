@@ -55,6 +55,7 @@ cover:
 
 ### 温泉つけ麺 維新 {#ishin}
 
+⭐️⭐️⭐️⭐️⭐️
 > 📅 **我吃過：2023 年 6 月、2026 年 7 月**
 
 {{< figure src="gallery/01-ishin.jpg" caption="左：店門口的「温泉つけ麺」布簾；右：スペシャルつけ麺" align="center" >}}
@@ -79,6 +80,7 @@ cover:
 
 ### 熱海プリン カフェ 2nd（熱海布丁） {#atami-purin}
 
+⭐️⭐️⭐️⭐️
 > 📅 **我吃過：2022 年 4 月、2026 年 7 月**
 
 {{< figure src="gallery/02-atami-purin.jpg" caption="2026 年 7 月：左：熱海布丁和花火布丁；右：夏季限定的花火布丁" align="center" >}}
@@ -108,6 +110,7 @@ cover:
 
 ### 熱海ばたーあん（奶油紅豆麵包） {#butter-an}
 
+⭐️⭐️⭐️⭐️⭐️
 > 📅 **我吃過：2026 年 7 月**
 
 {{< figure src="gallery/04-butter-an.jpg" caption="左：店門口；右：熱海ばたーあんパン" align="center" >}}
@@ -125,6 +128,7 @@ cover:
 
 ### 熱海ヨーグルト発酵所（優格） {#yogurt}
 
+⭐️⭐️⭐️⭐️
 > 📅 **我吃過：2026 年 7 月**
 
 {{< figure src="gallery/05-yogurt.jpg" caption="左：熱海ヨーグルト発酵所；右：現做優格" align="center" >}}
@@ -141,6 +145,7 @@ cover:
 
 ### 熱海ミルチーズ（ATAMI MILCHEE'S） {#milchees}
 
+⭐️⭐️
 > 📅 **我吃過：2026 年 7 月**
 
 {{< figure src="gallery/06-milchees.jpg" caption="左：店門口的期間限定「のめるチーズ氷」；右：のめるバスク" align="center" >}}
@@ -162,6 +167,7 @@ cover:
 
 ### 磯揚げ まる天 熱海店（たこ棒） {#maruten}
 
+⭐️⭐️⭐️⭐️
 > 📅 **我吃過：2026 年 7 月**
 
 {{< figure src="gallery/07-maruten.jpg" caption="左：人氣 No.1 的たこ棒；右：剛炸好的たこ棒" align="center" >}}
@@ -178,12 +184,14 @@ cover:
 
 ### 阿部商店（いいらまんじゅう・溫泉饅頭） {#iira-manju}
 
+⭐️⭐️⭐️⭐️
 > 📅 **我吃過：2026 年 7 月**
 
 {{< figure src="gallery/08-iira-manju.jpg" caption="左：熱騰騰的いいらまんじゅう說明；右：黑糖和抹茶兩種口味" align="center" >}}
 
 平和通り商店街裡掛著大紅燈籠的溫泉饅頭店，1960 年創業。
 招牌是**熱呼呼的「いいらまんじゅう」**：「いいら」是靜岡方言「很好吧」的意思。
+老店的饅頭，真的是很香也很好吃呢！
 
 | 口味 | 內餡 | 價格 |
 |---|---|---|
@@ -202,6 +210,7 @@ cover:
 
 ### 來宮神社 境內霜淇淋 {#kinomiya}
 
+⭐️⭐️⭐️⭐️
 > 📅 **我吃過：2026 年 7 月**
 
 {{< figure src="gallery/09-kinomiya-soft.jpg" caption="來宮神社境內的霜淇淋" align="center" >}}
