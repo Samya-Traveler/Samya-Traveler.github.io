@@ -87,7 +87,8 @@ cover:
 | 🎫 **2 日券**<br><small>伊東・伊豆高原</small> | 連續 2 天搭到飽<br>**只在伊東站**<br>觀光案內所買 |
 {.trip-facts}
 
-時刻表請參考：https://www.tokaibus.jp/rosen/ito_ridepass_timetable.html
+請參考[時刻表](https://www.tokaibus.jp/rosen/ito_ridepass_timetable.html) 幫助排行程。
+
 
 {{< figure src="gallery/00-ito-tourist-info.jpg" caption="2 日券在伊東站的觀光案內所（Tourist Information）買" align="center" width="360" >}}
 
