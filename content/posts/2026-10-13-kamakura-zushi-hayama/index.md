@@ -4,10 +4,10 @@ slug: "kamakura-zushi-hayama"
 date: 2026-10-13T09:00:00+08:00
 lastmod: 2026-10-13T09:00:00+08:00
 draft: false
-description: "鎌倉、逗子、葉山景點整理：鶴岡八幡宮、小町通、鎌倉大佛、長谷寺、明月院、錢洗弁財天、佐助稻荷、江之電與鎌倉高校前，加上逗子碼頭、Malibu Farm 和逗子海岸花火大會。附我的造訪年月、門票和交通。"
+description: "鎌倉、逗子、葉山景點整理：鶴岡八幡宮、小町通、鎌倉大佛、長谷寺、明月院、錢洗弁財天、佐助稻荷、江之電與鎌倉高校前，加上逗子碼頭、逗子海岸花火大會，以及葉山森戶神社、葉山港湾食堂、MARLOWE 布丁（葉山女子旅きっぷ）。附我的造訪年月、門票和交通。"
 summary: "鎌倉去了兩次、逗子看過一場海上花火。鶴岡八幡宮、大佛、長谷寺、江之電、逗子碼頭的椰子樹大道，一篇看完門票、交通和我的實遊心得。"
 categories: ["日本"]
-tags: ["鎌倉", "逗子", "葉山", "湘南", "神奈川", "鎌倉大佛", "江之電", "花火", "日本自由行"]
+tags: ["鎌倉", "逗子", "葉山", "湘南", "神奈川", "鎌倉大佛", "江之電", "花火", "葉山女子旅きっぷ", "日本自由行"]
 destinations: ["鎌倉"]
 author: "Samya"
 ShowToc: true
@@ -24,7 +24,7 @@ cover:
 {{< hero src="cover.jpg" title="鎌倉逗子葉山" subtitle="古寺和大佛、海邊的綠色電車，再往南一點就是椰子樹和海上花火。" position="center 45%" >}}
 
 鎌倉我去過兩次：**2021 年 2 月**（早春）和 **2026 年 7 月**；
-**2023 年 5 月**則是去逗子看海上花火。這篇把鎌倉、逗子、葉山的景點一次整理，
+**2023 年 1 月**用女子旅きっぷ玩葉山、**2023 年 5 月**去逗子看海上花火。這篇把鎌倉、逗子、葉山的景點一次整理，
 每個景點都標上我的造訪紀錄，沒去過的也會寫清楚。
 
 <!--more-->
@@ -46,7 +46,9 @@ cover:
 | 🚃 [江之電＋鎌倉高校前](#enoden)<br><small>鎌倉～藤澤</small> | ✅ 2021 年 2 月、2026 年 7 月 |
 | 🌴 [逗子碼頭＋Malibu Farm](#zushi-marina)<br><small>逗子</small> | ✅ 2023 年 5 月 |
 | 🎆 [逗子海岸花火大會](#zushi-hanabi)<br><small>逗子・免費</small> | ✅ 2023 年 5 月 |
-| 🌊 [葉山：森戶神社、一色海岸](#hayama)<br><small>葉山</small> | ❌ 還沒去過 |
+| ⛩️ [葉山：森戶神社](#morito)<br><small>葉山・免費</small> | ✅ 2023 年 1 月 |
+| 🍮 [葉山港湾食堂、MARLOWE](#hayama-kowan)<br><small>葉山・女子旅きっぷ</small> | ✅ 2023 年 1 月 |
+| 🏖️ [一色海岸](#isshiki)<br><small>葉山</small> | ❌ 還沒去過 |
 
 > [!TIP] 怎麼排
 > 鎌倉景點分成三區：**鎌倉站周邊**（八幡宮、小町通、錢洗、佐助）、**長谷**（大佛、長谷寺）、**北鎌倉**（明月院）。
@@ -246,14 +248,68 @@ cover:
 
 ## 🌊 葉山 {#hayama}
 
+> 📅 **我的造訪紀錄：2023 年 1 月**（用「葉山女子旅きっぷ」玩一天）
+
+逗子再往南就是葉山，比鎌倉安靜很多，**冬天天空特別藍**，很適合看海、放空。
+我這次走的是：**逗子・葉山站 → 森戶神社 → 葉山港吃午餐 → 海邊露台喝咖啡 → 買 MARLOWE 布丁 → 回逗子海岸看夕陽**。
+
+> [!TIP] 葉山女子旅きっぷ
+> 京急推出的套票，包含**京急來回車票＋逗子・葉山一帶巴士搭到飽＋一張「ごはん券」＋一張「ごほうび券」**，
+> 午餐和甜點、伴手禮都能從合作店家裡選。我 2023 年買的含交通約 ¥3,500，覺得很划算。
+> 價格依出發站不同，2026 年 9 月起改版，購買前請看京急官網。
+
+### 森戶大明神（森戶神社） {#morito}
+
+{{< figure src="gallery/15-morito.jpg" caption="左：森戶神社；右：魚造型的籤" align="center" >}}
+
+建在海邊的神社，籤是**可愛的魚造型**，抽完可以帶回家當吊飾。
+神社後面就是海岸，有**石原裕次郎紀念碑**，海上還有一座小島上的**紅色鳥居（名島）**，天氣好可以看到富士山和江之島。
+
+{{< figure src="gallery/16-morito-coast.jpg" caption="左：海上的名島鳥居和裕次郎燈塔；右：石原裕次郎紀念碑" align="center" >}}
+
+| 項目 | 內容 |
+|---|---|
+| 📍 地址 | 神奈川県三浦郡葉山町堀内 1025<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=森戸大明神) |
+| 🎫 費用 | 免費 |
+| 🚌 交通 | 逗子站／逗子・葉山站搭京急巴士<br>（海岸回り）約 11 分<br>「森戸神社」下車 |
+{.trip-facts}
+
+### 葉山港湾食堂（午餐） {#hayama-kowan}
+
+{{< figure src="gallery/17-hayama-kowan.jpg" caption="左：葉山港湾食堂；右：魩仔魚丼＋葉山餃子定食" align="center" >}}
+
+葉山港旁的食堂，我用ごはん券吃了**魩仔魚丼＋葉山餃子**，二樓窗邊就看得到港口。
+葉山餃子也可以外帶生的回家煎。
+
+### 葉山港邊的海景露台 {#hayama-deck}
+
+{{< figure src="gallery/18-hayama-deck.jpg" caption="左：掛滿白色三角旗的露台；右：看海喝咖啡、配甜點" align="center" >}}
+
+吃完飯走到港邊，有一座**掛滿白色三角旗的木頭露台**，白色大沙發可以直接躺著曬太陽看海。
+冬天下午陽光很暖，是這天最放鬆的時刻。
+
+### MARLOWE（布丁） {#marlowe}
+
+{{< figure src="gallery/19-marlowe.jpg" caption="左：MARLOWE 的布丁櫃；右：帶回家的燒杯布丁" align="center" >}}
+
+葉山名物**燒杯布丁**，杯子上印著大叔頭像，吃完的燒杯還可以留下來用。
+人氣第一是**北海道クリームプリン**（¥810），用ごほうび券就能換。
+
+### 逗子海岸看夕陽
+
+{{< figure src="gallery/20-zushi-sunset.jpg" caption="左：逗子海岸的「太陽の季節」紀念碑；右：海上的夕陽" align="center" >}}
+
+回程在**逗子海岸**下車看夕陽，冬天 16:30 左右太陽就落進海裡。
+海灘上的「太陽の季節」紀念碑是石原慎太郎同名小說的紀念碑。
+
+### 一色海岸 {#isshiki}
+
 > 🙈 **我還沒去過**，以下資訊整理自網路資料。
 
-逗子再往南就是葉山，比鎌倉安靜很多，適合看海、看夕陽。
-
-| 景點 | 特色／交通 |
+| 項目 | 內容 |
 |---|---|
-| ⛩️ **森戶神社** | 海邊的神社<br>天氣好能看到**富士山＋夕陽**<br>逗子站搭巴士約 11 分<br>「森戸神社」下車 |
-| 🏖️ **一色海岸** | 水很清的小海灘<br>旁邊是葉山御用邸<br>逗子站搭巴士約 20 分<br>「一色海岸」下車 |
+| 🏖️ 特色 | 水很清的小海灘<br>旁邊是葉山御用邸 |
+| 🚌 交通 | 逗子站搭巴士約 20 分<br>「一色海岸」下車 |
 {.trip-facts}
 
 <small>※ 從逗子站搭「逗 12（海岸回り）葉山（一色）ゆき」，可以一路沿海岸到森戶神社和一色海岸。</small>
@@ -266,9 +322,10 @@ cover:
 - [ ] 江之電要搭 4 段以上：買「**のりおりくん**」一日券
 - [ ] 錢洗弁財天一路上坡：**穿好走的鞋**
 - [ ] 逗子海岸花火：**5 月底**，查好當年日期、早點卡位
+- [ ] 玩葉山：買京急「**葉山女子旅きっぷ**」，交通＋午餐＋甜點一次搞定
 
 ---
 
 鎌倉適合慢慢走，逗子和葉山適合放空看海。熱海和伊豆的行程 → [伊豆景點介紹]({{< relref "posts/2026-09-30-izu-attractions" >}})。下一站見 🧸
 
-<small>資料來源：[逗子海岸花火大会（逗子市）](https://www.city.zushi.kanagawa.jp/_res/projects/default_project/_page_/001/008/362/hanabitirasi.pdf)、[逗子海岸花火大会（LIMO）](https://limo.media/articles/-/40859)、[鎌倉大仏（ジョルダン）](https://sp.jorudan.co.jp/hanami/spot_969.html)、[鎌倉大仏（るるぶ）](https://rurubu.jp/andmore/article/10132)、[長谷寺（ジョルダン）](https://sp.jorudan.co.jp/hanami/news/jrd_260129_3.html)、[明月院（ウォーカープラス）](https://summer.walkerplus.com/odekake/detail_e/ar0314e594233/data.html)、[マリブファーム 逗子マリーナ（icotto）](https://icotto.jp/restaurants/50640)、[森戸大明神（るるぶ）](https://rurubu.jp/andmore/spot/80014289)、[葉山 1day trip（キナリノ）](https://kinarino.jp/cat8/31427)</small>
+<small>資料來源：[逗子海岸花火大会（逗子市）](https://www.city.zushi.kanagawa.jp/_res/projects/default_project/_page_/001/008/362/hanabitirasi.pdf)、[逗子海岸花火大会（LIMO）](https://limo.media/articles/-/40859)、[鎌倉大仏（ジョルダン）](https://sp.jorudan.co.jp/hanami/spot_969.html)、[鎌倉大仏（るるぶ）](https://rurubu.jp/andmore/article/10132)、[長谷寺（ジョルダン）](https://sp.jorudan.co.jp/hanami/news/jrd_260129_3.html)、[明月院（ウォーカープラス）](https://summer.walkerplus.com/odekake/detail_e/ar0314e594233/data.html)、[マリブファーム 逗子マリーナ（icotto）](https://icotto.jp/restaurants/50640)、[森戸大明神（るるぶ）](https://rurubu.jp/andmore/spot/80014289)、[葉山 1day trip（キナリノ）](https://kinarino.jp/cat8/31427)、[葉山女子旅きっぷ（るるぶ）](https://rurubu.jp/andmore/article/19854)、[葉山女子旅きっぷ 2026 改版（京急）](https://digitalpr.jp/r/141751)、[葉山港湾食堂（テレビ東京）](https://www.tv-tokyo.co.jp/adomachi/backnumber/20190727/139820.html)、[裕次郎碑（るるぶ）](https://rurubu.jp/andmore/spot/80014283)</small>
