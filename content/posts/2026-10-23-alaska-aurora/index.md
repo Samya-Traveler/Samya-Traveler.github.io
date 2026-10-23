@@ -280,7 +280,7 @@ Enterprise 租車，租車公司會派車來接。**要用上面名片上的電�
 
 > [!WARNING] Dalton Highway 不要自己開
 > 大部分租車公司**禁止**租的車開上 Dalton Highway（碎石路、大卡車多、沒有訊號），
-> 想去北極圈建議**跟團**，或找專門出租改裝車的公司。
+> 想去北極圈建議**跟團**。
 
 ### 10/18（六）：費爾班克斯 ✈️ 西雅圖
 
@@ -337,12 +337,14 @@ Enterprise 租車，租車公司會派車來接。**要用上面名片上的電�
 - [ ] 不打算自駕北極圈：**跟團**（多數租車公司禁止開 Dalton Highway）
 - [ ] **洋蔥式穿法**：發熱衣＋刷毛＋羽絨外套＋防風褲、毛帽、手套、暖暖包
 - [ ] 珍娜溫泉露天溫泉**限 18 歲以上**；泳衣、拖鞋、毛巾自己帶比較方便
-- [ ] 美國要給**小費**（餐廳 18～20%）
+- [ ] 美國要給**小費**（餐廳 18% 以上）
 - [ ] 費爾班克斯郊區**訊號很差**，先下載離線地圖
 - [ ] 提款找**免手續費的 ATM**（Allpoint、MoneyPass 聯盟，Costco、7-Eleven 等）
 
 ---
 
-10 月的阿拉斯加還沒有很冷，黃葉、雪山、極光一次看到。第一次看到滿天極光的那個晚上，真的會一輩子記得 🌌 下一站見 🧸
+10 月的阿拉斯加還沒有很冷，黃葉、雪山、極光一次看到。第一次看到滿天極光的那個晚上，真的會一輩子記得 🌌
+
+想看更詳細的景點、餐廳和住宿介紹，請看 → [阿拉斯加景點介紹｜景點＋餐廳＋飯店實住心得]({{< relref "posts/2026-10-23-alaska-attractions" >}})。下一站見 🧸
 
 <small>資料來源：[Alaska Railroad 2025-26 冬季手冊](https://www.alaskarailroad.com/sites/default/files/Marketing/25_26_Winter_Brochure_Packages.pdf)、[Aurora Winter Train（alaskatravel.com）](https://www.alaskatravel.com/alaska-railroad/winter/anchorage-fairbanks/)、[Chena Hot Springs & Ice Museum（Princess）](https://gb-www.princess.com/ports-excursions/fairbanks-excursions/chena-hot-springs-and-ice-museum)、[Chena Hot Springs Tour（TakeTours）](https://www.taketours.com/fairbanks-ak/1-day-chena-hot-springs-from-fairbanks-775-3259.html)、[Dalton Highway（Alaska DOT&PF）](https://dot.alaska.gov/highways/dalton/)、[Dalton Highway Road Trip（Travel Alaska）](https://www.travelalaska.com/explore-alaska/itineraries/dalton_highway_road_trip_from_fairbanks)</small>
