@@ -4,7 +4,7 @@ slug: "alaska-attractions"
 date: 2026-10-23T12:00:00+08:00
 lastmod: 2026-10-23T12:00:00+08:00
 draft: false
-description: "阿拉斯加景點、餐廳、飯店一次整理：安克拉治博物館、海岸步道、極光列車、聖誕老人村、冰雕博物館、北方博物館、大型動物研究站、珍娜溫泉、北極圈；Snow City Cafe、Alaskan Burger & Brew、The Crepery；珍娜溫泉木屋、Candlewood Suites。附地址、門票和我的心得。"
+description: "阿拉斯加景點、餐廳、飯店一次整理：安克拉治博物館、海岸步道、極光列車、聖誕老人村、冰雕博物館、北方博物館、大型動物研究站、珍娜溫泉、北極圈；Snow City Cafe、Alaskan Burger & Brew、The Crepery；珍娜溫泉、Candlewood Suites。附地址、門票和我的心得。"
 summary: "我 2025 年 10 月去阿拉斯加實際去過的景點、吃過的餐廳、住過的飯店，一篇整理地址、門票和心得。"
 categories: ["美國"]
 tags: ["阿拉斯加", "美國", "安克拉治", "費爾班克斯", "珍娜溫泉", "北極圈", "極光", "阿拉斯加美食", "阿拉斯加住宿"]
@@ -202,9 +202,6 @@ cover:
 | 🌐 官網 | [chenahotsprings.com](https://chenahotsprings.com/) |
 {.trip-facts}
 
-> [!WARNING] 住宿小提醒
-> 木屋的**蓮蓬頭水有鐵鏽味**，建議自己帶一個**過濾蓮蓬頭**（或濾水器）。
-
 > [!WARNING] 開車注意
 > Chena Hot Springs Rd 一路**幾乎沒有手機訊號**，先下載離線地圖、加滿油。冬天下雪要放慢速度。
 
@@ -244,7 +241,7 @@ cover:
 
 {{< figure src="gallery/14-aurora.jpg" caption="費爾班克斯的極光，10/12 晚上 KP 達到 5" align="center" >}}
 
-費爾班克斯一帶**晚上 10 點～凌晨 3 點**最有機會。我 10 月一共待 7 晚，其中一晚遇到大爆發。
+費爾班克斯一帶**晚上 10 點～凌晨 3 點**最有機會。我 10 月一共待 7 晚，**10/12 晚上參加 KKday 的極光團**，剛好遇到 KP 5 的大爆發。
 極光預報、拍攝技巧請看 → [自助阿拉斯加追極光]({{< relref "posts/2026-10-23-alaska-aurora" >}}#-追極光注意事項)。
 
 ### 🏅 領取極光證書 {#aurora-certificate}
@@ -339,7 +336,7 @@ cover:
 | 住宿 | 適合 |
 |---|---|
 | Airbnb（費爾班克斯） | 多人同行、自己煮 |
-| 珍娜溫泉木屋 | 泡溫泉、看極光 |
+| 珍娜溫泉 Fox Room | 泡溫泉、看極光 |
 | Candlewood Suites | 機場接送、有廚房 |
 {.trip-facts}
 
@@ -349,12 +346,20 @@ cover:
 
 5 個人一起住 3 晚，**有完整的廚房**，去 Costco 買食材自己煮，一個人一晚約 **USD 53**。
 
-### 珍娜溫泉 Caribou Cabin
+### 珍娜溫泉 Fox Room
 
-{{< figure src="gallery/32-chena-cabin.jpg" caption="左：Caribou Cabin 木屋；右：房間" align="center" >}}
+{{< figure src="gallery/32-chena-fox-room.jpg" caption="Fox Room 的房間" align="center" >}}
 
-度假村裡的獨棟木屋，5 個人住 2 晚。**走路就到溫泉和活動中心**，晚上可以直接在外面等極光。
+我們住的是度假村裡的 **Fox Room**，住了 2 晚。**走路就到溫泉和活動中心**，晚上可以直接在外面等極光。
 價格比費爾班克斯市區貴，但住在這裡最方便。
+
+> [!WARNING] 蓮蓬頭水有鐵鏽味
+> 房間**蓮蓬頭出來的水有鐵鏽味**，建議自己帶一個**過濾蓮蓬頭**（或濾水器）。我們就是帶了濾水蓮蓬頭，換上去才安心洗澡。
+
+{{< figure src="gallery/34-shower-filter.jpg" caption="自備的過濾蓮蓬頭：左邊是用過的濾芯，中間是新的" align="center" width="420" >}}
+
+> [!TIP] 推薦訂 Moose Lodge
+> 度假村裡有好幾種房型，下次我會訂**比較新的 Moose Lodge**，住起來應該會更舒服。
 
 | 項目 | 內容 |
 |---|---|
