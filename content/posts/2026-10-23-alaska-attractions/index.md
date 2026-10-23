@@ -222,7 +222,7 @@ cover:
 - 🌐 **北極圈標誌**：北緯 66°33'，拍照、領證書
 
 > [!TIP] 我的經驗：團被取消怎麼辦？
-> 我們原本在 **KKday** 訂了北極圈團，結果導遊在出團當天臨時取消。
+> 我們原本在 **GetYourGuide** 訂了北極圈團，結果導遊在出團當天臨時取消。
 > 只好趕快聯絡**之前極光團的導遊**幫忙，最後順利改到後天出發。
 > 非常感謝 [Skylar Travel](https://www.skylartravel.com/) 的導遊協助安排 🙏
 > 建議**北極圈團不要排在最後一天**，留一兩天緩衝比較保險。
@@ -246,6 +246,23 @@ cover:
 
 費爾班克斯一帶**晚上 10 點～凌晨 3 點**最有機會。我 10 月一共待 7 晚，其中一晚遇到大爆發。
 極光預報、拍攝技巧請看 → [自助阿拉斯加追極光]({{< relref "posts/2026-10-23-alaska-aurora" >}}#-追極光注意事項)。
+
+### 🏅 領取極光證書 {#aurora-certificate}
+
+{{< figure src="gallery/15-aurora-certificate.jpg" caption="在遊客中心領到的 Aurora Borealis Certificate" align="center" width="360" >}}
+
+在費爾班克斯看到極光後，可以到市中心的 **Morris Thompson Cultural and Visitors Center（遊客中心）**
+領一張**極光證書（Aurora Borealis Certificate）**，上面會寫上你的名字和看到極光的日期，還會蓋章，很適合當紀念。
+
+| 項目 | 內容 |
+|---|---|
+| 📍 地址 | 101 Dunkel St, Fairbanks<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=Morris+Thompson+Cultural+and+Visitors+Center) |
+| 🕘 時間 | 冬季 8:00–17:00<br>夏季 8:00–18:00 |
+| 🎫 費用 | 遊客中心**免費入場** |
+{.trip-facts}
+
+> [!TIP] 順便逛逛
+> 遊客中心裡有阿拉斯加原住民文化的展覽，也能拿到費爾班克斯的地圖和旅遊資訊。
 
 ---
 
@@ -362,4 +379,4 @@ cover:
 阿拉斯加的景點不多，但每一個都很「阿拉斯加」：雪山、野生動物、溫泉、極光。每天怎麼排，請看 →
 [自助阿拉斯加追極光｜10 天行程安排]({{< relref "posts/2026-10-23-alaska-aurora" >}})。下一站見 🧸
 
-<small>資料來源：[Anchorage Museum](https://www.anchoragemuseum.org/visit/hours-tickets/)、[Museum of the North（UAF）](https://uaf.edu/museum/plan-your-visit/hours/index-old.php)、[LARS Tours（UAF）](https://uaf.edu/lars/outreach/tours.php)、[LARS 2025 夏季導覽（UAF News）](https://www.uaf.edu/news/lars-open-for-summer-tours.php)、[Fairbanks Ice Museum（Roadside America）](https://www.roadsideamerica.com/tip/27776)、[Santa Claus House（alaska.org）](https://alaska.org/detail/santa-claus-house)、[Chena Hot Springs Pool House](https://chenahotsprings.com/pool-house/)、[Snow City Cafe（Lyft）](https://www.lyft.com/rider/routes/snow-city-cafe-to-best-western-golden-lion-hotel)、[Tent City Taphouse（OpenTable）](https://opentable.com/r/tent-city-taphouse-anchorage)、[Alaskan Burger & Brew（Wanderlog）](https://wanderlog.com/place/details/2599069/alaskan-burger--brew)、[The Crepery（Kupi）](https://kupi.com/en-ae/explore/united-states/fairbanks/the-crepery)、[Dalton Highway（Alaska DOT&PF）](https://dot.alaska.gov/highways/dalton/)</small>
+<small>資料來源：[Morris Thompson Center 參觀資訊](https://www.morristhompsoncenter.org/visitor-information/)、[Anchorage Museum](https://www.anchoragemuseum.org/visit/hours-tickets/)、[Museum of the North（UAF）](https://uaf.edu/museum/plan-your-visit/hours/index-old.php)、[LARS Tours（UAF）](https://uaf.edu/lars/outreach/tours.php)、[LARS 2025 夏季導覽（UAF News）](https://www.uaf.edu/news/lars-open-for-summer-tours.php)、[Fairbanks Ice Museum（Roadside America）](https://www.roadsideamerica.com/tip/27776)、[Santa Claus House（alaska.org）](https://alaska.org/detail/santa-claus-house)、[Chena Hot Springs Pool House](https://chenahotsprings.com/pool-house/)、[Snow City Cafe（Lyft）](https://www.lyft.com/rider/routes/snow-city-cafe-to-best-western-golden-lion-hotel)、[Tent City Taphouse（OpenTable）](https://opentable.com/r/tent-city-taphouse-anchorage)、[Alaskan Burger & Brew（Wanderlog）](https://wanderlog.com/place/details/2599069/alaskan-burger--brew)、[The Crepery（Kupi）](https://kupi.com/en-ae/explore/united-states/fairbanks/the-crepery)、[Dalton Highway（Alaska DOT&PF）](https://dot.alaska.gov/highways/dalton/)</small>
