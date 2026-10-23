@@ -38,7 +38,7 @@ cover:
 |---|---|
 | 🏙️ **安克拉治** | [安克拉治博物館](#anchorage-museum)<br>[地震公園](#earthquake-park)<br>[Tony Knowles 海岸步道](#coastal-trail) |
 | 🚂 **途中** | [極光列車](#aurora-train) |
-| 🎅 **費爾班克斯** | [聖誕老人村](#santa-claus-house)<br>[冰雕博物館](#ice-museum)<br>[北方博物館](#museum-north)<br>[大型動物研究站](#lars) |
+| 🎅 **費爾班克斯** | [聖誕老人村](#santa-claus-house)<br>[冰雕博物館](#ice-museum)<br>[北方博物館](#museum-north)<br>[大型動物研究站](#lars)<br>[領取極光證書](#aurora-certificate) |
 | ♨️ **珍娜溫泉** | [Chena Hot Springs](#chena) |
 | 🌐 **北方** | [輸油管、Dalton Highway、北極圈](#arctic-circle) |
 | 🍽️ **餐廳** | [6 家實際吃過](#restaurants) |
@@ -175,6 +175,23 @@ cover:
 > [!TIP] 小提醒
 > 參觀**需要事先預約**，公開導覽主要在夏季（6～9 月），其他季節的開放方式請先查官網。
 
+### 🏅 領取極光證書 {#aurora-certificate}
+
+{{< figure src="gallery/15-aurora-certificate.jpg" caption="在遊客中心領到的 Aurora Borealis Certificate" align="center" width="360" >}}
+
+在費爾班克斯看到極光後，可以到市中心的 **Morris Thompson Cultural and Visitors Center（遊客中心）**
+領一張**極光證書（Aurora Borealis Certificate）**，上面會寫上你的名字和看到極光的日期，還會蓋章，很適合當紀念。
+
+| 項目 | 內容 |
+|---|---|
+| 📍 地址 | 101 Dunkel St, Fairbanks<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=Morris+Thompson+Cultural+and+Visitors+Center) |
+| 🕘 時間 | 冬季 8:00–17:00<br>夏季 8:00–18:00 |
+| 🎫 費用 | 遊客中心**免費入場** |
+{.trip-facts}
+
+> [!TIP] 順便逛逛
+> 遊客中心裡有阿拉斯加原住民文化的展覽，也能拿到費爾班克斯的地圖和旅遊資訊。
+
 ---
 
 ## ♨️ 珍娜溫泉 Chena Hot Springs {#chena}
@@ -243,23 +260,6 @@ cover:
 
 費爾班克斯一帶**晚上 10 點～凌晨 3 點**最有機會。我 10 月一共待 7 晚，**10/12 晚上參加 KKday 的極光團**，剛好遇到 KP 5 的大爆發。
 極光預報、拍攝技巧請看 → [自助阿拉斯加追極光]({{< relref "posts/2026-10-23-alaska-aurora" >}}#-追極光注意事項)。
-
-### 🏅 領取極光證書 {#aurora-certificate}
-
-{{< figure src="gallery/15-aurora-certificate.jpg" caption="在遊客中心領到的 Aurora Borealis Certificate" align="center" width="360" >}}
-
-在費爾班克斯看到極光後，可以到市中心的 **Morris Thompson Cultural and Visitors Center（遊客中心）**
-領一張**極光證書（Aurora Borealis Certificate）**，上面會寫上你的名字和看到極光的日期，還會蓋章，很適合當紀念。
-
-| 項目 | 內容 |
-|---|---|
-| 📍 地址 | 101 Dunkel St, Fairbanks<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=Morris+Thompson+Cultural+and+Visitors+Center) |
-| 🕘 時間 | 冬季 8:00–17:00<br>夏季 8:00–18:00 |
-| 🎫 費用 | 遊客中心**免費入場** |
-{.trip-facts}
-
-> [!TIP] 順便逛逛
-> 遊客中心裡有阿拉斯加原住民文化的展覽，也能拿到費爾班克斯的地圖和旅遊資訊。
 
 ---
 
