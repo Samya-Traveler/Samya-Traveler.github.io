@@ -43,7 +43,7 @@ cover:
 | 10/11（六） | 🚂 **極光列車** 安克拉治 → 費爾班克斯 |
 | 10/12（日） | 機場租車、Costco<br>🌌 **極光團（KP5 大爆發）** |
 | 10/13（一） | 聖誕老人村、費爾班克斯冰雕博物館 |
-| 10/14（二） | 北方博物館 → 開車到**珍娜溫泉** |
+| 10/14（二） | 遊客中心領極光證書、北方博物館<br>→ 開車到**珍娜溫泉** |
 | 10/15（三） | 珍娜溫泉：露天溫泉、雪橇犬、溫室、地熱發電廠 |
 | 10/16（四） | 回費爾班克斯：The Crepery、大型動物研究站 |
 | 10/17（五） | 🌐 **北極圈一日團**：輸油管、育空河、Finger Mountain |
@@ -58,9 +58,9 @@ cover:
 | ✈️ 國內線 | Alaska Airlines<br>西雅圖 → 安克拉治<br>費爾班克斯 → 西雅圖 |
 | 🚂 極光列車 | 安克拉治 → 費爾班克斯<br>**USD 259／人** |
 | 🚗 租車 | 費爾班克斯機場 Enterprise<br>（10/12～10/18） |
-| 🏨 安克拉治 | Copper Whale Inn（2 晚） |
+| 🏨 安克拉治 | 市中心旅館（2 晚） |
 | 🏠 費爾班克斯 | Airbnb（3 晚，5 人一起住） |
-| ♨️ 珍娜溫泉 | Chena Hot Springs Resort<br>Caribou Cabin（2 晚，5 人） |
+| ♨️ 珍娜溫泉 | Chena Hot Springs Resort<br>Fox Room（2 晚） |
 | 🏨 費爾班克斯 | Candlewood Suites（2 晚）<br>有免費機場接送 |
 {.trip-facts}
 
@@ -75,13 +75,13 @@ cover:
 
 ### 10/9（四）：抵達安克拉治
 
-{{< figure src="gallery/01-anc-arrive.jpg" caption="左：Copper Whale Inn；右：Alaskan Burger & Brew 的漢堡" align="center" >}}
+{{< figure src="gallery/01-anc-arrive.jpg" caption="左：住的旅館；右：Alaskan Burger & Brew 的漢堡" align="center" >}}
 
 {{< timeline title="10/9 · 安克拉治" >}}
 {{< stop time="16:30" title="抵達安克拉治機場" icon="✈️" place="ANC" >}}
 一出關就看到大棕熊標本，搭 Uber 到市區。
 {{< /stop >}}
-{{< stop time="17:07" title="入住 Copper Whale Inn" icon="🏨" place="市中心" >}}
+{{< stop time="17:07" title="入住旅館" icon="🏨" place="市中心" >}}
 市中心的小旅館，走路就能到海岸步道起點。
 {{< /stop >}}
 {{< stop time="18:20" title="晚餐：Alaskan Burger & Brew" icon="🍔" >}}
@@ -116,7 +116,7 @@ cover:
 
 ### 10/11（六）：極光列車 安克拉治 → 費爾班克斯
 
-{{< figure src="gallery/05-aurora-train.jpg" caption="左：藍黃配色的極光列車；右：車窗外的雪山和河谷" align="center" >}}
+{{< figure src="gallery/05-aurora-train.jpg" caption="左：藍黃配色的阿拉斯加鐵路火車頭；右：車窗外的雪山和河谷" align="center" >}}
 
 {{< timeline title="10/11 · Aurora Winter Train" >}}
 {{< stop time="07:20" title="安克拉治火車站報到" icon="🚉" >}}
@@ -157,7 +157,7 @@ cover:
 
 {{< timeline title="10/12 · 費爾班克斯" >}}
 {{< stop time="10:40" title="機場取車" icon="🚗" place="費爾班克斯機場" >}}
-Enterprise 租車，租車公司會派車來接。
+Enterprise 租車，租車公司會派車來接。**要用上面名片上的電話聯絡**，網站上的電話都打不通。
 {{< /stop >}}
 {{< stop time="12:20" title="Costco 補貨" icon="🛒" >}}
 買一週的食材在 Airbnb 自己煮，省很多。
@@ -182,8 +182,7 @@ Enterprise 租車，租車公司會派車來接。
 {{< stop time="17:05" title="費爾班克斯冰雕博物館" icon="🧊" place="市中心" >}}
 室內就有整年都看得到的冰雕，還有冰溜滑梯。
 {{< /stop >}}
-{{< stop time="20:00" title="Airbnb 晚餐、等極光" icon="🍲" >}}
-這晚極光比較弱，在住處外面就看得到一點點。
+{{< stop time="20:00" title="Airbnb 晚餐" icon="🍲" >}}
 {{< /stop >}}
 {{< /timeline >}}
 
@@ -194,20 +193,23 @@ Enterprise 租車，租車公司會派車來接。
 {{< figure src="gallery/13-museum-north.jpg" caption="左：University of Alaska Museum of the North；右：館內的大棕熊" align="center" >}}
 
 {{< timeline title="10/14 · 博物館＋開車到珍娜溫泉" >}}
+{{< stop title="領極光證書" icon="🏅" place="Morris Thompson Cultural and Visitors Center" >}}
+到 Morris Thompson Cultural and Visitors Center（遊客中心）領一張**極光證書（Aurora Borealis Certificate）**。
+{{< /stop >}}
 {{< stop time="11:00" title="University of Alaska Museum of the North" icon="🏛️" >}}
 白色流線型的建築很好拍，館內有阿拉斯加動物標本、原住民文物和極光影片，逛了快 2 小時。
 {{< /stop >}}
 {{< stop time="13:30" title="開車往珍娜溫泉" icon="🚗" place="Chena Hot Springs Rd" >}}
 約 1.5 小時，一路幾乎沒有車，路況好但**沒有訊號的路段很長**。
 {{< /stop >}}
-{{< stop time="15:30" title="入住珍娜溫泉 Caribou Cabin" icon="🛖" >}}
-木屋很有氣氛，5 個人住剛好。
+{{< stop time="15:30" title="入住珍娜溫泉 Fox Room" icon="🛖" >}}
+住度假村裡的 Fox Room，走路就到溫泉。
 {{< /stop >}}
 {{< stop time="18:30" title="度假村餐廳晚餐" icon="🍽️" >}}
 {{< /stop >}}
 {{< /timeline >}}
 
-{{< figure src="gallery/14-chena-lodge.jpg" caption="左：珍娜溫泉大廳；右：Caribou Cabin 的房間" align="center" >}}
+{{< figure src="gallery/14-chena-lodge.jpg" caption="左：珍娜溫泉大廳；右：Fox Room 的房間" align="center" >}}
 
 ### 10/15（三）：珍娜溫泉一整天
 
