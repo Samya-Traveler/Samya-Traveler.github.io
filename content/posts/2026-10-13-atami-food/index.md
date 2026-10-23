@@ -33,6 +33,12 @@ cover:
 > 價格以我 **2026 年 7 月**現場看到的為準，營業時間整理於 **2026 年 10 月**。店家常調整時間和價格，出發前建議用 Google 地圖再確認一次。
 > 熱海景點 → [伊豆景點介紹]({{< relref "posts/2026-09-30-izu-attractions" >}})
 
+## 🎬 先看 Reels 影片
+
+沒時間看完整篇？先看這支 Reels 短影片，掌握熱海必吃美食。
+
+{{< reel url="https://www.instagram.com/reel/DejpDOjvzMA/" >}}
+
 ## 一表看懂：8 家熱海美食
 
 | 店家 | 必點／價格 |

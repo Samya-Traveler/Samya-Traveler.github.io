@@ -32,6 +32,14 @@ cover:
 > [!NOTE] 資訊更新日期
 > 門票和時間整理於 **2026 年 10 月**，出發前建議再到官網確認一次。
 
+## 🎬 先看 Reels 影片
+
+沒時間看完整篇？先看這兩支 Reels 短影片，掌握鎌倉、逗子、葉山的重點。
+
+{{< reel url="https://www.instagram.com/reel/DewJCh-tB_w/" >}}
+
+{{< reel url="https://www.instagram.com/reel/De0WgouhFok/" >}}
+
 ## 一表看懂：景點與我的造訪紀錄
 
 | 景點 | 我去過嗎 |
