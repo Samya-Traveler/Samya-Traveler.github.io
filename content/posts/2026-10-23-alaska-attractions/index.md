@@ -4,7 +4,7 @@ slug: "alaska-attractions"
 date: 2026-10-23T12:00:00+08:00
 lastmod: 2026-10-23T12:00:00+08:00
 draft: false
-description: "阿拉斯加景點、餐廳、飯店一次整理：安克拉治博物館、海岸步道、極光列車、聖誕老人村、冰雕博物館、北方博物館、大型動物研究站、珍娜溫泉、北極圈；Snow City Cafe、Alaskan Burger & Brew、The Crepery；Copper Whale Inn、珍娜溫泉木屋、Candlewood Suites。附地址、門票和我的心得。"
+description: "阿拉斯加景點、餐廳、飯店一次整理：安克拉治博物館、海岸步道、極光列車、聖誕老人村、冰雕博物館、北方博物館、大型動物研究站、珍娜溫泉、北極圈；Snow City Cafe、Alaskan Burger & Brew、The Crepery；珍娜溫泉木屋、Candlewood Suites。附地址、門票和我的心得。"
 summary: "我 2025 年 10 月去阿拉斯加實際去過的景點、吃過的餐廳、住過的飯店，一篇整理地址、門票和心得。"
 categories: ["美國"]
 tags: ["阿拉斯加", "美國", "安克拉治", "費爾班克斯", "珍娜溫泉", "北極圈", "極光", "阿拉斯加美食", "阿拉斯加住宿"]
@@ -42,7 +42,7 @@ cover:
 | ♨️ **珍娜溫泉** | [Chena Hot Springs](#chena) |
 | 🌐 **北方** | [輸油管、Dalton Highway、北極圈](#arctic-circle) |
 | 🍽️ **餐廳** | [6 家實際吃過](#restaurants) |
-| 🏨 **住宿** | [4 間實際住過](#hotels) |
+| 🏨 **住宿** | [3 間實際住過](#hotels) |
 {.trip-facts}
 
 ---
@@ -97,7 +97,7 @@ cover:
 
 ## 🚂 極光列車 Aurora Winter Train {#aurora-train}
 
-{{< figure src="gallery/04-aurora-train.jpg" caption="左：藍黃色的阿拉斯加鐵路；右：列車上俯瞰河谷" align="center" >}}
+{{< figure src="gallery/04-aurora-train.jpg" caption="藍黃配色的阿拉斯加鐵路火車頭" align="center" >}}
 
 安克拉治到費爾班克斯約 **11.5 小時**，沿途經過 Susitna 河谷、阿拉斯加山脈，天氣好能看到 Denali。
 雖然花一整天，但**車窗外的風景本身就是景點**，比搭飛機值得。
@@ -167,12 +167,13 @@ cover:
 | 項目 | 內容 |
 |---|---|
 | 📍 地址 | 2220 Yankovich Rd, Fairbanks<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=Large+Animal+Research+Station) |
+| 📝 預約 | **需要事先預約** |
 | 🎫 導覽 | 夏季大人約 **USD 20**（2025 年） |
 | 🌐 官網 | [uaf.edu/lars](https://uaf.edu/lars/outreach/tours.php) |
 {.trip-facts}
 
 > [!TIP] 小提醒
-> 公開導覽主要在**夏季**（6～9 月），其他季節的開放方式請先查官網。
+> 參觀**需要事先預約**，公開導覽主要在夏季（6～9 月），其他季節的開放方式請先查官網。
 
 ---
 
@@ -201,6 +202,9 @@ cover:
 | 🌐 官網 | [chenahotsprings.com](https://chenahotsprings.com/) |
 {.trip-facts}
 
+> [!WARNING] 住宿小提醒
+> 木屋的**蓮蓬頭水有鐵鏽味**，建議自己帶一個**過濾蓮蓬頭**（或濾水器）。
+
 > [!WARNING] 開車注意
 > Chena Hot Springs Rd 一路**幾乎沒有手機訊號**，先下載離線地圖、加滿油。冬天下雪要放慢速度。
 
@@ -217,14 +221,20 @@ cover:
 - 🪨 **Finger Mountain**：一整片雪原和巨石，風很大
 - 🌐 **北極圈標誌**：北緯 66°33'，拍照、領證書
 
+> [!TIP] 我的經驗：團被取消怎麼辦？
+> 我們原本在 **KKday** 訂了北極圈團，結果導遊在出團當天臨時取消。
+> 只好趕快聯絡**之前極光團的導遊**幫忙，最後順利改到後天出發。
+> 非常感謝 [Skylar Travel](https://www.skylartravel.com/) 的導遊協助安排 🙏
+> 建議**北極圈團不要排在最後一天**，留一兩天緩衝比較保險。
+
 {{< figure src="gallery/12-yukon-finger.jpg" caption="左：育空河；右：Finger Mountain 的雪原" align="center" >}}
 
 {{< figure src="gallery/13-arctic-circle.jpg" caption="左：北極圈標誌；右：北極圈證書" align="center" >}}
 
 | 項目 | 內容 |
 |---|---|
-| 🚐 怎麼去 | 建議**跟一日團**，來回約 12 小時以上 |
-| ⚠️ 自駕 | 多數租車公司**禁止**開上 Dalton Highway |
+| 🚐 怎麼去 | **無法自駕，要跟團**<br>來回約 12 小時以上 |
+| ⚠️ 自駕 | 租車公司**禁止**開上 Dalton Highway |
 | 🧥 穿著 | 10 月已經下雪，要穿羽絨外套、防滑鞋 |
 {.trip-facts}
 
@@ -261,7 +271,7 @@ cover:
 
 {{< figure src="gallery/21-snow-city-cafe.jpg" caption="左：Snow City Cafe；右：法式吐司和三明治早午餐" align="center" >}}
 
-安克拉治**最有名的早午餐店**，中午也要排隊。色彩繽紛的店內很可愛，餐點份量大。
+**當地人推薦**的早午餐店（我們的 Uber 司機大推），中午也要排隊。色彩繽紛的店內很可愛，餐點份量大。
 
 | 項目 | 內容 |
 |---|---|
@@ -311,23 +321,9 @@ cover:
 
 | 住宿 | 適合 |
 |---|---|
-| Copper Whale Inn | 安克拉治市區、走路逛 |
 | Airbnb（費爾班克斯） | 多人同行、自己煮 |
 | 珍娜溫泉木屋 | 泡溫泉、看極光 |
 | Candlewood Suites | 機場接送、有廚房 |
-{.trip-facts}
-
-### Copper Whale Inn（安克拉治）
-
-{{< figure src="gallery/30-copper-whale.jpg" caption="左：Copper Whale Inn 外觀；右：房間" align="center" >}}
-
-市中心的小旅館，**走路就能到海岸步道起點和餐廳**。房間不大但很乾淨，
-牆上掛著阿拉斯加飛機的畫，很有在地感。
-
-| 項目 | 內容 |
-|---|---|
-| 📍 地址 | 440 L St, Anchorage<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=Copper+Whale+Inn) |
-| 💰 價格 | 約 **USD 179／晚**（2025 年 10 月） |
 {.trip-facts}
 
 ### Airbnb（費爾班克斯）
@@ -335,7 +331,6 @@ cover:
 {{< figure src="gallery/31-airbnb.jpg" caption="左：寬敞的廚房；右：在 Airbnb 自己煮的晚餐" align="center" >}}
 
 5 個人一起住 3 晚，**有完整的廚房**，去 Costco 買食材自己煮，一個人一晚約 **USD 53**。
-郊區光害少，運氣好在門口就看得到極光。
 
 ### 珍娜溫泉 Caribou Cabin
 
@@ -367,4 +362,4 @@ cover:
 阿拉斯加的景點不多，但每一個都很「阿拉斯加」：雪山、野生動物、溫泉、極光。每天怎麼排，請看 →
 [自助阿拉斯加追極光｜10 天行程安排]({{< relref "posts/2026-10-23-alaska-aurora" >}})。下一站見 🧸
 
-<small>資料來源：[Anchorage Museum](https://www.anchoragemuseum.org/visit/hours-tickets/)、[Museum of the North（UAF）](https://uaf.edu/museum/plan-your-visit/hours/index-old.php)、[LARS Tours（UAF）](https://uaf.edu/lars/outreach/tours.php)、[LARS 2025 夏季導覽（UAF News）](https://www.uaf.edu/news/lars-open-for-summer-tours.php)、[Fairbanks Ice Museum（Roadside America）](https://www.roadsideamerica.com/tip/27776)、[Santa Claus House（alaska.org）](https://alaska.org/detail/santa-claus-house)、[Chena Hot Springs Pool House](https://chenahotsprings.com/pool-house/)、[Snow City Cafe（Lyft）](https://www.lyft.com/rider/routes/snow-city-cafe-to-best-western-golden-lion-hotel)、[Tent City Taphouse（OpenTable）](https://opentable.com/r/tent-city-taphouse-anchorage)、[Alaskan Burger & Brew（Wanderlog）](https://wanderlog.com/place/details/2599069/alaskan-burger--brew)、[The Crepery（Kupi）](https://kupi.com/en-ae/explore/united-states/fairbanks/the-crepery)、[Copper Whale Inn（Audley）](https://www.audleytravel.com/alaska/accommodation/copper-whale-inn)、[Dalton Highway（Alaska DOT&PF）](https://dot.alaska.gov/highways/dalton/)</small>
+<small>資料來源：[Anchorage Museum](https://www.anchoragemuseum.org/visit/hours-tickets/)、[Museum of the North（UAF）](https://uaf.edu/museum/plan-your-visit/hours/index-old.php)、[LARS Tours（UAF）](https://uaf.edu/lars/outreach/tours.php)、[LARS 2025 夏季導覽（UAF News）](https://www.uaf.edu/news/lars-open-for-summer-tours.php)、[Fairbanks Ice Museum（Roadside America）](https://www.roadsideamerica.com/tip/27776)、[Santa Claus House（alaska.org）](https://alaska.org/detail/santa-claus-house)、[Chena Hot Springs Pool House](https://chenahotsprings.com/pool-house/)、[Snow City Cafe（Lyft）](https://www.lyft.com/rider/routes/snow-city-cafe-to-best-western-golden-lion-hotel)、[Tent City Taphouse（OpenTable）](https://opentable.com/r/tent-city-taphouse-anchorage)、[Alaskan Burger & Brew（Wanderlog）](https://wanderlog.com/place/details/2599069/alaskan-burger--brew)、[The Crepery（Kupi）](https://kupi.com/en-ae/explore/united-states/fairbanks/the-crepery)、[Dalton Highway（Alaska DOT&PF）](https://dot.alaska.gov/highways/dalton/)</small>
