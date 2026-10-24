@@ -63,10 +63,19 @@ cover:
 
 ## 🗓️ 12/9：福岡・博多
 
-{{< figure src="gallery/01-hanamidori.jpg" caption="博多華味鳥的水炊鍋：前菜、湯頭，最後煮成雜炊" align="center" >}}
+### 博多華味鳥 博多站前店（水炊鍋）
+
+{{< figure src="gallery/01-hanamidori.jpg" caption="左：博多華味鳥 博多站前店；中：前菜；右：最後煮成的雜炊" align="center" >}}
 
 第一天傍晚抵達，住博多站附近的 **VIA INN**。晚餐吃福岡名物 **水炊鍋（水炊き）**：
 雞骨熬的白湯先喝一碗，再下雞肉和蔬菜，最後加飯和蛋煮成**雜炊**，是整趟最暖胃的一餐。
+
+| 項目 | 內容 |
+|---|---|
+| 📍 地點 | 博多站前（博多駅前店）<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=博多華味鳥+博多駅前店) |
+| 🍲 必點 | 水炊鍋套餐，最後一定要加**雜炊** |
+| 💡 小撇步 | 有**中文說明**教你怎麼吃，店員也會幫忙 |
+{.trip-facts}
 
 {{< figure src="gallery/02-hakata-xmas.jpg" caption="博多站前的聖誕燈飾和聖誕樹" align="center" >}}
 
@@ -105,9 +114,12 @@ cover:
 
 {{< figure src="gallery/08-bspeak.jpg" caption="B-speak 的 P-roll 瑞士捲" align="center" >}}
 
-- 🍰 **B-speak**：由布院最有名的**瑞士捲（P-roll）**，蛋糕超鬆軟，常常中午前就賣完。
+- 🍰 **B-speak**：由布院最有名的**瑞士捲（P-roll）**，蛋糕超鬆軟、奶油很輕，常常中午前就賣完，**建議一到由布院就先去買**。
+- 🍗 **中津炸雞 吉吾（KICHIGO）**：大分中津是日本炸雞的發源地，湯之坪街道上的吉吾**排隊人潮不斷**，現炸的炸雞外皮酥脆、肉汁很多，元祖炸雞（雞腿）3 個 ¥570 起，邊走邊吃剛好。
 - 🍫 **Snoopy Chocolat**：史努比主題的巧克力店，造型很可愛。
 - 🐐 **由布院 Floral Village**：英國小鎮風格的園區，有小動物和可愛的店。
+
+{{< figure src="gallery/08b-kichigo.jpg" caption="中津炸雞 吉吾：現炸的炸雞" align="center" >}}
 
 {{< figure src="gallery/09-floral-village.jpg" caption="Floral Village：左：小山羊；右：黃色的復古小車" align="center" >}}
 
@@ -157,9 +169,19 @@ cover:
 
 ### 熊本站：勝烈亭豬排
 
+{{< figure src="gallery/16-katsuretsutei.jpg" caption="左：勝烈亭 熊本站店；右：厚切炸豬排" align="center" >}}
+
+晚上到熊本，在熊本站吃**勝烈亭（かつれつ亭）**。熊本最有名的炸豬排店之一，
+豬排**外皮酥脆、肉很厚又多汁**。
+
+| 項目 | 內容 |
+|---|---|
+| 📍 地點 | JR 熊本站<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=勝烈亭+熊本駅) |
+| 💡 小撇步 | 晚餐時段要排隊，也可以**外帶便當**在車上吃 |
+{.trip-facts}
+
 {{< figure src="gallery/16-kumamoto-station.jpg" caption="左：勝烈亭的炸豬排；右：熊本站的熊本熊" align="center" >}}
 
-晚上到熊本，在熊本站吃**勝烈亭**的炸豬排，外皮酥脆、肉很厚。
 熊本站裡到處都是**熊本熊**，一出車站就有熊本熊在等你。
 
 ---
@@ -239,9 +261,37 @@ cover:
 從博多搭直達巴士「旅人」約 40 分鐘到太宰府，**學問之神菅原道真**的神社，考生和學生必拜。
 本殿目前正在整修，旁邊有一座屋頂長滿植物的**臨時本殿**，很特別。
 
-參道上一定要吃**梅枝餅（梅ヶ枝餅）**，外皮烤得酥香、裡面是紅豆餡，現烤的最好吃。
+### 太宰府參道吃什麼
 
-{{< figure src="gallery/23-dazaifu-food.jpg" caption="左：熱呼呼的梅枝餅；右：午餐的豚骨拉麵" align="center" >}}
+**🍡 かさの家（梅枝餅）**
+
+參道上一定要吃**梅枝餅（梅ヶ枝餅）**，外皮烤得酥香、裡面是紅豆餡，現烤的最好吃。
+參道上有很多家在賣，我買的是老店 **かさの家**，**一個 ¥150**，要買多個看價目表就很清楚。
+
+{{< figure src="gallery/23-umegae.jpg" caption="左：かさの家的梅枝餅；右：梅枝餅價目表" align="center" >}}
+
+**🍓 天山（草莓大福）**
+
+參道上的和菓子店 **天山**，招牌是用福岡**甘王草莓（あまおう）**做的**草莓大福**，
+一整顆大草莓放在白色麻糬上，看起來超可愛，酸甜剛好。
+
+{{< figure src="gallery/23b-tenzan.jpg" caption="左：天山的甘王草莓大福；右：店頭排滿的草莓大福" align="center" >}}
+
+**🍜 暖暮拉麵 太宰府站前店（午餐）**
+
+**暖暮（DANBO）**是福岡的人氣豚骨拉麵連鎖，曾拿下**九州拉麵總選舉第一名**。
+湯頭是濃郁但不油膩的豚骨，麵條是博多細麵；想吃辣可以點**烈火拉麵**。
+太宰府站前店就在車站旁，**逛完參道剛好來吃**。
+
+{{< figure src="gallery/23c-danbo.jpg" caption="左：暖暮 太宰府站前店；右：半熟玉子拉麵" align="center" >}}
+
+| 項目 | 內容 |
+|---|---|
+| 📍 地址 | 太宰府市宰府 1-14-24<br>[Google 地圖](https://www.google.com/maps/search/?api=1&query=ラーメン暖暮+太宰府駅前店) |
+| 💰 價格 | 拉麵 ¥880<br>半熟玉子拉麵 ¥1,030 |
+| 💳 付款 | **只收無現金支付**<br>（信用卡、電子錢包、QR） |
+| 🍜 加點 | 替玉（加麵）¥200 |
+{.trip-facts}
 
 {{< figure src="gallery/24-dazaifu-station.jpg" caption="左：太宰府站；右：西鐵電車" align="center" >}}
 
@@ -257,9 +307,24 @@ cover:
 
 {{< figure src="gallery/26-hakata-old-town.jpg" caption="左：金黃的銀杏大道；右：舊市街的紅鳥居" align="center" >}}
 
-晚上吃了**鰻魚飯**，有蒸籠鰻魚和石鍋鰻魚飯，搭配九州的地酒。
+### 鰻のエイト（鰻魚飯）
 
-{{< figure src="gallery/27-unagi.jpg" caption="左：鰻魚飯；右：石鍋鰻魚飯" align="center" >}}
+{{< figure src="gallery/27-unagi.jpg" caption="左：鰻のエイト的門簾；中：蒸籠鰻魚飯；右：鰻魚牛肉石燒御膳" align="center" >}}
+
+晚餐在中洲的 **鰻のエイト（unagi no eito）**，門簾上的「∞」很好認。
+店裡用**九州的甜醬油**做醬汁，我們點了兩種：
+
+- 🍱 **せいろむし御膳（蒸籠鰻魚飯）**：醬汁拌飯後鋪上鰻魚和玉子燒，放進蒸籠蒸，飯軟嫩入味。
+- 🔥 **鰻と牛肉の石焼き御膳**：鰻魚加上調味牛肉、玉子燒，放在熱石鍋裡，最後鍋巴超香。
+
+兩種都可以照桌上的說明**分三種吃法**：直接吃、加佐料、最後倒高湯做成茶泡飯。
+
+| 項目 | 內容 |
+|---|---|
+| 📍 地址 | 福岡市博多區中洲 4-1-11<br>[Google 地圖](https://share.google/mgWfRvBS5W5ui1xGq) |
+| 💰 價格 | 兩種御膳同價<br>上 ¥3,850／特上 ¥4,550<br>極上 ¥5,350 |
+| 🚇 交通 | 地下鐵「中洲川端站」走路即到 |
+{.trip-facts}
 
 ---
 
@@ -271,21 +336,39 @@ cover:
 
 {{< figure src="gallery/29-momiji2.jpg" caption="左：紅色的鳥居；右：附近的池塘" align="center" >}}
 
-中午吃了**十割蕎麥麵**，下午在博多站買**明太子**伴手禮，再去機場。
+### 信州そば むらた（蕎麥麵）
 
-{{< figure src="gallery/30-soba-souvenir.jpg" caption="左：十割蕎麥麵和天婦羅；右：明太子口味洋芋片" align="center" >}}
+{{< figure src="gallery/30-soba.jpg" caption="左：むらた的入口；中：牡蠣天婦羅蕎麥麵；右：上天婦羅旨辛肉蕎麥麵" align="center" >}}
+
+博多舊市街裡的老字號**手打蕎麥麵店**，入口是石牆和格子門，很有氣氛。開店前就有人排隊，門口有**登記表**，寫上名字等叫號。
+
+招牌是**數量限定的十割蕎麥**（100% 蕎麥粉），香氣很濃；冬天限定的**牡蠣天婦羅蕎麥麵**也很推，天婦羅裡的牡蠣很飽滿。
+
+| 項目 | 內容 |
+|---|---|
+| 📍 地址 | 福岡市博多區冷泉町 2-9-1<br>[Google 地圖](https://share.google/FMcUsvM3HoK4N1clr) |
+| 💰 價格 | 十割そば ¥1,150（數量限定）<br>牡蠣天そば ¥2,200（溫）<br>上天ぷら旨辛肉そば ¥3,100 |
+| 🕘 時間 | 約 11:30–21:00，**週一公休** |
+| 🚇 交通 | 地下鐵「祇園站」走路約 5 分鐘 |
+{.trip-facts}
+
+### 博多站買伴手禮
+
+{{< figure src="gallery/31-souvenir.jpg" caption="左：博多站的明太子專櫃；右：明太子口味洋芋片" align="center" >}}
+
+下午在博多站的伴手禮區買**明太子**，各家品牌都有試吃，也有**明太子洋芋片**、明太子仙貝這種方便帶的零食。
 
 ---
 
 ## 🍽️ 九州必吃整理
 
-| 地區 | 必吃 |
+| 地區 | 我吃了這些 |
 |---|---|
-| 福岡・博多 | 水炊鍋、豚骨拉麵、明太子、鰻魚飯 |
-| 由布院 | B-speak 瑞士捲、溫泉旅館會席料理 |
+| 福岡・博多 | 博多華味鳥（水炊鍋）<br>鰻のエイト（鰻魚飯）<br>信州そば むらた（蕎麥麵）<br>博多站明太子 |
+| 由布院 | B-speak 瑞士捲<br>吉吾 中津炸雞<br>溫泉旅館會席料理 |
 | 阿蘇 | 阿蘇牛奶、牛奶布丁 |
-| 熊本 | 勝烈亭炸豬排、桂花拉麵（太肉麵） |
-| 太宰府 | 梅枝餅 |
+| 熊本 | 勝烈亭（炸豬排）<br>桂花拉麵（太肉麵） |
+| 太宰府 | かさの家（梅枝餅）<br>天山（草莓大福）<br>暖暮（豚骨拉麵） |
 {.trip-facts}
 
 ## 出發前檢查清單
@@ -301,4 +384,4 @@ cover:
 
 第一次去九州，6 天剛好把福岡、由布院、阿蘇、熊本、太宰府都走一遍。觀光列車、溫泉、火山、熊本熊，每一天都很不一樣。下一站見 🧸
 
-<small>資料來源：[熊本ラーメン 桂花本店（tabiiro）](https://tabiiro.jp/gourmet/s/308658-kumamoto-keika-raumen/)、[桂花ラーメン本店（Retty）](https://retty.me/restaurant/100000064735/)、[熊本城入園料（熊本市）](https://www.city.kumamoto.jp/kiji00368355/index.html)、[熊本城入園券（VELTRA）](https://www.veltra.com/jp/japan/kumamoto/a/193493)</small>
+<small>資料來源：[鰻のエイト（ぐるなび）](https://gurunavi.com/ja/nbcv903/rev/rst)、[信州そば むらた（HOT PEPPER）](https://www.hotpepper.jp/strJ000112524/)、[暖暮 太宰府駅前店（NAVITIME）](https://www.navitime.co.jp/category/0304/40221/)、[熊本ラーメン 桂花本店（tabiiro）](https://tabiiro.jp/gourmet/s/308658-kumamoto-keika-raumen/)、[桂花ラーメン本店（Retty）](https://retty.me/restaurant/100000064735/)、[熊本城入園料（熊本市）](https://www.city.kumamoto.jp/kiji00368355/index.html)、[熊本城入園券（VELTRA）](https://www.veltra.com/jp/japan/kumamoto/a/193493)</small>
