@@ -57,6 +57,28 @@ cover:
 | 💳 付款 | 買一張 **ORCA 卡**，或手機 Transit GO 購票 |
 {.trip-facts}
 
+### 💳 ORCA 卡怎麼買（售票機）
+
+我是在 **Link 輕軌站的售票機**買的，機器上寫著「**Rail Tickets／orca**」，黃色橫條寫「START YOUR RIDE HERE」。
+
+1. 點一下螢幕開始，選擇購買**新的 ORCA 卡（New ORCA card）**。
+2. 選擇卡片種類，一般成人選 **Adult**。
+3. 選擇要**儲值的金額（E-purse）**，例如 USD 20～30，幾天市區移動就夠用。
+4. 付款：可以用**信用卡／金融卡**（插卡或感應），也可以投**現金或硬幣**。
+5. 從下方的「**PICK UP TICKETS AND CHANGE**」取出 ORCA 卡和收據。
+
+**怎麼用：**
+
+- 🚈 **Link 輕軌**：上車前在月台的**刷卡機（ORCA 讀卡機）**感應，下車後**出站也要再感應一次**，系統才會依距離扣款。
+- 🚌 **公車**：上車時感應一次就好。
+- 🔁 2 小時內轉乘公車、輕軌**通常不用重複付全額**。
+- 💰 餘額不夠時，在同一台售票機選「**Add money／Reload**」儲值，或用 **myORCA App** 線上加值。
+
+> [!TIP] 小提醒
+> - 新卡要付一筆**小額卡費**（費用以機器顯示為準）。
+> - 輕軌**忘記出站感應**，可能會被扣最遠距離的票價。
+> - 單軌電車也可以用 ORCA 卡感應付款。
+
 ---
 
 ## 🗓️ 10/19：派克市場一帶
@@ -245,4 +267,4 @@ cover:
 
 追完極光再來西雅圖，從冰天雪地回到城市，剛好放鬆一下。下一站見 🧸
 
-<small>資料來源：[Seattle Center Monorail 2025 票價](https://www.seattlemonorail.com/2025-fare-increase/)、[Seattle Aquarium（CityPASS）](https://www.citypass.com/seattle-aquarium)、[Sky View Observatory（Tripster）](https://www.tripster.com/detail/sky-view-observatory-seattle)、[Space Needle＋Chihuly 套票（Expedia）](https://www.expedia.com/things-to-do/a.a652492.activity-details)、[Microsoft Visitor Center closes（GeekWire）](https://www.geekwire.com/2026/microsoft-closes-longtime-visitor-center-in-redmond-in-latest-hq-change/)、[Amazon Spheres（Wikipedia）](https://en.wikipedia.org/wiki/Amazon_Spheres)</small>
+<small>資料來源：[ORCA（Community Transit）](https://www.communitytransit.org/ORCA)、[ORCA 轉乘與 Link 刷卡（King County Metro）](https://kingcountymetro.blog/2016/03/21/orca-cards-make-transfers-between-buses-and-link-free-and-easy/)、[Seattle Center Monorail 2025 票價](https://www.seattlemonorail.com/2025-fare-increase/)、[Seattle Aquarium（CityPASS）](https://www.citypass.com/seattle-aquarium)、[Sky View Observatory（Tripster）](https://www.tripster.com/detail/sky-view-observatory-seattle)、[Space Needle＋Chihuly 套票（Expedia）](https://www.expedia.com/things-to-do/a.a652492.activity-details)、[Microsoft Visitor Center closes（GeekWire）](https://www.geekwire.com/2026/microsoft-closes-longtime-visitor-center-in-redmond-in-latest-hq-change/)、[Amazon Spheres（Wikipedia）](https://en.wikipedia.org/wiki/Amazon_Spheres)</small>
