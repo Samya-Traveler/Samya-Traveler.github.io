@@ -1,0 +1,3320 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>SlowMate 慢旅伴 — AI 慢旅行程規劃師</title>
+  <meta name="description" content="注重留白與生活感的 AI 慢旅行程規劃助手。為你推薦交通周遊券、事前預約清單與悠閒散策動線。" />
+  <meta name="theme-color" content="#FBF9F5" />
+  <meta property="og:title" content="SlowMate 慢旅伴 — AI 慢旅行程規劃師" />
+  <meta property="og:description" content="放慢腳步，讓 AI 為你規劃一場留白的慢旅行程。" />
+  <meta property="og:url" content="https://samya-traveler.github.io/slowmate/" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-cream: #FBF9F5;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #F3EFE6;
+      --text-main: #2C3531;
+      --text-muted: #6E7873;
+      --brand-sage: #5B7B6A;
+      --brand-sage-dark: #435E4F;
+      --brand-sage-light: #E6EFEA;
+      --accent-coral: #E07A5F;
+      --accent-amber: #F2CC8F;
+      --danger: #C9443F;
+      --border-soft: #E6E1D6;
+      --shadow-sm: 0 4px 12px rgba(44, 53, 49, 0.05);
+      --shadow-md: 0 8px 24px rgba(44, 53, 49, 0.08);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    html, body { width: 100%; }
+
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      overflow-x: hidden;
+    }
+
+    body.modal-open { overflow: hidden; }
+
+    :focus-visible {
+      outline: 3px solid rgba(91, 123, 106, 0.45);
+      outline-offset: 2px;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    /* ========== 頂部固定導航列 Sticky Navbar ========== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(251, 249, 245, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 10px 16px;
+      width: 100%;
+    }
+
+    /* Navbar 內容與主內容同寬並置中，避免寬螢幕時左右失衡 */
+    .navbar-inner {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .nav-support-btn {
+      font-size: 0.82rem;
+      font-family: inherit;
+      color: #9A4A33;
+      background: #FDEEE8;
+      border: 1px solid #F5CFC2;
+      padding: 6px 12px;
+      border-radius: 99px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .nav-support-btn:hover { background: #FBE0D6; }
+    .nav-support-btn:active { transform: scale(0.97); }
+
+    .brand-wrap {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--brand-sage-dark);
+      line-height: 1.15;
+    }
+
+    .brand-subtitle {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .nav-back-btn {
+      font-size: 0.85rem;
+      color: var(--brand-sage-dark);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 99px;
+      background: var(--bg-subtle);
+      font-weight: 500;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-back-btn:hover { background: var(--brand-sage-light); }
+
+    /* ========== 主容器（手機優先 375px ~ 430px+） ========== */
+    .container {
+      display: block;
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      margin-left: auto;
+      margin-right: auto;
+      align-self: center;
+      padding: 20px 16px 60px;
+      flex: 1 0 auto;
+    }
+
+    footer { width: 100%; }
+
+    /* 每日名額標籤 */
+    .quota-badge-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .quota-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--brand-sage-light);
+      color: var(--brand-sage-dark);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 99px;
+      border: 1px solid rgba(91, 123, 106, 0.2);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .quota-pill.is-low { background: #FFF3E0; color: #A54B12; border-color: #F2CC8F; }
+    .quota-pill.is-full { background: #FCE8E6; color: #A1302B; border-color: #F3B8B2; }
+
+    /* 上次行程恢復橫幅 */
+    .restore-banner {
+      display: none;
+      background: #FFF9EC;
+      border: 1px solid var(--accent-amber);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .restore-banner.show { display: flex; }
+
+    .restore-text {
+      font-size: 0.88rem;
+      color: #6B5322;
+      font-weight: 500;
+    }
+
+    .restore-btn {
+      background: var(--accent-coral);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 7px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+
+    /* ========== Hero 與 SVG 區塊 ========== */
+    .hero-card {
+      background: linear-gradient(180deg, #EAF1EC 0%, #FBF9F5 100%);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px 20px;
+      text-align: center;
+      border: 1px solid var(--border-soft);
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svg-illustration-box {
+      width: 100%;
+      max-width: 280px;
+      height: 150px;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .svg-float {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      animation: gentleFloat 4.5s ease-in-out infinite;
+    }
+
+    .svg-cloud {
+      animation: cloudDrift 8s ease-in-out infinite alternate;
+    }
+
+    .svg-breathe {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: softBreathe 5s ease-in-out infinite;
+    }
+
+    .svg-sway {
+      transform-box: fill-box;
+      transform-origin: bottom center;
+      animation: leafSway 3.6s ease-in-out infinite alternate;
+    }
+
+    .svg-wave {
+      animation: waveShift 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes cloudDrift {
+      0% { transform: translateX(-5px); }
+      100% { transform: translateX(7px); }
+    }
+
+    @keyframes softBreathe {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.06); opacity: 1; }
+    }
+
+    @keyframes leafSway {
+      0% { transform: rotate(-3deg); }
+      100% { transform: rotate(3deg); }
+    }
+
+    @keyframes waveShift {
+      0% { transform: translateX(-6px); }
+      100% { transform: translateX(6px); }
+    }
+
+    @keyframes tabBounce {
+      0% { opacity: 0; transform: translateY(12px) scale(0.98); }
+      60% { opacity: 1; transform: translateY(-3px) scale(1.005); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes tabPop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.08); }
+      70% { transform: scale(0.97); }
+      100% { transform: scale(1); }
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.4rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+
+    .hero-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* 出發倒數計時膠囊 */
+    .countdown-badge {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      background: var(--bg-card);
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--brand-sage-dark);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-soft);
+    }
+
+    .countdown-badge.show { display: inline-flex; }
+
+    .countdown-num {
+      color: var(--accent-coral);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    /* ========== 表單樣式 ========== */
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 22px 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+    }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .form-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 1rem; /* >=16px 避免 iOS 自動放大 */
+      font-family: inherit;
+      color: var(--text-main);
+      background: var(--bg-cream);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-textarea { resize: vertical; min-height: 84px; }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--brand-sage);
+      box-shadow: 0 0 0 3px rgba(91, 123, 106, 0.15);
+      background: #fff;
+    }
+
+    .form-input.is-invalid {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(201, 68, 63, 0.12);
+    }
+
+    .code-input {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+    }
+
+    .date-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .date-grid > div { min-width: 0; }
+
+    input[type="date"].form-input {
+      min-width: 0;
+      max-width: 100%;
+      padding-left: 10px;
+      padding-right: 8px;
+    }
+
+    .date-caption {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .day-count-hint {
+      font-size: 0.8rem;
+      color: var(--brand-sage-dark);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* 慢旅風格快捷標籤 */
+    .vibe-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .vibe-chip {
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-main);
+      background: var(--bg-cream);
+      border: 1px solid var(--border-soft);
+      border-radius: 99px;
+      padding: 5px 11px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.1s;
+    }
+
+    .vibe-chip:hover { border-color: var(--brand-sage); }
+    .vibe-chip:active { transform: scale(0.97); }
+
+    .vibe-chip[aria-pressed="true"] {
+      background: var(--brand-sage-light);
+      border-color: var(--brand-sage);
+      color: var(--brand-sage-dark);
+      font-weight: 600;
+    }
+
+    .error-msg {
+      display: none;
+      color: var(--danger);
+      font-size: 0.82rem;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .error-msg.show { display: block; }
+
+    /* 折疊序號欄位 */
+    .code-toggle-btn {
+      background: none;
+      border: none;
+      color: var(--brand-sage-dark);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      padding: 4px 0;
+      margin-bottom: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: inherit;
+    }
+
+    /* 序號 / 贊助 雙向引導按鈕 */
+    .entry-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .entry-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 10px 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: inherit;
+      line-height: 1.4;
+      text-align: center;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .entry-btn-code {
+      background: var(--brand-sage-light);
+      color: var(--brand-sage-dark);
+      border: 1px solid rgba(91, 123, 106, 0.3);
+    }
+
+    .entry-btn-code:hover, .entry-btn-code[aria-expanded="true"] {
+      background: #D7E6DD;
+      border-color: var(--brand-sage);
+    }
+
+    .entry-btn-support {
+      background: #FFF6E9;
+      color: #8A5A1C;
+      border: 1px solid #F2D7A9;
+    }
+
+    .entry-btn-support:hover { background: #FFEFD6; }
+
+    .code-collapse-box {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      background: var(--bg-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    .code-collapse-box.show { display: block; }
+
+    .code-verify-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .code-verify-row .form-input { flex: 1; min-width: 0; }
+
+    .code-verify-btn {
+      flex-shrink: 0;
+      padding: 0 16px;
+      border: none;
+      border-radius: var(--radius-md);
+      background: var(--brand-sage);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .code-verify-btn:hover:not(:disabled) { background: var(--brand-sage-dark); }
+    .code-verify-btn:disabled { background: #B8C4BE; cursor: not-allowed; }
+
+    .code-status {
+      display: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .code-status.show { display: block; }
+    .code-status.is-valid { color: #2E7D46; }
+    .code-status.is-invalid { color: var(--danger); }
+
+    .admin-hint {
+      display: none;
+      font-size: 0.78rem;
+      color: var(--brand-sage-dark);
+      background: var(--brand-sage-light);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      margin-top: 8px;
+    }
+
+    .admin-hint.show { display: block; }
+
+    /* 主按鈕 */
+    .btn-primary {
+      width: 100%;
+      padding: 14px 20px;
+      background: var(--brand-sage);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(91, 123, 106, 0.25);
+    }
+
+    .btn-primary:hover:not(:disabled) { background: var(--brand-sage-dark); }
+    .btn-primary:active:not(:disabled) { transform: scale(0.99); }
+
+    .btn-primary:disabled {
+      background: #B8C4BE;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-dark { background: var(--brand-sage-dark); }
+
+    /* Loading 畫面 */
+    .loading-box {
+      display: none;
+      text-align: center;
+      padding: 36px 12px;
+    }
+
+    .loading-box.show { display: block; }
+
+    .suitcase-loader {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      animation: gentleFloat 2s ease-in-out infinite;
+    }
+
+    .loading-quote {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      color: var(--brand-sage-dark);
+      margin-bottom: 6px;
+      min-height: 3.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.35s ease;
+    }
+
+    .loading-quote.fade { opacity: 0; }
+
+    .loading-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .loading-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .loading-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--brand-sage);
+      opacity: 0.3;
+      animation: dotPulse 1.4s ease-in-out infinite;
+    }
+
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.25; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-3px); }
+    }
+
+    /* ========== 結果頁面 Result View ========== */
+    #resultView { display: none; }
+    #resultView.show { display: block; }
+
+    .action-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn-secondary {
+      padding: 11px 10px;
+      background: var(--bg-card);
+      color: var(--brand-sage-dark);
+      border: 1px solid var(--brand-sage);
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s;
+      text-align: center;
+    }
+
+    .btn-secondary:hover:not(:disabled) { background: var(--brand-sage-light); }
+
+    .btn-secondary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.12rem;
+      color: var(--text-main);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sub-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin: 4px 0 2px;
+    }
+
+    /* 航班卡片 */
+    .flight-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .flight-item {
+      background: var(--bg-cream);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      border-left: 4px solid var(--brand-sage);
+    }
+
+    .flight-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--brand-sage-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    /* 交通 Pass 與預約清單 */
+    .prep-item {
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border-soft);
+    }
+
+    .prep-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .prep-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .prep-badge {
+      font-size: 0.73rem;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: #FFF3E0;
+      color: #B34A00;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .prep-badge.is-deadline { background: #FCE8E6; color: #B3261E; }
+
+    .prep-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .empty-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 6px 0;
+    }
+
+    /* 橫向日期切換 Tabs */
+    .day-tabs-wrapper {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 2px 10px;
+      margin-bottom: 14px;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .day-tabs-wrapper::-webkit-scrollbar { display: none; }
+
+    .day-tab {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      padding: 8px 14px;
+      border-radius: 99px;
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      font-size: 0.86rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      line-height: 1.3;
+    }
+
+    .day-tab small {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      opacity: 0.85;
+    }
+
+    .day-tab.active {
+      background: var(--brand-sage);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(91, 123, 106, 0.25);
+      animation: tabPop 0.35s ease-out;
+    }
+
+    /* 時間軸 Timeline */
+    .timeline-animate {
+      animation: tabBounce 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .day-header-banner {
+      background: var(--bg-subtle);
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      margin-bottom: 18px;
+    }
+
+    .day-header-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .day-header-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brand-sage-dark);
+    }
+
+    .timeline-list {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 16px;
+      list-style: none;
+    }
+
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--border-soft);
+    }
+
+    .timeline-node {
+      position: relative;
+      margin-bottom: 22px;
+    }
+
+    .timeline-node:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -21px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--brand-sage);
+      border: 2px solid var(--bg-card);
+      box-shadow: 0 0 0 2px var(--brand-sage-light);
+    }
+
+    .timeline-node.is-must .timeline-dot {
+      background: var(--accent-coral);
+      box-shadow: 0 0 0 2px #F9DDD5;
+    }
+
+    .slot-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .slot-time {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .transport-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    }
+
+    .must-visit-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--accent-coral);
+      color: #fff;
+    }
+
+    .spot-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .spot-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .map-link {
+      font-size: 0.78rem;
+      color: var(--brand-sage-dark);
+      background: var(--brand-sage-light);
+      padding: 3px 9px;
+      border-radius: 99px;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .map-link:hover { background: #D0E2D8; }
+
+    .spot-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .stay-box {
+      background: #F7F5F0;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      border: 1px solid var(--border-soft);
+      margin-top: 14px;
+    }
+
+    /* 可打勾待辦清單 Checklist */
+    .todo-progress {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: -6px 0 8px;
+    }
+
+    .todo-progress-bar {
+      height: 6px;
+      background: var(--bg-subtle);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .todo-progress-fill {
+      height: 100%;
+      width: 0;
+      background: var(--brand-sage);
+      border-radius: 99px;
+      transition: width 0.3s ease;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--bg-subtle);
+      cursor: pointer;
+    }
+
+    .todo-item:last-child { border-bottom: none; }
+
+    .todo-checkbox {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      accent-color: var(--brand-sage);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .todo-text {
+      font-size: 0.92rem;
+      color: var(--text-main);
+      transition: color 0.2s;
+    }
+
+    .todo-checkbox:checked + .todo-text {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    .print-btn {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .slow-note {
+      margin-top: 20px;
+      background: #F1F6F2;
+      border: 1px dashed #A9C4B3;
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-size: 0.86rem;
+      line-height: 1.75;
+      color: var(--text-main);
+    }
+
+    .slow-note strong { color: var(--brand-sage-dark); }
+    .slow-note p { margin-top: 4px; }
+
+    .print-only { display: none; }
+
+    .print-day + .print-day {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border-soft);
+    }
+
+    .disclaimer {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin: 14px 0 0;
+    }
+
+    /* ========== Modal 彈窗系統 ========== */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(44, 53, 49, 0.55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      overflow-y: auto;
+    }
+
+    .modal-backdrop.show { display: flex; }
+
+    .modal-card {
+      background: var(--bg-card);
+      width: 100%;
+      max-width: 420px;
+      border-radius: var(--radius-lg);
+      padding: 26px 22px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-soft);
+      position: relative;
+      margin: auto;
+      animation: tabBounce 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      line-height: 1;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .modal-close:hover { background: var(--bg-subtle); }
+
+    .modal-emoji {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .modal-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--text-main);
+      padding-right: 26px;
+    }
+
+    .modal-title.centered { text-align: center; padding-right: 0; }
+
+    .modal-body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .btn-portaly {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      padding: 12px;
+      background: var(--accent-coral);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      margin-bottom: 18px;
+      box-shadow: 0 4px 12px rgba(224, 122, 95, 0.3);
+    }
+
+    .tier-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: -6px 0 14px;
+    }
+
+    .tier {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 10px 4px;
+      border-radius: var(--radius-md);
+      background: #FFF6E9;
+      border: 1px solid #F2D7A9;
+      text-align: center;
+    }
+
+    .tier-price {
+      font-weight: 700;
+      color: #8A4A1C;
+      font-size: 0.95rem;
+    }
+
+    .tier-name {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .modal-footnote {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    .modal-footnote a {
+      color: var(--brand-sage-dark);
+      font-weight: 600;
+    }
+
+    /* OTP 驗證碼彈窗 */
+    .otp-target {
+      color: var(--brand-sage-dark);
+      font-weight: 700;
+      word-break: break-all;
+    }
+
+    .otp-input {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.55em;
+      padding: 12px 8px 12px calc(8px + 0.55em);
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+      color: var(--brand-sage-dark);
+    }
+
+    .otp-input::placeholder {
+      color: #C9D1CC;
+      letter-spacing: 0.55em;
+    }
+
+    .otp-footer {
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .link-btn {
+      background: none;
+      border: none;
+      color: var(--brand-sage-dark);
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      padding: 6px 8px;
+    }
+
+    .link-btn:disabled {
+      color: var(--text-muted);
+      text-decoration: none;
+      cursor: not-allowed;
+    }
+
+    /* 結果頁頂部提醒橫幅 */
+    .result-notice {
+      display: none;
+      background: #E9F5EC;
+      border: 1px solid #A9D3B4;
+      color: #245A35;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .result-notice.show { display: block; }
+
+    /* Toast 通知 */
+    .toast {
+      position: fixed;
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #2C3531;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 18px;
+      font-size: 0.85rem;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 300;
+      text-align: center;
+      width: max-content;
+      max-width: calc(100vw - 32px);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px calc(24px + env(safe-area-inset-bottom, 0px));
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-soft);
+    }
+
+    footer a {
+      color: var(--brand-sage-dark);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (min-width: 430px) {
+      .container { padding-left: 20px; padding-right: 20px; }
+      .card { padding: 22px 20px; }
+    }
+
+    @media (min-width: 520px) {
+      .flight-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 380px) {
+      .navbar { padding: 10px 12px; }
+      .brand-title { font-size: 1.2rem; }
+      .nav-support-btn, .nav-back-btn { padding: 5px 9px; font-size: 0.78rem; }
+    }
+
+    @media (max-width: 360px) {
+      .date-grid { grid-template-columns: 1fr; }
+      .action-bar { grid-template-columns: 1fr; }
+      .entry-actions { grid-template-columns: 1fr; }
+    }
+
+    /* ========== 列印 / 另存 PDF：乾淨的行程手冊 ========== */
+    @media print {
+      @page { margin: 14mm 12mm; }
+      html, body { background: #fff !important; }
+      body { display: block; font-size: 11pt; color: #222; }
+      .navbar, .quota-badge-bar, .restore-banner, #formView, .action-bar,
+      #resetPlanBtn, .print-btn, .modal-backdrop, .toast, footer,
+      .screen-only, .countdown-badge, .result-notice {
+        display: none !important;
+      }
+      .print-only { display: block !important; }
+      .container { max-width: none; padding: 0; }
+      .hero-card { background: none; border: none; padding: 0 0 8px; margin-bottom: 12px; }
+      .svg-illustration-box { height: 90px; margin-bottom: 6px; }
+      .card, .slow-note {
+        box-shadow: none !important;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      #printAllDays { break-inside: auto; page-break-inside: auto; }
+      .print-day, .timeline-node { break-inside: avoid; page-break-inside: avoid; }
+      .transport-tag, .must-visit-tag, .timeline-dot, .prep-badge {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .map-link { display: none; }
+      a { color: inherit; text-decoration: none; }
+      *, ::before, ::after { animation: none !important; transition: none !important; }
+    }
+
+    /* ========== 無障礙支援：減少動態效果 ========== */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .svg-float, .svg-cloud, .svg-breathe, .svg-sway, .svg-wave,
+      .suitcase-loader, .loading-dots span,
+      .timeline-animate, .day-tab.active, .modal-card {
+        animation: none !important;
+        transform: none !important;
+      }
+      .loading-dots span { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部固定選單 -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="./" class="brand-wrap" aria-label="SlowMate 慢旅伴首頁">
+        <span class="brand-title">SlowMate 慢旅伴</span>
+        <span class="brand-subtitle">AI 慢旅行程規劃師</span>
+      </a>
+      <nav class="nav-actions" aria-label="頁面導覽">
+        <button type="button" class="nav-support-btn" id="navSupportBtn">☕ 贊助支持</button>
+        <a href="../" class="nav-back-btn">← 回首頁</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 每日 50 次配額顯示 -->
+    <div class="quota-badge-bar">
+      <div class="quota-pill" id="quotaBadge" role="status" aria-live="polite">
+        <span aria-hidden="true">🌿</span>
+        <span id="quotaText">今日慢旅名額：每日限定 50 席</span>
+      </div>
+    </div>
+
+    <!-- 防重整遺失：恢復上次行程橫幅 -->
+    <div class="restore-banner" id="restoreBanner">
+      <span class="restore-text" id="restoreTitle">📂 發現上次產生的慢旅行程</span>
+      <button type="button" class="restore-btn" id="restoreBtn">繼續查看</button>
+    </div>
+
+    <!-- 頂部插圖與標題 Hero 卡片 -->
+    <section class="hero-card" aria-labelledby="heroTitle">
+      <div class="svg-illustration-box" id="svgContainer"></div>
+      <h1 class="hero-title" id="heroTitle">放慢腳步，規劃一場留白的旅行</h1>
+      <p class="hero-desc" id="heroDesc">輸入目的地與心願景點，讓 AI 為你梳理順暢不趕路的散策動線、交通周遊券與預約提醒。</p>
+      <div class="countdown-badge" id="countdownBadge">
+        <span id="countdownPrefix">🗓️ 距離出發還有</span>
+        <span class="countdown-num" id="countdownDays">0</span>
+        <span id="countdownSuffix">天</span>
+      </div>
+    </section>
+
+    <!-- 狀態 1：輸入表單 Form View -->
+    <section id="formView" class="card" aria-label="慢旅規劃表單">
+      <form id="plannerForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="destinationInput">
+            目的地城市 / 地區
+            <span class="form-sub">例：京都、東京近郊、台東、清邁</span>
+          </label>
+          <input type="text" id="destinationInput" class="form-input" placeholder="請輸入你想去的地方..." maxlength="60" autocomplete="off" required />
+          <p class="error-msg" id="destinationErrorMsg">請輸入目的地城市或地區。</p>
+        </div>
+
+        <div class="form-group">
+          <span class="form-label" id="dateGroupLabel">
+            旅遊日期區段
+            <span class="form-sub">最多支援 14 天深度慢旅</span>
+          </span>
+          <div class="date-grid" role="group" aria-labelledby="dateGroupLabel">
+            <div>
+              <label class="date-caption" for="startDateInput">出發日</label>
+              <input type="date" id="startDateInput" class="form-input" required />
+            </div>
+            <div>
+              <label class="date-caption" for="endDateInput">回程日</label>
+              <input type="date" id="endDateInput" class="form-input" required />
+            </div>
+          </div>
+          <p class="day-count-hint" id="dayCountHint" aria-live="polite"></p>
+          <p class="error-msg" id="dateErrorMsg" role="alert">慢旅助手目前最多支援 14 天深度規劃，請調整日期區間。</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="wishesInput">
+            目前想去的景點或體驗
+            <span class="form-sub">選填，AI 會幫你順路串連</span>
+          </label>
+          <div class="vibe-chips" id="vibeChips" role="group" aria-label="慢旅風格快捷標籤（可複選）">
+            <button type="button" class="vibe-chip" aria-pressed="false" data-vibe="獨立咖啡與老屋">☕ 獨立咖啡與老屋</button>
+            <button type="button" class="vibe-chip" aria-pressed="false" data-vibe="自然山海散步">🌿 自然山海散步</button>
+            <button type="button" class="vibe-chip" aria-pressed="false" data-vibe="美術館與建築">🎨 美術館與建築</button>
+            <button type="button" class="vibe-chip" aria-pressed="false" data-vibe="在地早市與烘焙">🥐 在地早市與烘焙</button>
+            <button type="button" class="vibe-chip" aria-pressed="false" data-vibe="避開排隊名店">🚫 避開排隊名店</button>
+            <button type="button" class="vibe-chip" aria-pressed="false" data-vibe="極慢步調/長輩友善">🐢 極慢步調/長輩友善</button>
+          </div>
+          <textarea id="wishesInput" class="form-textarea" rows="3" maxlength="500" placeholder="例如：想去清水寺、鴨川野餐、找安靜的老屋咖啡店、不喜歡排隊名店..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="emailInput">
+            電子信箱 Email
+            <span class="form-sub">首次使用驗證信箱即可免費規劃一次</span>
+          </label>
+          <input type="email" id="emailInput" class="form-input" placeholder="you@example.com" autocomplete="email" inputmode="email" required />
+          <p class="error-msg" id="emailErrorMsg">請輸入有效的電子信箱。</p>
+          <p class="admin-hint" id="adminHint">🛠️ 管理員測試帳號：免驗證、免贊助、不扣每日名額。</p>
+        </div>
+
+        <!-- 序號 / 贊助 雙向引導 -->
+        <div class="form-group">
+          <div class="entry-actions">
+            <button type="button" class="entry-btn entry-btn-code" id="toggleCodeBtn" aria-expanded="false" aria-controls="codeCollapseBox">
+              🔑 我有贊助解鎖序號
+            </button>
+            <button type="button" class="entry-btn entry-btn-support" id="openSupportFromFormBtn">
+              ☕ 第二次使用？贊助取得序號
+            </button>
+          </div>
+          <div class="code-collapse-box" id="codeCollapseBox">
+            <label class="form-label" for="redeemCodeInput">
+              一次性贊助解鎖序號
+              <span class="form-sub">持有序號免 Email 驗證，成功生成才核銷</span>
+            </label>
+            <div class="code-verify-row">
+              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="SLOW-XXXX-YYYY" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+              <button type="button" class="code-verify-btn" id="checkCodeBtn">驗證</button>
+            </div>
+            <p class="code-status" id="codeStatus" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submitBtn">
+          <span>✨ 開始慢旅規劃</span>
+        </button>
+      </form>
+
+      <!-- 載入中微動態與冷啟動金句 -->
+      <div class="loading-box" id="loadingBox" role="status" aria-live="polite">
+        <svg class="suitcase-loader" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="10" y="18" width="44" height="34" rx="6" fill="#E6EFEA" stroke="#435E4F" stroke-width="2.5"/>
+          <path d="M24 18V12C24 9.79086 25.7909 8 28 8H36C38.2091 8 40 9.79086 40 12V18" stroke="#435E4F" stroke-width="2.5"/>
+          <line x1="20" y1="18" x2="20" y2="52" stroke="#5B7B6A" stroke-width="2"/>
+          <line x1="44" y1="18" x2="44" y2="52" stroke="#5B7B6A" stroke-width="2"/>
+          <circle cx="32" cy="34" r="5" fill="#F2CC8F" stroke="#435E4F" stroke-width="2"/>
+        </svg>
+        <p class="loading-quote" id="loadingQuote">🌿 正在喚醒慢旅秘書，為你連接專屬推薦...</p>
+        <p class="loading-sub" id="loadingSub">深度行程生成約需 15 ~ 40 秒，請不要關閉或重新整理頁面</p>
+        <div class="loading-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+      </div>
+    </section>
+
+    <!-- 狀態 2：行程展示 Result View -->
+    <section id="resultView" aria-label="慢旅行程結果">
+      <div class="result-notice" id="resultNotice" role="status"></div>
+
+      <div class="action-bar">
+        <button type="button" class="btn-secondary" id="openEmailModalBtn">✉️ 寄送行程到信箱</button>
+        <button type="button" class="btn-secondary" id="copyTextBtn">📋 複製純文字行程</button>
+      </div>
+
+      <!-- 航班與抵達提醒卡片 -->
+      <div class="card">
+        <h2 class="section-title">✈️ 航班與進出城建議</h2>
+        <div class="flight-grid">
+          <div class="flight-item">
+            <span class="flight-tag">Outbound 去程建議</span>
+            <p class="prep-desc" id="outboundHint"></p>
+          </div>
+          <div class="flight-item">
+            <span class="flight-tag">Inbound 回程提醒</span>
+            <p class="prep-desc" id="inboundHint"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 交通周遊券與事前預約卡片 -->
+      <div class="card">
+        <h2 class="section-title">🎫 推薦交通 Pass 與事前預約</h2>
+        <p class="sub-title">交通票券</p>
+        <div id="passesContainer"></div>
+        <p class="sub-title" style="margin-top: 14px;">需提前預約</p>
+        <div id="reservationsContainer"></div>
+      </div>
+
+      <!-- 每日行程時間軸 -->
+      <div class="card screen-only">
+        <h2 class="section-title">🌿 每日慢旅時間軸</h2>
+        <div class="day-tabs-wrapper" id="dayTabs" role="tablist" aria-label="選擇行程日期"></div>
+        <div id="dayContentBox" role="tabpanel" tabindex="0"></div>
+      </div>
+
+      <!-- 列印 / 另存 PDF 時展開全部天數（畫面上隱藏） -->
+      <div class="card print-only" id="printAllDays" aria-hidden="true"></div>
+
+      <!-- 可打勾的行前待辦清單 -->
+      <div class="card">
+        <h2 class="section-title">☑️ 行前準備待辦清單</h2>
+        <p class="todo-progress" id="todoProgressText"></p>
+        <div class="todo-progress-bar" aria-hidden="true"><div class="todo-progress-fill" id="todoProgressFill"></div></div>
+        <div id="todoListContainer"></div>
+      </div>
+
+      <button type="button" class="btn-primary btn-dark" id="resetPlanBtn">🔄 重新規劃另一趟旅程</button>
+      <button type="button" class="btn-secondary print-btn" id="printBtn">🖨️ 列印 / 另存 PDF 手冊</button>
+
+      <aside class="slow-note" aria-label="慢旅伴的小叮嚀">
+        <strong>🌿 慢旅伴的小叮嚀：</strong>
+        <p>這份提案是為你梳理的旅行靈感。最迷人的風景往往藏在不期而遇的街角——實際出發時，請隨當天的天氣、體力與心情自由增減步調；造訪獨立小店或寺院前，也別忘了點擊「📍 導航」再次確認當日的營業時間與最新預約資訊喔！</p>
+      </aside>
+    </section>
+  </main>
+
+  <!-- 狀態 3：贊助與序號說明 Modal（Navbar / 表單入口 / HTTP 402 / 400 invalid_code 共用） -->
+  <div class="modal-backdrop" id="paywallModal" role="dialog" aria-modal="true" aria-labelledby="paywallTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" data-close-modal="paywallModal" aria-label="關閉">&times;</button>
+      <h3 class="modal-title" id="paywallTitle">☕ 感謝你喜歡 SlowMate 慢旅伴！</h3>
+      <p class="modal-body">
+        <span id="paywallUsedLine" hidden>免費體驗額度已使用完畢。<br><br></span>
+        本工具由獨立創作者維護，每一次 AI 深度規劃皆需消耗雲端運算資源。若這份留白散策對你有所啟發，歡迎前往隨喜贊助（請我喝杯咖啡支持伺服器維護）！
+      </p>
+      <ul class="tier-list" aria-label="隨喜贊助方案">
+        <li class="tier"><span class="tier-price">NT$ 88</span><span class="tier-name">輕量解鎖</span></li>
+        <li class="tier"><span class="tier-price">NT$ 150</span><span class="tier-name">標準支持</span></li>
+        <li class="tier"><span class="tier-price">NT$ 300</span><span class="tier-name">深度熱情</span></li>
+      </ul>
+      <p class="modal-body">
+        三種金額權益相同：每次贊助都會換得 <strong>1 組專屬一次性解鎖序號</strong>，付款完成後 1~3 分鐘內自動寄送至您的信箱（信中附一鍵帶入連結）。
+      </p>
+      <a href="https://portaly.cc/samya_traveler" target="_blank" rel="noopener noreferrer" class="btn-portaly" id="portalyLink">
+        ❤️ 前往 Portaly 隨喜贊助支持
+      </a>
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label class="form-label" for="modalRedeemInput">已完成贊助？請輸入信件中的解鎖序號</label>
+        <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="SLOW-XXXX-YYYY" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+        <p class="error-msg" id="modalCodeError" role="alert">序號無效或已被使用，請確認信件中的序號。</p>
+      </div>
+      <button type="button" class="btn-primary" id="modalVerifyBtn">驗證序號並立即生成</button>
+      <p class="modal-footnote">
+        💡 若超過 5 分鐘未收到序號信（請先查看垃圾郵件匣），歡迎私訊 IG
+        <a href="https://www.instagram.com/samya_traveler/" target="_blank" rel="noopener noreferrer">@samya_traveler</a> 協助處理。
+      </p>
+    </div>
+  </div>
+
+  <!-- 首次免費額度 Email 驗證碼 OTP Modal -->
+  <div class="modal-backdrop" id="otpModal" role="dialog" aria-modal="true" aria-labelledby="otpTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" data-close-modal="otpModal" aria-label="關閉">&times;</button>
+      <div class="modal-emoji" aria-hidden="true">📩</div>
+      <h3 class="modal-title centered" id="otpTitle">驗證電子信箱以開啟免費慢旅規劃</h3>
+      <p class="modal-body" style="text-align:center;">
+        我們已將 6 位數驗證碼寄至 <span class="otp-target" id="otpTargetEmail"></span><br>
+        <span style="font-size:0.8rem;">（若未收到請檢查垃圾郵件匣或促銷分頁，驗證碼 10 分鐘內有效）</span>
+      </p>
+      <div class="form-group" style="margin-bottom: 14px;">
+        <label class="visually-hidden" for="otpInput">6 位數驗證碼</label>
+        <input type="text" id="otpInput" class="form-input otp-input" inputmode="numeric" autocomplete="one-time-code"
+          pattern="[0-9]*" maxlength="6" placeholder="••••••" spellcheck="false" />
+        <p class="error-msg" id="otpError" role="alert" style="text-align:center;"></p>
+      </div>
+      <button type="button" class="btn-primary" id="otpConfirmBtn" disabled>確認驗證並生成行程</button>
+      <div class="otp-footer">
+        <button type="button" class="link-btn" id="otpResendBtn" disabled>重新寄送驗證碼 (60s)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 狀態 4：每日 50 次額度額滿彈窗 Limit Modal (HTTP 429) -->
+  <div class="modal-backdrop" id="limitModal" role="dialog" aria-modal="true" aria-labelledby="limitTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" data-close-modal="limitModal" aria-label="關閉">&times;</button>
+      <div class="modal-emoji" aria-hidden="true">🌿</div>
+      <h3 class="modal-title centered" id="limitTitle">感謝熱情支持！今日 50 個慢旅名額已滿，明日請早 🌿</h3>
+      <p class="modal-body">
+        今日全站 <strong>50 個 AI 慢旅規劃名額</strong>已全數使用完畢（每日台灣時間 00:00 自動重置）。<br><br>
+        <strong>請放心：</strong>本次並未扣除您的免費試用資格，若您有輸入贊助序號，該序號<strong>未被核銷，依然完整有效</strong>，明天再來探索吧！
+      </p>
+      <button type="button" class="btn-primary" data-close-modal="limitModal">好的，明天再來</button>
+    </div>
+  </div>
+
+  <!-- 寄送行程到信箱 Modal -->
+  <div class="modal-backdrop" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" data-close-modal="emailModal" aria-label="關閉">&times;</button>
+      <h3 class="modal-title" id="emailModalTitle">✉️ 將慢旅行程寄到信箱</h3>
+      <p class="modal-body">系統將為你寄出排版清晰的 HTML 完整行程表（含交通 Pass、預約提醒、每日時間軸與導航連結）。</p>
+      <div class="form-group">
+        <label class="form-label" for="sendTargetEmail">收件電子信箱</label>
+        <input type="email" id="sendTargetEmail" class="form-input" autocomplete="email" inputmode="email" required />
+        <p class="error-msg" id="sendEmailError">請輸入有效的電子信箱。</p>
+      </div>
+      <button type="button" class="btn-primary" id="confirmSendEmailBtn">確認寄出</button>
+    </div>
+  </div>
+
+  <!-- Toast 通知 -->
+  <div class="toast" id="toastMsg" role="status" aria-live="polite"></div>
+
+  <footer>
+    Curated Slow Travel by <a href="../">@samya_traveler</a> · SlowMate 慢旅伴
+  </footer>
+
+  <script>
+    'use strict';
+
+    /**
+     * ============================================================
+     * 設定區：部署完 Azure Function 後，請替換下方的 API_BASE_URL
+     * ============================================================
+     */
+    const API_BASE_URL = 'https://slowmate-api.azurewebsites.net/api';
+    const ADMIN_EMAIL = 'sufuf3149@gmail.com';
+    const DAILY_LIMIT = 50;
+    const MAX_DAYS = 14;
+    const EMAIL_COOLDOWN_SEC = 60;
+
+    // 本地儲存 Keys
+    const STORAGE_EMAIL_KEY = 'slowmate_user_email';
+    const STORAGE_TRIP_KEY = 'slowmate_last_trip';
+    const STORAGE_TODOS_KEY = 'slowmate_todo_state';
+    const STORAGE_EMAIL_LOCK_KEY = 'slowmate_email_lock_until';
+    const STORAGE_DRAFT_KEY = 'slowmate_form_draft';
+
+    // 行程頁尾、純文字行程、HTML 行程信統一使用的小叮嚀
+    const SLOW_NOTE_TITLE = '🌿 慢旅伴的小叮嚀：';
+    const SLOW_NOTE_BODY = '這份提案是為你梳理的旅行靈感。最迷人的風景往往藏在不期而遇的街角——實際出發時，請隨當天的天氣、體力與心情自由增減步調；造訪獨立小店或寺院前，也別忘了點擊「📍 導航」再次確認當日的營業時間與最新預約資訊喔！';
+    const DRAFT_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
+
+    const VALID_THEMES = ['kyoto', 'tokyo', 'nature_mountain', 'ocean_beach', 'default_train'];
+
+    // 5 款日系 / 吉卜力溫暖手繪風 SVG 主題插圖庫（.svg-float 整體漂浮，.svg-cloud / .svg-breathe / .svg-sway / .svg-wave 局部微動態）
+    const SVG_THEMES = {
+      default_train: `
+        <svg class="svg-float" viewBox="0 0 280 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="慢速電車穿越綠色丘陵">
+          <circle class="svg-breathe" cx="226" cy="36" r="17" fill="#F2CC8F" opacity="0.7"/>
+          <g class="svg-cloud">
+            <path d="M40 44C40 38 46 34 52 36C56 30 66 30 70 36C76 35 81 40 80 46H40V44Z" fill="#FFFFFF" opacity="0.9"/>
+            <path d="M150 28C150 24 154 22 158 23C161 19 167 19 170 23C174 22 177 26 176 30H150V28Z" fill="#FFFFFF" opacity="0.75"/>
+          </g>
+          <path d="M8 124C60 92 122 108 184 98C226 91 256 106 272 124H8Z" fill="#CFE0D6"/>
+          <path d="M8 124C50 110 90 116 130 112" stroke="#B5CFC1" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 6"/>
+          <g class="svg-sway"><line x1="24" y1="118" x2="24" y2="98" stroke="#435E4F" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="94" r="8" fill="#84A59D"/></g>
+          <g class="svg-sway"><line x1="252" y1="118" x2="252" y2="102" stroke="#435E4F" stroke-width="2" stroke-linecap="round"/><circle cx="252" cy="98" r="7" fill="#84A59D"/></g>
+          <rect x="42" y="72" width="196" height="44" rx="11" fill="#5B7B6A" stroke="#2C3531" stroke-width="2.2"/>
+          <rect x="42" y="96" width="196" height="8" fill="#F2CC8F"/>
+          <rect x="58" y="80" width="24" height="14" rx="3" fill="#FBF9F5" stroke="#2C3531" stroke-width="1.8"/>
+          <rect x="92" y="80" width="24" height="14" rx="3" fill="#FBF9F5" stroke="#2C3531" stroke-width="1.8"/>
+          <rect x="126" y="80" width="24" height="14" rx="3" fill="#FBF9F5" stroke="#2C3531" stroke-width="1.8"/>
+          <rect x="160" y="80" width="24" height="14" rx="3" fill="#FBF9F5" stroke="#2C3531" stroke-width="1.8"/>
+          <rect x="194" y="80" width="30" height="14" rx="3" fill="#FBF9F5" stroke="#2C3531" stroke-width="1.8"/>
+          <line x1="140" y1="72" x2="132" y2="60" stroke="#2C3531" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="132" y1="60" x2="150" y2="60" stroke="#2C3531" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="14" y1="120" x2="266" y2="120" stroke="#2C3531" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="72" cy="118" r="5" fill="#2C3531"/>
+          <circle cx="104" cy="118" r="5" fill="#2C3531"/>
+          <circle cx="176" cy="118" r="5" fill="#2C3531"/>
+          <circle cx="208" cy="118" r="5" fill="#2C3531"/>
+        </svg>`,
+      kyoto: `
+        <svg class="svg-float" viewBox="0 0 280 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="夕陽下的朱紅鳥居與青苔">
+          <circle class="svg-breathe" cx="140" cy="72" r="46" fill="#F2CC8F" opacity="0.45"/>
+          <g class="svg-cloud">
+            <path d="M30 38C30 33 35 30 40 32C43 27 51 27 54 32C59 31 63 35 62 40H30V38Z" fill="#FFFFFF" opacity="0.85"/>
+            <path d="M206 30C206 26 210 24 214 25C217 21 223 21 226 25C230 24 233 28 232 32H206V30Z" fill="#FFFFFF" opacity="0.75"/>
+          </g>
+          <path d="M14 128C68 104 212 104 266 128H14Z" fill="#C5D8CE"/>
+          <path d="M74 50C112 59 168 59 206 50" stroke="#E07A5F" stroke-width="8" stroke-linecap="round"/>
+          <path d="M70 47L80 51M210 47L200 51" stroke="#C4614A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M90 67H190" stroke="#E07A5F" stroke-width="5" stroke-linecap="round"/>
+          <rect x="134" y="58" width="12" height="12" rx="1.5" fill="#2C3531"/>
+          <line x1="106" y1="56" x2="102" y2="124" stroke="#E07A5F" stroke-width="6.5" stroke-linecap="round"/>
+          <line x1="174" y1="56" x2="178" y2="124" stroke="#E07A5F" stroke-width="6.5" stroke-linecap="round"/>
+          <rect x="97" y="118" width="11" height="6" rx="1" fill="#2C3531"/>
+          <rect x="172" y="118" width="11" height="6" rx="1" fill="#2C3531"/>
+          <g class="svg-sway"><circle cx="56" cy="106" r="16" fill="#5B7B6A" opacity="0.9"/><circle cx="44" cy="114" r="10" fill="#84A59D"/></g>
+          <g class="svg-sway"><circle cx="222" cy="108" r="14" fill="#5B7B6A" opacity="0.9"/><circle cx="234" cy="116" r="9" fill="#84A59D"/></g>
+          <path d="M120 132C130 128 150 128 160 132" stroke="#9DBBAA" stroke-width="2" stroke-linecap="round"/>
+        </svg>`,
+      tokyo: `
+        <svg class="svg-float" viewBox="0 0 280 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="城市天際線與高塔">
+          <circle class="svg-breathe" cx="72" cy="42" r="15" fill="#F2CC8F" opacity="0.65"/>
+          <g class="svg-cloud">
+            <path d="M176 34C176 29 181 26 186 28C189 23 197 23 200 28C205 27 209 31 208 36H176V34Z" fill="#FFFFFF" opacity="0.9"/>
+          </g>
+          <rect x="36" y="92" width="22" height="34" rx="2" fill="#E6EFEA" stroke="#2C3531" stroke-width="1.6"/>
+          <rect x="62" y="80" width="28" height="46" rx="3" fill="#CFE0D6" stroke="#2C3531" stroke-width="1.8"/>
+          <rect x="68" y="88" width="6" height="6" fill="#F2CC8F"/><rect x="78" y="88" width="6" height="6" fill="#FBF9F5"/>
+          <rect x="68" y="100" width="6" height="6" fill="#FBF9F5"/><rect x="78" y="100" width="6" height="6" fill="#F2CC8F"/>
+          <path d="M140 22L114 126H166L140 22Z" fill="#E07A5F" stroke="#2C3531" stroke-width="2"/>
+          <line x1="140" y1="10" x2="140" y2="22" stroke="#2C3531" stroke-width="2" stroke-linecap="round"/>
+          <rect x="122" y="72" width="36" height="10" rx="2" fill="#FBF9F5" stroke="#2C3531" stroke-width="1.8"/>
+          <rect x="128" y="46" width="24" height="8" rx="2" fill="#FBF9F5" stroke="#2C3531" stroke-width="1.5"/>
+          <path d="M124 100H156M120 112H160" stroke="#2C3531" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/>
+          <rect x="186" y="74" width="32" height="52" rx="3" fill="#CFE0D6" stroke="#2C3531" stroke-width="1.8"/>
+          <rect x="192" y="82" width="7" height="7" fill="#FBF9F5"/><rect x="204" y="82" width="7" height="7" fill="#F2CC8F"/>
+          <rect x="192" y="96" width="7" height="7" fill="#F2CC8F"/><rect x="204" y="96" width="7" height="7" fill="#FBF9F5"/>
+          <rect x="222" y="96" width="22" height="30" rx="2" fill="#E6EFEA" stroke="#2C3531" stroke-width="1.6"/>
+          <g class="svg-sway"><line x1="256" y1="126" x2="256" y2="110" stroke="#435E4F" stroke-width="2" stroke-linecap="round"/><circle cx="256" cy="106" r="7" fill="#84A59D"/></g>
+          <line x1="22" y1="126" x2="264" y2="126" stroke="#2C3531" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>`,
+      nature_mountain: `
+        <svg class="svg-float" viewBox="0 0 280 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="雪頂山巒與森林小屋">
+          <circle class="svg-breathe" cx="212" cy="38" r="17" fill="#F2CC8F" opacity="0.75"/>
+          <g class="svg-cloud">
+            <path d="M44 50C44 45 49 42 54 44C57 39 65 39 68 44C73 43 77 47 76 52H44V50Z" fill="#FFFFFF" opacity="0.9"/>
+            <path d="M150 34C150 30 154 28 158 29C161 25 167 25 170 29C174 28 177 32 176 36H150V34Z" fill="#FFFFFF" opacity="0.7"/>
+          </g>
+          <path d="M30 126L106 40L178 126H30Z" fill="#5B7B6A" stroke="#2C3531" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M106 40L86 63L96 68L106 60L116 68L126 63L106 40Z" fill="#FBF9F5"/>
+          <path d="M112 126L174 56L242 126H112Z" fill="#84A59D" stroke="#2C3531" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M174 56L160 72L168 75L174 70L181 75L188 72L174 56Z" fill="#FBF9F5"/>
+          <g class="svg-sway"><path d="M44 126L52 106L60 126Z" fill="#435E4F"/><path d="M46 116L52 100L58 116Z" fill="#435E4F"/></g>
+          <g class="svg-sway"><path d="M232 126L240 108L248 126Z" fill="#435E4F"/><path d="M234 117L240 102L246 117Z" fill="#435E4F"/></g>
+          <rect x="196" y="108" width="20" height="16" fill="#F2CC8F" stroke="#2C3531" stroke-width="1.6"/>
+          <path d="M192 110L206 98L220 110" stroke="#2C3531" stroke-width="1.8" fill="#E07A5F" stroke-linejoin="round"/>
+          <rect x="203" y="114" width="6" height="10" fill="#2C3531"/>
+          <path class="svg-cloud" d="M212 92C214 88 210 86 213 82" stroke="#B8C4BE" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="16" y1="126" x2="264" y2="126" stroke="#2C3531" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>`,
+      ocean_beach: `
+        <svg class="svg-float" viewBox="0 0 280 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="海邊夕陽、海浪與海鷗">
+          <circle class="svg-breathe" cx="140" cy="62" r="26" fill="#F2CC8F"/>
+          <g class="svg-cloud">
+            <path d="M68 44C74 48 78 48 84 42" stroke="#2C3531" stroke-width="2" stroke-linecap="round"/>
+            <path d="M84 42C90 48 94 48 100 44" stroke="#2C3531" stroke-width="2" stroke-linecap="round"/>
+            <path d="M188 34C193 38 197 38 202 33" stroke="#2C3531" stroke-width="2" stroke-linecap="round"/>
+            <path d="M202 33C207 38 211 38 216 34" stroke="#2C3531" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <path d="M14 102C60 92 106 112 152 102C192 93 228 110 266 100V128H14V102Z" fill="#76A5AF"/>
+          <g class="svg-wave">
+            <path d="M28 112C74 106 118 118 164 110C200 104 230 114 252 110" stroke="#FBF9F5" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M50 121C86 117 120 124 156 119" stroke="#FBF9F5" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+          </g>
+          <path d="M184 128C204 118 240 116 266 120V128H184Z" fill="#F2E3C4"/>
+          <g class="svg-sway">
+            <path d="M236 120C236 104 238 92 244 82" stroke="#8A6A4F" stroke-width="3" stroke-linecap="round"/>
+            <path d="M244 82C234 78 226 82 222 88M244 82C252 76 262 78 266 84M244 82C242 72 234 68 228 70M244 82C250 72 258 70 262 72" stroke="#5B7B6A" stroke-width="3" stroke-linecap="round"/>
+          </g>
+        </svg>`
+    };
+
+    // 冷啟動與等待輪播金句（第 1 句固定）
+    const LOADING_QUOTES = [
+      '🌿 正在喚醒慢旅秘書，為你連接專屬推薦...',
+      '🍵 旅行不是為了抵達，而是為了在路上慢慢遇見自己。',
+      '🚃 正在計算最順暢的當地交通周遊券...',
+      '☕ 最好的風景，常常藏在不趕時間的那杯咖啡裡。',
+      '🥐 正在挑選避開人潮的街角咖啡與小店...',
+      '🍃 留一點空白給行程，讓城市有機會給你驚喜。',
+      '📖 正在整理需要提前預約的景點備忘錄...',
+      '🌅 走慢一點，才看得見巷弄裡的光。',
+      '🗺️ 正在把你的心願景點串成順路的散策小徑...',
+      '🌙 好的旅行，是回家之後還想念的日常。'
+    ];
+
+    // 內建測試帳號離線展示資料（當後端尚未架設且使用測試白名單帳號時自動啟用）
+    const MOCK_DEMO_TRIP = {
+      trip_summary: {
+        destination: '京都',
+        theme_title: '初秋京都・青苔與喫茶店的漫步日誌',
+        vibe_description: '放慢腳步，在鴨川的微風與老屋咖啡香中，找回旅行的留白。',
+        svg_theme: 'kyoto',
+        flight_card: {
+          outbound_hint: '建議搭乘早班機抵達關西機場 (KIX)，轉乘 JR HARUKA 特急直達京都車站（約 75 分鐘）。',
+          inbound_hint: '回程建議預留 3 小時於機場採買伴手禮與辦理出境手續。'
+        }
+      },
+      pre_trip_prep: {
+        transport_passes: [
+          { name: 'JR 關西地區鐵路周遊券 (1日券)', description: '用於關西機場往返京都 HARUKA 自由席最划算', buy_timing: '出發前 2 週線上預訂' },
+          { name: '京都巴士・地鐵一日券', description: '涵蓋京都市區主要寺院與散策街區', buy_timing: '抵達後售票機購買' }
+        ],
+        advance_reservations: [
+          { target: '西芳寺（苔寺）參拜', deadline_note: '需提前 1 個月申請', tips: '記得預留抄經的靜心時間' },
+          { target: '鴨川納涼床 / 京料理老舖', deadline_note: '建議提前 3 週預約', tips: '傍晚時段視野最佳' }
+        ],
+        todo_checklist: [
+          '開通日本 eSIM 漫遊數據',
+          '完成 Visit Japan Web 入境申報 QR Code',
+          'Apple Pay 綁定 Suica 或 ICOCA 交通卡',
+          '準備零錢包與少量日圓現鈔（老店與神社參拜用）'
+        ]
+      },
+      daily_itinerary: [
+        {
+          day_index: 1,
+          date: '2026-11-01',
+          day_title: '抵達古都，鴨川畔的第一杯手沖咖啡',
+          timeline: [
+            { time_slot: '上午', title: '京都車站周邊寄放行李與老字號早餐', is_must_visit: false, transport_tag: { type: '步行', color_code: '#4CAF50' }, description: '抵達後使用車站手荷物配送服務寄送行李至旅宿，在老字號喫茶店享用經典京都早餐（建議停留 1.5 小時）。' },
+            { time_slot: '下午', title: '下鴨神社糺之森', is_must_visit: true, transport_tag: { type: '巴士', color_code: '#FF9800' }, description: '在參天古木圍繞的森林小徑慢步，再到鴨川三角洲跳烏龜石（建議停留 2.5 小時）。' },
+            { time_slot: '傍晚', title: '先斗町與木屋町通河畔散步', is_must_visit: false, transport_tag: { type: '步行', color_code: '#4CAF50' }, description: '沿著高瀨川欣賞紅燈籠亮起的黃昏，隨興挑選一間家庭式小料理屋（建議停留 2 小時）。' }
+          ],
+          stay_info: { area_recommendation: '五條 / 河原町安靜巷弄', hotel_vibe: '選擇京町家改建的小型設計旅宿，步行 5 分鐘可達鴨川' }
+        },
+        {
+          day_index: 2,
+          date: '2026-11-02',
+          day_title: '東山晨光散策與手作工藝時光',
+          timeline: [
+            { time_slot: '上午', title: '清水寺晨間參拜與二三年坂', is_must_visit: true, transport_tag: { type: '巴士', color_code: '#FF9800' }, description: '趁 8 點前團客未至時造訪，靜靜俯瞰京都市景與石坂老屋（建議停留 2.5 小時）。' },
+            { time_slot: '下午', title: '南禪寺水路閣與哲學之道', is_must_visit: true, transport_tag: { type: '地鐵', color_code: '#2196F3' }, description: '在紅磚拱橋下留影，沿水渠散步探訪獨立書店與器皿小店（建議停留 3 小時）。' },
+            { time_slot: '傍晚', title: '岡崎疏水畔晚餐', is_must_visit: false, transport_tag: { type: '步行', color_code: '#4CAF50' }, description: '在疏水旁的小酒館享用京野菜料理，為一天畫下溫柔句點（建議停留 1.5 小時）。' }
+          ],
+          stay_info: { area_recommendation: '續住五條 / 河原町周邊', hotel_vibe: '免搬運行李，晚上可到在地超市採買宵夜' }
+        }
+      ]
+    };
+
+    /* ============================================================
+     * 全域狀態
+     * ============================================================ */
+    const state = {
+      view: 'form',          // 'form' | 'loading' | 'result'
+      trip: null,
+      activeDayIndex: 0,
+      quoteTimer: null,
+      toastTimer: null,
+      emailLockTimer: null,
+      isSubmitting: false,
+      lastFocus: null,
+      otpEmail: '',
+      otpTimer: null
+    };
+
+    /* ============================================================
+     * DOM
+     * ============================================================ */
+    const $ = (id) => document.getElementById(id);
+    const svgContainer = $('svgContainer');
+    const heroTitle = $('heroTitle');
+    const heroDesc = $('heroDesc');
+    const countdownBadge = $('countdownBadge');
+    const countdownPrefix = $('countdownPrefix');
+    const countdownDays = $('countdownDays');
+    const countdownSuffix = $('countdownSuffix');
+    const quotaBadge = $('quotaBadge');
+    const quotaText = $('quotaText');
+    const restoreBanner = $('restoreBanner');
+    const restoreTitle = $('restoreTitle');
+    const restoreBtn = $('restoreBtn');
+
+    const formView = $('formView');
+    const resultView = $('resultView');
+    const plannerForm = $('plannerForm');
+    const destinationInput = $('destinationInput');
+    const startDateInput = $('startDateInput');
+    const endDateInput = $('endDateInput');
+    const wishesInput = $('wishesInput');
+    const emailInput = $('emailInput');
+    const redeemCodeInput = $('redeemCodeInput');
+    const dateErrorMsg = $('dateErrorMsg');
+    const dayCountHint = $('dayCountHint');
+    const submitBtn = $('submitBtn');
+    const loadingBox = $('loadingBox');
+    const loadingQuote = $('loadingQuote');
+
+    const HERO_DEFAULT_TITLE = '放慢腳步，規劃一場留白的旅行';
+    const HERO_DEFAULT_DESC = '輸入目的地與心願景點，讓 AI 為你梳理順暢不趕路的散策動線、交通周遊券與預約提醒。';
+
+    /* ============================================================
+     * 安全的 localStorage（隱私模式下可能拋錯）
+     * ============================================================ */
+    const store = {
+      get(key) { try { return localStorage.getItem(key); } catch (_) { return null; } },
+      set(key, val) { try { localStorage.setItem(key, val); } catch (_) {} },
+      remove(key) { try { localStorage.removeItem(key); } catch (_) {} }
+    };
+
+    /* ============================================================
+     * 初始化
+     * ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSvgTheme('default_train');
+      initDefaultDates();
+      loadSavedUserState();
+      const draftRestored = restoreFormDraft();
+      const magicApplied = applyMagicLinkCode();
+      if (!magicApplied && draftRestored) showToast('📝 已為您恢復贊助前填寫的表單內容');
+      validateDateRange();
+      updateAdminHint();
+      restoreEmailLock();
+      fetchDailyQuota();
+      bindEvents();
+    });
+
+    function renderSvgTheme(themeKey) {
+      svgContainer.innerHTML = SVG_THEMES[VALID_THEMES.includes(themeKey) ? themeKey : 'default_train'];
+    }
+
+    /* ---------- 日期工具（一律使用本地時區，避免 toISOString 的 UTC 偏移） ---------- */
+    function formatDateLocal(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    }
+
+    function parseDateLocal(str) {
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(str || '');
+      if (!m) return null;
+      const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+      return Number.isNaN(d.getTime()) ? null : d;
+    }
+
+    function daysBetween(a, b) {
+      return Math.round((b - a) / 86400000);
+    }
+
+    function initDefaultDates() {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const start = new Date(today);
+      start.setDate(today.getDate() + 14);
+      const end = new Date(start);
+      end.setDate(start.getDate() + 4);
+
+      startDateInput.min = formatDateLocal(today);
+      endDateInput.min = formatDateLocal(today);
+      startDateInput.value = formatDateLocal(start);
+      endDateInput.value = formatDateLocal(end);
+    }
+
+    // 計算並驗證日期區間（1 ~ 14 天）：超過即紅字警示並禁用按鈕
+    function validateDateRange() {
+      const s = parseDateLocal(startDateInput.value);
+      const e = parseDateLocal(endDateInput.value);
+      dayCountHint.textContent = '';
+
+      if (!s || !e) {
+        dateErrorMsg.textContent = '請選擇完整的出發日與回程日。';
+        dateErrorMsg.classList.add('show');
+        setDateInvalid(true);
+        submitBtn.disabled = true;
+        return false;
+      }
+
+      const diffDays = daysBetween(s, e) + 1;
+
+      if (diffDays < 1) {
+        dateErrorMsg.textContent = '回程日不能早於出發日，請重新選擇。';
+        dateErrorMsg.classList.add('show');
+        setDateInvalid(true);
+        submitBtn.disabled = true;
+        return false;
+      }
+      if (diffDays > MAX_DAYS) {
+        dateErrorMsg.textContent = `慢旅助手目前最多支援 ${MAX_DAYS} 天深度規劃（您選擇了 ${diffDays} 天），請調整日期區間。`;
+        dateErrorMsg.classList.add('show');
+        setDateInvalid(true);
+        submitBtn.disabled = true;
+        return false;
+      }
+
+      dateErrorMsg.classList.remove('show');
+      setDateInvalid(false);
+      dayCountHint.textContent = diffDays <= 5
+        ? `共 ${diffDays} 天 · 每天安排上午、下午、傍晚三個時段`
+        : `共 ${diffDays} 天 · 定點慢活節奏，每天安排上午、下午兩個核心時段`;
+      submitBtn.disabled = state.isSubmitting;
+      return true;
+    }
+
+    function setDateInvalid(invalid) {
+      startDateInput.classList.toggle('is-invalid', invalid);
+      endDateInput.classList.toggle('is-invalid', invalid);
+      startDateInput.setAttribute('aria-invalid', String(invalid));
+      endDateInput.setAttribute('aria-invalid', String(invalid));
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[^\s@<>()[\]\\,;:"]{2,}$/.test(email) && email.length <= 254;
+    }
+
+    function isAdmin(email) {
+      return (email || '').trim().toLowerCase() === ADMIN_EMAIL;
+    }
+
+    function updateAdminHint() {
+      $('adminHint').classList.toggle('show', isAdmin(emailInput.value));
+    }
+
+    /* ---------- 慢旅風格快捷標籤：點擊切換，文字自動串接進心願清單 ---------- */
+    const VIBE_SEP = '、';
+
+    function escapeRegExp(str) {
+      return str.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
+    }
+
+    function wishesHasVibe(vibe) {
+      return wishesInput.value.includes(vibe);
+    }
+
+    function appendVibe(vibe) {
+      const cur = wishesInput.value.replace(/[\s、，,]+$/, '');
+      const next = cur ? `${cur}${VIBE_SEP}${vibe}` : vibe;
+      if (next.length > 500) {
+        showToast('心願清單已接近 500 字上限');
+        return false;
+      }
+      wishesInput.value = next;
+      return true;
+    }
+
+    function removeVibe(vibe) {
+      const re = new RegExp(`[、，,\\s]*${escapeRegExp(vibe)}`);
+      wishesInput.value = wishesInput.value.replace(re, '').replace(/^[\s、，,]+/, '');
+    }
+
+    /** 依心願清單內容同步標籤狀態（使用者手動刪掉文字時，標籤也會自動取消） */
+    function syncVibeChips() {
+      document.querySelectorAll('.vibe-chip').forEach((chip) => {
+        chip.setAttribute('aria-pressed', String(wishesHasVibe(chip.dataset.vibe)));
+      });
+    }
+
+    function selectedVibes() {
+      return Array.from(document.querySelectorAll('.vibe-chip[aria-pressed="true"]')).map((c) => c.dataset.vibe);
+    }
+
+    function toggleVibe(chip) {
+      const vibe = chip.dataset.vibe;
+      if (wishesHasVibe(vibe)) removeVibe(vibe);
+      else appendVibe(vibe);
+      syncVibeChips();
+    }
+
+    /* ---------- 表單草稿暫存（前往 Portaly 贊助前） ---------- */
+    function saveFormDraft() {
+      const draft = {
+        destination: destinationInput.value.trim(),
+        start_date: startDateInput.value,
+        end_date: endDateInput.value,
+        user_wishes: wishesInput.value.trim(),
+        email: emailInput.value.trim().toLowerCase(),
+        vibes: selectedVibes(),
+        saved_at: Date.now()
+      };
+      if (!draft.destination && !draft.user_wishes && !draft.email) return; // 空表單不必暫存
+      store.set(STORAGE_DRAFT_KEY, JSON.stringify(draft));
+    }
+
+    function restoreFormDraft() {
+      let draft = null;
+      try { draft = JSON.parse(store.get(STORAGE_DRAFT_KEY) || 'null'); } catch (_) { draft = null; }
+      if (!draft || typeof draft !== 'object') return false;
+      if (!draft.saved_at || Date.now() - draft.saved_at > DRAFT_MAX_AGE_MS) {
+        store.remove(STORAGE_DRAFT_KEY);
+        return false;
+      }
+
+      let restored = false;
+      if (draft.destination) { destinationInput.value = String(draft.destination).slice(0, 60); restored = true; }
+      if (draft.user_wishes) { wishesInput.value = String(draft.user_wishes).slice(0, 500); restored = true; }
+      if (Array.isArray(draft.vibes)) {
+        draft.vibes.forEach((v) => { if (typeof v === 'string' && !wishesHasVibe(v)) appendVibe(v); });
+        if (draft.vibes.length) restored = true;
+      }
+      syncVibeChips();
+      if (draft.email) { emailInput.value = String(draft.email); restored = true; }
+
+      // 日期：只在仍未過期（出發日 >= 今天）時恢復
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const s = parseDateLocal(draft.start_date);
+      const e = parseDateLocal(draft.end_date);
+      if (s && e && s >= today && e >= s) {
+        startDateInput.value = draft.start_date;
+        endDateInput.value = draft.end_date;
+        endDateInput.min = draft.start_date;
+        restored = true;
+      }
+      return restored;
+    }
+
+    /* ---------- Magic Link：?code=SLOW-XXXX-YYYY 自動帶入序號 ---------- */
+    function applyMagicLinkCode() {
+      let params;
+      try { params = new URLSearchParams(window.location.search); } catch (_) { return false; }
+      const raw = params.get('code');
+      if (raw === null) return false;
+
+      // 先清除網址參數，保持網址乾淨（重新整理也不會重複帶入）
+      params.delete('code');
+      const query = params.toString();
+      try {
+        history.replaceState(history.state, '', window.location.pathname + (query ? `?${query}` : '') + window.location.hash);
+      } catch (_) {}
+
+      const code = raw.trim().toUpperCase();
+      if (!code) return false;
+
+      redeemCodeInput.value = code;
+      $('codeCollapseBox').classList.add('show');
+      $('toggleCodeBtn').setAttribute('aria-expanded', 'true');
+      showToast('✨ 已自動帶入您的贊助解鎖序號！');
+      checkRedeemCode(); // 背景唯讀查詢序號狀態，於輸入框下方顯示「✅ 序號有效」或錯誤原因
+      return true;
+    }
+
+    /* ---------- LocalStorage：Email 與上次快取行程 ---------- */
+    function readCachedTrip() {
+      const raw = store.get(STORAGE_TRIP_KEY);
+      if (!raw) return null;
+      try {
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed.trip_summary && Array.isArray(parsed.daily_itinerary) && parsed.daily_itinerary.length) {
+          return parsed;
+        }
+      } catch (e) {
+        console.warn('無法解析快取行程', e);
+      }
+      return null;
+    }
+
+    function loadSavedUserState() {
+      const savedEmail = store.get(STORAGE_EMAIL_KEY);
+      if (savedEmail && !emailInput.value) emailInput.value = savedEmail;
+
+      const cached = readCachedTrip();
+      if (cached && state.view === 'form') {
+        restoreTitle.textContent = `📂 繼續查看上次的【${cached.trip_summary.destination || '慢旅'}】慢旅行程`;
+        restoreBanner.classList.add('show');
+      } else {
+        restoreBanner.classList.remove('show');
+      }
+    }
+
+    function saveTrip(trip) {
+      store.set(STORAGE_TRIP_KEY, JSON.stringify(trip));
+      store.remove(STORAGE_TODOS_KEY); // 新行程 → 重置勾選狀態
+    }
+
+    /* ---------- 今日剩餘名額 (GET /api/plan) ---------- */
+    function renderQuota(remaining) {
+      if (typeof remaining !== 'number' || Number.isNaN(remaining)) {
+        quotaText.textContent = `今日慢旅名額：每日限定 ${DAILY_LIMIT} 席`;
+        quotaBadge.classList.remove('is-low', 'is-full');
+        return;
+      }
+      const r = Math.max(0, Math.min(DAILY_LIMIT, remaining));
+      quotaText.textContent = r > 0
+        ? `今日慢旅名額：每日限定 ${DAILY_LIMIT} 席（剩餘 ${r} 席）`
+        : `今日慢旅名額已滿，明日 00:00 重置`;
+      quotaBadge.classList.toggle('is-full', r === 0);
+      quotaBadge.classList.toggle('is-low', r > 0 && r <= 10);
+    }
+
+    async function fetchDailyQuota() {
+      try {
+        const res = await fetch(`${API_BASE_URL}/plan`, { method: 'GET', cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+        renderQuota(data.remaining_quota);
+      } catch (_) {
+        // 後端尚未綁定或冷啟動失敗時，維持預設溫馨文字
+        renderQuota(undefined);
+      }
+    }
+
+    /* ============================================================
+     * 事件綁定
+     * ============================================================ */
+    function bindEvents() {
+      startDateInput.addEventListener('change', () => {
+        // 出發日改變時，回程日不得早於出發日
+        if (startDateInput.value) endDateInput.min = startDateInput.value;
+        const s = parseDateLocal(startDateInput.value);
+        const e = parseDateLocal(endDateInput.value);
+        if (s && e && e < s) endDateInput.value = startDateInput.value;
+        validateDateRange();
+      });
+      endDateInput.addEventListener('change', validateDateRange);
+      startDateInput.addEventListener('input', validateDateRange);
+      endDateInput.addEventListener('input', validateDateRange);
+
+      destinationInput.addEventListener('input', () => {
+        destinationInput.classList.remove('is-invalid');
+        $('destinationErrorMsg').classList.remove('show');
+      });
+
+      emailInput.addEventListener('input', () => {
+        emailInput.classList.remove('is-invalid');
+        $('emailErrorMsg').classList.remove('show');
+        updateAdminHint();
+      });
+
+      // 序號輸入即時轉大寫
+      [redeemCodeInput, $('modalRedeemInput')].forEach((el) => {
+        el.addEventListener('input', () => {
+          const pos = el.selectionStart;
+          el.value = el.value.toUpperCase();
+          try { el.setSelectionRange(pos, pos); } catch (_) {}
+          el.classList.remove('is-invalid');
+          if (el.id === 'modalRedeemInput') $('modalCodeError').classList.remove('show');
+        });
+      });
+
+      // 序號折疊區「驗證」：唯讀查詢，不核銷
+      $('checkCodeBtn').addEventListener('click', checkRedeemCode);
+      redeemCodeInput.addEventListener('input', () => setCodeStatus('', ''));
+
+      // 慢旅風格快捷標籤
+      document.querySelectorAll('.vibe-chip').forEach((chip) => chip.addEventListener('click', () => toggleVibe(chip)));
+      wishesInput.addEventListener('input', syncVibeChips);
+
+      // 列印 / 另存 PDF
+      $('printBtn').addEventListener('click', () => window.print());
+
+      // 前往 Portaly 前：自動暫存表單草稿，回來（或點 Magic Link）時免重填
+      $('portalyLink').addEventListener('click', saveFormDraft);
+
+      // 第二次使用 / 贊助入口（Navbar 與表單）
+      $('navSupportBtn').addEventListener('click', () => openPaywall('manual'));
+      $('openSupportFromFormBtn').addEventListener('click', () => openPaywall('manual'));
+
+      // OTP 驗證碼輸入：只留數字、滿 6 碼才可送出、Enter 送出
+      const otpInput = $('otpInput');
+      otpInput.addEventListener('input', () => {
+        otpInput.value = otpInput.value.replace(/\D/g, '').slice(0, 6);
+        otpInput.classList.remove('is-invalid');
+        $('otpError').classList.remove('show');
+        $('otpConfirmBtn').disabled = otpInput.value.length !== 6;
+      });
+      otpInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && otpInput.value.length === 6) { e.preventDefault(); confirmOtp(); }
+      });
+      $('otpConfirmBtn').addEventListener('click', confirmOtp);
+      $('otpResendBtn').addEventListener('click', () => {
+        if (state.otpEmail) requestOtp(state.otpEmail, { fromModal: true });
+      });
+
+      // 展開序號欄位
+      $('toggleCodeBtn').addEventListener('click', () => {
+        const box = $('codeCollapseBox');
+        const open = box.classList.toggle('show');
+        $('toggleCodeBtn').setAttribute('aria-expanded', String(open));
+        if (open) redeemCodeInput.focus();
+      });
+
+      // 恢復上次行程
+      restoreBtn.addEventListener('click', () => {
+        const cached = readCachedTrip();
+        if (!cached) {
+          restoreBanner.classList.remove('show');
+          showToast('找不到上次的行程紀錄');
+          return;
+        }
+        renderTripResult(cached);
+      });
+
+      // 送出表單
+      plannerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await startPlanning();
+      });
+
+      // Paywall Modal 內驗證序號按鈕
+      $('modalVerifyBtn').addEventListener('click', async () => {
+        const modalCode = $('modalRedeemInput').value.trim().toUpperCase();
+        const err = $('modalCodeError');
+        if (!modalCode) {
+          err.textContent = '請輸入信件中的解鎖序號。';
+          err.classList.add('show');
+          return;
+        }
+        if (!/^SLOW-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(modalCode)) {
+          err.textContent = '序號格式應為 SLOW-XXXX-YYYY，請再確認一次。';
+          err.classList.add('show');
+          return;
+        }
+        redeemCodeInput.value = modalCode;
+        $('codeCollapseBox').classList.add('show');
+        $('toggleCodeBtn').setAttribute('aria-expanded', 'true');
+        closeModal('paywallModal');
+        // 持有序號 → 免 OTP 直接生成（表單未填完時會提示補齊，序號已自動帶入）
+        await startPlanning();
+      });
+
+      // 關閉各 Modal（X 按鈕、背景點擊、Esc）
+      document.querySelectorAll('[data-close-modal]').forEach((btn) => {
+        btn.addEventListener('click', () => closeModal(btn.getAttribute('data-close-modal')));
+      });
+      document.querySelectorAll('.modal-backdrop').forEach((bd) => {
+        bd.addEventListener('click', (e) => { if (e.target === bd) closeModal(bd.id); });
+      });
+      document.addEventListener('keydown', (e) => {
+        const open = document.querySelector('.modal-backdrop.show');
+        if (!open) return;
+        if (e.key === 'Escape') closeModal(open.id);
+        if (e.key === 'Tab') trapFocus(open, e);
+      });
+
+      // 重新規劃
+      $('resetPlanBtn').addEventListener('click', () => {
+        setView('form');
+        countdownBadge.classList.remove('show');
+        renderSvgTheme('default_train');
+        heroTitle.textContent = HERO_DEFAULT_TITLE;
+        heroDesc.textContent = HERO_DEFAULT_DESC;
+        loadSavedUserState();
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+        destinationInput.focus({ preventScroll: true });
+      });
+
+      // 一鍵複製純文字行程
+      $('copyTextBtn').addEventListener('click', copyItineraryAsText);
+
+      // 寄送行程到信箱
+      $('openEmailModalBtn').addEventListener('click', () => {
+        $('sendTargetEmail').value = emailInput.value.trim() || store.get(STORAGE_EMAIL_KEY) || '';
+        $('sendEmailError').classList.remove('show');
+        openModal('emailModal', $('sendTargetEmail'));
+      });
+      $('sendTargetEmail').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); sendItineraryEmail(); }
+      });
+      $('confirmSendEmailBtn').addEventListener('click', sendItineraryEmail);
+    }
+
+    /* ============================================================
+     * 狀態機：form ⇄ loading → result
+     * ============================================================ */
+    function setView(view) {
+      state.view = view;
+      if (view === 'form') {
+        formView.style.display = 'block';
+        plannerForm.style.display = 'block';
+        loadingBox.classList.remove('show');
+        resultView.classList.remove('show');
+      } else if (view === 'loading') {
+        formView.style.display = 'block';
+        plannerForm.style.display = 'none';
+        loadingBox.classList.add('show');
+        resultView.classList.remove('show');
+        restoreBanner.classList.remove('show');
+      } else if (view === 'result') {
+        formView.style.display = 'none';
+        loadingBox.classList.remove('show');
+        resultView.classList.add('show');
+        restoreBanner.classList.remove('show');
+      }
+    }
+
+    function startLoadingQuotes() {
+      setView('loading');
+      let idx = 0;
+      loadingQuote.classList.remove('fade');
+      loadingQuote.textContent = LOADING_QUOTES[0];
+      clearInterval(state.quoteTimer);
+      state.quoteTimer = setInterval(() => {
+        idx = (idx + 1) % LOADING_QUOTES.length;
+        if (idx === 0) idx = 1; // 第一句只在開頭出現
+        loadingQuote.classList.add('fade');
+        setTimeout(() => {
+          loadingQuote.textContent = LOADING_QUOTES[idx];
+          loadingQuote.classList.remove('fade');
+        }, 350);
+      }, 4000);
+    }
+
+    function stopLoadingQuotes() {
+      clearInterval(state.quoteTimer);
+      state.quoteTimer = null;
+    }
+
+    async function readJsonSafe(res) {
+      try { return await res.json(); } catch (_) { return {}; }
+    }
+
+    /* ============================================================
+     * 送出流程（智慧分流）
+     *   1. 白名單 sufuf3149@gmail.com → 直接 POST /api/plan
+     *   2. 已填贊助序號 → 免 OTP，直接 POST /api/plan（核銷序號，保留免費額度）
+     *   3. 其他（首次免費額度）→ POST /api/send-otp → OTP Modal → POST /api/plan + otp_code
+     * ============================================================ */
+    const CODE_RE = /^SLOW-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
+
+    function collectForm() {
+      const email = emailInput.value.trim().toLowerCase();
+      const code = redeemCodeInput.value.trim().toUpperCase();
+      const destination = destinationInput.value.trim();
+
+      let firstInvalid = null;
+      if (!destination) {
+        destinationInput.classList.add('is-invalid');
+        $('destinationErrorMsg').classList.add('show');
+        firstInvalid = firstInvalid || destinationInput;
+      }
+      if (!validateDateRange()) {
+        firstInvalid = firstInvalid || startDateInput;
+      }
+      if (!isValidEmail(email)) {
+        setEmailError('請輸入有效的電子信箱。');
+        firstInvalid = firstInvalid || emailInput;
+      }
+      if (code && !CODE_RE.test(code)) {
+        redeemCodeInput.classList.add('is-invalid');
+        $('codeCollapseBox').classList.add('show');
+        $('toggleCodeBtn').setAttribute('aria-expanded', 'true');
+        showToast('序號格式應為 SLOW-XXXX-YYYY，請再確認一次');
+        firstInvalid = firstInvalid || redeemCodeInput;
+      }
+      if (firstInvalid) {
+        firstInvalid.focus();
+        if (firstInvalid !== redeemCodeInput) showToast('請完整填寫目的地、日期與電子信箱');
+        return null;
+      }
+
+      emailInput.value = email;
+      redeemCodeInput.value = code;
+      store.set(STORAGE_EMAIL_KEY, email);
+
+      return {
+        email,
+        redeem_code: code,
+        destination,
+        start_date: startDateInput.value,
+        end_date: endDateInput.value,
+        user_wishes: wishesInput.value.trim()
+      };
+    }
+
+    function setEmailError(msg) {
+      emailInput.classList.add('is-invalid');
+      $('emailErrorMsg').textContent = msg;
+      $('emailErrorMsg').classList.add('show');
+    }
+
+    async function startPlanning() {
+      if (state.isSubmitting) return;
+      const form = collectForm();
+      if (!form) return;
+
+      if (isAdmin(form.email) || form.redeem_code) {
+        await postPlan(form);
+      } else {
+        await requestOtp(form.email);
+      }
+    }
+
+    function setSubmitBusy(busy, label) {
+      state.isSubmitting = busy;
+      submitBtn.disabled = busy;
+      submitBtn.innerHTML = `<span>${busy ? escapeHtml(label || '處理中...') : '✨ 開始慢旅規劃'}</span>`;
+      if (!busy) validateDateRange();
+    }
+
+    /* ---------- POST /api/send-otp ---------- */
+    async function requestOtp(email, { fromModal = false } = {}) {
+      if (!fromModal) setSubmitBusy(true, '📩 正在寄送驗證碼...');
+      const resendBtn = $('otpResendBtn');
+      if (fromModal) {
+        resendBtn.disabled = true;
+        resendBtn.textContent = '寄送中...';
+      }
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/send-otp`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const result = await readJsonSafe(res);
+
+        if (res.ok && result.status === 'otp_sent') {
+          openOtpModal(email, { retryAfter: Number(result.resend_after) || 60, notice: fromModal ? '新的驗證碼已寄出，舊的驗證碼已失效。' : '' });
+          return;
+        }
+        if (res.ok && result.status === 'otp_not_required') {
+          // 白名單（理論上前端已攔截）
+          const form = collectForm();
+          if (form) await postPlan(form);
+          return;
+        }
+        if (res.status === 429 && result.error === 'otp_cooldown') {
+          // 剛寄過：沿用信箱裡的驗證碼
+          openOtpModal(email, { retryAfter: Number(result.retry_after) || 60, notice: fromModal ? result.message : '驗證碼剛剛已寄出，請直接輸入信件中的驗證碼。' });
+          return;
+        }
+        if (fromModal) closeModal('otpModal');
+        if (res.status === 402) {
+          openPaywall('payment_required', result.message, result.portaly_url);
+          return;
+        }
+        if (res.status === 429 && result.error === 'token_limit_reached') {
+          renderQuota(0);
+          openModal('limitModal');
+          return;
+        }
+        if (res.status === 400) {
+          setEmailError(result.message || '請輸入有效的電子信箱。');
+          emailInput.focus();
+          showToast(result.message || '請確認電子信箱');
+          return;
+        }
+        showToast(result.message || '驗證信寄送失敗，請稍後再試一次');
+      } catch (_) {
+        if (fromModal) closeModal('otpModal');
+        showToast('無法連接慢旅規劃伺服器，請確認網路或稍後再試');
+      } finally {
+        if (!fromModal) setSubmitBusy(false);
+      }
+    }
+
+    function openOtpModal(email, { retryAfter = 60, notice = '' } = {}) {
+      state.otpEmail = email;
+      $('otpTargetEmail').textContent = email;
+      const input = $('otpInput');
+      input.value = '';
+      input.classList.remove('is-invalid');
+      $('otpConfirmBtn').disabled = true;
+      const err = $('otpError');
+      if (notice) {
+        err.textContent = notice;
+        err.style.color = 'var(--brand-sage-dark)';
+        err.classList.add('show');
+      } else {
+        err.classList.remove('show');
+      }
+      startOtpCountdown(retryAfter);
+      if (!$('otpModal').classList.contains('show')) openModal('otpModal', input);
+      else input.focus();
+    }
+
+    function showOtpError(msg, { requireResend = false } = {}) {
+      const err = $('otpError');
+      err.textContent = msg;
+      err.style.color = '';
+      err.classList.add('show');
+      const input = $('otpInput');
+      input.classList.add('is-invalid');
+      input.select();
+      if (requireResend) {
+        input.value = '';
+        $('otpConfirmBtn').disabled = true;
+        stopOtpCountdown(true);
+      }
+    }
+
+    function startOtpCountdown(seconds) {
+      const btn = $('otpResendBtn');
+      clearInterval(state.otpTimer);
+      const until = Date.now() + seconds * 1000;
+      const tick = () => {
+        const sec = Math.ceil((until - Date.now()) / 1000);
+        if (sec <= 0) {
+          stopOtpCountdown(true);
+          return;
+        }
+        btn.disabled = true;
+        btn.textContent = `重新寄送驗證碼 (${sec}s)`;
+      };
+      tick();
+      state.otpTimer = setInterval(tick, 1000);
+    }
+
+    function stopOtpCountdown(enable) {
+      clearInterval(state.otpTimer);
+      state.otpTimer = null;
+      const btn = $('otpResendBtn');
+      btn.disabled = !enable;
+      btn.textContent = '重新寄送驗證碼';
+    }
+
+    async function confirmOtp() {
+      const otp = $('otpInput').value.replace(/\D/g, '');
+      if (otp.length !== 6) {
+        showOtpError('請輸入信件中的 6 位數驗證碼。');
+        return;
+      }
+      const form = collectForm();
+      if (!form) {
+        closeModal('otpModal');
+        return;
+      }
+      if (form.email !== state.otpEmail) {
+        // 驗證碼與信箱綁定：中途改了信箱就重新寄送
+        closeModal('otpModal');
+        showToast('電子信箱已變更，請重新驗證新的信箱');
+        await requestOtp(form.email);
+        return;
+      }
+      closeModal('otpModal');
+      await postPlan({ ...form, otp_code: otp });
+    }
+
+    /* ---------- POST /api/plan ---------- */
+    async function postPlan(payload) {
+      if (state.isSubmitting) return;
+      state.isSubmitting = true;
+      submitBtn.disabled = true;
+      startLoadingQuotes();
+      window.scrollTo({ top: formView.offsetTop - 80, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/plan`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await readJsonSafe(res);
+        stopLoadingQuotes();
+
+        // 200 成功
+        if (res.ok && result.data) {
+          saveTrip(result.data);
+          store.remove(STORAGE_DRAFT_KEY); // 行程已生成，草稿任務完成
+          if (typeof result.remaining_daily_quota === 'number') renderQuota(result.remaining_daily_quota);
+
+          let notice = '';
+          if (result.code_preserved) {
+            notice = '🎁 貼心提醒：本次已優先使用您的首次免費額度，您的贊助序號【完好未核銷】，已保留至下次使用！';
+          } else if (result.entitlement === 'redeem_code' && result.free_quota_preserved) {
+            notice = '🎁 貼心提醒：本次已使用您的贊助序號，您的首次免費額度仍完整保留，下次驗證 Email 即可免費規劃一次！';
+          }
+          renderTripResult(result.data, { notice });
+
+          if (result.entitlement === 'redeem_code') {
+            redeemCodeInput.value = '';
+            if (!notice) showToast('☕ 感謝贊助！序號已核銷，行程已存在此裝置');
+          } else if (result.entitlement === 'admin') {
+            showToast('🛠️ 管理員模式：未扣除每日名額');
+          } else if (result.entitlement === 'free_quota' && !notice) {
+            showToast('🌿 信箱驗證成功！這是你的首次免費慢旅規劃');
+          }
+          return;
+        }
+
+        setView('form');
+
+        // 403 需先驗證信箱
+        if (res.status === 403 && (result.status === 'otp_required' || result.error === 'otp_required')) {
+          await requestOtp(payload.email);
+          return;
+        }
+
+        // 400 OTP 錯誤 → 回到 OTP Modal
+        if (res.status === 400 && /^(invalid_otp|otp_expired|otp_locked|otp_missing)$/.test(result.error || '')) {
+          openOtpModal(payload.email, { retryAfter: 0 });
+          const needResend = result.error !== 'invalid_otp' || result.attempts_left === 0;
+          showOtpError(result.message || '驗證碼不正確，請再試一次。', { requireResend: needResend });
+          return;
+        }
+
+        // 402 需要贊助 — 測試白名單永不觸發
+        if (res.status === 402 && !isAdmin(payload.email)) {
+          openPaywall('payment_required', result.message, result.portaly_url);
+          return;
+        }
+
+        // 429 今日 50 次名額已滿
+        if (res.status === 429) {
+          renderQuota(0);
+          openModal('limitModal');
+          return;
+        }
+
+        // 400 序號無效 / 已被使用
+        if (res.status === 400 && result.error === 'invalid_code') {
+          $('modalRedeemInput').value = payload.redeem_code || '';
+          openPaywall('invalid_code', result.message);
+          return;
+        }
+
+        // 400 其他輸入錯誤
+        if (res.status === 400) {
+          showToast(result.message || '輸入資料有誤，請再確認一次');
+          return;
+        }
+
+        // 409 同一資格正在另一個視窗生成
+        if (res.status === 409) {
+          showToast(result.message || '這組資格正在生成中，請稍候 1 分鐘再試');
+          return;
+        }
+
+        // 5xx：AI 生成失敗（後端已回滾，不扣名額、序號或免費額度；驗證碼 10 分鐘內仍可再用）
+        showToast(payload.redeem_code
+          ? 'AI 行程生成中斷，您的序號未被核銷，依然完整有效，請稍後再試一次 🌿'
+          : (result.message || 'AI 行程生成暫時失敗，本次未扣除任何名額或免費額度，請稍後再試'));
+        fetchDailyQuota();
+      } catch (err) {
+        stopLoadingQuotes();
+        setView('form');
+        // 白名單測試帳號且後端尚未啟動 → 自動展示京都慢旅預覽
+        if (isAdmin(payload.email)) {
+          showToast('✨ 偵測到管理員測試帳號，為您載入慢旅展示行程');
+          saveTrip(MOCK_DEMO_TRIP);
+          renderTripResult(MOCK_DEMO_TRIP);
+        } else {
+          showToast(payload.redeem_code
+            ? '連線中斷，您的序號未被核銷，依然完整有效，請確認網路後再試一次'
+            : '無法連接慢旅規劃伺服器，請確認網路或稍後再試（未扣除任何名額或免費額度）');
+        }
+      } finally {
+        state.isSubmitting = false;
+        validateDateRange();
+      }
+    }
+
+    /* ---------- 序號折疊區：驗證序號狀態 (POST /api/check-code) ---------- */
+    function setCodeStatus(kind, msg) {
+      const el = $('codeStatus');
+      el.textContent = msg;
+      el.classList.toggle('show', !!msg);
+      el.classList.toggle('is-valid', kind === 'valid');
+      el.classList.toggle('is-invalid', !!msg && kind !== 'valid');
+      redeemCodeInput.classList.toggle('is-invalid', !!msg && kind !== 'valid');
+    }
+
+    async function checkRedeemCode() {
+      const code = redeemCodeInput.value.trim().toUpperCase();
+      redeemCodeInput.value = code;
+      if (!CODE_RE.test(code)) {
+        setCodeStatus('invalid', '序號格式應為 SLOW-XXXX-YYYY，請再確認一次。');
+        redeemCodeInput.focus();
+        return;
+      }
+      const btn = $('checkCodeBtn');
+      btn.disabled = true;
+      btn.textContent = '驗證中';
+      try {
+        const res = await fetch(`${API_BASE_URL}/check-code`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ redeem_code: code })
+        });
+        const result = await readJsonSafe(res);
+        if (res.ok && result.status === 'valid') {
+          setCodeStatus('valid', '✅ ' + (result.message || '序號有效！填好表單後即可直接開始規劃。'));
+        } else {
+          setCodeStatus('invalid', result.message || '序號無效或已被使用，請確認信件中的序號。');
+        }
+      } catch (_) {
+        setCodeStatus('invalid', '暫時無法驗證序號，你也可以直接按「開始慢旅規劃」，序號只在成功生成後才會核銷。');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '驗證';
+      }
+    }
+
+    /* ---------- 贊助 / 序號 Modal ---------- */
+    function openPaywall(reason, message, portalyUrl) {
+      const err = $('modalCodeError');
+      err.classList.remove('show');
+
+      // 「免費體驗額度已使用完畢」只在後端回 402 時顯示；從 Navbar / 表單主動打開時不顯示
+      $('paywallUsedLine').hidden = reason !== 'payment_required';
+
+      if (reason === 'invalid_code') {
+        err.textContent = message || '序號無效或已被使用，請確認信件中的序號。';
+        err.classList.add('show');
+      }
+      if (portalyUrl) $('portalyLink').href = portalyUrl;
+      if (reason !== 'invalid_code' && !$('modalRedeemInput').value) {
+        $('modalRedeemInput').value = redeemCodeInput.value.trim().toUpperCase();
+      }
+      openModal('paywallModal', reason === 'manual' ? $('portalyLink') : $('modalRedeemInput'));
+    }
+
+    /* ============================================================
+     * 渲染完整行程結果頁
+     * ============================================================ */
+    function renderTripResult(data, { notice = '' } = {}) {
+      state.trip = data;
+      setView('result');
+
+      const noticeEl = $('resultNotice');
+      noticeEl.textContent = notice;
+      noticeEl.classList.toggle('show', !!notice);
+
+      const summary = data.trip_summary || {};
+      const destination = summary.destination || '';
+      renderSvgTheme(summary.svg_theme);
+      heroTitle.textContent = summary.theme_title || `${destination}・慢旅日誌`;
+      heroDesc.textContent = summary.vibe_description || '';
+
+      renderCountdown(data);
+
+      // 航班卡片
+      $('outboundHint').textContent = summary.flight_card?.outbound_hint || '建議提早抵達機場辦理登機。';
+      $('inboundHint').textContent = summary.flight_card?.inbound_hint || '回程預留充裕時間通關。';
+
+      // 交通 Pass
+      const passes = data.pre_trip_prep?.transport_passes || [];
+      $('passesContainer').innerHTML = passes.length ? passes.map((p) => `
+        <div class="prep-item">
+          <div class="prep-name">
+            <span>🚆 ${escapeHtml(p.name)}</span>
+            <span class="prep-badge">${escapeHtml(p.buy_timing || '行前購買')}</span>
+          </div>
+          <p class="prep-desc">${escapeHtml(p.description)}</p>
+        </div>
+      `).join('') : '<p class="empty-note">此行程以步行與單程票為主，不需特別購買周遊券。</p>';
+
+      // 預約事項
+      const reservations = data.pre_trip_prep?.advance_reservations || [];
+      $('reservationsContainer').innerHTML = reservations.length ? reservations.map((r) => `
+        <div class="prep-item">
+          <div class="prep-name">
+            <span>📌 ${escapeHtml(r.target)}</span>
+            <span class="prep-badge is-deadline">${escapeHtml(r.deadline_note)}</span>
+          </div>
+          <p class="prep-desc">${escapeHtml(r.tips)}</p>
+        </div>
+      `).join('') : '<p class="empty-note">沒有必須事先預約的項目，放心隨興走走。</p>';
+
+      // 日期切換 Tabs 與每日時間軸
+      state.activeDayIndex = 0;
+      renderDayTabs(data.daily_itinerary || [], destination);
+      renderPrintAllDays(data.daily_itinerary || [], destination);
+
+      // 待辦清單 Checkbox（支援狀態記憶）
+      renderTodoChecklist(data.pre_trip_prep?.todo_checklist || []);
+
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    }
+
+    // 出發倒數計時
+    function renderCountdown(data) {
+      const firstDate = parseDateLocal(data.daily_itinerary?.[0]?.date) || parseDateLocal(startDateInput.value);
+      if (!firstDate) {
+        countdownBadge.classList.remove('show');
+        return;
+      }
+      const lastDate = parseDateLocal(data.daily_itinerary?.[data.daily_itinerary.length - 1]?.date) || firstDate;
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const diff = daysBetween(today, firstDate);
+
+      if (diff > 0) {
+        countdownPrefix.textContent = '🗓️ 距離出發還有';
+        countdownDays.textContent = String(diff);
+        countdownSuffix.textContent = '天';
+      } else if (diff === 0) {
+        countdownPrefix.textContent = '🎒 今天就出發，';
+        countdownDays.textContent = '旅途愉快';
+        countdownSuffix.textContent = '！';
+      } else if (today <= lastDate) {
+        countdownPrefix.textContent = '🌿 旅程進行中 · 第';
+        countdownDays.textContent = String(daysBetween(firstDate, today) + 1);
+        countdownSuffix.textContent = '天';
+      } else {
+        countdownPrefix.textContent = '📷 這趟旅程已經結束';
+        countdownDays.textContent = String(-diff);
+        countdownSuffix.textContent = '天前出發';
+      }
+      countdownBadge.classList.add('show');
+    }
+
+    function renderDayTabs(days, destination) {
+      const dayTabs = $('dayTabs');
+      if (!days.length) {
+        dayTabs.innerHTML = '';
+        $('dayContentBox').innerHTML = '<p class="empty-note">沒有每日行程資料。</p>';
+        return;
+      }
+
+      dayTabs.innerHTML = days.map((d, idx) => {
+        const active = idx === state.activeDayIndex;
+        return `
+        <button type="button" class="day-tab ${active ? 'active' : ''}" role="tab" id="day-tab-${idx}"
+          aria-selected="${active}" aria-controls="dayContentBox" tabindex="${active ? 0 : -1}" data-idx="${idx}">
+          Day ${escapeHtml(d.day_index || idx + 1)}
+          <small>${escapeHtml(formatTabDate(d.date))}</small>
+        </button>`;
+      }).join('');
+
+      const tabs = Array.from(dayTabs.querySelectorAll('.day-tab'));
+      const activate = (idx, focus) => {
+        state.activeDayIndex = idx;
+        tabs.forEach((b, i) => {
+          const on = i === idx;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-selected', String(on));
+          b.tabIndex = on ? 0 : -1;
+        });
+        // 重新觸發彈跳動畫
+        const btn = tabs[idx];
+        btn.classList.remove('active'); void btn.offsetWidth; btn.classList.add('active');
+        if (focus) btn.focus();
+        btn.scrollIntoView({ block: 'nearest', inline: 'center', behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+        renderSingleDayTimeline(days[idx], destination, idx);
+      };
+
+      tabs.forEach((btn, idx) => {
+        btn.addEventListener('click', () => activate(idx, false));
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') { e.preventDefault(); activate((idx + 1) % tabs.length, true); }
+          if (e.key === 'ArrowLeft') { e.preventDefault(); activate((idx - 1 + tabs.length) % tabs.length, true); }
+          if (e.key === 'Home') { e.preventDefault(); activate(0, true); }
+          if (e.key === 'End') { e.preventDefault(); activate(tabs.length - 1, true); }
+        });
+      });
+
+      renderSingleDayTimeline(days[0], destination, 0);
+    }
+
+    function formatTabDate(dateStr) {
+      const d = parseDateLocal(dateStr);
+      if (!d) return '';
+      const week = ['日', '一', '二', '三', '四', '五', '六'][d.getDay()];
+      return `${d.getMonth() + 1}/${d.getDate()}（${week}）`;
+    }
+
+    function safeColor(color) {
+      return /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(color || '') ? color : '#5B7B6A';
+    }
+
+    function mapsUrl(title, destination) {
+      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(title + ' ' + destination)}`;
+    }
+
+    function renderSingleDayTimeline(dayObj, destination, idx) {
+      const box = $('dayContentBox');
+      box.setAttribute('aria-labelledby', `day-tab-${idx}`);
+      box.innerHTML = `<div class="timeline-animate">${buildDayHtml(dayObj, destination, idx)}</div>`;
+    }
+
+    /** 單日時間軸 HTML（畫面切換 Tab 與列印全部天數共用） */
+    function buildDayHtml(dayObj, destination, idx) {
+      const timelineHtml = (dayObj.timeline || []).map((item) => {
+        const tagColor = safeColor(item.transport_tag?.color_code);
+        const tagType = item.transport_tag?.type || '移動';
+        return `
+          <li class="timeline-node ${item.is_must_visit ? 'is-must' : ''}">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="slot-meta">
+              <span class="slot-time">${escapeHtml(item.time_slot)}</span>
+              <span class="transport-tag" style="background:${tagColor}">${escapeHtml(tagType)}</span>
+              ${item.is_must_visit ? '<span class="must-visit-tag">★ 必去</span>' : ''}
+            </div>
+            <div class="spot-title-row">
+              <span class="spot-title">${escapeHtml(item.title)}</span>
+              <a href="${escapeHtml(mapsUrl(item.title || '', destination))}" target="_blank" rel="noopener noreferrer" class="map-link" aria-label="在 Google Maps 導航至 ${escapeHtml(item.title)}">📍 導航</a>
+            </div>
+            <p class="spot-desc">${escapeHtml(item.description)}</p>
+          </li>
+        `;
+      }).join('');
+
+      const stay = dayObj.stay_info;
+      const stayHtml = stay && (stay.area_recommendation || stay.hotel_vibe) ? `
+        <div class="stay-box">
+          <strong>🛏️ 住宿區域建議：${escapeHtml(stay.area_recommendation)}</strong><br>
+          <span style="color:var(--text-muted)">${escapeHtml(stay.hotel_vibe)}</span>
+        </div>
+      ` : '';
+
+      return `
+        <div class="day-header-banner">
+          <div class="day-header-date">Day ${escapeHtml(dayObj.day_index || idx + 1)}${dayObj.date ? ' · ' + escapeHtml(dayObj.date) + ' ' + escapeHtml(formatTabDate(dayObj.date).replace(/^.*?（/, '（')) : ''}</div>
+          <div class="day-header-title">${escapeHtml(dayObj.day_title || '')}</div>
+        </div>
+        <ol class="timeline-list">${timelineHtml}</ol>
+        ${stayHtml}
+      `;
+    }
+
+    /** 列印 / 另存 PDF：一次展開全部天數 */
+    function renderPrintAllDays(days, destination) {
+      $('printAllDays').innerHTML = days.length
+        ? '<h2 class="section-title">🌿 每日慢旅時間軸</h2>' +
+          days.map((d, i) => `<section class="print-day">${buildDayHtml(d, destination, i)}</section>`).join('')
+        : '';
+    }
+
+    function renderTodoChecklist(todos) {
+      const container = $('todoListContainer');
+      let savedState = {};
+      try {
+        savedState = JSON.parse(store.get(STORAGE_TODOS_KEY) || '{}') || {};
+      } catch (_) { savedState = {}; }
+
+      if (!todos.length) {
+        container.innerHTML = '<p class="empty-note">沒有特別的行前待辦，帶著好心情出發吧！</p>';
+        updateTodoProgress(0, 0);
+        return;
+      }
+
+      container.innerHTML = todos.map((item, idx) => `
+        <label class="todo-item">
+          <input type="checkbox" class="todo-checkbox" data-todo-idx="${idx}" ${savedState[idx] ? 'checked' : ''} />
+          <span class="todo-text">${escapeHtml(item)}</span>
+        </label>
+      `).join('');
+
+      const boxes = container.querySelectorAll('.todo-checkbox');
+      const refresh = () => updateTodoProgress(Array.from(boxes).filter((b) => b.checked).length, boxes.length);
+      boxes.forEach((chk) => {
+        chk.addEventListener('change', () => {
+          savedState[chk.getAttribute('data-todo-idx')] = chk.checked;
+          store.set(STORAGE_TODOS_KEY, JSON.stringify(savedState));
+          refresh();
+        });
+      });
+      refresh();
+    }
+
+    function updateTodoProgress(done, total) {
+      $('todoProgressText').textContent = total ? `已完成 ${done} / ${total} 項${done === total ? ' · 準備就緒，出發吧！🎒' : ''}` : '';
+      $('todoProgressFill').style.width = total ? `${Math.round((done / total) * 100)}%` : '0';
+    }
+
+    /* ============================================================
+     * 一鍵複製純文字行程
+     * ============================================================ */
+    function buildPlainText(trip) {
+      const s = trip.trip_summary || {};
+      const prep = trip.pre_trip_prep || {};
+      const dest = s.destination || '';
+      const lines = [
+        `🌿 【${s.theme_title || dest}】慢旅行程表`,
+        s.vibe_description || '',
+        '----------------------------------------',
+        `✈️ 去程：${s.flight_card?.outbound_hint || ''}`,
+        `✈️ 回程：${s.flight_card?.inbound_hint || ''}`,
+        ''
+      ];
+
+      if (prep.transport_passes?.length) {
+        lines.push('🎫 推薦交通券：');
+        prep.transport_passes.forEach((p) => lines.push(`• ${p.name}（${p.buy_timing || '行前購買'}）：${p.description || ''}`));
+        lines.push('');
+      }
+
+      if (prep.advance_reservations?.length) {
+        lines.push('📌 需提前預約：');
+        prep.advance_reservations.forEach((r) => lines.push(`• ${r.target} [${r.deadline_note || ''}]：${r.tips || ''}`));
+        lines.push('');
+      }
+
+      (trip.daily_itinerary || []).forEach((d, i) => {
+        lines.push(`📅 Day ${d.day_index || i + 1}${d.date ? ` (${d.date})` : ''}｜${d.day_title || ''}`);
+        (d.timeline || []).forEach((t) => {
+          const must = t.is_must_visit ? '[★必去] ' : '';
+          lines.push(`  - 【${t.time_slot || ''}｜${t.transport_tag?.type || ''}】${must}${t.title || ''}：${t.description || ''}`);
+          lines.push(`    📍 ${mapsUrl(t.title || '', dest)}`);
+        });
+        if (d.stay_info?.area_recommendation) {
+          lines.push(`  🛏️ 住宿建議：${d.stay_info.area_recommendation}（${d.stay_info.hotel_vibe || ''}）`);
+        }
+        lines.push('');
+      });
+
+      if (prep.todo_checklist?.length) {
+        lines.push('☑️ 行前待辦：');
+        prep.todo_checklist.forEach((t) => lines.push(`☐ ${t}`));
+        lines.push('');
+      }
+
+      lines.push(SLOW_NOTE_TITLE, SLOW_NOTE_BODY, '');
+      lines.push('— 由 SlowMate 慢旅伴｜AI 慢旅行程規劃師 規劃 · https://samya-traveler.github.io/slowmate/');
+      return lines.join('\n');
+    }
+
+    async function copyItineraryAsText() {
+      if (!state.trip) return;
+      const text = buildPlainText(state.trip);
+      let ok = false;
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          ok = true;
+        }
+      } catch (_) { ok = false; }
+
+      if (!ok) {
+        // 後備方案：舊版瀏覽器 / 非 HTTPS
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand('copy'); } catch (_) { ok = false; }
+        document.body.removeChild(ta);
+      }
+
+      showToast(ok ? '📋 已複製完整純文字行程！可直接貼入備忘錄或 LINE' : '複製失敗，請手動選取複製');
+    }
+
+    /* ============================================================
+     * 寄送行程到信箱 (/api/send-email) + 60 秒冷卻鎖定
+     * ============================================================ */
+    async function sendItineraryEmail() {
+      const input = $('sendTargetEmail');
+      const targetEmail = input.value.trim().toLowerCase();
+      const errEl = $('sendEmailError');
+      if (!state.trip) {
+        closeModal('emailModal');
+        showToast('目前沒有可寄送的行程');
+        return;
+      }
+      if (!isValidEmail(targetEmail)) {
+        errEl.textContent = '請輸入有效的電子信箱。';
+        errEl.classList.add('show');
+        input.focus();
+        return;
+      }
+      errEl.classList.remove('show');
+
+      const confirmBtn = $('confirmSendEmailBtn');
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = '寄送中...';
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/send-email`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: targetEmail,
+            destination: state.trip.trip_summary?.destination || '慢旅',
+            itinerary_data: state.trip
+          })
+        });
+        const result = await readJsonSafe(res);
+
+        closeModal('emailModal');
+        if (res.ok) {
+          showToast('✉️ 行程已寄出！若未收到，請檢查垃圾郵件匣或促銷分頁。');
+          lockEmailButton(EMAIL_COOLDOWN_SEC);
+        } else if (res.status === 429 && result.error === 'email_cooldown') {
+          showToast(result.message || '剛剛已寄出行程，請稍後再試');
+          lockEmailButton(Number(result.retry_after) || EMAIL_COOLDOWN_SEC);
+        } else {
+          showToast(result.message || '寄信服務暫時忙碌，請先使用「複製純文字行程」保存');
+        }
+      } catch (_) {
+        closeModal('emailModal');
+        showToast('寄信連線異常，建議先點選「複製純文字行程」保存');
+      } finally {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = '確認寄出';
+      }
+    }
+
+    // 鎖定寄信按鈕 N 秒防止連點濫用（重新整理後仍延續）
+    function lockEmailButton(seconds) {
+      const until = Date.now() + seconds * 1000;
+      store.set(STORAGE_EMAIL_LOCK_KEY, String(until));
+      runEmailLock(until);
+    }
+
+    function restoreEmailLock() {
+      const until = Number(store.get(STORAGE_EMAIL_LOCK_KEY));
+      if (until && until > Date.now()) runEmailLock(until);
+    }
+
+    function runEmailLock(until) {
+      const btn = $('openEmailModalBtn');
+      clearInterval(state.emailLockTimer);
+      const tick = () => {
+        const sec = Math.ceil((until - Date.now()) / 1000);
+        if (sec <= 0) {
+          clearInterval(state.emailLockTimer);
+          btn.disabled = false;
+          btn.textContent = '✉️ 寄送行程到信箱';
+          store.remove(STORAGE_EMAIL_LOCK_KEY);
+          return;
+        }
+        btn.disabled = true;
+        btn.textContent = `✉️ 已寄出 (${sec}s)`;
+      };
+      tick();
+      state.emailLockTimer = setInterval(tick, 1000);
+    }
+
+    /* ============================================================
+     * Modal / Toast / 工具
+     * ============================================================ */
+    function openModal(id, focusEl) {
+      state.lastFocus = document.activeElement;
+      const modal = $(id);
+      modal.classList.add('show');
+      document.body.classList.add('modal-open');
+      const target = focusEl || modal.querySelector('.modal-close');
+      setTimeout(() => target && target.focus(), 30);
+    }
+
+    function closeModal(id) {
+      const modal = $(id);
+      if (!modal.classList.contains('show')) return;
+      modal.classList.remove('show');
+      if (!document.querySelector('.modal-backdrop.show')) document.body.classList.remove('modal-open');
+      if (state.lastFocus && document.contains(state.lastFocus) && state.lastFocus.offsetParent !== null) {
+        state.lastFocus.focus({ preventScroll: true });
+      }
+    }
+
+    function trapFocus(modal, e) {
+      const focusables = Array.from(modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea, [tabindex]:not([tabindex="-1"])'))
+        .filter((el) => el.offsetParent !== null);
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
+    function showToast(msg) {
+      const toast = $('toastMsg');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(state.toastTimer);
+      state.toastTimer = setTimeout(() => toast.classList.remove('show'), 4200);
+    }
+
+    function prefersReducedMotion() {
+      return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+  </script>
+</body>
+</html>
