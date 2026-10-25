@@ -279,3 +279,17 @@ body {
     border-radius: var(--radius);
     text-align: center;
 }
+
+/* SlowMate pointer after posts */
+.slowmate-cta {
+    margin: 32px 0 8px;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    border-left: 4px solid #5b7b6a;
+    border-radius: var(--radius);
+    background: var(--code-bg);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+.slowmate-cta p { margin: 0; }
+.slowmate-cta a { box-shadow: 0 1px 0 currentColor; }

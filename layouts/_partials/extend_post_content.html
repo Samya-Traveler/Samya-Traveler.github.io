@@ -1,0 +1,8 @@
+{{- /* Low-key SlowMate pointer after travel posts (skipped on SlowMate's own posts). */ -}}
+{{- if and (eq .Section "posts") (not (in .Params.tags "SlowMate")) }}
+<aside class="slowmate-cta" aria-label="SlowMate AI 慢旅行程規劃助手">
+  <p>🌿 <strong>想排一趟不趕路的自助旅行？</strong>
+  試試我做的 <a href="{{ "slowmate/" | relURL }}">SlowMate｜AI 慢旅行程規劃助手</a>：輸入目的地和日期，排好一天 2～3 個重點的留白行程，免下載、免註冊。
+  <a href="{{ "posts/2026/10/slowmate-ai-slow-travel-planner/" | relURL }}">使用教學 →</a></p>
+</aside>
+{{- end }}

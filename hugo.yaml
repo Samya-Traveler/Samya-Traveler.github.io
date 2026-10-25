@@ -129,8 +129,12 @@ menus:
 params:
   env: production
   title: "Samya Traveler"
-  description: "樂天小熊 Samya 的慢旅日誌 — 森林、海岸、老宅民宿與不趕行程的旅行提案。"
-  keywords: [旅行, 慢旅, 遊記, 旅遊攻略, 台灣旅遊, travel blog]
+  description: "樂天小熊 Samya 的慢旅日誌：日本、台灣與美國自由行的真實行程時間軸、景點美食與不踩雷提醒，還有免下載的 AI 慢旅行程規劃助手 SlowMate。"
+  keywords: [慢旅行, 自由行, 日本自由行, 行程規劃, AI 行程規劃, SlowMate, 遊記, 旅遊攻略, travel blog]
+  # Pages outside Hugo content that should still be in sitemap.xml
+  extraSitemapPages:
+    - path: "slowmate/"
+      lastmod: "2026-10-25"
   author: "Samya"
   images: ["images/og-default.jpg"]   # fallback social-share image
   DateFormat: "2006-01-02"
