@@ -651,6 +651,277 @@
 
     .admin-hint.show { display: block; }
 
+    /* VIP 序號通道名額提示（序號折疊區頂部） */
+    .vip-pool-line {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #7A4A12;
+      background: #FFF6E9;
+      border: 1px solid #F2D7A9;
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      margin-bottom: 10px;
+    }
+
+    .vip-pool-line.is-full { color: #A1302B; background: #FCE8E6; border-color: #F3B8B2; }
+
+    /* 慢旅人格標籤徽章 */
+    .hero-persona {
+      display: none;
+      margin: 0 auto 8px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: #FFF1EC;
+      border: 1px solid #F3C3B4;
+      color: #9A4A33;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .hero-persona.show { display: inline-block; }
+
+    /* ========== 管理員戰情室（?admin=1） ========== */
+    .admin-entry-btn {
+      display: none;
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 150;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 999px;
+      background: var(--text-main);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+    }
+
+    .admin-entry-btn.show { display: inline-flex; }
+
+    .admin-modal-card { max-width: 680px; }
+
+    .admin-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .admin-toolbar .admin-date { flex: 1; min-width: 140px; }
+
+    .admin-mini-btn {
+      padding: 6px 12px;
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .admin-mini-btn:hover { background: var(--bg-subtle); }
+
+    .admin-section { margin-bottom: 20px; }
+
+    .admin-section h4 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .admin-meter { margin-bottom: 10px; }
+
+    .admin-meter-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+
+    .admin-meter-track {
+      height: 10px;
+      border-radius: 999px;
+      background: var(--bg-subtle);
+      overflow: hidden;
+    }
+
+    .admin-meter-fill { height: 100%; border-radius: 999px; }
+
+    .admin-tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .admin-tile {
+      background: var(--bg-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+    }
+
+    .admin-tile-label { font-size: 0.75rem; color: var(--text-muted); }
+    .admin-tile-value { font-size: 1.25rem; font-weight: 700; color: var(--text-main); }
+
+    .admin-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .admin-legend i {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-right: 4px;
+      vertical-align: -1px;
+    }
+
+    .admin-trend {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 150px;
+      padding-top: 18px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .admin-trend-col {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: stretch;
+      position: relative;
+      cursor: default;
+    }
+
+    .admin-trend-col:hover .admin-trend-seg { filter: brightness(1.08); }
+
+    .admin-trend-total {
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .admin-trend-seg { width: 100%; }
+    .admin-trend-seg + .admin-trend-seg { border-top: 2px solid var(--bg-card); }
+    .admin-trend-seg:first-of-type { border-radius: 4px 4px 0 0; }
+
+    .admin-trend-dates {
+      display: flex;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .admin-trend-dates span { flex: 1; text-align: center; }
+
+    .admin-details { margin-top: 8px; font-size: 0.8rem; color: var(--text-muted); }
+    .admin-details summary { cursor: pointer; }
+
+    .admin-table-wrap { overflow-x: auto; }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .admin-table th, .admin-table td {
+      text-align: left;
+      padding: 7px 8px;
+      border-bottom: 1px solid var(--border-soft);
+      white-space: nowrap;
+    }
+
+    .admin-table th { color: var(--text-muted); font-weight: 600; }
+    .admin-table td.num, .admin-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .admin-code { font-family: 'SFMono-Regular', Consolas, monospace; font-weight: 700; letter-spacing: 0.5px; }
+    .admin-empty { font-size: 0.85rem; color: var(--text-muted); }
+
+    .admin-form {
+      background: var(--bg-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .admin-mode {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .admin-fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .admin-fields label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .admin-fields label[hidden] { display: none; }
+
+    .admin-fields .admin-check {
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      grid-column: 1 / -1;
+      color: var(--text-main);
+    }
+
+    .admin-gen-result { margin-top: 12px; }
+
+    .admin-gen-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+    }
+
+    .admin-gen-list { list-style: none; max-height: 280px; overflow-y: auto; }
+
+    .admin-gen-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .admin-gen-list .admin-gen-text { flex: 1; min-width: 0; }
+    .admin-gen-list .admin-gen-link { font-size: 0.75rem; color: var(--text-muted); word-break: break-all; }
+
     /* 主按鈕 */
     .btn-primary {
       width: 100%;
@@ -1456,6 +1727,7 @@
     /* 結果頁頂部提醒橫幅 */
     .result-notice {
       display: none;
+      white-space: pre-line;
       background: #E9F5EC;
       border: 1px solid #A9D3B4;
       color: #245A35;
@@ -1594,7 +1866,7 @@
       body { display: block; font-size: 11pt; color: #222; }
       .navbar, .quota-badge-bar, .restore-banner, #formView, .action-bar,
       #resetPlanBtn, .print-btn, .modal-backdrop, .toast, footer,
-      #shareCardModal, #shareCardBtn,
+      #shareCardModal, #shareCardBtn, .admin-entry-btn,
       .screen-only, .countdown-badge, .result-notice {
         display: none !important;
       }
@@ -1661,11 +1933,11 @@
   </header>
 
   <main class="container">
-    <!-- 每日 50 次配額顯示 -->
+    <!-- 雙水池名額顯示：免費 50 席（序號另有 30 席保留席，展開序號區時顯示） -->
     <div class="quota-badge-bar">
       <div class="quota-pill" id="quotaBadge" role="status" aria-live="polite">
         <span aria-hidden="true">🌿</span>
-        <span id="quotaText">今日慢旅名額：每日限定 50 席</span>
+        <span id="quotaText">今日慢旅免費名額：每日限定 50 席</span>
       </div>
     </div>
 
@@ -1679,6 +1951,7 @@
     <section class="hero-card" aria-labelledby="heroTitle">
       <div class="svg-illustration-box" id="svgContainer"></div>
       <h1 class="hero-title" id="heroTitle">放慢腳步，規劃一場留白的旅行</h1>
+      <p class="hero-persona" id="heroPersona"></p>
       <p class="hero-desc" id="heroDesc">輸入目的地與心願景點，讓 AI 為你梳理順暢不趕路的散策動線、交通周遊券與預約提醒。</p>
       <div class="countdown-badge" id="countdownBadge">
         <span id="countdownPrefix">🗓️ 距離出發還有</span>
@@ -1748,19 +2021,20 @@
         <div class="form-group">
           <div class="entry-actions">
             <button type="button" class="entry-btn entry-btn-code" id="toggleCodeBtn" aria-expanded="false" aria-controls="codeCollapseBox">
-              🔑 我有贊助解鎖序號
+              🔑 我有贊助/活動解鎖序號
             </button>
             <button type="button" class="entry-btn entry-btn-support" id="openSupportFromFormBtn">
               ☕ 第二次使用？贊助取得序號
             </button>
           </div>
           <div class="code-collapse-box" id="codeCollapseBox">
+            <p class="vip-pool-line" id="vipPoolLine" role="status" aria-live="polite">✨ VIP 序號通道：每日另有 30 席序號專屬保留席</p>
             <label class="form-label" for="redeemCodeInput">
-              一次性贊助解鎖序號
-              <span class="form-sub">持有序號免 Email 驗證，成功生成才核銷</span>
+              贊助 / 活動解鎖序號
+              <span class="form-sub">成功生成行程才會扣次數；尚有首次免費額度時會優先使用免費名額</span>
             </label>
             <div class="code-verify-row">
-              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="SLOW-XXXX-YYYY" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="SLOW-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
               <button type="button" class="code-verify-btn" id="checkCodeBtn">驗證</button>
             </div>
             <p class="code-status" id="codeStatus" role="status" aria-live="polite"></p>
@@ -1896,7 +2170,7 @@
       </a>
       <div class="form-group" style="margin-bottom: 12px;">
         <label class="form-label" for="modalRedeemInput">已完成贊助？請輸入信件中的解鎖序號</label>
-        <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="SLOW-XXXX-YYYY" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+        <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="SLOW-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
         <p class="error-msg" id="modalCodeError" role="alert">序號無效或已被使用，請確認信件中的序號。</p>
       </div>
       <button type="button" class="btn-primary" id="modalVerifyBtn">驗證序號並立即生成</button>
@@ -1955,17 +2229,101 @@
     </div>
   </div>
 
-  <!-- 狀態 4：每日 50 次額度額滿彈窗 Limit Modal (HTTP 429) -->
+  <!-- 狀態 4：今日名額額滿彈窗 Limit Modal (HTTP 429)：免費席滿 / 免費 + 序號保留席全滿 -->
   <div class="modal-backdrop" id="limitModal" role="dialog" aria-modal="true" aria-labelledby="limitTitle">
     <div class="modal-card">
       <button type="button" class="modal-close" data-close-modal="limitModal" aria-label="關閉">&times;</button>
       <div class="modal-emoji" aria-hidden="true">🌿</div>
-      <h3 class="modal-title centered" id="limitTitle">感謝熱情支持！今日 50 個慢旅名額已滿，明日請早 🌿</h3>
-      <p class="modal-body">
-        今日全站 <strong>50 個 AI 慢旅規劃名額</strong>已全數使用完畢（每日台灣時間 00:00 自動重置）。<br><br>
-        <strong>請放心：</strong>本次並未扣除您的免費試用資格，若您有輸入贊助序號，該序號<strong>未被核銷，依然完整有效</strong>，明天再來探索吧！
-      </p>
-      <button type="button" class="btn-primary" data-close-modal="limitModal">好的，明天再來</button>
+      <h3 class="modal-title centered" id="limitTitle">感謝熱情支持！今日名額已全數額滿 🌿</h3>
+      <p class="modal-body" id="limitBody"></p>
+      <button type="button" class="btn-primary" id="limitCodeBtn" hidden>🔑 我有序號，開啟 VIP 保留通道</button>
+      <button type="button" class="btn-secondary" data-close-modal="limitModal" id="limitCloseBtn" style="width:100%;margin-top:10px;">好的，明天再來</button>
+    </div>
+  </div>
+
+  <!-- 管理員戰情室（?admin=1 才顯示入口；金鑰由後端 ADMIN_SECRET 驗證） -->
+  <button type="button" class="admin-entry-btn" id="adminEntryBtn">🔐 慢旅伴戰情室</button>
+  <div class="modal-backdrop" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+    <div class="modal-card admin-modal-card">
+      <button type="button" class="modal-close" data-close-modal="adminModal" aria-label="關閉">&times;</button>
+      <h3 class="modal-title" id="adminTitle">🔐 慢旅伴戰情室</h3>
+
+      <div id="adminLogin">
+        <p class="modal-body">請輸入後端的 <strong>ADMIN_SECRET</strong> 解鎖。金鑰只會存在這個瀏覽器，不會寫進網址或頁面。</p>
+        <input type="password" id="adminSecretInput" class="form-input" placeholder="ADMIN_SECRET" autocomplete="current-password" spellcheck="false" />
+        <p class="error-msg" id="adminLoginError">金鑰不正確，請再確認一次。</p>
+        <button type="button" class="btn-primary" id="adminLoginBtn" style="margin-top:12px;">解鎖戰情室</button>
+      </div>
+
+      <div id="adminPanel" hidden>
+        <div class="admin-toolbar">
+          <span class="admin-date" id="adminDate"></span>
+          <button type="button" class="admin-mini-btn" id="adminRefreshBtn">↻ 重新整理</button>
+          <button type="button" class="admin-mini-btn" id="adminLogoutBtn">登出</button>
+        </div>
+
+        <section class="admin-section" aria-labelledby="adminTodayTitle">
+          <h4 id="adminTodayTitle">今日雙水池用量</h4>
+          <div id="adminToday"></div>
+        </section>
+
+        <section class="admin-section" aria-labelledby="adminTrendTitle">
+          <h4 id="adminTrendTitle">近 7 日生成次數</h4>
+          <div id="adminTrend"></div>
+        </section>
+
+        <section class="admin-section" aria-labelledby="adminCampaignTitle">
+          <h4 id="adminCampaignTitle">行銷活動核銷統計</h4>
+          <div id="adminCampaigns" class="admin-table-wrap"></div>
+        </section>
+
+        <section class="admin-section" aria-labelledby="adminTopTitle">
+          <h4 id="adminTopTitle">序號核銷排行榜</h4>
+          <div id="adminTopCodes" class="admin-table-wrap"></div>
+        </section>
+
+        <section class="admin-section" aria-labelledby="adminGenTitle">
+          <h4 id="adminGenTitle">一鍵批次產碼</h4>
+          <form class="admin-form" id="adminGenForm" novalidate>
+            <div class="admin-mode" role="radiogroup" aria-label="產生模式">
+              <label><input type="radio" name="genMode" value="random" checked> 隨機批次產生</label>
+              <label><input type="radio" name="genMode" value="custom"> 指定自訂代碼</label>
+            </div>
+            <div class="admin-fields">
+              <label data-gen-mode="random">組數（1~100）
+                <input type="number" class="form-input" id="genCount" min="1" max="100" value="20" />
+              </label>
+              <label data-gen-mode="random">前綴
+                <input type="text" class="form-input code-input" id="genPrefix" value="SLOW" maxlength="10" autocapitalize="characters" spellcheck="false" />
+              </label>
+              <label data-gen-mode="custom" hidden>自訂代碼
+                <input type="text" class="form-input code-input" id="genCode" placeholder="NANA-SLOW" maxlength="32" autocapitalize="characters" spellcheck="false" />
+              </label>
+              <label>每組可用次數
+                <input type="number" class="form-input" id="genMaxUses" min="1" max="500" value="1" list="genMaxUsesPresets" />
+              </label>
+              <label>活動標籤 campaign_tag
+                <input type="text" class="form-input code-input" id="genCampaign" placeholder="REELS_GIVEAWAY" maxlength="32" list="genCampaignPresets" autocapitalize="characters" spellcheck="false" />
+              </label>
+              <label class="admin-check">
+                <input type="checkbox" id="genAllowSame" />
+                同一信箱可重複使用（贊助福袋 / 閨蜜包）；不勾選則每個信箱限用 1 次（KOC 粉絲碼 / 聖誕公用碼）
+              </label>
+            </div>
+            <datalist id="genMaxUsesPresets"><option value="1"></option><option value="3"></option><option value="10"></option><option value="50"></option><option value="80"></option></datalist>
+            <datalist id="genCampaignPresets"><option value="REELS_GIVEAWAY"></option><option value="KOC_NANA"></option><option value="XMAS"></option><option value="PORTALY"></option></datalist>
+            <p class="error-msg" id="genError"></p>
+            <button type="submit" class="btn-primary" id="genSubmitBtn">✨ 產生序號</button>
+          </form>
+          <div class="admin-gen-result" id="genResult" hidden>
+            <div class="admin-gen-head">
+              <strong id="genResultTitle"></strong>
+              <button type="button" class="admin-mini-btn" id="genCopyAllBtn">📋 複製全部</button>
+            </div>
+            <ul class="admin-gen-list" id="genResultList"></ul>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 
@@ -2000,7 +2358,8 @@
      * ============================================================
      */
     const API_BASE_URL = 'https://slowmate-api.azurewebsites.net/api';
-    const DAILY_LIMIT = 50;
+    const DAILY_LIMIT = 50;       // 每日免費席
+    const VIP_POOL_LIMIT = 30;    // 每日序號專屬保留席
     const MAX_DAYS = 14;
     const EMAIL_COOLDOWN_SEC = 60;
 
@@ -2165,6 +2524,7 @@
         trip_summary: {
           destination: '京都',
           theme_title: '晚秋京都・老屋咖啡與鴨川的五日留白',
+          traveler_persona: '🍵 古都老屋駐留者',
           vibe_description: '在町家木格窗透進來的晨光裡喝第一杯手沖，沿著鴨川慢慢走，把楓紅留給清晨與傍晚，把人潮留給別人。',
           svg_theme: 'kyoto',
           flight_card: {
@@ -2248,6 +2608,7 @@
         trip_summary: {
           destination: '清邁',
           theme_title: '涼季清邁・山林、早市與尼曼巷弄的七日放空',
+          traveler_persona: '🌿 山林早市漫遊者',
           vibe_description: '十二月的清邁早晚微涼，在森林寺院的鳥鳴裡醒來，到早市買剛出爐的可頌，下午就躲進樹蔭下的咖啡館，什麼都不做也很好。',
           svg_theme: 'nature_mountain',
           flight_card: {
@@ -2368,7 +2729,10 @@
       isSubmitting: false,
       lastFocus: null,
       otpEmail: '',
-      otpTimer: null
+      otpTimer: null,
+      pools: null,           // 今日雙水池名額（GET /api/plan）
+      adminEntry: false,     // ?admin=1 顯示戰情室入口
+      generatedCodes: []     // 戰情室剛產生的序號
     };
 
     /* ============================================================
@@ -2377,6 +2741,7 @@
     const $ = (id) => document.getElementById(id);
     const svgContainer = $('svgContainer');
     const heroTitle = $('heroTitle');
+    const heroPersona = $('heroPersona');
     const heroDesc = $('heroDesc');
     const countdownBadge = $('countdownBadge');
     const countdownPrefix = $('countdownPrefix');
@@ -2428,6 +2793,7 @@
       validateDateRange();
       applyAdminParam();
       updateAdminHint();
+      renderQuota();
       restoreEmailLock();
       fetchDailyQuota();
       bindEvents();
@@ -2532,9 +2898,13 @@
 
     function updateAdminHint() {
       $('adminHint').classList.toggle('show', isAdmin());
+      $('adminEntryBtn').classList.toggle('show', state.adminEntry || isAdmin());
     }
 
-    /** ?admin=<金鑰> 啟用、?admin=off 關閉；讀取後立即從網址移除，避免留在瀏覽紀錄或被分享出去 */
+    /**
+     * ?admin=1 顯示「🔐 慢旅伴戰情室」入口（在面板內輸入金鑰）、?admin=off 關閉；
+     * 舊版 ?admin=<金鑰> 仍可直接啟用。讀取後立即從網址移除，避免留在瀏覽紀錄或被分享出去
+     */
     function applyAdminParam() {
       let params;
       try { params = new URLSearchParams(window.location.search); } catch (_) { return; }
@@ -2546,6 +2916,10 @@
         history.replaceState(history.state, '', window.location.pathname + (query ? `?${query}` : '') + window.location.hash);
       } catch (_) {}
       const token = raw.trim();
+      if (token === '1') {
+        state.adminEntry = true;
+        return;
+      }
       if (!token || token.toLowerCase() === 'off') {
         store.remove(STORAGE_ADMIN_KEY);
         showToast('已關閉管理員模式');
@@ -2706,31 +3080,85 @@
       store.remove(STORAGE_TODOS_KEY); // 新行程 → 重置勾選狀態
     }
 
-    /* ---------- 今日剩餘名額 (GET /api/plan) ---------- */
-    function renderQuota(remaining) {
-      if (typeof remaining !== 'number' || Number.isNaN(remaining)) {
-        quotaText.textContent = `今日慢旅名額：每日限定 ${DAILY_LIMIT} 席`;
-        quotaBadge.classList.remove('is-low', 'is-full');
-        return;
+    /* ---------- 今日雙水池名額 (GET /api/plan) ---------- */
+    /**
+     * pools = { free_remaining, vip_pool_remaining, code_total_remaining, free_limit?, vip_limit? }
+     * 頂部膠囊只顯示免費席；序號折疊區顯示 VIP 通道可兌換席次（免費剩餘 + 序號保留席剩餘）
+     */
+    function renderQuota(pools) {
+      if (pools && typeof pools.free_remaining === 'number') {
+        state.pools = {
+          free_remaining: Math.max(0, pools.free_remaining),
+          vip_pool_remaining: Math.max(0, Number(pools.vip_pool_remaining) || 0),
+          code_total_remaining: Math.max(0, Number(pools.code_total_remaining) || 0),
+          free_limit: Number(pools.free_limit) || state.pools?.free_limit || DAILY_LIMIT,
+          vip_limit: Number(pools.vip_limit) || state.pools?.vip_limit || VIP_POOL_LIMIT
+        };
       }
-      const r = Math.max(0, Math.min(DAILY_LIMIT, remaining));
-      quotaText.textContent = r > 0
-        ? `今日慢旅名額：每日限定 ${DAILY_LIMIT} 席（剩餘 ${r} 席）`
-        : `今日慢旅名額已滿，明日 00:00 重置`;
-      quotaBadge.classList.toggle('is-full', r === 0);
-      quotaBadge.classList.toggle('is-low', r > 0 && r <= 10);
+      const p = state.pools;
+      if (!p) {
+        quotaText.textContent = `今日慢旅免費名額：每日限定 ${DAILY_LIMIT} 席`;
+        quotaBadge.classList.remove('is-low', 'is-full');
+      } else {
+        const r = Math.min(p.free_limit, p.free_remaining);
+        quotaText.textContent = r > 0
+          ? `今日慢旅免費名額：剩餘 ${r} / ${p.free_limit} 席`
+          : '今日免費名額已滿（持有贊助/活動序號者，請點下方開啟 VIP 保留通道）';
+        quotaBadge.classList.toggle('is-full', r === 0);
+        quotaBadge.classList.toggle('is-low', r > 0 && r <= 10);
+      }
+      renderVipPoolLine();
+    }
+
+    function renderVipPoolLine() {
+      const el = $('vipPoolLine');
+      const p = state.pools;
+      el.classList.toggle('is-full', !!p && p.code_total_remaining === 0);
+      if (!p) {
+        el.textContent = `✨ VIP 序號通道：每日另有 ${VIP_POOL_LIMIT} 席序號專屬保留席`;
+      } else if (p.code_total_remaining > 0) {
+        el.textContent = `✨ VIP 序號通道開放中：今日尚有 ${p.code_total_remaining} 席可兌換（含 ${p.vip_pool_remaining} 席序號專屬保留席）`;
+      } else {
+        el.textContent = '🌙 今日 VIP 序號通道也已額滿，明日 00:00 重置（序號會完整保留）';
+      }
     }
 
     async function fetchDailyQuota() {
       try {
         const res = await fetch(`${API_BASE_URL}/plan`, { method: 'GET', cache: 'no-store' });
         if (!res.ok) return;
-        const data = await res.json();
-        renderQuota(data.remaining_quota);
+        renderQuota(await res.json());
       } catch (_) {
         // 後端尚未綁定或冷啟動失敗時，維持預設溫馨文字
-        renderQuota(undefined);
+        renderQuota();
       }
+    }
+
+    /** 429：kind = 'free'（只有免費席滿）或 'all'（免費 + 序號保留席都滿） */
+    function openLimitModal(kind, result = {}) {
+      if (typeof result.free_remaining === 'number') {
+        renderQuota(result);
+      } else if (state.pools) {
+        renderQuota({ ...state.pools, free_remaining: 0, ...(kind === 'all' ? { vip_pool_remaining: 0, code_total_remaining: 0 } : {}) });
+      }
+      const free = state.pools?.free_limit || DAILY_LIMIT;
+      const vip = state.pools?.vip_limit || VIP_POOL_LIMIT;
+      if (kind === 'free') {
+        $('limitTitle').textContent = `今日 ${free} 席免費名額已滿 🌿`;
+        $('limitBody').innerHTML = `今日的免費規劃名額已全數使用完畢（每日台灣時間 00:00 自動重置）。<br><br>持有<strong>贊助 / 活動序號</strong>者，仍可使用每日 ${vip} 席的 <strong>VIP 保留通道</strong>。<br><strong>請放心：</strong>本次並未扣除您的免費試用資格，明天再來也沒問題！`;
+        $('limitCodeBtn').hidden = false;
+      } else {
+        $('limitTitle').textContent = '感謝熱情支持！今日名額已全數額滿 🌿';
+        $('limitBody').innerHTML = `今日 ${free} 席免費名額與 ${vip} 席序號保留席都已使用完畢（每日台灣時間 00:00 自動重置）。<br><br><strong>請放心：</strong>本次並未扣除您的免費試用資格，若您有輸入序號，序號<strong>未被扣除次數，依然完整有效</strong>，明天再來探索吧！`;
+        $('limitCodeBtn').hidden = true;
+      }
+      openModal('limitModal', kind === 'free' ? $('limitCodeBtn') : $('limitCloseBtn'));
+    }
+
+    function openCodeBox() {
+      $('codeCollapseBox').classList.add('show');
+      $('toggleCodeBtn').setAttribute('aria-expanded', 'true');
+      redeemCodeInput.focus();
     }
 
     /* ============================================================
@@ -2804,6 +3232,28 @@
         if (state.otpEmail) requestOtp(state.otpEmail, { fromModal: true });
       });
 
+      // 額滿彈窗：持序號者改走 VIP 保留通道
+      $('limitCodeBtn').addEventListener('click', () => {
+        closeModal('limitModal');
+        openCodeBox();
+      });
+
+      // 管理員戰情室
+      $('adminEntryBtn').addEventListener('click', openAdminPanel);
+      $('adminLoginBtn').addEventListener('click', adminLogin);
+      $('adminSecretInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); adminLogin(); }
+      });
+      $('adminRefreshBtn').addEventListener('click', loadAdminStats);
+      $('adminLogoutBtn').addEventListener('click', adminLogout);
+      document.querySelectorAll('input[name="genMode"]').forEach((r) => r.addEventListener('change', syncGenMode));
+      $('adminGenForm').addEventListener('submit', onAdminGenerate);
+      $('genCopyAllBtn').addEventListener('click', () => copyGenerated(state.generatedCodes || []));
+      $('genResultList').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-gen-index]');
+        if (btn) copyGenerated([state.generatedCodes[Number(btn.dataset.genIndex)]]);
+      });
+
       // 展開序號欄位
       $('toggleCodeBtn').addEventListener('click', () => {
         const box = $('codeCollapseBox');
@@ -2838,8 +3288,8 @@
           err.classList.add('show');
           return;
         }
-        if (!/^SLOW-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(modalCode)) {
-          err.textContent = '序號格式應為 SLOW-XXXX-YYYY，請再確認一次。';
+        if (!CODE_RE.test(modalCode)) {
+          err.textContent = CODE_FORMAT_MSG;
           err.classList.add('show');
           return;
         }
@@ -2872,6 +3322,7 @@
         renderSvgTheme('default_train');
         heroTitle.textContent = HERO_DEFAULT_TITLE;
         heroDesc.textContent = HERO_DEFAULT_DESC;
+        heroPersona.classList.remove('show');
         loadSavedUserState();
         window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
         destinationInput.focus({ preventScroll: true });
@@ -2961,7 +3412,9 @@
      *   2. 已填贊助序號 → 免 OTP，直接 POST /api/plan（核銷序號，保留免費額度）
      *   3. 其他（首次免費額度）→ POST /api/send-otp → OTP Modal → POST /api/plan + otp_code
      * ============================================================ */
-    const CODE_RE = /^SLOW-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
+    // 贊助序號 SLOW-XXXX-YYYY 與活動代碼（NANA-SLOW、XMAS-2026…）：4~32 碼英數與連字號
+    const CODE_RE = /^[A-Z0-9][A-Z0-9-]{2,30}[A-Z0-9]$/;
+    const CODE_FORMAT_MSG = '序號格式不正確，請確認信件或活動貼文中的序號（4~32 碼英數字）。';
 
     function collectForm() {
       const email = emailInput.value.trim().toLowerCase();
@@ -2985,7 +3438,7 @@
         redeemCodeInput.classList.add('is-invalid');
         $('codeCollapseBox').classList.add('show');
         $('toggleCodeBtn').setAttribute('aria-expanded', 'true');
-        showToast('序號格式應為 SLOW-XXXX-YYYY，請再確認一次');
+        showToast(CODE_FORMAT_MSG);
         firstInvalid = firstInvalid || redeemCodeInput;
       }
       if (firstInvalid) {
@@ -3034,7 +3487,7 @@
     }
 
     /* ---------- POST /api/send-otp ---------- */
-    async function requestOtp(email, { fromModal = false } = {}) {
+    async function requestOtp(email, { fromModal = false, notice = '' } = {}) {
       if (!fromModal) setSubmitBusy(true, '📩 正在寄送驗證碼...');
       const resendBtn = $('otpResendBtn');
       if (fromModal) {
@@ -3051,12 +3504,12 @@
         const result = await readJsonSafe(res);
 
         if (res.ok && result.status === 'otp_sent') {
-          openOtpModal(email, { retryAfter: Number(result.resend_after) || 60, notice: fromModal ? '新的驗證碼已寄出，舊的驗證碼已失效。' : '' });
+          openOtpModal(email, { retryAfter: Number(result.resend_after) || 60, notice: fromModal ? '新的驗證碼已寄出，舊的驗證碼已失效。' : notice });
           return;
         }
         if (res.status === 429 && result.error === 'otp_cooldown') {
           // 剛寄過：沿用信箱裡的驗證碼
-          openOtpModal(email, { retryAfter: Number(result.retry_after) || 60, notice: fromModal ? result.message : '驗證碼剛剛已寄出，請直接輸入信件中的驗證碼。' });
+          openOtpModal(email, { retryAfter: Number(result.retry_after) || 60, notice: fromModal ? result.message : (notice || '驗證碼剛剛已寄出，請直接輸入信件中的驗證碼。') });
           return;
         }
         if (fromModal) closeModal('otpModal');
@@ -3064,9 +3517,8 @@
           openPaywall('payment_required', result.message, result.portaly_url);
           return;
         }
-        if (res.status === 429 && result.error === 'token_limit_reached') {
-          renderQuota(0);
-          openModal('limitModal');
+        if (res.status === 429 && (result.error === 'free_pool_full' || result.error === 'token_limit_reached')) {
+          openLimitModal(result.error === 'free_pool_full' ? 'free' : 'all', result);
           return;
         }
         if (res.status === 400) {
@@ -3176,7 +3628,7 @@
 
       try {
         const headers = { 'Content-Type': 'application/json' };
-        if (isAdmin()) headers['x-slowmate-admin'] = adminToken();
+        if (isAdmin()) headers['x-admin-secret'] = adminToken();
         const res = await fetch(`${API_BASE_URL}/plan`, {
           method: 'POST',
           headers,
@@ -3190,7 +3642,7 @@
           setView('form');
           store.remove(STORAGE_ADMIN_KEY);
           updateAdminHint();
-          showToast('管理員金鑰無效，已關閉管理員模式');
+          showToast('管理員金鑰無效，已關閉管理員模式（可從戰情室重新輸入）');
           return;
         }
 
@@ -3198,21 +3650,28 @@
         if (res.ok && result.data) {
           saveTrip(result.data);
           store.remove(STORAGE_DRAFT_KEY); // 行程已生成，草稿任務完成
-          if (typeof result.remaining_daily_quota === 'number') renderQuota(result.remaining_daily_quota);
+          renderQuota(result);
 
-          let notice = '';
+          const notices = [];
           if (result.code_preserved) {
-            notice = '🎁 貼心提醒：本次已優先使用您的首次免費額度，您的贊助序號【完好未核銷】，已保留至下次使用！';
-          } else if (result.entitlement === 'redeem_code' && result.free_quota_preserved) {
-            notice = '🎁 貼心提醒：本次已使用您的贊助序號，您的首次免費額度仍完整保留，下次驗證 Email 即可免費規劃一次！';
+            notices.push('🎁 貼心提醒：本次已優先使用您的首次免費額度，您的序號【完好未扣次數】，已保留至下次使用！');
           }
+          if (result.entitlement === 'redeem_code' && typeof result.code_remaining_uses === 'number') {
+            notices.push(result.code_remaining_uses > 0
+              ? `✨ 序號核銷成功！此序號尚餘 ${result.code_remaining_uses} 次可用額度`
+              : '✨ 序號核銷成功！此序號的可用額度已全部用完');
+          }
+          if (result.entitlement === 'redeem_code' && result.free_quota_preserved) {
+            notices.push('🎁 您的首次免費額度仍完整保留，下次驗證 Email 即可免費規劃一次！');
+          }
+          const notice = notices.join('\n');
           renderTripResult(result.data, { notice });
 
           if (result.entitlement === 'redeem_code') {
             redeemCodeInput.value = '';
             if (!notice) showToast('☕ 感謝贊助！序號已核銷，行程已存在此裝置');
           } else if (result.entitlement === 'admin') {
-            showToast('🛠️ 管理員模式：未扣除每日名額');
+            showToast('🛠️ 管理員白名單：未扣除每日名額');
           } else if (result.entitlement === 'free_quota' && !notice) {
             showToast('🌿 信箱驗證成功！這是你的首次免費慢旅規劃');
           }
@@ -3222,8 +3681,9 @@
         setView('form');
 
         // 403 需先驗證信箱
+        // 403 需先驗證信箱（reason = free_first：還有首次免費額度，先用免費名額、序號保留）
         if (res.status === 403 && (result.status === 'otp_required' || result.error === 'otp_required')) {
-          await requestOtp(payload.email);
+          await requestOtp(payload.email, { notice: result.reason === 'free_first' ? result.message : '' });
           return;
         }
 
@@ -3241,10 +3701,9 @@
           return;
         }
 
-        // 429 今日 50 次名額已滿
+        // 429 今日名額已滿（免費席滿 → 引導 VIP 序號通道；全滿 → 明日再來）
         if (res.status === 429) {
-          renderQuota(0);
-          openModal('limitModal');
+          openLimitModal(result.error === 'free_pool_full' ? 'free' : 'all', result);
           return;
         }
 
@@ -3298,7 +3757,7 @@
       const code = redeemCodeInput.value.trim().toUpperCase();
       redeemCodeInput.value = code;
       if (!CODE_RE.test(code)) {
-        setCodeStatus('invalid', '序號格式應為 SLOW-XXXX-YYYY，請再確認一次。');
+        setCodeStatus('invalid', CODE_FORMAT_MSG);
         redeemCodeInput.focus();
         return;
       }
@@ -3309,7 +3768,8 @@
         const res = await fetch(`${API_BASE_URL}/check-code`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ redeem_code: code })
+          // 帶上信箱才能檢查「每個信箱限用 1 次」的活動序號
+          body: JSON.stringify({ redeem_code: code, email: isValidEmail(emailInput.value.trim().toLowerCase()) ? emailInput.value.trim().toLowerCase() : '' })
         });
         const result = await readJsonSafe(res);
         if (res.ok && result.status === 'valid') {
@@ -3323,6 +3783,250 @@
         btn.disabled = false;
         btn.textContent = '驗證';
       }
+    }
+
+    /* ============================================================
+     * 管理員戰情室：GET /api/dashboard-stats 用量監控、POST /api/dashboard-stats 批次產碼（Azure 保留 admin 開頭的路由）
+     * 金鑰（ADMIN_SECRET）只存在此瀏覽器的 localStorage，由後端驗證
+     * ============================================================ */
+    // 近 7 日堆疊長條的三個系列（固定順序，色盲可辨）
+    const ADMIN_SERIES = [
+      { key: 'free_used', label: '免費席', color: '#2a78d6' },
+      { key: 'code_used', label: '序號保留席', color: '#eb6834' },
+      { key: 'vip_whitelist_used', label: '管理員', color: '#1baf7a' }
+    ];
+
+    async function adminFetch(method, body) {
+      const res = await fetch(`${API_BASE_URL}/dashboard-stats`, {
+        method,
+        cache: 'no-store',
+        headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminToken() },
+        ...(body ? { body: JSON.stringify(body) } : {})
+      });
+      return { res, data: await readJsonSafe(res) };
+    }
+
+    function showAdminView() {
+      $('adminLogin').hidden = isAdmin();
+      $('adminPanel').hidden = !isAdmin();
+    }
+
+    function openAdminPanel() {
+      showAdminView();
+      $('adminLoginError').classList.remove('show');
+      openModal('adminModal', isAdmin() ? $('adminRefreshBtn') : $('adminSecretInput'));
+      if (isAdmin()) loadAdminStats();
+    }
+
+    async function adminLogin() {
+      const input = $('adminSecretInput');
+      const secret = input.value.trim();
+      if (!secret) {
+        input.focus();
+        return;
+      }
+      store.set(STORAGE_ADMIN_KEY, secret);
+      const btn = $('adminLoginBtn');
+      btn.disabled = true;
+      btn.textContent = '驗證中...';
+      const ok = await loadAdminStats();
+      btn.disabled = false;
+      btn.textContent = '解鎖戰情室';
+      if (ok) {
+        input.value = '';
+        showToast('🔐 戰情室已解鎖，此瀏覽器同時啟用管理員白名單');
+        $('adminRefreshBtn').focus();
+      }
+    }
+
+    function adminLogout() {
+      store.remove(STORAGE_ADMIN_KEY);
+      updateAdminHint();
+      showAdminView();
+      state.generatedCodes = [];
+      $('genResult').hidden = true;
+      showToast('已登出戰情室並關閉管理員模式');
+      $('adminSecretInput').focus();
+    }
+
+    /** 讀取戰情室數據；金鑰錯誤時清除本機金鑰並回到登入畫面。回傳是否成功。 */
+    async function loadAdminStats() {
+      const btn = $('adminRefreshBtn');
+      btn.disabled = true;
+      try {
+        const { res, data } = await adminFetch('GET');
+        if (res.status === 401) {
+          store.remove(STORAGE_ADMIN_KEY);
+          updateAdminHint();
+          showAdminView();
+          $('adminLoginError').classList.add('show');
+          $('adminSecretInput').focus();
+          return false;
+        }
+        if (!res.ok) {
+          showToast(data.message || '戰情室資料讀取失敗，請稍後再試');
+          return false;
+        }
+        renderAdminStats(data);
+        updateAdminHint();
+        showAdminView();
+        return true;
+      } catch (_) {
+        showToast('無法連接慢旅伴伺服器，請確認網路後再試');
+        return false;
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function adminMeter(label, used, limit, color) {
+      const pct = limit > 0 ? Math.min(100, Math.round((used / limit) * 100)) : 0;
+      return `<div class="admin-meter">
+        <div class="admin-meter-head"><span>${escapeHtml(label)}</span><strong>${used} / ${limit} 席</strong></div>
+        <div class="admin-meter-track" role="progressbar" aria-label="${escapeHtml(label)}" aria-valuemin="0" aria-valuemax="${limit}" aria-valuenow="${used}">
+          <div class="admin-meter-fill" style="width:${pct}%;background:${color};"></div>
+        </div>
+      </div>`;
+    }
+
+    function adminTile(label, value) {
+      return `<div class="admin-tile"><div class="admin-tile-label">${escapeHtml(label)}</div><div class="admin-tile-value">${escapeHtml(value)}</div></div>`;
+    }
+
+    function shortDate(key) {
+      return String(key || '').slice(5).replace('-', '/');
+    }
+
+    function renderAdminStats(d) {
+      const t = d.today || {};
+      $('adminDate').textContent = `📅 ${d.date_key}（台灣時間，每日 00:00 重置）`;
+
+      $('adminToday').innerHTML =
+        adminMeter('🌿 免費席', t.free_used || 0, t.free_limit || DAILY_LIMIT, ADMIN_SERIES[0].color) +
+        adminMeter('🔑 VIP 序號保留席', t.code_used || 0, t.vip_limit || VIP_POOL_LIMIT, ADMIN_SERIES[1].color) +
+        `<div class="admin-tiles">
+          ${adminTile('🛠️ 今日管理員白名單', `${t.vip_whitelist_used || 0} 次`)}
+          ${adminTile('🎟️ 序號通道剩餘', `${t.code_total_remaining ?? '-'} 席`)}
+          ${adminTile('👥 累計用戶', `${d.total_users || 0} 人`)}
+          ${adminTile('🌱 已用免費試用', `${d.free_trial_users || 0} 人`)}
+          ${adminTile('✉️ 今日寄信', `${d.emails_sent_today || 0} / ${d.email_daily_cap || 400}`)}
+          ${adminTile('🔖 序號總數', `${d.total_codes || 0} 組`)}
+        </div>`;
+
+      // 近 7 日堆疊長條（單一 y 軸：生成次數）
+      const trend = d.trend || [];
+      const max = Math.max(1, ...trend.map((x) => x.total || 0));
+      const legend = ADMIN_SERIES.map((ser) => `<span><i style="background:${ser.color}"></i>${ser.label}</span>`).join('');
+      const cols = trend.map((day) => {
+        const tip = `${shortDate(day.date)}：${ADMIN_SERIES.map((ser) => `${ser.label} ${day[ser.key] || 0}`).join('、')}，共 ${day.total || 0} 次`;
+        const segs = ADMIN_SERIES.slice().reverse()
+          .filter((ser) => day[ser.key] > 0)
+          .map((ser) => `<div class="admin-trend-seg" style="height:${(day[ser.key] / max) * 100}%;background:${ser.color};"></div>`)
+          .join('');
+        return `<div class="admin-trend-col" title="${escapeHtml(tip)}" aria-label="${escapeHtml(tip)}" role="img">
+          <div class="admin-trend-total">${day.total || 0}</div>${segs}
+        </div>`;
+      }).join('');
+      const rows = trend.map((day) => `<tr><td>${escapeHtml(day.date)}</td>${ADMIN_SERIES.map((ser) => `<td class="num">${day[ser.key] || 0}</td>`).join('')}<td class="num"><strong>${day.total || 0}</strong></td></tr>`).join('');
+      $('adminTrend').innerHTML = `<div class="admin-legend">${legend}</div>
+        <div class="admin-trend">${cols}</div>
+        <div class="admin-trend-dates">${trend.map((day) => `<span>${escapeHtml(shortDate(day.date))}</span>`).join('')}</div>
+        <details class="admin-details"><summary>查看數字</summary>
+          <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>日期</th>${ADMIN_SERIES.map((ser) => `<th class="num">${ser.label}</th>`).join('')}<th class="num">合計</th></tr></thead><tbody>${rows}</tbody></table></div>
+        </details>`;
+
+      const campaigns = d.campaigns || [];
+      $('adminCampaigns').innerHTML = campaigns.length
+        ? `<table class="admin-table"><thead><tr><th>活動標籤</th><th class="num">序號數</th><th class="num">已核銷 / 總次數</th><th class="num">已用完</th></tr></thead><tbody>${
+          campaigns.map((c) => `<tr><td class="admin-code">${escapeHtml(c.campaign_tag)}</td><td class="num">${c.codes}</td><td class="num">${c.used} / ${c.capacity}</td><td class="num">${c.exhausted}</td></tr>`).join('')
+        }</tbody></table>`
+        : '<p class="admin-empty">還沒有任何序號。</p>';
+
+      const top = d.top_codes || [];
+      const statusLabel = { unused: '可使用', processing: '生成中', exhausted: '已用完' };
+      $('adminTopCodes').innerHTML = top.length
+        ? `<table class="admin-table"><thead><tr><th>#</th><th>序號</th><th>活動</th><th class="num">已用 / 上限</th><th>狀態</th></tr></thead><tbody>${
+          top.map((c, i) => `<tr><td>${i + 1}</td><td class="admin-code">${escapeHtml(c.code)}</td><td>${escapeHtml(c.campaign_tag)}</td><td class="num">${c.used_count} / ${c.max_uses}</td><td>${escapeHtml(statusLabel[c.status] || c.status)}${c.allow_same_email ? '' : '・每信箱 1 次'}</td></tr>`).join('')
+        }</tbody></table>`
+        : '<p class="admin-empty">還沒有任何序號。</p>';
+    }
+
+    function syncGenMode() {
+      const mode = document.querySelector('input[name="genMode"]:checked').value;
+      document.querySelectorAll('[data-gen-mode]').forEach((el) => { el.hidden = el.dataset.genMode !== mode; });
+    }
+
+    async function onAdminGenerate(e) {
+      e.preventDefault();
+      const err = $('genError');
+      err.classList.remove('show');
+      const mode = document.querySelector('input[name="genMode"]:checked').value;
+      const body = {
+        mode,
+        max_uses: Number($('genMaxUses').value),
+        allow_same_email: $('genAllowSame').checked,
+        campaign_tag: $('genCampaign').value.trim().toUpperCase()
+      };
+      if (mode === 'custom') {
+        body.code = $('genCode').value.trim().toUpperCase();
+        if (!CODE_RE.test(body.code)) {
+          err.textContent = '自訂代碼需為 4~32 碼英數字與連字號（例如 NANA-SLOW、XMAS-2026）。';
+          err.classList.add('show');
+          $('genCode').focus();
+          return;
+        }
+      } else {
+        body.count = Number($('genCount').value);
+        body.prefix = $('genPrefix').value.trim().toUpperCase();
+      }
+
+      const btn = $('genSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = '產生中...';
+      try {
+        const { res, data } = await adminFetch('POST', body);
+        if (res.status === 401) {
+          await loadAdminStats(); // 金鑰失效 → 回到登入畫面
+          return;
+        }
+        if (!res.ok) {
+          err.textContent = data.message || '序號產生失敗，請稍後再試。';
+          err.classList.add('show');
+          return;
+        }
+        renderGenerated(data.codes || []);
+        loadAdminStats();
+      } catch (_) {
+        err.textContent = '無法連接慢旅伴伺服器，請確認網路後再試。';
+        err.classList.add('show');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '✨ 產生序號';
+      }
+    }
+
+    function renderGenerated(codes) {
+      state.generatedCodes = codes;
+      $('genResult').hidden = !codes.length;
+      if (!codes.length) return;
+      const c0 = codes[0];
+      $('genResultTitle').textContent = `已產生 ${codes.length} 組【${c0.campaign_tag}】序號・每組 ${c0.max_uses} 次${c0.allow_same_email ? '' : '・每信箱限 1 次'}`;
+      $('genResultList').innerHTML = codes.map((c, i) => `<li>
+        <div class="admin-gen-text">
+          <div class="admin-code">${escapeHtml(c.code)}</div>
+          <div class="admin-gen-link">${escapeHtml(c.magic_link)}</div>
+        </div>
+        <button type="button" class="admin-mini-btn" data-gen-index="${i}">複製</button>
+      </li>`).join('');
+    }
+
+    /** 複製「序號 + Magic Link」，可直接私訊給得獎者或 KOC */
+    async function copyGenerated(codes) {
+      const list = codes.filter(Boolean);
+      if (!list.length) return;
+      const text = list.map((c) => `${c.code}\n${c.magic_link}`).join('\n\n');
+      const ok = await copyTextQuietly(text);
+      showToast(ok ? `📋 已複製 ${list.length} 組序號與 Magic Link` : '複製失敗，請手動選取文字');
     }
 
     /* ---------- 贊助 / 序號 Modal ---------- */
@@ -3361,6 +4065,8 @@
       renderSvgTheme(summary.svg_theme);
       heroTitle.textContent = summary.theme_title || `${destination}・慢旅日誌`;
       heroDesc.textContent = summary.vibe_description || '';
+      heroPersona.textContent = summary.traveler_persona ? `慢旅人格｜${summary.traveler_persona}` : '';
+      heroPersona.classList.toggle('show', !!summary.traveler_persona);
 
       // 範例行程的日期只是示意，不顯示出發倒數
       if (sample) countdownBadge.classList.remove('show');
@@ -3733,9 +4439,9 @@
       ctx.restore();
     }
 
-    /** 想顯示的天數：未超過上限全列；超過時列上限 −1 天並加「還有 N 天」 */
+    /** 想顯示的天數：最多前 maxRows 天，其餘以「還有 N 天」帶過 */
     function shareDayTarget(total, maxRows) {
-      return total > maxRows ? maxRows - 1 : total;
+      return Math.min(total, maxRows);
     }
 
     function formatShareDate(str) {
@@ -3842,6 +4548,26 @@
       ctx.fillStyle = INK;
       y = drawLines(ctx, wrapBalanced(ctx, s.theme_title || `${destination}・慢旅日誌`, CW, compact ? 2 : 3), M, y, titleSize * (compact ? 1.32 : 1.36));
 
+      // 慢旅人格標籤徽章（AI 賦予，例如「🍵 古都老屋駐留者」）
+      if (s.traveler_persona) {
+        y += compact ? 12 : 22;
+        const badgeSize = compact ? 25 : 30;
+        const badgeH = compact ? 48 : 58;
+        const label = `慢旅人格｜${s.traveler_persona}`;
+        ctx.font = `700 ${badgeSize}px ${SANS}`;
+        const text = wrapText(ctx, label, CW - 56, 1)[0] || '';
+        const badgeW = ctx.measureText(text).width + 56;
+        roundRectPath(ctx, M, y, badgeW, badgeH, badgeH / 2);
+        ctx.fillStyle = 'rgba(224, 122, 95, 0.12)';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(224, 122, 95, 0.55)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = '#9A4A33';
+        ctx.fillText(text, M + 28, y + (badgeH - badgeSize) / 2 - 1);
+        y += badgeH;
+      }
+
       if (s.vibe_description) {
         y += compact ? 14 : 24;
         const vibeSize = compact ? 26 : 32;
@@ -3924,7 +4650,7 @@
       if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
       y += compact ? 42 : 54;
 
-      const maxRows = compact ? 5 : 6; // 貼文版實際天數由下方 fits() 依剩餘空間決定
+      const maxRows = 5; // 前 5 日精選亮點；貼文版實際天數由下方 fits() 依剩餘空間決定
       const limitBottom = (boxH ? boxTop : footerTop) - (compact ? 20 : 32);
       // 先用寬鬆排版，放不下想顯示的天數時改用緊湊排版
       const layouts = compact
@@ -4051,7 +4777,7 @@
       if (!document.fonts || !document.fonts.load) return;
       const s = trip.trip_summary || {};
       const text = [
-        s.destination, s.theme_title, s.vibe_description,
+        s.destination, s.theme_title, s.vibe_description, s.traveler_persona, '慢旅人格｜',
         ...(trip.daily_itinerary || []).map((d) => `${d.day_title} ${(d.timeline || []).map((t) => t.title).join('')}`),
         ...(trip.pre_trip_prep?.transport_passes || []).map((p) => `${p.name}${p.buy_timing}`),
         ...(trip.pre_trip_prep?.todo_checklist || []).slice(0, 2),
@@ -4196,6 +4922,7 @@
         BRAND_SIGNATURE,
         '',
         `🌿 【${s.theme_title || dest}】慢旅行程表`,
+        ...(s.traveler_persona ? [`慢旅人格：${s.traveler_persona}`] : []),
         s.vibe_description || '',
         '----------------------------------------',
         `✈️ 去程：${s.flight_card?.outbound_hint || ''}`,
