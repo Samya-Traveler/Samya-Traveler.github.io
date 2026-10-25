@@ -1331,6 +1331,63 @@
 
     .result-notice.show { display: block; }
 
+    .result-notice.is-sample {
+      background: #FFF6E9;
+      border-color: #F2D7A9;
+      color: #7A4A12;
+    }
+
+    /* 免填表單範例行程 */
+    .sample-box {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border-soft);
+    }
+
+    .sample-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .sample-chips {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sample-chip {
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--brand-sage-dark);
+      background: var(--bg-cream);
+      border: 1px solid var(--border-soft);
+      border-radius: 99px;
+      padding: 9px 14px;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s, border-color 0.2s, transform 0.1s;
+    }
+
+    .sample-chip:hover { background: var(--brand-sage-light); border-color: var(--brand-sage); }
+    .sample-chip:active { transform: scale(0.99); }
+
+    /* 列印手冊品牌簽名（畫面上隱藏，列印時固定在最後） */
+    .brand-sign {
+      display: none;
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-top: 2px solid var(--brand-sage);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--brand-sage-dark);
+      text-align: center;
+    }
+
+    .brand-sign a { color: var(--brand-sage-dark); font-weight: 600; }
+
     /* Toast 通知 */
     .toast {
       position: fixed;
@@ -1403,6 +1460,12 @@
         display: none !important;
       }
       .print-only { display: block !important; }
+      .brand-sign {
+        display: block !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        break-before: avoid;
+      }
       .container { max-width: none; padding: 0; }
       .hero-card { background: none; border: none; padding: 0 0 8px; margin-bottom: 12px; }
       .svg-illustration-box { height: 90px; margin-bottom: 6px; }
@@ -1568,6 +1631,15 @@
         <button type="submit" class="btn-primary" id="submitBtn">
           <span>✨ 開始慢旅規劃</span>
         </button>
+
+        <!-- 免填表單、一鍵預覽範例（純前端靜態資料，不呼叫 API、不扣額度） -->
+        <div class="sample-box">
+          <p class="sample-title">還不確定去哪嗎？先看看慢旅範例：</p>
+          <div class="sample-chips">
+            <button type="button" class="sample-chip" data-sample="kyoto">👀 預覽範例：京都 5 日老屋咖啡慢旅</button>
+            <button type="button" class="sample-chip" data-sample="chiangmai">👀 預覽範例：清邁 7 日山林放空散策</button>
+          </div>
+        </div>
       </form>
 
       <!-- 載入中微動態與冷啟動金句 -->
@@ -1643,6 +1715,12 @@
         <strong>🌿 SlowMate - AI 慢旅行程規劃助手的小叮嚀：</strong>
         <p>這份提案是為你梳理的旅行靈感。最迷人的風景往往藏在不期而遇的街角——實際出發時，請隨當天的天氣、體力與心情自由增減步調；造訪獨立小店或寺院前，也別忘了點擊「📍 導航」再次確認當日的營業時間與最新預約資訊喔！</p>
       </aside>
+
+      <!-- 列印 / 另存 PDF 手冊的品牌簽名（畫面上隱藏） -->
+      <div class="brand-sign" aria-hidden="true">
+        ✨ 本行程由【SlowMate AI 慢旅行程規劃助手】生成 —— 一天只排 2-3 個重點，把時間留給路上的風景<br>
+        👉 <a href="https://samya-traveler.github.io/slowmate/">https://samya-traveler.github.io/slowmate/</a>
+      </div>
     </section>
   </main>
 
@@ -1762,6 +1840,8 @@
 
     // 行程頁尾、純文字行程、HTML 行程信統一使用的小叮嚀
     const SLOW_NOTE_TITLE = '🌿 SlowMate - AI 慢旅行程規劃助手的小叮嚀：';
+    // 複製純文字行程最上方與最下方的品牌簽名（列印手冊底部的 .brand-sign 使用同一段文案）
+    const BRAND_SIGNATURE = '✨ 本行程由【SlowMate AI 慢旅行程規劃助手】生成 —— 一天只排 2-3 個重點，把時間留給路上的風景 👉 https://samya-traveler.github.io/slowmate/';
     const SLOW_NOTE_BODY = '這份提案是為你梳理的旅行靈感。最迷人的風景往往藏在不期而遇的街角——實際出發時，請隨當天的天氣、體力與心情自由增減步調；造訪獨立小店或寺院前，也別忘了點擊「📍 導航」再次確認當日的營業時間與最新預約資訊喔！';
     const DRAFT_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -1891,6 +1971,214 @@
       '🗺️ 正在把你的心願景點串成順路的散策小徑...',
       '🌙 好的旅行，是回家之後還想念的日常。'
     ];
+
+    /* ============================================================
+     * 免填表單、一鍵預覽的範例行程（純前端靜態資料：不呼叫 API、不扣額度、不寫入「上次行程」快取）
+     * 結構與 /api/plan 回傳的 data 完全相同，直接交給 renderTripResult 渲染。
+     * ============================================================ */
+    const SAMPLE_NOTICE = '🌿 目前顯示為【預設範例行程】，想規劃自己的專屬旅程，歡迎於上方表單輸入目的地免費體驗！';
+    const T_WALK = { type: '步行', color_code: '#5B7B6A' };
+    const T_BUS = { type: '巴士', color_code: '#E07A5F' };
+    const T_SUBWAY = { type: '地鐵', color_code: '#4A90E2' };
+    const T_JR = { type: 'JR', color_code: '#3F51B5' };
+    const T_RANDEN = { type: '電車', color_code: '#3F51B5' };
+    const T_GRAB = { type: 'Grab', color_code: '#9C27B0' };
+    const T_SONGTHAEW = { type: '雙條車', color_code: '#E07A5F' };
+
+    const SAMPLE_TRIPS = {
+      kyoto: {
+        trip_summary: {
+          destination: '京都',
+          theme_title: '晚秋京都・老屋咖啡與鴨川的五日留白',
+          vibe_description: '在町家木格窗透進來的晨光裡喝第一杯手沖，沿著鴨川慢慢走，把楓紅留給清晨與傍晚，把人潮留給別人。',
+          svg_theme: 'kyoto',
+          flight_card: {
+            outbound_hint: '建議搭早班機飛關西機場（KIX），入境後在 JR 售票處購買「ICOCA & HARUKA」，搭 HARUKA 特急約 75 分鐘直達京都車站，中午前就能放好行李開始散步。',
+            inbound_hint: '回程搭 HARUKA 回關西機場，建議起飛前 3 小時抵達；晚秋賞楓季機場人多，預留時間採買伴手禮與排隊通關。'
+          }
+        },
+        pre_trip_prep: {
+          transport_passes: [
+            { name: 'ICOCA & HARUKA（關西機場 ↔ 京都）', description: 'ICOCA 交通卡加上 HARUKA 特急優惠票，機場往返最划算，ICOCA 之後也能搭巴士、地鐵與便利商店付款。', buy_timing: '抵達關西機場時購買' },
+            { name: '京都地下鐵・巴士一日券', description: '東山、北區、岡崎等需要巴士轉地鐵的日子使用，一天搭 4 趟以上就回本。', buy_timing: '當天於車站售票機購買' }
+          ],
+          advance_reservations: [
+            { target: '西芳寺（苔寺）', deadline_note: '需提前 1~2 個月線上申請', tips: '參拜採預約制並含寫經時間，晚秋的苔庭配上落葉最安靜動人。' },
+            { target: '京都國立近代美術館（岡崎）', deadline_note: '熱門特展建議先線上購票', tips: '週一休館；看完展可沿琵琶湖疏水散步到南禪寺。' },
+            { target: '賞楓季住宿', deadline_note: '11 月中旬建議提前 2~3 個月預訂', tips: '住在五條・河原町一帶，步行就能到鴨川與多數咖啡店。' }
+          ],
+          todo_checklist: [
+            '完成 Visit Japan Web 登錄（入境與海關 QR Code）',
+            '開通日本 eSIM 或網卡',
+            '晚秋早晚溫差大：薄羽絨或針織外套＋圍巾，洋蔥式穿搭',
+            '一雙好走的鞋（每天步行約 1~1.5 萬步）',
+            '準備少量日圓現金與零錢包（老舖與寺院香油錢）',
+            '下載 Google Maps 離線地圖，收藏想去的咖啡店'
+          ]
+        },
+        daily_itinerary: [
+          {
+            day_index: 1, date: '2026-11-16',
+            day_title: '抵達古都，車站旁的第一杯手沖',
+            timeline: [
+              { time_slot: '上午', title: 'HARUKA 抵京都・Kurasu Kyoto Stand', is_must_visit: false, transport_tag: T_JR, description: '寄放行李後，走到京都車站西側的 Kurasu 喝一杯淺焙手沖，木頭吧台與清晨的光，是旅程最溫柔的開場。（建議停留 1 小時）' },
+              { time_slot: '下午', title: '涉成園（枳殼邸）庭園散策', is_must_visit: false, transport_tag: T_WALK, description: '車站步行可達、遊客稀少的池泉回遊式庭園，晚秋的楓與水面倒影安安靜靜，適合抵達日放慢呼吸。（建議停留 1.5 小時）' },
+              { time_slot: '傍晚', title: '開化堂咖啡與鴨川七條夕暮', is_must_visit: true, transport_tag: T_WALK, description: '百年茶筒老舖開化堂開的咖啡館，空間由昔日市電車庫改建，挑高木窗下陳列著銅製茶筒；喝完沿著鴨川往北走，看夕陽把東山染成暖橘色。（建議停留 2 小時）' }
+            ],
+            stay_info: { area_recommendation: '五條・河原町周邊', hotel_vibe: '選擇巷弄裡的町家改建旅宿，步行 5 分鐘就到鴨川' }
+          },
+          {
+            day_index: 2, date: '2026-11-17',
+            day_title: '東山的清晨，比楓葉更早醒來',
+            timeline: [
+              { time_slot: '上午', title: '清水寺晨間參拜與二三年坂', is_must_visit: true, transport_tag: T_BUS, description: '趁開門後的清晨造訪，舞台下的楓谷還帶著霧氣；沿二年坂、三年坂往下走，石板路上只有掃落葉的聲音。（建議停留 2.5 小時）' },
+              { time_slot: '下午', title: '% Arabica 東山與八坂・石塀小路', is_must_visit: false, transport_tag: T_WALK, description: '在八坂塔下的小咖啡店外帶一杯拿鐵，轉進石塀小路，石牆與格子門圍出京都最安靜的一段小巷。（建議停留 2 小時）' },
+              { time_slot: '傍晚', title: '祇園白川與巽橋燈籠', is_must_visit: false, transport_tag: T_WALK, description: '柳樹與白川流水間，茶屋的燈籠一盞盞亮起；不必進店，沿著水邊慢慢走就很像電影場景。（建議停留 1.5 小時）' }
+            ],
+            stay_info: { area_recommendation: '續住五條・河原町', hotel_vibe: '免搬行李，晚上到錦市場附近的居酒屋小酌' }
+          },
+          {
+            day_index: 3, date: '2026-11-18',
+            day_title: '糺之森與出町柳，河岸的日常',
+            timeline: [
+              { time_slot: '上午', title: '下鴨神社・糺之森', is_must_visit: true, transport_tag: T_BUS, description: '參天古木間的參道鋪滿落葉，晨光從樹梢灑下來；在河合神社求一枚手鏡繪馬，是京都女生的私房行程。（建議停留 2 小時）' },
+              { time_slot: '下午', title: '鴨川三角洲跳烏龜石・出町桝形商店街', is_must_visit: false, transport_tag: T_WALK, description: '在賀茂川與高野川交會的三角洲跳過烏龜石，再逛逛有拱廊的出町桝形老商店街，到附近的出町雙葉買一顆名物豆餅當點心。（建議停留 2 小時）' },
+              { time_slot: '傍晚', title: 'Café Bibliotic Hello!', is_must_visit: false, transport_tag: T_SUBWAY, description: '二條附近的町家咖啡館，門口一株高大的芭蕉，挑高書牆與昏黃燈光，適合寫下今天的旅行筆記。（建議停留 1.5 小時）' }
+            ],
+            stay_info: { area_recommendation: '續住五條・河原町', hotel_vibe: '晚上到附近錢湯泡個澡，消除一天的腳痠' }
+          },
+          {
+            day_index: 4, date: '2026-11-19',
+            day_title: '苔寺的靜與嵯峨野的光',
+            timeline: [
+              { time_slot: '上午', title: '西芳寺（苔寺）預約參拜', is_must_visit: true, transport_tag: T_BUS, description: '先在本堂靜心寫經，再走進一百多種青苔鋪成的庭園，晚秋的紅葉落在綠苔上，是整趟旅程最安靜的時刻。（建議停留 2 小時）' },
+              { time_slot: '下午', title: '嵯峨野・祇王寺苔庭與小倉山', is_must_visit: false, transport_tag: T_RANDEN, description: '避開渡月橋人潮，往嵯峨野深處走到小巧的祇王寺，竹林與苔庭被午後斜光照亮，安靜得能聽見落葉聲。（建議停留 2.5 小時）' },
+              { time_slot: '傍晚', title: '嵐電回四條・先斗町晚餐', is_must_visit: false, transport_tag: T_RANDEN, description: '搭懷舊的嵐電慢慢晃回市區，在先斗町石板小巷挑一家家庭式小料理屋，以京野菜結束這一天。（建議停留 2 小時）' }
+            ],
+            stay_info: { area_recommendation: '續住五條・河原町', hotel_vibe: '最後一晚可以把伴手禮先寄放在旅宿櫃台' }
+          },
+          {
+            day_index: 5, date: '2026-11-20',
+            day_title: '岡崎的美術館早晨，帶著留白回家',
+            timeline: [
+              { time_slot: '上午', title: '京都國立近代美術館・琵琶湖疏水', is_must_visit: false, transport_tag: T_SUBWAY, description: '在岡崎的美術館看一檔工藝或設計展，出來沿著疏水邊的步道散步，紅磚與楓葉是離開前最後的京都色。（建議停留 2.5 小時）' },
+              { time_slot: '下午', title: '京都車站取行李・搭 HARUKA 前往關西機場', is_must_visit: false, transport_tag: T_JR, description: '在車站的伊勢丹地下街買生八橋與京漬物，搭 HARUKA 前往機場，沿途看著窗外的田園慢慢變成海。（建議停留 1.5 小時）' },
+              { time_slot: '傍晚', title: '關西機場報到與通關', is_must_visit: false, transport_tag: T_WALK, description: '預留 3 小時辦理報到與通關，在登機口前喝杯熱茶，把這五天的步調帶回日常。（建議停留 3 小時）' }
+            ],
+            stay_info: { area_recommendation: '回程日', hotel_vibe: '早上退房，行李可先寄放在京都車站的寄物櫃或行李服務' }
+          }
+        ]
+      },
+      chiangmai: {
+        trip_summary: {
+          destination: '清邁',
+          theme_title: '涼季清邁・山林、早市與尼曼巷弄的七日放空',
+          vibe_description: '十二月的清邁早晚微涼，在森林寺院的鳥鳴裡醒來，到早市買剛出爐的可頌，下午就躲進樹蔭下的咖啡館，什麼都不做也很好。',
+          svg_theme: 'nature_mountain',
+          flight_card: {
+            outbound_hint: '台北有直飛清邁的航班（班次依季節調整），或經曼谷轉機；抵達清邁國際機場後用 Grab 叫車，約 15 分鐘到尼曼區。',
+            inbound_hint: '清邁機場不大，國際線建議起飛前 2.5 小時抵達；尼曼或古城叫 Grab 到機場約 15~20 分鐘，尖峰時段多預留一點。'
+          }
+        },
+        pre_trip_prep: {
+          transport_passes: [
+            { name: 'Grab / Bolt 叫車 App', description: '清邁沒有捷運，市區移動以叫車最方便，價格透明、可綁信用卡，也能叫機車快速穿梭。', buy_timing: '出發前下載並綁定付款' },
+            { name: '紅色雙條車（Songthaew）', description: '在地人的共乘小貨車，上車前先說目的地、談好價格；上素帖山可在清邁大學門口搭共乘車。', buy_timing: '當地上車付現' }
+          ],
+          advance_reservations: [
+            { target: '泰式料理課（如 Thai Farm Cooking School）', deadline_note: '建議提前 1~2 週預約', tips: '多數含市場導覽與接送，選有機農場課程，半天就能學會綠咖哩與芒果糯米飯。' },
+            { target: '泰式按摩（如 Fah Lanna Spa）', deadline_note: '建議前 1~3 天預約', tips: '山林日回城後安排一場 2 小時按摩，把腳步的疲勞留在清邁。' }
+          ],
+          todo_checklist: [
+            '確認最新入境規定（台灣護照目前可免簽入境，出發前再至泰國官方網站確認天數）',
+            '入境前 3 天內線上填寫 TDAC 泰國數位入境卡',
+            '開通泰國 eSIM（機場也可購買實體 SIM 卡）',
+            '下載 Grab 並綁定信用卡',
+            '涼季早晚約 15~18°C：帶一件薄外套，上素帖山更涼',
+            '進寺院需遮肩、過膝：準備一條輕薄長褲或圍巾',
+            '防曬乳、防蚊液與少量泰銖現金（早市與雙條車用）'
+          ]
+        },
+        daily_itinerary: [
+          {
+            day_index: 1, date: '2026-12-03',
+            day_title: '抵達清邁，尼曼巷弄的第一杯冰美式',
+            timeline: [
+              { time_slot: '上午', title: '清邁國際機場・Grab 前往尼曼區', is_must_visit: false, transport_tag: T_GRAB, description: '入境後換一點泰銖、開通 eSIM，叫 Grab 到尼曼區旅宿寄放行李，先在巷口的果汁攤喝一杯新鮮芒果汁。（建議停留 1.5 小時）' },
+              { time_slot: '下午', title: 'Ristr8to Lab・尼曼一巷散步', is_must_visit: true, transport_tag: T_WALK, description: '清邁咖啡文化的代表店之一，拉花與特調都很用心；喝完在尼曼一巷的選物店與小書店之間慢慢逛。（建議停留 3 小時）' }
+            ],
+            stay_info: { area_recommendation: '尼曼區（Nimmanhaemin）', hotel_vibe: '選擇有庭院或泳池的小型設計旅店，步行就能到咖啡館與夜市' }
+          },
+          {
+            day_index: 2, date: '2026-12-04',
+            day_title: '森林寺院的晨光與鳥鳴',
+            timeline: [
+              { time_slot: '上午', title: '悟孟寺（Wat Umong）森林隧道寺', is_must_visit: true, transport_tag: T_GRAB, description: '藏在樹林裡的古老隧道寺院，磚造隧道裡供著小佛像，林間樹幹掛著一句句佛語，清晨只有鳥聲和掃地僧人。（建議停留 2 小時）' },
+              { time_slot: '下午', title: '蘇提寺（Wat Suan Dok）白塔群', is_must_visit: false, transport_tag: T_GRAB, description: '一整片白色佛塔在午後陽光下閃閃發亮，旁邊的寺院有「與僧侶聊天」活動，可以用英文聊聊修行與日常。（建議停留 2 小時）' }
+            ],
+            stay_info: { area_recommendation: '續住尼曼區', hotel_vibe: '傍晚回旅店游泳、睡個午覺，晚上到 One Nimman 廣場吃晚餐' }
+          },
+          {
+            day_index: 3, date: '2026-12-05',
+            day_title: '週末早市與森林裡的藝術村',
+            timeline: [
+              { time_slot: '上午', title: 'Jing Jai Market 週末農夫市集', is_must_visit: true, transport_tag: T_GRAB, description: '只在週末早上開的質感市集，有機蔬果、手作陶器、剛出爐的可頌與手沖咖啡，八點前到最舒服。（建議停留 2.5 小時）' },
+              { time_slot: '下午', title: 'Baan Kang Wat 藝術村', is_must_visit: false, transport_tag: T_GRAB, description: '建在山腳綠意裡的手作聚落，陶藝、木工與小咖啡館圍著一圈梯田式的露天劇場，適合坐下來發呆。（週一公休，建議停留 2.5 小時）' }
+            ],
+            stay_info: { area_recommendation: '續住尼曼區', hotel_vibe: '晚上可到附近的週末市集或安靜的酒吧坐坐' }
+          },
+          {
+            day_index: 4, date: '2026-12-06',
+            day_title: '上素帖山，俯瞰整座城市',
+            timeline: [
+              { time_slot: '上午', title: '素帖寺（Wat Phra That Doi Suthep）', is_must_visit: true, transport_tag: T_SONGTHAEW, description: '從清邁大學門口搭共乘雙條車上山，爬上三百多階那伽階梯，金色佛塔在山嵐裡發光，晴天能俯瞰整座清邁城。（建議停留 3 小時）' },
+              { time_slot: '下午', title: '回程停 Huay Kaew 瀑布・山腳咖啡', is_must_visit: false, transport_tag: T_SONGTHAEW, description: '下山途中在山腳的小瀑布旁散步，再找一間被樹蔭包圍的咖啡館，把上山的汗水慢慢收乾。（建議停留 2 小時）' }
+            ],
+            stay_info: { area_recommendation: '移動到古城區（Old City）', hotel_vibe: '換住古城內有庭院的老宅旅宿，步行就能去寺院與小吃攤' }
+          },
+          {
+            day_index: 5, date: '2026-12-07',
+            day_title: '古城牆內的寺院與山地咖啡',
+            timeline: [
+              { time_slot: '上午', title: '契迪龍寺（Wat Chedi Luang）', is_must_visit: true, transport_tag: T_WALK, description: '古城中心殘缺卻壯觀的巨大佛塔，早晨光線從塔頂斜斜落下，坐在樹下看僧侶走過，時間像停住了一樣。（建議停留 2 小時）' },
+              { time_slot: '下午', title: 'Akha Ama Coffee（帕辛寺分店）', is_must_visit: false, transport_tag: T_WALK, description: '由山地阿卡族青年創立的咖啡品牌，豆子來自山上的家鄉；喝一杯就是對公平貿易的小小支持。（建議停留 2 小時）' }
+            ],
+            stay_info: { area_recommendation: '續住古城區', hotel_vibe: '晚上到塔佩門附近散步，或預約一場泰式按摩' }
+          },
+          {
+            day_index: 6, date: '2026-12-08',
+            day_title: '湄林山谷，一整天的綠',
+            timeline: [
+              { time_slot: '上午', title: '詩麗吉皇后植物園（Queen Sirikit Botanic Garden）', is_must_visit: true, transport_tag: T_GRAB, description: '包一台 Grab 往北到湄林山區，走一段架在樹冠層上的高空步道，溫室裡的蘭花與蕨類在晨霧中特別清新。（建議停留 3 小時）' },
+              { time_slot: '下午', title: '山林咖啡館午後放空', is_must_visit: false, transport_tag: T_GRAB, description: '回程在湄林一帶找一間面向稻田或山谷的咖啡館，點杯椰子咖啡，什麼都不排，就看雲慢慢移動。（建議停留 2.5 小時）' }
+            ],
+            stay_info: { area_recommendation: '續住古城區', hotel_vibe: '最後一晚可到河岸餐廳吃北泰料理，點一份金麵（Khao Soi）' }
+          },
+          {
+            day_index: 7, date: '2026-12-09',
+            day_title: '瓦洛洛市場的伴手禮，帶著慢回家',
+            timeline: [
+              { time_slot: '上午', title: '瓦洛洛市場（Warorot Market）', is_must_visit: false, transport_tag: T_GRAB, description: '在地人的大市場，買北泰辣椒醬、乾芒果與手工皂當伴手禮，順便在一樓吃碗泰式米粉湯當早午餐。（建議停留 2 小時）' },
+              { time_slot: '下午', title: '退房・Grab 前往清邁機場', is_must_visit: false, transport_tag: T_GRAB, description: '回旅宿取行李，叫 Grab 到機場，預留 2.5 小時報到；在候機室翻翻這週的照片，把清邁的步調收進行李箱。（建議停留 2.5 小時）' }
+            ],
+            stay_info: { area_recommendation: '回程日', hotel_vibe: '多數旅宿可提供退房後的行李寄放' }
+          }
+        ]
+      }
+    };
+
+    /** 點擊範例按鈕：直接渲染靜態範例，不呼叫 API、不寫入上次行程快取 */
+    function showSampleTrip(key) {
+      const trip = SAMPLE_TRIPS[key];
+      if (!trip) return;
+      renderTripResult(trip, { notice: SAMPLE_NOTICE, sample: true });
+      const target = $('resultView');
+      const navH = document.querySelector('.navbar')?.offsetHeight || 0;
+      requestAnimationFrame(() => {
+        const top = target.getBoundingClientRect().top + window.scrollY - navH - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+      });
+    }
 
     /* ============================================================
      * 全域狀態
@@ -2414,6 +2702,11 @@
         destinationInput.focus({ preventScroll: true });
       });
 
+      // 免填表單的範例行程
+      document.querySelectorAll('.sample-chip').forEach((btn) => {
+        btn.addEventListener('click', () => showSampleTrip(btn.dataset.sample));
+      });
+
       // 一鍵複製純文字行程
       $('copyTextBtn').addEventListener('click', copyItineraryAsText);
 
@@ -2871,13 +3164,14 @@
     /* ============================================================
      * 渲染完整行程結果頁
      * ============================================================ */
-    function renderTripResult(data, { notice = '' } = {}) {
+    function renderTripResult(data, { notice = '', sample = false } = {}) {
       state.trip = data;
       setView('result');
 
       const noticeEl = $('resultNotice');
       noticeEl.textContent = notice;
       noticeEl.classList.toggle('show', !!notice);
+      noticeEl.classList.toggle('is-sample', sample);
 
       const summary = data.trip_summary || {};
       const destination = summary.destination || '';
@@ -2885,7 +3179,9 @@
       heroTitle.textContent = summary.theme_title || `${destination}・慢旅日誌`;
       heroDesc.textContent = summary.vibe_description || '';
 
-      renderCountdown(data);
+      // 範例行程的日期只是示意，不顯示出發倒數
+      if (sample) countdownBadge.classList.remove('show');
+      else renderCountdown(data);
 
       // 航班卡片
       $('outboundHint').textContent = summary.flight_card?.outbound_hint || '建議提早抵達機場辦理登機。';
@@ -2921,7 +3217,7 @@
       renderPrintAllDays(data.daily_itinerary || [], destination);
 
       // 待辦清單 Checkbox（支援狀態記憶）
-      renderTodoChecklist(data.pre_trip_prep?.todo_checklist || []);
+      renderTodoChecklist(data.pre_trip_prep?.todo_checklist || [], { persist: !sample });
 
       window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
     }
@@ -3075,12 +3371,14 @@
         : '';
     }
 
-    function renderTodoChecklist(todos) {
+    function renderTodoChecklist(todos, { persist = true } = {}) {
       const container = $('todoListContainer');
       let savedState = {};
-      try {
-        savedState = JSON.parse(store.get(STORAGE_TODOS_KEY) || '{}') || {};
-      } catch (_) { savedState = {}; }
+      if (persist) {
+        try {
+          savedState = JSON.parse(store.get(STORAGE_TODOS_KEY) || '{}') || {};
+        } catch (_) { savedState = {}; }
+      }
 
       if (!todos.length) {
         container.innerHTML = '<p class="empty-note">沒有特別的行前待辦，帶著好心情出發吧！</p>';
@@ -3100,7 +3398,8 @@
       boxes.forEach((chk) => {
         chk.addEventListener('change', () => {
           savedState[chk.getAttribute('data-todo-idx')] = chk.checked;
-          store.set(STORAGE_TODOS_KEY, JSON.stringify(savedState));
+          // 範例行程的勾選不寫入，避免覆蓋使用者自己行程的進度
+          if (persist) store.set(STORAGE_TODOS_KEY, JSON.stringify(savedState));
           refresh();
         });
       });
@@ -3120,6 +3419,8 @@
       const prep = trip.pre_trip_prep || {};
       const dest = s.destination || '';
       const lines = [
+        BRAND_SIGNATURE,
+        '',
         `🌿 【${s.theme_title || dest}】慢旅行程表`,
         s.vibe_description || '',
         '----------------------------------------',
@@ -3160,7 +3461,7 @@
       }
 
       lines.push(SLOW_NOTE_TITLE, SLOW_NOTE_BODY, '');
-      lines.push('— 由 SlowMate｜AI 慢旅行程規劃助手 規劃 · https://samya-traveler.github.io/slowmate/');
+      lines.push(BRAND_SIGNATURE);
       return lines.join('\n');
     }
 
