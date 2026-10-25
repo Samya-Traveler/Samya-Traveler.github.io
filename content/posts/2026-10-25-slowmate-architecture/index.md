@@ -64,7 +64,7 @@ SlowMate 的前端就是部落格裡的一個檔案 `static/slowmate/index.html`
 
 ## 2. 後端：4 支無狀態 API（Azure Functions）
 
-- **`/api/planTrip`**：白名單、每日 50 次限額、序號核銷、呼叫 AI
+- **`/api/planTrip`**：管理員金鑰、每日 50 次限額、序號核銷、呼叫 AI
   <br><small>讀寫：DailyUsage、UserProfiles、RedeemCodes</small>
 - **`/api/sendOtp`**：防洗信箱、寄送 6 位數驗證碼
   <br><small>讀寫：EmailOtps</small>
