@@ -752,6 +752,111 @@
       margin-bottom: 20px;
     }
 
+    /* 📸 慢旅雜誌分享圖 */
+    .btn-share-card {
+      grid-column: 1 / -1;
+      padding: 13px 16px;
+      border: none;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #E07A5F 0%, #D9805F 45%, #C9925E 100%);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(224, 122, 95, 0.28);
+      transition: transform 0.1s, box-shadow 0.2s;
+    }
+
+    .btn-share-card:hover { box-shadow: 0 8px 20px rgba(224, 122, 95, 0.36); }
+    .btn-share-card:active { transform: scale(0.99); }
+
+    .share-modal-card { max-width: 460px; }
+
+    .share-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .share-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 9px 6px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-soft);
+      background: var(--bg-cream);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .share-tab small {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .share-tab[aria-selected="true"] {
+      background: var(--brand-sage-light);
+      border-color: var(--brand-sage);
+      color: var(--brand-sage-dark);
+    }
+
+    .share-preview {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      margin-bottom: 14px;
+    }
+
+    .share-preview img {
+      display: block;
+      max-height: 55vh;
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 28px rgba(44, 53, 49, 0.18), 0 2px 6px rgba(44, 53, 49, 0.08);
+      background: #F9F6F0;
+      -webkit-touch-callout: default;
+    }
+
+    .share-loading {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .share-preview.is-loading img { opacity: 0.35; }
+    .share-preview.is-loading .share-loading { display: flex; }
+
+    .share-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .share-hint {
+      margin-top: 10px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+
     .btn-secondary {
       padding: 11px 10px;
       background: var(--bg-card);
@@ -1456,6 +1561,7 @@
       body { display: block; font-size: 11pt; color: #222; }
       .navbar, .quota-badge-bar, .restore-banner, #formView, .action-bar,
       #resetPlanBtn, .print-btn, .modal-backdrop, .toast, footer,
+      #shareCardModal, #shareCardBtn,
       .screen-only, .countdown-badge, .result-notice {
         display: none !important;
       }
@@ -1662,6 +1768,7 @@
       <div class="result-notice" id="resultNotice" role="status"></div>
 
       <div class="action-bar">
+        <button type="button" class="btn-share-card" id="shareCardBtn">📸 產生慢旅分享圖 (IG / Threads)</button>
         <button type="button" class="btn-secondary" id="openEmailModalBtn">✉️ 寄送行程到信箱</button>
         <button type="button" class="btn-secondary" id="copyTextBtn">📋 複製純文字行程</button>
       </div>
@@ -1754,6 +1861,31 @@
         💡 若超過 5 分鐘未收到序號信（請先查看垃圾郵件匣），歡迎私訊 IG
         <a href="https://www.instagram.com/samya_traveler/" target="_blank" rel="noopener noreferrer">@samya_traveler</a> 協助處理。
       </p>
+    </div>
+  </div>
+
+  <!-- 📸 慢旅雜誌分享圖 Modal（Canvas 繪製 + Web Share API） -->
+  <div class="modal-backdrop" id="shareCardModal" role="dialog" aria-modal="true" aria-labelledby="shareCardTitle">
+    <div class="modal-card share-modal-card">
+      <button type="button" class="modal-close" data-close-modal="shareCardModal" aria-label="關閉">&times;</button>
+      <h3 class="modal-title" id="shareCardTitle">📸 慢旅雜誌分享圖</h3>
+      <div class="share-tabs" role="tablist" aria-label="分享圖尺寸">
+        <button type="button" class="share-tab" role="tab" aria-selected="true" data-ratio="story">
+          📱 IG 限時動態<small>9:16 · 1080 × 1920</small>
+        </button>
+        <button type="button" class="share-tab" role="tab" aria-selected="false" data-ratio="post">
+          🗂️ Threads / FB 貼文<small>4:5 · 1080 × 1350</small>
+        </button>
+      </div>
+      <div class="share-preview is-loading" id="shareCardPreviewBox">
+        <img id="shareCardPreview" alt="慢旅雜誌分享圖預覽" />
+        <div class="share-loading">🎨 正在排版你的慢旅雜誌…</div>
+      </div>
+      <div class="share-actions">
+        <button type="button" class="btn-primary" id="shareCardShareBtn">🚀 一鍵分享至 IG / Threads / FB</button>
+        <button type="button" class="btn-secondary" id="shareCardDownloadBtn">⬇️ 下載高清圖片 (PNG)</button>
+      </div>
+      <p class="share-hint">手機若無法下載，可長按上方預覽圖「儲存影像」。分享或下載時會自動複製推薦貼文文案。</p>
     </div>
   </div>
 
@@ -2707,6 +2839,14 @@
         btn.addEventListener('click', () => showSampleTrip(btn.dataset.sample));
       });
 
+      // 📸 慢旅雜誌分享圖
+      $('shareCardBtn').addEventListener('click', openShareCard);
+      document.querySelectorAll('.share-tab').forEach((tab) => {
+        tab.addEventListener('click', () => setShareRatio(tab.dataset.ratio));
+      });
+      $('shareCardShareBtn').addEventListener('click', onShareCardShare);
+      $('shareCardDownloadBtn').addEventListener('click', onShareCardDownload);
+
       // 一鍵複製純文字行程
       $('copyTextBtn').addEventListener('click', copyItineraryAsText);
 
@@ -3409,6 +3549,597 @@
     function updateTodoProgress(done, total) {
       $('todoProgressText').textContent = total ? `已完成 ${done} / ${total} 項${done === total ? ' · 準備就緒，出發吧！🎒' : ''}` : '';
       $('todoProgressFill').style.width = total ? `${Math.round((done / total) * 100)}%` : '0';
+    }
+
+    /* ============================================================
+     * 📸 慢旅雜誌分享圖：原生 Canvas 2D 繪製 + Web Share API（不依賴 html2canvas）
+     * ============================================================ */
+    const SHARE_SIZES = {
+      story: { w: 1080, h: 1920, label: 'story' }, // IG 限時動態 9:16
+      post: { w: 1080, h: 1350, label: 'post' }    // Threads / FB 貼文 4:5
+    };
+    const SHARE_URL = 'https://samya-traveler.github.io/slowmate/';
+    const SHARE_URL_SHORT = 'samya-traveler.github.io/slowmate';
+    const SERIF = '"Noto Serif TC", "Songti TC", "PMingLiU", serif';
+    const SANS = '"Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif';
+    const INK = '#2C3531';
+    const SAGE = '#5B7B6A';
+    const SAGE_DARK = '#435E4F';
+    const WARM_GRAY = '#6B655E';
+    // 不可出現在行首的標點（避頭點），換行時跟著上一行
+    const NO_LINE_START = '，。、．,.!！?？:：;；)）」』】〉》…・·%';
+
+    const shareState = { ratio: 'story', blob: null, file: null, url: '', token: 0 };
+
+    function roundRectPath(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    /** 中英混排斷行：英數字詞不拆開、CJK 逐字換行、避頭點；超過 maxLines 以「…」收尾 */
+    function wrapText(ctx, text, maxWidth, maxLines) {
+      const raw = String(text || '').replace(/\s+/g, ' ').trim();
+      if (!raw) return [];
+      let tokens = raw.match(/[A-Za-z0-9@#%&+'’._:/-]+|\s+|[\s\S]/gu) || [];
+      // 單一 token 本身就超過寬度（例如很長的網址）時拆成單字元
+      tokens = tokens.flatMap((tk) => (ctx.measureText(tk).width > maxWidth ? Array.from(tk) : [tk]));
+      const lines = [];
+      let cur = '';
+      for (const tk of tokens) {
+        if (/^\s+$/.test(tk) && !cur) continue;
+        const next = cur + tk;
+        if (!cur || ctx.measureText(next).width <= maxWidth || NO_LINE_START.includes(tk)) {
+          cur = next;
+          continue;
+        }
+        lines.push(cur.trimEnd());
+        cur = /^\s+$/.test(tk) ? '' : tk;
+      }
+      if (cur.trim()) lines.push(cur.trimEnd());
+      if (maxLines && lines.length > maxLines) {
+        const kept = lines.slice(0, maxLines);
+        let last = kept[maxLines - 1];
+        while (last && ctx.measureText(last + '…').width > maxWidth) last = last.slice(0, -1);
+        kept[maxLines - 1] = last.replace(/[，、,·\s]+$/, '') + '…';
+        return kept;
+      }
+      return lines;
+    }
+
+    /** 平衡斷行：行數不變下把寬度收到最窄，避免最後一行只剩一兩個字（孤字） */
+    function wrapBalanced(ctx, text, maxWidth, maxLines) {
+      const lines = wrapText(ctx, text, maxWidth, maxLines);
+      if (lines.length < 2 || lines[lines.length - 1].endsWith('…')) return lines;
+      let lo = maxWidth * 0.5;
+      let hi = maxWidth;
+      for (let i = 0; i < 12; i++) {
+        const mid = (lo + hi) / 2;
+        if (wrapText(ctx, text, mid).length <= lines.length) hi = mid;
+        else lo = mid;
+      }
+      return wrapText(ctx, text, hi, maxLines);
+    }
+
+    /** 畫多行文字，回傳下一段的 y（以字體 top 為基準） */
+    function drawLines(ctx, lines, x, y, lineHeight) {
+      lines.forEach((line, i) => ctx.fillText(line, x, y + i * lineHeight));
+      return y + lines.length * lineHeight;
+    }
+
+    /** 字級自動縮小到一行放得下 */
+    function fitFont(ctx, text, weight, family, maxSize, minSize, maxWidth) {
+      let size = maxSize;
+      while (size > minSize) {
+        ctx.font = `${weight} ${size}px ${family}`;
+        if (ctx.measureText(text).width <= maxWidth) break;
+        size -= 2;
+      }
+      ctx.font = `${weight} ${size}px ${family}`;
+      return size;
+    }
+
+    /** 水彩感暈染圓 */
+    function watercolorBlob(ctx, x, y, r, rgb, alpha) {
+      for (let i = 0; i < 3; i++) {
+        const rr = r * (1 - i * 0.18);
+        const ox = x + Math.cos(i * 2.1) * r * 0.12;
+        const oy = y + Math.sin(i * 1.7) * r * 0.12;
+        const g = ctx.createRadialGradient(ox, oy, rr * 0.1, ox, oy, rr);
+        g.addColorStop(0, `rgba(${rgb}, ${alpha})`);
+        g.addColorStop(0.7, `rgba(${rgb}, ${alpha * 0.45})`);
+        g.addColorStop(1, `rgba(${rgb}, 0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(ox, oy, rr, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    /** 線描小枝葉（純路徑） */
+    function drawSprig(ctx, x, y, scale, angle, color) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      ctx.scale(scale, scale);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.2 / scale;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.quadraticCurveTo(18, -70, 6, -150);
+      ctx.stroke();
+      const leaves = [[4, -30, -0.9], [10, -58, 0.8], [11, -86, -0.8], [9, -112, 0.7], [6, -140, -0.2]];
+      leaves.forEach(([lx, ly, rot]) => {
+        ctx.save();
+        ctx.translate(lx, ly);
+        ctx.rotate(rot);
+        ctx.beginPath();
+        ctx.ellipse(rot < 0 ? -16 : 16, 0, 18, 7, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(rot < 0 ? -2 : 2, 0);
+        ctx.lineTo(rot < 0 ? -30 : 30, 0);
+        ctx.stroke();
+        ctx.restore();
+      });
+      ctx.restore();
+    }
+
+    /** 想顯示的天數：未超過上限全列；超過時列上限 −1 天並加「還有 N 天」 */
+    function shareDayTarget(total, maxRows) {
+      return total > maxRows ? maxRows - 1 : total;
+    }
+
+    function formatShareDate(str) {
+      const d = parseDateLocal(str);
+      return d ? `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}` : '';
+    }
+
+    function shareDateLabel(trip) {
+      const days = trip.daily_itinerary || [];
+      const n = days.length;
+      if (!n) return '';
+      const first = formatShareDate(days[0]?.date);
+      const last = formatShareDate(days[n - 1]?.date);
+      const dayText = `${n} DAY${n === 1 ? '' : 'S'}`;
+      if (!first) return dayText;
+      if (!last || last === first) return `${first} · ${dayText}`;
+      const lastShort = last.slice(0, 4) === first.slice(0, 4) ? last.slice(5) : last;
+      return `${first} - ${lastShort} · ${dayText}`;
+    }
+
+    /**
+     * 繪製日系生活雜誌風分享圖。
+     * @param {object} tripData /api/plan 回傳的行程 JSON
+     * @param {'story'|'post'} ratioType story = 1080×1920（IG 限動）、post = 1080×1350（Threads / FB）
+     * @returns {HTMLCanvasElement}
+     */
+    function renderShareCardToCanvas(tripData, ratioType) {
+      const size = SHARE_SIZES[ratioType] || SHARE_SIZES.story;
+      const W = size.w;
+      const H = size.h;
+      const compact = ratioType === 'post';
+      const canvas = document.createElement('canvas');
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext('2d');
+      ctx.textBaseline = 'top';
+      ctx.textAlign = 'left';
+
+      const s = tripData.trip_summary || {};
+      const prep = tripData.pre_trip_prep || {};
+      const days = tripData.daily_itinerary || [];
+      const M = 84;              // 內容左右邊界
+      const CW = W - M * 2;      // 內容寬度
+
+      /* ---------- 背景、水彩暈染、植物線條 ---------- */
+      ctx.fillStyle = '#F9F6F0';
+      ctx.fillRect(0, 0, W, H);
+      watercolorBlob(ctx, W - 120, 150, compact ? 260 : 320, '91, 123, 106', 0.10);
+      watercolorBlob(ctx, 90, H - 240, compact ? 240 : 300, '242, 204, 143', 0.16);
+      watercolorBlob(ctx, W - 60, H * 0.56, 180, '224, 122, 95', 0.06);
+      drawSprig(ctx, W - 92, compact ? 420 : 560, compact ? 1.0 : 1.25, 0.32, 'rgba(91, 123, 106, 0.22)');
+      drawSprig(ctx, 64, H - 150, 0.85, -0.5, 'rgba(160, 120, 70, 0.18)');
+
+      /* ---------- 雜誌內縮雙線框 ---------- */
+      ctx.strokeStyle = 'rgba(91, 123, 106, 0.55)';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(36, 36, W - 72, H - 72);
+      ctx.strokeStyle = 'rgba(160, 120, 70, 0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(50, 50, W - 100, H - 100);
+
+      /* ---------- 刊頭 ---------- */
+      let y = compact ? 90 : 116;
+      ctx.fillStyle = SAGE_DARK;
+      ctx.font = `700 24px ${SANS}`;
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '3px';
+      ctx.fillText('SLOWMATE JOURNAL｜慢旅伴企劃', M, y + 12);
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+
+      const dateLabel = shareDateLabel(tripData);
+      const pillH = 52;
+      if (dateLabel) {
+        ctx.font = `700 24px ${SANS}`;
+        const pillW = ctx.measureText(dateLabel).width + 44;
+        const pillX = W - M - pillW;
+        roundRectPath(ctx, pillX, y, pillW, pillH, pillH / 2);
+        ctx.fillStyle = 'rgba(230, 239, 234, 0.95)';
+        ctx.fill();
+        ctx.strokeStyle = SAGE;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = SAGE_DARK;
+        ctx.fillText(dateLabel, pillX + 22, y + 13);
+      }
+
+      y += pillH + (compact ? 22 : 34);
+      ctx.strokeStyle = 'rgba(44, 53, 49, 0.55)';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(M, y); ctx.lineTo(W - M, y); ctx.stroke();
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(M, y + 8); ctx.lineTo(W - M, y + 8); ctx.stroke();
+
+      /* ---------- 主視覺大標 ---------- */
+      y += compact ? 30 : 48;
+      const destination = s.destination || '慢旅';
+      const destSize = fitFont(ctx, destination, 700, SERIF, compact ? 96 : 132, 60, CW);
+      ctx.fillStyle = INK;
+      // 多城市等超長目的地：最小字級仍放不下時改成兩行
+      y = drawLines(ctx, wrapBalanced(ctx, destination, CW, 2), M, y, destSize * 1.12);
+      y += compact ? 10 : 20;
+
+      const titleSize = compact ? 44 : 54;
+      ctx.font = `700 ${titleSize}px ${SERIF}`;
+      ctx.fillStyle = INK;
+      y = drawLines(ctx, wrapBalanced(ctx, s.theme_title || `${destination}・慢旅日誌`, CW, compact ? 2 : 3), M, y, titleSize * (compact ? 1.32 : 1.36));
+
+      if (s.vibe_description) {
+        y += compact ? 14 : 24;
+        const vibeSize = compact ? 26 : 32;
+        const vibeLH = vibeSize * (compact ? 1.55 : 1.6);
+        ctx.font = `italic 600 ${vibeSize}px ${SERIF}`;
+        const vibeLines = wrapBalanced(ctx, s.vibe_description, CW - 30, compact ? 2 : 3);
+        const vibeH = vibeLines.length * vibeLH;
+        ctx.fillStyle = 'rgba(224, 122, 95, 0.75)';
+        ctx.fillRect(M, y + 4, 5, vibeH - 14);
+        ctx.fillStyle = WARM_GRAY;
+        y = drawLines(ctx, vibeLines, M + 26, y, vibeLH);
+      }
+
+      /* ---------- 底部：品牌簽名（先計算位置，中段依剩餘空間排版） ---------- */
+      const footerTop = H - (compact ? 140 : 170);
+
+      /* ---------- 行前亮點資訊盒 ---------- */
+      const passes = (prep.transport_passes || []).slice(0, 2).map((p) => ({ head: `🎫 ${p.name}`, sub: p.buy_timing || p.description || '' }));
+      const tips = passes.length ? passes : (prep.todo_checklist || []).slice(0, 2).map((t) => ({ head: `☑️ ${t}`, sub: '' }));
+      const boxPad = 28;
+      const headSize = compact ? 27 : 30;
+      const subSize = compact ? 23 : 25;
+      ctx.font = `700 ${headSize}px ${SANS}`;
+      // 貼文版空間較少：票券名與購買時機排在同一行
+      const tipRows = tips.map((t) => {
+        ctx.font = `700 ${headSize}px ${SANS}`;
+        const head = wrapText(ctx, t.head, CW - boxPad * 2, 1);
+        const headW = ctx.measureText(head[0] || '').width;
+        ctx.font = `400 ${subSize}px ${SANS}`;
+        const inlineW = CW - boxPad * 2 - headW - 24;
+        const inline = compact && t.sub && inlineW > 120;
+        const sub = t.sub ? wrapText(ctx, t.sub, inline ? inlineW : CW - boxPad * 2 - 44, 1) : [];
+        return { head, sub, inline, headW };
+      });
+      const labelH = 30;
+      const rowsH = tipRows.reduce((acc, r) => acc + headSize * 1.4 + (r.inline ? 0 : r.sub.length * subSize * 1.5) + 10, 0);
+      const boxH = tipRows.length ? boxPad * 2 + labelH + 12 + rowsH : 0;
+      const boxTop = footerTop - (compact ? 30 : 48) - boxH;
+
+      if (boxH) {
+        roundRectPath(ctx, M, boxTop, CW, boxH, 26);
+        ctx.fillStyle = 'rgba(243, 233, 216, 0.92)';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(200, 160, 100, 0.45)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        let by = boxTop + boxPad;
+        ctx.fillStyle = '#8A5A24';
+        ctx.font = `700 22px ${SANS}`;
+        if ('letterSpacing' in ctx) ctx.letterSpacing = '2px';
+        ctx.fillText(passes.length ? 'TRAVEL NOTES｜行前亮點・推薦票券' : 'TRAVEL NOTES｜行前必備提醒', M + boxPad, by);
+        if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+        by += labelH + 12;
+        tipRows.forEach((r) => {
+          ctx.font = `700 ${headSize}px ${SANS}`;
+          ctx.fillStyle = INK;
+          ctx.fillText(r.head[0] || '', M + boxPad, by);
+          if (r.inline && r.sub.length) {
+            ctx.font = `400 ${subSize}px ${SANS}`;
+            ctx.fillStyle = WARM_GRAY;
+            ctx.fillText(r.sub[0], M + boxPad + r.headW + 24, by + (headSize - subSize) * 0.6);
+          }
+          by += headSize * 1.4;
+          if (r.sub.length && !r.inline) {
+            ctx.font = `400 ${subSize}px ${SANS}`;
+            ctx.fillStyle = WARM_GRAY;
+            ctx.fillText(r.sub[0], M + boxPad + 44, by);
+            by += subSize * 1.5;
+          }
+          by += 10;
+        });
+      }
+
+      /* ---------- 中段：每日慢旅亮點（依剩餘空間決定顯示幾天） ---------- */
+      y += compact ? 30 : 46;
+      ctx.fillStyle = SAGE;
+      ctx.font = `700 22px ${SANS}`;
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '3px';
+      if (days.length) ctx.fillText('DAILY HIGHLIGHTS｜每日慢旅亮點', M, y);
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+      y += compact ? 42 : 54;
+
+      const maxRows = compact ? 5 : 6; // 貼文版實際天數由下方 fits() 依剩餘空間決定
+      const limitBottom = (boxH ? boxTop : footerTop) - (compact ? 20 : 32);
+      // 先用寬鬆排版，放不下想顯示的天數時改用緊湊排版
+      const layouts = compact
+        ? [{ badgeR: 34, dayTitleSize: 30, spotSize: 23, rowGap: 20, noteH: 40 },
+           { badgeR: 30, dayTitleSize: 28, spotSize: 22, rowGap: 14, noteH: 38 }]
+        : [{ badgeR: 44, dayTitleSize: 35, spotSize: 27, rowGap: 34, noteH: 46 },
+           { badgeR: 40, dayTitleSize: 33, spotSize: 26, rowGap: 22, noteH: 42 }];
+      const wanted = shareDayTarget(days.length, maxRows);
+      let L;
+      let rows;
+      let showCount;
+      for (const layout of layouts) {
+        L = layout;
+        L.textX = M + L.badgeR * 2 + 26;
+        const textW = W - M - L.textX;
+        rows = days.map((d, i) => {
+          ctx.font = `700 ${L.dayTitleSize}px ${SERIF}`;
+          const title = wrapText(ctx, d.day_title || `Day ${d.day_index || i + 1}`, textW, 1);
+          const spotsText = (d.timeline || []).map((t) => `${t.is_must_visit ? '★' : ''}${t.title || ''}`).filter(Boolean).join(' · ');
+          ctx.font = `400 ${L.spotSize}px ${SANS}`;
+          const spots = wrapText(ctx, spotsText, textW, 1);
+          const h = Math.max(L.badgeR * 2, L.dayTitleSize * 1.35 + spots.length * L.spotSize * 1.5);
+          return { d, i, title, spots, h };
+        });
+        const fits = (count) => {
+          const needNote = count < rows.length;
+          const h = rows.slice(0, count).reduce((acc, r) => acc + r.h + L.rowGap, 0) + (needNote ? L.noteH : 0);
+          return y + h <= limitBottom;
+        };
+        // 決定顯示天數：超過上限時保留一行「還有 N 天」，放不下就逐天減少
+        showCount = wanted;
+        while (showCount > 1 && !fits(showCount)) showCount--;
+        if (showCount === wanted) break;
+      }
+      const { badgeR, dayTitleSize, spotSize, rowGap, textX } = L;
+
+      rows.slice(0, showCount).forEach((r) => {
+        const cx = M + badgeR;
+        const cy = y + badgeR;
+        ctx.beginPath();
+        ctx.arc(cx, cy, badgeR, 0, Math.PI * 2);
+        ctx.fillStyle = SAGE;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(cx, cy, badgeR - 6, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.font = `700 ${Math.round(badgeR * 0.4)}px ${SANS}`;
+        ctx.fillText('DAY', cx, cy - badgeR * 0.52);
+        ctx.font = `700 ${Math.round(badgeR * 0.9)}px ${SERIF}`;
+        ctx.fillText(String(r.d.day_index || r.i + 1), cx, cy - badgeR * 0.12);
+        ctx.textAlign = 'left';
+
+        let ty = y + (r.spots.length ? 0 : badgeR - dayTitleSize * 0.7);
+        ctx.font = `700 ${dayTitleSize}px ${SERIF}`;
+        ctx.fillStyle = INK;
+        ctx.fillText(r.title[0] || '', textX, ty + 2);
+        ty += dayTitleSize * 1.35;
+        ctx.font = `400 ${spotSize}px ${SANS}`;
+        ctx.fillStyle = '#4A524E';
+        drawLines(ctx, r.spots, textX, ty, spotSize * 1.5);
+        y += r.h + rowGap;
+      });
+
+      if (showCount < rows.length) {
+        ctx.font = `italic 600 ${compact ? 24 : 27}px ${SERIF}`;
+        ctx.fillStyle = '#8A847C';
+        ctx.fillText(`...還有 ${rows.length - showCount} 天的慢活散步時光`, textX, y - rowGap / 2 + 4);
+      }
+
+      /* ---------- 品牌簽名（引流關鍵） ---------- */
+      ctx.strokeStyle = 'rgba(91, 123, 106, 0.45)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(M, footerTop); ctx.lineTo(W - M, footerTop); ctx.stroke();
+
+      const brand = '🌿 SlowMate 慢旅伴｜AI 慢旅行程規劃師';
+      const footY = footerTop + (compact ? 40 : 48);
+      let brandSize = compact ? 26 : 28;
+      let urlSize = compact ? 23 : 25;
+      // 兩側同一行放得下為止逐步縮小字級
+      for (;;) {
+        ctx.font = `700 ${brandSize}px ${SANS}`;
+        const bw = ctx.measureText(brand).width;
+        ctx.font = `700 ${urlSize}px ${SANS}`;
+        const uw = ctx.measureText(SHARE_URL_SHORT).width + 44;
+        if (bw + uw + 28 <= CW || brandSize <= 18) break;
+        brandSize -= 1;
+        urlSize = Math.max(17, urlSize - 1);
+      }
+      ctx.font = `700 ${brandSize}px ${SANS}`;
+      ctx.fillStyle = SAGE_DARK;
+      ctx.fillText(brand, M, footY + (54 - brandSize) / 2);
+
+      ctx.font = `700 ${urlSize}px ${SANS}`;
+      const urlW = ctx.measureText(SHARE_URL_SHORT).width + 44;
+      const urlX = W - M - urlW;
+      roundRectPath(ctx, urlX, footY, urlW, 54, 27);
+      ctx.fillStyle = SAGE_DARK;
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillText(SHARE_URL_SHORT, urlX + 22, footY + (54 - urlSize) / 2 - 1);
+
+      return canvas;
+    }
+
+    /** 推薦貼文文案（同時作為分享文字與剪貼簿內容） */
+    function buildShareText(trip) {
+      const s = trip.trip_summary || {};
+      const destination = s.destination || '慢旅';
+      const tagDest = destination.replace(/[\s\p{P}\p{S}]+/gu, '');
+      return `剛用「SlowMate 慢旅伴」排好了我的【${destination}】不趕路散步行程 🌿✨\n${s.theme_title || ''}\n\n👉 10秒生成你的日系慢旅企劃：\n${SHARE_URL}\n#SlowMate #慢旅伴 #${tagDest}自由行 #慢旅`;
+    }
+
+    function shareFileName(trip, ratio) {
+      const dest = (trip.trip_summary?.destination || 'trip').replace(/[\\/:*?"<>|\s]+/g, '');
+      return `slowmate-${dest}-${ratio}.png`;
+    }
+
+    /** 確保 Canvas 用得到網頁字型（Google Fonts 依字元分包，需帶入實際文字才會載入對應的中文字檔） */
+    async function ensureShareFonts(trip) {
+      if (!document.fonts || !document.fonts.load) return;
+      const s = trip.trip_summary || {};
+      const text = [
+        s.destination, s.theme_title, s.vibe_description,
+        ...(trip.daily_itinerary || []).map((d) => `${d.day_title} ${(d.timeline || []).map((t) => t.title).join('')}`),
+        ...(trip.pre_trip_prep?.transport_passes || []).map((p) => `${p.name}${p.buy_timing}`),
+        ...(trip.pre_trip_prep?.todo_checklist || []).slice(0, 2),
+        'SLOWMATE JOURNAL｜慢旅伴企劃 DAILY HIGHLIGHTS｜每日慢旅亮點 TRAVEL NOTES｜行前亮點・推薦票券必備提醒 SlowMate 慢旅伴｜AI 慢旅行程規劃師 還有天的慢活散步時光 0123456789.-·…★'
+      ].filter(Boolean).join('');
+      const loads = [
+        document.fonts.load(`700 60px "Noto Serif TC"`, text),
+        document.fonts.load(`600 30px "Noto Serif TC"`, text),
+        document.fonts.load(`400 30px "Noto Sans TC"`, text),
+        document.fonts.load(`700 30px "Noto Sans TC"`, text)
+      ];
+      await Promise.race([Promise.allSettled(loads), new Promise((r) => setTimeout(r, 3000))]);
+    }
+
+    function canvasToBlob(canvas) {
+      return new Promise((resolve, reject) => {
+        canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob failed'))), 'image/png');
+      });
+    }
+
+    /** 重新繪製預覽，並預先準備好 PNG File（分享按鈕點擊時要能立即呼叫 navigator.share，iOS 才不會因非使用者手勢而拒絕） */
+    async function renderSharePreview() {
+      const trip = state.trip;
+      if (!trip) return;
+      const token = ++shareState.token;
+      const ratio = shareState.ratio;
+      const box = $('shareCardPreviewBox');
+      box.classList.add('is-loading');
+      shareState.file = null;
+      try {
+        await ensureShareFonts(trip);
+        const canvas = renderShareCardToCanvas(trip, ratio);
+        const blob = await canvasToBlob(canvas);
+        if (token !== shareState.token) return; // 期間切換了尺寸，丟棄舊結果
+        if (shareState.url) URL.revokeObjectURL(shareState.url);
+        shareState.blob = blob;
+        shareState.url = URL.createObjectURL(blob);
+        shareState.file = new File([blob], shareFileName(trip, ratio), { type: 'image/png' });
+        $('shareCardPreview').src = shareState.url;
+      } catch (err) {
+        console.error(err);
+        showToast('分享圖繪製失敗，請稍後再試');
+      } finally {
+        if (token === shareState.token) box.classList.remove('is-loading');
+      }
+    }
+
+    function setShareRatio(ratio) {
+      shareState.ratio = SHARE_SIZES[ratio] ? ratio : 'story';
+      document.querySelectorAll('.share-tab').forEach((tab) => {
+        tab.setAttribute('aria-selected', String(tab.dataset.ratio === shareState.ratio));
+      });
+      renderSharePreview();
+    }
+
+    function openShareCard() {
+      if (!state.trip) return;
+      openModal('shareCardModal', $('shareCardShareBtn'));
+      setShareRatio(shareState.ratio);
+    }
+
+    /** 複製文案：同步啟動（保留使用者手勢），失敗時用 textarea 後備 */
+    function copyTextQuietly(text) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          return navigator.clipboard.writeText(text).then(() => true, () => legacyCopy(text));
+        }
+      } catch (_) {}
+      return Promise.resolve(legacyCopy(text));
+    }
+
+    function legacyCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (_) { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    }
+
+    function downloadShareImage() {
+      if (!shareState.url || !shareState.file) return false;
+      const a = document.createElement('a');
+      a.href = shareState.url;
+      a.download = shareState.file.name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      return true;
+    }
+
+    function shareCardNotReady() {
+      showToast('🎨 分享圖還在繪製中，請稍等一秒再試');
+    }
+
+    /** 主按鈕：手機原生分享面板（IG 限動 / Threads / FB），不支援時退回下載 */
+    function onShareCardShare() {
+      const file = shareState.file;
+      if (!file) return shareCardNotReady();
+      const text = buildShareText(state.trip);
+      copyTextQuietly(text); // 同步複製，避免部分 App 吃掉分享文字
+
+      const canShareFiles = !!(navigator.share && navigator.canShare && navigator.canShare({ files: [file] }));
+      if (canShareFiles) {
+        navigator.share({ files: [file], text, title: 'SlowMate 慢旅伴' })
+          .then(() => showToast('💡 已為您自動複製貼文文案，貼上即可發布！'))
+          .catch((err) => {
+            if (err && err.name === 'AbortError') return; // 使用者取消分享
+            if (downloadShareImage()) {
+              showToast('📸 圖片已下載！貼文文案也已幫您複製好，可直接前往 Threads / IG 貼上分享！');
+            }
+          });
+        return;
+      }
+      if (downloadShareImage()) {
+        showToast('📸 圖片已下載！貼文文案也已幫您複製好，可直接前往 Threads / IG 貼上分享！');
+      }
+    }
+
+    /** 副按鈕：下載 PNG + 複製文案 */
+    function onShareCardDownload() {
+      if (!shareState.file) return shareCardNotReady();
+      copyTextQuietly(buildShareText(state.trip));
+      if (downloadShareImage()) {
+        showToast('📸 圖片已下載！貼文文案也已幫您複製好，可直接前往 Threads / IG 貼上分享！');
+      }
     }
 
     /* ============================================================
