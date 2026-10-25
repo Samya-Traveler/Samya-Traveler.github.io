@@ -114,6 +114,10 @@ menus:
       name: "搜尋"
       url: /search/
       weight: 60
+    - identifier: slowmate
+      name: "Slowmate"
+      url: /slowmate/
+      weight: 65
     - identifier: about
       name: "關於"
       url: /about/
