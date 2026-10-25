@@ -1495,7 +1495,7 @@
           </label>
           <input type="email" id="emailInput" class="form-input" placeholder="you@example.com" autocomplete="email" inputmode="email" required />
           <p class="error-msg" id="emailErrorMsg">請輸入有效的電子信箱。</p>
-          <p class="admin-hint" id="adminHint">🛠️ 管理員測試帳號：免驗證、免贊助、不扣每日名額。</p>
+          <p class="admin-hint" id="adminHint">🛠️ 管理員模式已啟用（此瀏覽器）</p>
         </div>
 
         <!-- 序號 / 贊助 雙向引導 -->
@@ -1703,13 +1703,14 @@
      * ============================================================
      */
     const API_BASE_URL = 'https://slowmate-api.azurewebsites.net/api';
-    const ADMIN_EMAIL = 'sufuf3149@gmail.com';
     const DAILY_LIMIT = 50;
     const MAX_DAYS = 14;
     const EMAIL_COOLDOWN_SEC = 60;
 
     // 本地儲存 Keys
     const STORAGE_EMAIL_KEY = 'slowmate_user_email';
+    // 管理員金鑰只存在管理員自己的瀏覽器（以 ?admin=<金鑰> 開啟一次即可，?admin=off 清除），不寫在頁面原始碼中
+    const STORAGE_ADMIN_KEY = 'slowmate_admin_token';
     const STORAGE_TRIP_KEY = 'slowmate_last_trip';
     const STORAGE_TODOS_KEY = 'slowmate_todo_state';
     const STORAGE_EMAIL_LOCK_KEY = 'slowmate_email_lock_until';
@@ -1847,60 +1848,6 @@
       '🌙 好的旅行，是回家之後還想念的日常。'
     ];
 
-    // 內建測試帳號離線展示資料（當後端尚未架設且使用測試白名單帳號時自動啟用）
-    const MOCK_DEMO_TRIP = {
-      trip_summary: {
-        destination: '京都',
-        theme_title: '初秋京都・青苔與喫茶店的漫步日誌',
-        vibe_description: '放慢腳步，在鴨川的微風與老屋咖啡香中，找回旅行的留白。',
-        svg_theme: 'kyoto',
-        flight_card: {
-          outbound_hint: '建議搭乘早班機抵達關西機場 (KIX)，轉乘 JR HARUKA 特急直達京都車站（約 75 分鐘）。',
-          inbound_hint: '回程建議預留 3 小時於機場採買伴手禮與辦理出境手續。'
-        }
-      },
-      pre_trip_prep: {
-        transport_passes: [
-          { name: 'JR 關西地區鐵路周遊券 (1日券)', description: '用於關西機場往返京都 HARUKA 自由席最划算', buy_timing: '出發前 2 週線上預訂' },
-          { name: '京都巴士・地鐵一日券', description: '涵蓋京都市區主要寺院與散策街區', buy_timing: '抵達後售票機購買' }
-        ],
-        advance_reservations: [
-          { target: '西芳寺（苔寺）參拜', deadline_note: '需提前 1 個月申請', tips: '記得預留抄經的靜心時間' },
-          { target: '鴨川納涼床 / 京料理老舖', deadline_note: '建議提前 3 週預約', tips: '傍晚時段視野最佳' }
-        ],
-        todo_checklist: [
-          '開通日本 eSIM 漫遊數據',
-          '完成 Visit Japan Web 入境申報 QR Code',
-          'Apple Pay 綁定 Suica 或 ICOCA 交通卡',
-          '準備零錢包與少量日圓現鈔（老店與神社參拜用）'
-        ]
-      },
-      daily_itinerary: [
-        {
-          day_index: 1,
-          date: '2026-11-01',
-          day_title: '抵達古都，鴨川畔的第一杯手沖咖啡',
-          timeline: [
-            { time_slot: '上午', title: '京都車站周邊寄放行李與老字號早餐', is_must_visit: false, transport_tag: { type: '步行', color_code: '#4CAF50' }, description: '抵達後使用車站手荷物配送服務寄送行李至旅宿，在老字號喫茶店享用經典京都早餐（建議停留 1.5 小時）。' },
-            { time_slot: '下午', title: '下鴨神社糺之森', is_must_visit: true, transport_tag: { type: '巴士', color_code: '#FF9800' }, description: '在參天古木圍繞的森林小徑慢步，再到鴨川三角洲跳烏龜石（建議停留 2.5 小時）。' },
-            { time_slot: '傍晚', title: '先斗町與木屋町通河畔散步', is_must_visit: false, transport_tag: { type: '步行', color_code: '#4CAF50' }, description: '沿著高瀨川欣賞紅燈籠亮起的黃昏，隨興挑選一間家庭式小料理屋（建議停留 2 小時）。' }
-          ],
-          stay_info: { area_recommendation: '五條 / 河原町安靜巷弄', hotel_vibe: '選擇京町家改建的小型設計旅宿，步行 5 分鐘可達鴨川' }
-        },
-        {
-          day_index: 2,
-          date: '2026-11-02',
-          day_title: '東山晨光散策與手作工藝時光',
-          timeline: [
-            { time_slot: '上午', title: '清水寺晨間參拜與二三年坂', is_must_visit: true, transport_tag: { type: '巴士', color_code: '#FF9800' }, description: '趁 8 點前團客未至時造訪，靜靜俯瞰京都市景與石坂老屋（建議停留 2.5 小時）。' },
-            { time_slot: '下午', title: '南禪寺水路閣與哲學之道', is_must_visit: true, transport_tag: { type: '地鐵', color_code: '#2196F3' }, description: '在紅磚拱橋下留影，沿水渠散步探訪獨立書店與器皿小店（建議停留 3 小時）。' },
-            { time_slot: '傍晚', title: '岡崎疏水畔晚餐', is_must_visit: false, transport_tag: { type: '步行', color_code: '#4CAF50' }, description: '在疏水旁的小酒館享用京野菜料理，為一天畫下溫柔句點（建議停留 1.5 小時）。' }
-          ],
-          stay_info: { area_recommendation: '續住五條 / 河原町周邊', hotel_vibe: '免搬運行李，晚上可到在地超市採買宵夜' }
-        }
-      ]
-    };
-
     /* ============================================================
      * 全域狀態
      * ============================================================ */
@@ -1972,6 +1919,7 @@
       const magicApplied = applyMagicLinkCode();
       if (!magicApplied && draftRestored) showToast('📝 已為您恢復贊助前填寫的表單內容');
       validateDateRange();
+      applyAdminParam();
       updateAdminHint();
       restoreEmailLock();
       fetchDailyQuota();
@@ -2066,12 +2014,38 @@
       return /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[^\s@<>()[\]\\,;:"]{2,}$/.test(email) && email.length <= 254;
     }
 
-    function isAdmin(email) {
-      return (email || '').trim().toLowerCase() === ADMIN_EMAIL;
+    /* ---------- 管理員模式：金鑰由後端 ADMIN_TOKEN 驗證，頁面不含任何管理員身分資訊 ---------- */
+    function adminToken() {
+      return store.get(STORAGE_ADMIN_KEY) || '';
+    }
+
+    function isAdmin() {
+      return !!adminToken();
     }
 
     function updateAdminHint() {
-      $('adminHint').classList.toggle('show', isAdmin(emailInput.value));
+      $('adminHint').classList.toggle('show', isAdmin());
+    }
+
+    /** ?admin=<金鑰> 啟用、?admin=off 關閉；讀取後立即從網址移除，避免留在瀏覽紀錄或被分享出去 */
+    function applyAdminParam() {
+      let params;
+      try { params = new URLSearchParams(window.location.search); } catch (_) { return; }
+      const raw = params.get('admin');
+      if (raw === null) return;
+      params.delete('admin');
+      const query = params.toString();
+      try {
+        history.replaceState(history.state, '', window.location.pathname + (query ? `?${query}` : '') + window.location.hash);
+      } catch (_) {}
+      const token = raw.trim();
+      if (!token || token.toLowerCase() === 'off') {
+        store.remove(STORAGE_ADMIN_KEY);
+        showToast('已關閉管理員模式');
+      } else {
+        store.set(STORAGE_ADMIN_KEY, token);
+        showToast('🛠️ 已在此瀏覽器啟用管理員模式');
+      }
     }
 
     /* ---------- 慢旅風格快捷標籤：點擊切換，文字自動串接進心願清單 ---------- */
@@ -2276,7 +2250,6 @@
       emailInput.addEventListener('input', () => {
         emailInput.classList.remove('is-invalid');
         $('emailErrorMsg').classList.remove('show');
-        updateAdminHint();
       });
 
       // 序號輸入即時轉大寫
@@ -2464,7 +2437,7 @@
 
     /* ============================================================
      * 送出流程（智慧分流）
-     *   1. 白名單 sufuf3149@gmail.com → 直接 POST /api/plan
+     *   1. 管理員模式（此瀏覽器存有管理員金鑰）→ 直接 POST /api/plan，金鑰由後端驗證
      *   2. 已填贊助序號 → 免 OTP，直接 POST /api/plan（核銷序號，保留免費額度）
      *   3. 其他（首次免費額度）→ POST /api/send-otp → OTP Modal → POST /api/plan + otp_code
      * ============================================================ */
@@ -2526,7 +2499,7 @@
       const form = collectForm();
       if (!form) return;
 
-      if (isAdmin(form.email) || form.redeem_code) {
+      if (isAdmin() || form.redeem_code) {
         await postPlan(form);
       } else {
         await requestOtp(form.email);
@@ -2559,12 +2532,6 @@
 
         if (res.ok && result.status === 'otp_sent') {
           openOtpModal(email, { retryAfter: Number(result.resend_after) || 60, notice: fromModal ? '新的驗證碼已寄出，舊的驗證碼已失效。' : '' });
-          return;
-        }
-        if (res.ok && result.status === 'otp_not_required') {
-          // 白名單（理論上前端已攔截）
-          const form = collectForm();
-          if (form) await postPlan(form);
           return;
         }
         if (res.status === 429 && result.error === 'otp_cooldown') {
@@ -2688,13 +2655,24 @@
       window.scrollTo({ top: formView.offsetTop - 80, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
 
       try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (isAdmin()) headers['x-slowmate-admin'] = adminToken();
         const res = await fetch(`${API_BASE_URL}/plan`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await readJsonSafe(res);
         stopLoadingQuotes();
+
+        // 401 管理員金鑰無效 → 清除本機金鑰，改走一般流程
+        if (res.status === 401 && result.error === 'invalid_admin_token') {
+          setView('form');
+          store.remove(STORAGE_ADMIN_KEY);
+          updateAdminHint();
+          showToast('管理員金鑰無效，已關閉管理員模式');
+          return;
+        }
 
         // 200 成功
         if (res.ok && result.data) {
@@ -2737,8 +2715,8 @@
           return;
         }
 
-        // 402 需要贊助 — 測試白名單永不觸發
-        if (res.status === 402 && !isAdmin(payload.email)) {
+        // 402 需要贊助（管理員模式不會觸發）
+        if (res.status === 402) {
           openPaywall('payment_required', result.message, result.portaly_url);
           return;
         }
@@ -2777,16 +2755,9 @@
       } catch (err) {
         stopLoadingQuotes();
         setView('form');
-        // 白名單測試帳號且後端尚未啟動 → 自動展示京都慢旅預覽
-        if (isAdmin(payload.email)) {
-          showToast('✨ 偵測到管理員測試帳號，為您載入慢旅展示行程');
-          saveTrip(MOCK_DEMO_TRIP);
-          renderTripResult(MOCK_DEMO_TRIP);
-        } else {
-          showToast(payload.redeem_code
-            ? '連線中斷，您的序號未被核銷，依然完整有效，請確認網路後再試一次'
-            : '無法連接慢旅規劃伺服器，請確認網路或稍後再試（未扣除任何名額或免費額度）');
-        }
+        showToast(payload.redeem_code
+          ? '連線中斷，您的序號未被核銷，依然完整有效，請確認網路後再試一次'
+          : '無法連接慢旅規劃伺服器，請確認網路或稍後再試（未扣除任何名額或免費額度）');
       } finally {
         state.isSubmitting = false;
         validateDateRange();
