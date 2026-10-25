@@ -168,6 +168,9 @@ params:
       🗺️ 把複雜行程，變成你帶得走的旅遊藍圖  
       🍽️ 收藏隱藏版的氛圍感秘境與角落  
 
+
+      🌿 **想排一趟不趕路的自助旅行？** 試試我做的 [SlowMate｜AI 慢旅行程規劃助手](https://samya-traveler.github.io/slowmate/)：輸入目的地和日期，10 秒排好一天 2～3 個重點的留白行程，免下載、免註冊。
+
   socialIcons:                        # TODO: replace with real handles; delete unused rows
     - name: instagram
       url: "https://www.instagram.com/samya_traveler/"
