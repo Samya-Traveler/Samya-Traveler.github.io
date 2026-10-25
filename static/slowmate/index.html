@@ -3786,7 +3786,7 @@
     }
 
     /* ============================================================
-     * 管理員戰情室：GET /api/adminStats 用量監控、POST /api/adminStats 批次產碼
+     * 管理員戰情室：GET /api/dashboard-stats 用量監控、POST /api/dashboard-stats 批次產碼（Azure 保留 admin 開頭的路由）
      * 金鑰（ADMIN_SECRET）只存在此瀏覽器的 localStorage，由後端驗證
      * ============================================================ */
     // 近 7 日堆疊長條的三個系列（固定順序，色盲可辨）
@@ -3797,7 +3797,7 @@
     ];
 
     async function adminFetch(method, body) {
-      const res = await fetch(`${API_BASE_URL}/adminStats`, {
+      const res = await fetch(`${API_BASE_URL}/dashboard-stats`, {
         method,
         cache: 'no-store',
         headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminToken() },
