@@ -1329,33 +1329,66 @@
 
     .tier-list {
       list-style: none;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 8px;
       margin: -6px 0 14px;
     }
 
     .tier {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 2px;
-      padding: 10px 4px;
+      gap: 12px;
+      padding: 10px 12px;
       border-radius: var(--radius-md);
       background: #FFF6E9;
       border: 1px solid #F2D7A9;
-      text-align: center;
+    }
+
+    .tier.is-featured {
+      background: #FFEFD6;
+      border: 2px solid #E8B25C;
+      box-shadow: 0 4px 12px rgba(232, 178, 92, 0.18);
     }
 
     .tier-price {
+      flex: 0 0 auto;
+      min-width: 4.4em;
       font-weight: 700;
       color: #8A4A1C;
       font-size: 0.95rem;
     }
 
+    .tier-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 0;
+    }
+
     .tier-name {
-      font-size: 0.75rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .tier-desc {
+      font-size: 0.76rem;
       color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .tier-badge {
+      display: inline-block;
+      margin-left: 4px;
+      padding: 1px 7px;
+      border-radius: 99px;
+      background: var(--accent-coral);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      vertical-align: 1px;
+      white-space: nowrap;
     }
 
     .modal-footnote {
@@ -1838,12 +1871,22 @@
       <h3 class="modal-title" id="paywallTitle">☕ 感謝你喜歡 SlowMate - AI 慢旅行程規劃助手！</h3>
       <p class="modal-body">
         <span id="paywallUsedLine" hidden>免費體驗額度已使用完畢。<br><br></span>
-        本工具由獨立創作者維護，每一次 AI 深度規劃皆需消耗雲端運算資源。若這份留白散策對你有所啟發，歡迎前往隨喜贊助（請我喝杯咖啡支持伺服器維護）！
+        自己爬文查交通券、查餐廳預約規則，通常要花掉好幾個週末的晚上。如果 SlowMate 幫你省下了 10 小時的焦慮，歡迎請我喝杯咖啡，換取下一趟旅程的解鎖序號！<br><br>
+        本工具由獨立創作者維護，每一次 AI 深度規劃都需要消耗雲端運算資源，你的支持會直接用在伺服器上 🌿
       </p>
       <ul class="tier-list" aria-label="隨喜贊助方案">
-        <li class="tier"><span class="tier-price">NT$ 88</span><span class="tier-name">輕量解鎖</span></li>
-        <li class="tier"><span class="tier-price">NT$ 150</span><span class="tier-name">標準支持</span></li>
-        <li class="tier"><span class="tier-price">NT$ 300</span><span class="tier-name">深度熱情</span></li>
+        <li class="tier">
+          <span class="tier-price">NT$ 88</span>
+          <span class="tier-info"><span class="tier-name">☕ 街角美式咖啡</span><span class="tier-desc">解鎖 1 次深度慢旅規劃</span></span>
+        </li>
+        <li class="tier is-featured">
+          <span class="tier-price">NT$ 150</span>
+          <span class="tier-info"><span class="tier-name">🌿 京都手沖單品 <span class="tier-badge">⭐ 最多旅人選擇</span></span><span class="tier-desc">解鎖 1 次規劃 ＋ 支持伺服器多活一個月</span></span>
+        </li>
+        <li class="tier">
+          <span class="tier-price">NT$ 300</span>
+          <span class="tier-info"><span class="tier-name">✨ 極致慢旅鐵粉</span><span class="tier-desc">解鎖 1 次規劃 ＋ 讓創作者有動力開發更多私房路線</span></span>
+        </li>
       </ul>
       <p class="modal-body">
         三種金額權益相同：每次贊助都會換得 <strong>1 組專屬一次性解鎖序號</strong>，付款完成後 1~3 分鐘內自動寄送至您的信箱（信中附一鍵帶入連結）。

@@ -293,3 +293,40 @@ body {
 }
 .slowmate-cta p { margin: 0; }
 .slowmate-cta a { box-shadow: 0 1px 0 currentColor; }
+
+/* ---------- SlowMate CTA card shortcode: {{< slowmate-cta >}} ---------- */
+.slowmate-card {
+    position: relative;
+    margin: 28px 0;
+    padding: 18px 20px 16px;
+    border: 1px solid rgba(91, 123, 106, 0.35);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(91, 123, 106, 0.10) 0%, rgba(242, 204, 143, 0.12) 100%), var(--entry);
+    color: var(--content);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    overflow: hidden;
+}
+.slowmate-card p { margin: 0 0 8px; }
+.slowmate-card p:last-child { margin-bottom: 0; }
+.slowmate-card-title { font-size: 1.05rem; color: #435e4f; }
+.slowmate-card-leaf {
+    position: absolute;
+    top: -6px;
+    right: 10px;
+    font-size: 2.6rem;
+    opacity: 0.18;
+    transform: rotate(18deg);
+    pointer-events: none;
+}
+.slowmate-card-link a {
+    color: #435e4f;
+    font-weight: 600;
+    box-shadow: 0 1px 0 currentColor;
+}
+:root[data-theme="dark"] .slowmate-card {
+    border-color: rgba(143, 190, 163, 0.35);
+    background: linear-gradient(135deg, rgba(143, 190, 163, 0.12) 0%, rgba(242, 204, 143, 0.06) 100%), var(--entry);
+}
+:root[data-theme="dark"] .slowmate-card-title,
+:root[data-theme="dark"] .slowmate-card-link a { color: #a8d5ba; }
