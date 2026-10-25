@@ -214,7 +214,7 @@ params:
   # Search-engine ownership verification (optional)
   analytics:
     google:
-      SiteVerificationTag: ""         # TODO
+      SiteVerificationTag: "U9hyxtSGnQeLYW5V9RfUtXDLi3DlqGiukdxcaI4jb50"
     bing:
       SiteVerificationTag: ""
 
