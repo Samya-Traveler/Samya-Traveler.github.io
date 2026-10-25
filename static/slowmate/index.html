@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>SlowMate — AI 慢旅行程規劃助手</title>
-  <meta name="description" content="SlowMate 是免下載、免註冊的 AI 慢旅行程規劃助手。輸入目的地和日期，約 10 秒排好一天 2～3 個重點的留白行程，並整理交通周遊券、需提前預約項目與行前清單，第一次免費。" />
+  <meta name="description" content="SlowMate 是免下載、免註冊的 AI 慢旅行程規劃助手。輸入目的地和日期，不到 1 分鐘排好一天 2～3 個重點的留白行程，並整理交通周遊券、需提前預約項目與行前清單，第一次免費。" />
   <meta name="keywords" content="AI 行程規劃, AI 排行程, 慢旅行, 自由行行程, 日本自由行, 京都行程, 旅遊規劃工具, SlowMate" />
   <link rel="canonical" href="https://samya-traveler.github.io/slowmate/" />
   <meta name="theme-color" content="#FBF9F5" />
   <meta property="og:title" content="SlowMate — AI 慢旅行程規劃助手" />
-  <meta property="og:description" content="免下載、免註冊，10 秒排好一天 2～3 個重點的留白慢旅行程，附交通周遊券與預約提醒。" />
+  <meta property="og:description" content="免下載、免註冊，不到 1 分鐘排好一天 2～3 個重點的留白慢旅行程，附交通周遊券與預約提醒。" />
   <meta property="og:url" content="https://samya-traveler.github.io/slowmate/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="樂天小熊 Samya Traveler" />
@@ -19,7 +19,7 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="SlowMate — AI 慢旅行程規劃助手" />
-  <meta name="twitter:description" content="免下載、免註冊，10 秒排好一天 2～3 個重點的留白慢旅行程。" />
+  <meta name="twitter:description" content="免下載、免註冊，不到 1 分鐘排好一天 2～3 個重點的留白慢旅行程。" />
   <meta name="twitter:image" content="https://samya-traveler.github.io/slowmate/og.jpg" />
   <script type="application/ld+json">
   {
@@ -4038,7 +4038,7 @@
       const s = trip.trip_summary || {};
       const destination = s.destination || '慢旅';
       const tagDest = destination.replace(/[\s\p{P}\p{S}]+/gu, '');
-      return `剛用「SlowMate 慢旅伴」排好了我的【${destination}】不趕路散步行程 🌿✨\n${s.theme_title || ''}\n\n👉 10秒生成你的日系慢旅企劃：\n${SHARE_URL}\n#SlowMate #慢旅伴 #${tagDest}自由行 #慢旅`;
+      return `剛用「SlowMate 慢旅伴」排好了我的【${destination}】不趕路散步行程 🌿✨\n${s.theme_title || ''}\n\n👉 1 分鐘生成你的日系慢旅企劃：\n${SHARE_URL}\n#SlowMate #慢旅伴 #${tagDest}自由行 #慢旅`;
     }
 
     function shareFileName(trip, ratio) {
