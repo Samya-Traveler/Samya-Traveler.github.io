@@ -493,6 +493,28 @@
       font-weight: 500;
     }
 
+    /* 選填抵達 / 離開時間 */
+    .time-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* 手機窄螢幕：兩欄放不下完整的範例 placeholder，改為上下排列 */
+    @media (max-width: 480px) {
+      .time-grid { grid-template-columns: 1fr; }
+    }
+
+    .flight-adjust {
+      display: none;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--brand-sage-dark);
+    }
+
+    .flight-adjust.show { display: block; }
+
     /* 慢旅風格快捷標籤 */
     .vibe-chips {
       display: flex;
@@ -1992,6 +2014,24 @@
         </div>
 
         <div class="form-group">
+          <span class="form-label" id="travelTimeLabel">
+            抵達與離開時間
+            <span class="form-sub">選填，航班或車班時間</span>
+          </span>
+          <div class="date-grid time-grid" role="group" aria-labelledby="travelTimeLabel">
+            <div>
+              <label class="date-caption" for="arrivalTime">✈️ 抵達時間（選填）</label>
+              <input type="text" id="arrivalTime" class="form-input" placeholder="例：14:30 或「下午」" maxlength="20" autocomplete="off" />
+            </div>
+            <div>
+              <label class="date-caption" for="departureTime">✈️ 離境/離開時間（選填）</label>
+              <input type="text" id="departureTime" class="form-input" placeholder="例：18:00 或「晚上」" maxlength="20" autocomplete="off" />
+            </div>
+          </div>
+          <p class="time-hint">💡 填寫後，AI 秘書將自動為您避開首末日的時間錯置，精準安排動線！</p>
+        </div>
+
+        <div class="form-group">
           <label class="form-label" for="wishesInput">
             目前想去的景點或體驗
             <span class="form-sub">選填，AI 會幫你順路串連</span>
@@ -2087,10 +2127,12 @@
           <div class="flight-item">
             <span class="flight-tag">Outbound 去程建議</span>
             <p class="prep-desc" id="outboundHint"></p>
+            <p class="flight-adjust" id="arrivalAdjust"></p>
           </div>
           <div class="flight-item">
             <span class="flight-tag">Inbound 回程提醒</span>
             <p class="prep-desc" id="inboundHint"></p>
+            <p class="flight-adjust" id="departureAdjust"></p>
           </div>
         </div>
       </div>
@@ -2760,6 +2802,8 @@
     const startDateInput = $('startDateInput');
     const endDateInput = $('endDateInput');
     const wishesInput = $('wishesInput');
+    const arrivalTimeInput = $('arrivalTime');
+    const departureTimeInput = $('departureTime');
     const emailInput = $('emailInput');
     const redeemCodeInput = $('redeemCodeInput');
     const dateErrorMsg = $('dateErrorMsg');
@@ -2789,7 +2833,7 @@
       loadSavedUserState();
       const draftRestored = restoreFormDraft();
       const magicApplied = applyMagicLinkCode();
-      if (!magicApplied && draftRestored) showToast('📝 已為您恢復贊助前填寫的表單內容');
+      if (!magicApplied && draftRestored) showToast('📝 已為您恢復上次填寫的表單內容');
       validateDateRange();
       applyAdminParam();
       updateAdminHint();
@@ -2981,11 +3025,13 @@
         start_date: startDateInput.value,
         end_date: endDateInput.value,
         user_wishes: wishesInput.value.trim(),
+        arrival_time: arrivalTimeInput.value.trim(),
+        departure_time: departureTimeInput.value.trim(),
         email: emailInput.value.trim().toLowerCase(),
         vibes: selectedVibes(),
         saved_at: Date.now()
       };
-      if (!draft.destination && !draft.user_wishes && !draft.email) return; // 空表單不必暫存
+      if (!draft.destination && !draft.user_wishes && !draft.email && !draft.arrival_time && !draft.departure_time) return; // 空表單不必暫存
       store.set(STORAGE_DRAFT_KEY, JSON.stringify(draft));
     }
 
@@ -3001,6 +3047,8 @@
       let restored = false;
       if (draft.destination) { destinationInput.value = String(draft.destination).slice(0, 60); restored = true; }
       if (draft.user_wishes) { wishesInput.value = String(draft.user_wishes).slice(0, 500); restored = true; }
+      if (draft.arrival_time) { arrivalTimeInput.value = String(draft.arrival_time).slice(0, 20); restored = true; }
+      if (draft.departure_time) { departureTimeInput.value = String(draft.departure_time).slice(0, 20); restored = true; }
       if (Array.isArray(draft.vibes)) {
         draft.vibes.forEach((v) => { if (typeof v === 'string' && !wishesHasVibe(v)) appendVibe(v); });
         if (draft.vibes.length) restored = true;
@@ -3208,6 +3256,9 @@
 
       // 列印 / 另存 PDF
       $('printBtn').addEventListener('click', () => window.print());
+
+      // 抵達 / 離開時間：填寫後即暫存草稿，重新整理也不會遺失
+      [arrivalTimeInput, departureTimeInput].forEach((el) => el.addEventListener('change', saveFormDraft));
 
       // 前往 Portaly 前：自動暫存表單草稿，回來（或點 Magic Link）時免重填
       $('portalyLink').addEventListener('click', saveFormDraft);
@@ -3457,7 +3508,9 @@
         destination,
         start_date: startDateInput.value,
         end_date: endDateInput.value,
-        user_wishes: wishesInput.value.trim()
+        user_wishes: wishesInput.value.trim(),
+        arrival_time: arrivalTimeInput.value.trim(),
+        departure_time: departureTimeInput.value.trim()
       };
     }
 
@@ -4048,6 +4101,21 @@
       openModal('paywallModal', reason === 'manual' ? $('portalyLink') : $('modalRedeemInput'));
     }
 
+    /* ---------- 首末日調整提示（文字與後端 shared/trip.ts 相同） ---------- */
+    function arrivalNote(time) {
+      return `首日預計於 ${time} 抵達，已為您調整當日漫步節奏`;
+    }
+
+    function departureNote(time) {
+      return `末日預計於 ${time} 離開，已為您預留散步、採買與前往機場 / 車站的時間`;
+    }
+
+    function setFlightAdjust(id, text) {
+      const el = $(id);
+      el.textContent = text;
+      el.classList.toggle('show', !!text);
+    }
+
     /* ============================================================
      * 渲染完整行程結果頁
      * ============================================================ */
@@ -4075,6 +4143,8 @@
       // 航班卡片
       $('outboundHint').textContent = summary.flight_card?.outbound_hint || '建議提早抵達機場辦理登機。';
       $('inboundHint').textContent = summary.flight_card?.inbound_hint || '回程預留充裕時間通關。';
+      setFlightAdjust('arrivalAdjust', summary.arrival_time ? `🛬 ${arrivalNote(summary.arrival_time)}` : '');
+      setFlightAdjust('departureAdjust', summary.departure_time ? `🛫 ${departureNote(summary.departure_time)}` : '');
 
       // 交通 Pass
       const passes = data.pre_trip_prep?.transport_passes || [];
@@ -4926,7 +4996,9 @@
         s.vibe_description || '',
         '----------------------------------------',
         `✈️ 去程：${s.flight_card?.outbound_hint || ''}`,
+        ...(s.arrival_time ? [`🛬 ${arrivalNote(s.arrival_time)}`] : []),
         `✈️ 回程：${s.flight_card?.inbound_hint || ''}`,
+        ...(s.departure_time ? [`🛫 ${departureNote(s.departure_time)}`] : []),
         ''
       ];
 
