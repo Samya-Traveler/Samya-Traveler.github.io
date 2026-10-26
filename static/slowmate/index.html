@@ -4168,6 +4168,53 @@
       return `末日預計於 ${time} 離開，已為您預留散步、採買與前往機場 / 車站的時間`;
     }
 
+    /* ---------- 末日時間軸切斷（與後端 shared/trip.ts 相同規則；也修正舊版快取的行程） ---------- */
+    /** 「09:30」「下午3點」「8pm」「上午」「晚上」… → 早於 12:00 為 morning、12:00~17:00 為 afternoon、晚於 17:00 為 evening */
+    function departureBucket(raw) {
+      const text = String(raw || '')
+        .replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
+        .replace(/：/g, ':')
+        .toLowerCase()
+        .trim();
+      if (!text) return null;
+      const pm = /下午|午後|傍晚|晚上|晚間|夜|pm/.test(text);
+      const m = text.match(/(\d{1,2})\s*(?::|點|时|時|h)\s*(\d{1,2})?/) || text.match(/(\d{1,2})\s*(?:am|pm)/) || text.match(/^(\d{1,2})$/);
+      if (m) {
+        let hour = Number(m[1]);
+        const minute = m[2] !== undefined ? Number(m[2]) || 0 : /\d\s*[點時时]半/.test(text) ? 30 : 0;
+        if (pm && hour < 12) hour += 12;
+        if (/凌晨|am/.test(text) && hour === 12) hour = 0;
+        if (hour <= 24) {
+          const t = hour * 60 + minute;
+          return t < 720 ? 'morning' : t <= 1020 ? 'afternoon' : 'evening';
+        }
+      }
+      if (/午前|凌晨|清晨|一早|早上|早晨|上午|morning/.test(text)) return 'morning';
+      if (/中午|午後|下午|afternoon|noon/.test(text)) return 'afternoon';
+      if (/傍晚|晚上|晚間|夜|evening|night/.test(text)) return 'evening';
+      return null;
+    }
+
+    const SLOT_AFTER_DEPARTURE = {
+      morning: /中午|午後|下午|傍晚|黃昏|晚|夜/,
+      afternoon: /傍晚|黃昏|晚|夜/
+    };
+
+    /** 上午離境：末日只留 1~2 個上午時段；下午離境：最多上午、下午兩個時段（不得有傍晚） */
+    function applyDepartureCutoff(trip) {
+      const bucket = departureBucket(trip?.trip_summary?.departure_time);
+      const after = SLOT_AFTER_DEPARTURE[bucket];
+      const days = trip?.daily_itinerary || [];
+      if (!after || !days.length) return trip;
+      const last = days[days.length - 1];
+      const original = last.timeline || [];
+      let timeline = original.filter((t) => !after.test(t.time_slot || ''));
+      if (!timeline.length && original.length) timeline = [{ ...original[0], time_slot: bucket === 'morning' ? '上午' : '下午' }];
+      timeline = timeline.slice(0, 2);
+      if (timeline.length === original.length) return trip;
+      return { ...trip, daily_itinerary: [...days.slice(0, -1), { ...last, timeline }] };
+    }
+
     function setFlightAdjust(id, text) {
       const el = $(id);
       el.textContent = text;
@@ -4178,6 +4225,7 @@
      * 渲染完整行程結果頁
      * ============================================================ */
     function renderTripResult(data, { notice = '', sample = false } = {}) {
+      data = applyDepartureCutoff(data); // 分享圖、複製文字、寄信都沿用切斷後的行程
       state.trip = data;
       setView('result');
 
