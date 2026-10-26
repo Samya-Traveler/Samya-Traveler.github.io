@@ -2331,6 +2331,28 @@
           <div id="adminTopCodes" class="admin-table-wrap"></div>
         </section>
 
+        <section class="admin-section" aria-labelledby="adminUsersTitle">
+          <h4 id="adminUsersTitle">📩 匯出體驗用戶 Email 名單（供 11/7 寄發問卷）</h4>
+          <div class="admin-form">
+            <div class="admin-fields">
+              <label>開始日期（台灣時間）
+                <input type="date" class="form-input" id="exportFrom" />
+              </label>
+              <label>結束日期（含當天）
+                <input type="date" class="form-input" id="exportTo" />
+              </label>
+            </div>
+            <div class="admin-toolbar">
+              <button type="button" class="admin-mini-btn" id="exportPresetBtn">📅 首週 10/20 ~ 11/06</button>
+              <button type="button" class="admin-mini-btn" id="exportAllBtn">全部期間</button>
+              <span class="admin-date" id="exportCount" role="status" aria-live="polite"></span>
+            </div>
+            <button type="button" class="btn-primary" id="exportCopyBtn">📋 一鍵複製全部 Email（逗號分隔，可直接貼入 Gmail 密件副本 BCC）</button>
+            <button type="button" class="btn-secondary" id="exportCsvBtn" style="width:100%;margin-top:8px;">⬇️ 下載 CSV 名單（含 Email 與體驗時間）</button>
+            <p class="time-hint">名單為已完成首次免費體驗的使用者（依體驗時間）。Gmail 單封信最多約 500 位收件人，名單較多時請分批寄送。</p>
+          </div>
+        </section>
+
         <section class="admin-section" aria-labelledby="adminGenTitle">
           <h4 id="adminGenTitle">一鍵批次產碼</h4>
           <form class="admin-form" id="adminGenForm" novalidate>
@@ -2799,7 +2821,8 @@
       otpTimer: null,
       pools: null,           // 今日雙水池名額（GET /api/plan）
       adminEntry: false,     // ?admin=1 顯示戰情室入口
-      generatedCodes: []     // 戰情室剛產生的序號
+      generatedCodes: [],    // 戰情室剛產生的序號
+      adminUsers: []         // 戰情室：已完成首次免費體驗的使用者（匯出問卷名單）
     };
 
     /* ============================================================
@@ -3351,6 +3374,14 @@
       document.querySelectorAll('input[name="genMode"]').forEach((r) => r.addEventListener('change', syncGenMode));
       $('adminGenForm').addEventListener('submit', onAdminGenerate);
       $('genCopyAllBtn').addEventListener('click', () => copyGenerated(state.generatedCodes || []));
+
+      // 戰情室：體驗用戶名單匯出
+      $('exportFrom').addEventListener('change', renderExportCount);
+      $('exportTo').addEventListener('change', renderExportCount);
+      $('exportPresetBtn').addEventListener('click', () => setExportRange(SURVEY_RANGE.from, SURVEY_RANGE.to));
+      $('exportAllBtn').addEventListener('click', () => setExportRange('', ''));
+      $('exportCopyBtn').addEventListener('click', copyExportEmails);
+      $('exportCsvBtn').addEventListener('click', downloadExportCsv);
       $('genResultList').addEventListener('click', (e) => {
         const btn = e.target.closest('[data-gen-index]');
         if (btn) copyGenerated([state.generatedCodes[Number(btn.dataset.genIndex)]]);
@@ -3760,7 +3791,10 @@
             notices.push('🎁 貼心提醒：本次已優先使用您的首次免費額度，您的序號【完好未扣次數】，已保留至下次使用！');
           }
           const remainingUses = result.remainingUses ?? result.code_remaining_uses;
-          if (result.entitlement === 'redeem_code' && remainingUses !== undefined) {
+          if (result.entitlement === 'redeem_code' && result.codeKind === 'public') {
+            // 活動公用碼：不顯示公用池剩餘次數
+            notices.push('🎉 已成功使用活動專屬 VIP 序號解鎖本次慢旅規劃！');
+          } else if (result.entitlement === 'redeem_code' && remainingUses !== undefined) {
             notices.push(`🔑 序號核銷成功！本組序號還剩餘 ${remainingUses} 次規劃額度。`);
           }
           if (result.entitlement === 'redeem_code' && result.free_quota_preserved) {
@@ -4007,7 +4041,81 @@
       return String(key || '').slice(5).replace('-', '/');
     }
 
+    /* ---------- 戰情室：體驗用戶 Email 名單匯出（11/7 寄發問卷） ---------- */
+    const SURVEY_RANGE = { from: '2026-10-20', to: '2026-11-06' };
+
+    /** ISO 時間 → 台灣日期 YYYY-MM-DD（與後端每日名額同一個時區） */
+    function taipeiDate(iso) {
+      const t = Date.parse(iso || '');
+      return Number.isFinite(t) ? new Date(t + 8 * 3600 * 1000).toISOString().slice(0, 10) : '';
+    }
+
+    function taipeiDateTime(iso) {
+      const t = Date.parse(iso || '');
+      return Number.isFinite(t) ? new Date(t + 8 * 3600 * 1000).toISOString().slice(0, 16).replace('T', ' ') : '';
+    }
+
+    function exportedUsers() {
+      const from = $('exportFrom').value;
+      const to = $('exportTo').value;
+      return (state.adminUsers || []).filter((u) => {
+        if (!from && !to) return true;
+        const d = taipeiDate(u.used_at);
+        return !!d && (!from || d >= from) && (!to || d <= to);
+      });
+    }
+
+    function setExportRange(from, to) {
+      $('exportFrom').value = from;
+      $('exportTo').value = to;
+      renderExportCount();
+    }
+
+    function renderExportCount() {
+      const n = exportedUsers().length;
+      const from = $('exportFrom').value;
+      const to = $('exportTo').value;
+      const range = from || to ? `${from || '最早'} ~ ${to || '今天'}` : '全部期間';
+      $('exportCount').textContent = `👥 ${range}：共 ${n} 位`;
+      $('exportCopyBtn').disabled = !n;
+      $('exportCsvBtn').disabled = !n;
+    }
+
+    async function copyExportEmails() {
+      const list = exportedUsers().map((u) => u.email);
+      if (!list.length) return;
+      const ok = await copyTextQuietly(list.join(', '));
+      showToast(ok ? `📋 已複製 ${list.length} 個 Email，可直接貼到 Gmail 密件副本（BCC）` : '複製失敗，請改用下載 CSV');
+    }
+
+    /** CSV 欄位：加引號跳脫，並擋掉以 = + - @ 開頭的公式注入（目的地是使用者輸入的文字） */
+    function csvCell(value) {
+      let v = String(value ?? '');
+      if (/^[=+\-@]/.test(v)) v = `'${v}`;
+      return `"${v.replace(/"/g, '""')}"`;
+    }
+
+    function downloadExportCsv() {
+      const users = exportedUsers();
+      if (!users.length) return;
+      const rows = [['email', 'used_at_taipei', 'destination'], ...users.map((u) => [u.email, taipeiDateTime(u.used_at), u.destination || ''])];
+      const csv = '\uFEFF' + rows.map((r) => r.map(csvCell).join(',')).join('\r\n'); // BOM：Excel 直接開啟中文不亂碼
+      const from = $('exportFrom').value || 'all';
+      const to = $('exportTo').value || taipeiDate(new Date().toISOString());
+      const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `slowmate-users-${from}_${to}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      showToast(`⬇️ 已下載 ${users.length} 位使用者的 CSV 名單`);
+    }
+
     function renderAdminStats(d) {
+      state.adminUsers = Array.isArray(d.users) ? d.users : [];
+      renderExportCount();
       const t = d.today || {};
       $('adminDate').textContent = `📅 ${d.date_key}（台灣時間，每日 00:00 重置）`;
 
