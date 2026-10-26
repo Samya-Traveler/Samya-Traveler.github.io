@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>SlowMate — AI 慢旅行程規劃助手</title>
+  <title>SlowMate · AI 慢旅行程規劃助手</title>
   <meta name="description" content="SlowMate 是免下載、免註冊的 AI 慢旅行程規劃助手。輸入目的地和日期，不到 1 分鐘排好一天 2～3 個重點的留白行程，並整理交通周遊券、需提前預約項目與行前清單，第一次免費。" />
   <meta name="keywords" content="AI 行程規劃, AI 排行程, 慢旅行, 自由行行程, 日本自由行, 京都行程, 旅遊規劃工具, SlowMate" />
   <link rel="canonical" href="https://samya-traveler.github.io/slowmate/" />
   <meta name="theme-color" content="#FBF9F5" />
-  <meta property="og:title" content="SlowMate — AI 慢旅行程規劃助手" />
+  <meta property="og:title" content="SlowMate · AI 慢旅行程規劃助手" />
   <meta property="og:description" content="免下載、免註冊，不到 1 分鐘排好一天 2～3 個重點的留白慢旅行程，附交通周遊券與預約提醒。" />
   <meta property="og:url" content="https://samya-traveler.github.io/slowmate/" />
   <meta property="og:type" content="website" />
@@ -18,7 +18,7 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SlowMate — AI 慢旅行程規劃助手" />
+  <meta name="twitter:title" content="SlowMate · AI 慢旅行程規劃助手" />
   <meta name="twitter:description" content="免下載、免註冊，不到 1 分鐘排好一天 2～3 個重點的留白慢旅行程。" />
   <meta name="twitter:image" content="https://samya-traveler.github.io/slowmate/og.jpg" />
   <script type="application/ld+json">
@@ -27,7 +27,7 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "SlowMate — AI 慢旅行程規劃助手",
+        "name": "SlowMate · AI 慢旅行程規劃助手",
         "alternateName": "SlowMate",
         "url": "https://samya-traveler.github.io/slowmate/",
         "description": "免下載、免註冊的 AI 慢旅行程規劃助手。輸入目的地和日期，排好一天 2～3 個重點的留白行程，並整理交通周遊券、需提前預約項目與行前清單。",
@@ -35,7 +35,7 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "zh-TW",
         "image": "https://samya-traveler.github.io/slowmate/og.jpg",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD", "description": "第一次免費，之後可隨喜贊助取得一次性序號" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD", "description": "第一次免費，之後可隨喜贊助取得解鎖序號（1 次 / 5 次 / 10 次額度）" },
         "author": { "@type": "Person", "name": "Samya", "url": "https://samya-traveler.github.io/" }
       },
       {
@@ -44,7 +44,7 @@
           { "@type": "Question", "name": "SlowMate 要下載 App 或註冊帳號嗎？",
             "acceptedAnswer": { "@type": "Answer", "text": "不用。用瀏覽器打開網頁就能使用，第一次使用只需要驗證 Email。" } },
           { "@type": "Question", "name": "SlowMate 要付費嗎？",
-            "acceptedAnswer": { "@type": "Answer", "text": "第一次免費規劃一次。之後可到 Portaly 贊助 NT$ 88、150 或 300 取得一組一次性序號，不是訂閱制。" } },
+            "acceptedAnswer": { "@type": "Answer", "text": "第一次免費規劃一次。之後可到 Portaly 贊助 NT$ 88（1 次）、300（5 次）或 488（10 次）取得解鎖序號，多次方案可分給旅伴使用，不是訂閱制。" } },
           { "@type": "Question", "name": "SlowMate 和直接問 ChatGPT 排行程有什麼不同？",
             "acceptedAnswer": { "@type": "Answer", "text": "SlowMate 只需要填表單，不用自己寫提示詞，會固定整理出一天 2～3 個重點的時間軸、交通周遊券、需提前預約項目和行前清單，並可一鍵寄信或印成 PDF。" } },
           { "@type": "Question", "name": "SlowMate 最多可以規劃幾天？",
@@ -1684,6 +1684,14 @@
       white-space: nowrap;
     }
 
+    .tier-orig {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
     .modal-footnote {
       font-size: 0.78rem;
       color: var(--text-muted);
@@ -1943,7 +1951,7 @@
   <!-- 頂部固定選單 -->
   <header class="navbar">
     <div class="navbar-inner">
-      <a href="./" class="brand-wrap" aria-label="SlowMate - AI 慢旅行程規劃助手首頁">
+      <a href="./" class="brand-wrap" aria-label="SlowMate · AI 慢旅行程規劃助手首頁">
         <span class="brand-title">SlowMate</span>
         <span class="brand-subtitle">AI 慢旅行程規劃助手</span>
       </a>
@@ -2050,7 +2058,7 @@
         <div class="form-group">
           <label class="form-label" for="emailInput">
             電子信箱 Email
-            <span class="form-sub">首次使用驗證信箱即可免費規劃一次</span>
+            <span class="form-sub" id="emailSubHint">首次使用驗證信箱即可免費規劃一次</span>
           </label>
           <input type="email" id="emailInput" class="form-input" placeholder="you@example.com" autocomplete="email" inputmode="email" required />
           <p class="error-msg" id="emailErrorMsg">請輸入有效的電子信箱。</p>
@@ -2074,7 +2082,7 @@
               <span class="form-sub">成功生成行程才會扣次數；尚有首次免費額度時會優先使用免費名額</span>
             </label>
             <div class="code-verify-row">
-              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="SLOW-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="SM5-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
               <button type="button" class="code-verify-btn" id="checkCodeBtn">驗證</button>
             </div>
             <p class="code-status" id="codeStatus" role="status" aria-live="polite"></p>
@@ -2167,14 +2175,14 @@
       <button type="button" class="btn-primary btn-dark" id="resetPlanBtn">🔄 重新規劃另一趟旅程</button>
       <button type="button" class="btn-secondary print-btn" id="printBtn">🖨️ 列印 / 另存 PDF 手冊</button>
 
-      <aside class="slow-note" aria-label="SlowMate - AI 慢旅行程規劃助手的小叮嚀">
-        <strong>🌿 SlowMate - AI 慢旅行程規劃助手的小叮嚀：</strong>
+      <aside class="slow-note" aria-label="SlowMate · AI 慢旅行程規劃助手的小叮嚀">
+        <strong>🌿 SlowMate · AI 慢旅行程規劃助手的小叮嚀：</strong>
         <p>這份提案是為你梳理的旅行靈感。最迷人的風景往往藏在不期而遇的街角——實際出發時，請隨當天的天氣、體力與心情自由增減步調；造訪獨立小店或寺院前，也別忘了點擊「📍 導航」再次確認當日的營業時間與最新預約資訊喔！</p>
       </aside>
 
       <!-- 列印 / 另存 PDF 手冊的品牌簽名（畫面上隱藏） -->
       <div class="brand-sign" aria-hidden="true">
-        ✨ 本行程由【SlowMate AI 慢旅行程規劃助手】生成 —— 一天只排 2-3 個重點，把時間留給路上的風景<br>
+        ✨ 本行程由【SlowMate · AI 慢旅行程規劃助手】生成 —— 一天只排 2-3 個重點，把時間留給路上的風景<br>
         👉 <a href="https://samya-traveler.github.io/slowmate/">https://samya-traveler.github.io/slowmate/</a>
       </div>
     </section>
@@ -2184,35 +2192,34 @@
   <div class="modal-backdrop" id="paywallModal" role="dialog" aria-modal="true" aria-labelledby="paywallTitle">
     <div class="modal-card">
       <button type="button" class="modal-close" data-close-modal="paywallModal" aria-label="關閉">&times;</button>
-      <h3 class="modal-title" id="paywallTitle">☕ 感謝你喜歡 SlowMate - AI 慢旅行程規劃助手！</h3>
+      <h3 class="modal-title" id="paywallTitle">☕ 支持獨立開發，解鎖更多慢旅靈感（還能分給旅伴！）</h3>
       <p class="modal-body">
         <span id="paywallUsedLine" hidden>免費體驗額度已使用完畢。<br><br></span>
-        自己爬文查交通券、查餐廳預約規則，通常要花掉好幾個週末的晚上。如果 SlowMate 幫你省下了 10 小時的焦慮，歡迎請我喝杯咖啡，換取下一趟旅程的解鎖序號！<br><br>
-        本工具由獨立創作者維護，每一次 AI 深度規劃都需要消耗雲端運算資源，你的支持會直接用在伺服器上 🌿
+        <span id="paywallIntro">排一趟滿意的自由行，通常需要換 2～3 種路線版本，或跟旅伴各自排看看再討論。選擇多人方案，你自己的信箱可重複使用所有次數，還能把序號丟進 LINE 群組分給旅伴（每位旅伴信箱限免費體驗 1 次）！</span>
       </p>
-      <ul class="tier-list" aria-label="隨喜贊助方案">
+      <ul class="tier-list" id="tierList" aria-label="隨喜贊助方案">
         <li class="tier">
           <span class="tier-price">NT$ 88</span>
-          <span class="tier-info"><span class="tier-name">☕ 街角美式咖啡</span><span class="tier-desc">解鎖 1 次深度慢旅規劃</span></span>
+          <span class="tier-info"><span class="tier-name">☕ 單人微調體驗（1 次額度）</span><span class="tier-desc">適合已經決定好路線、只想微調最後一次的你。</span></span>
         </li>
         <li class="tier is-featured">
-          <span class="tier-price">NT$ 150</span>
-          <span class="tier-info"><span class="tier-name">🌿 京都手沖單品 <span class="tier-badge">⭐ 最多旅人選擇</span></span><span class="tier-desc">解鎖 1 次規劃 ＋ 支持伺服器多活一個月</span></span>
+          <span class="tier-price">NT$ 300</span>
+          <span class="tier-info"><span class="tier-name">🌿 旅伴同樂包（5 次額度） <span class="tier-badge">⭐ 最多人選</span></span><span class="tier-desc">平均 $60/次（現省 $140）· 自己試排 3 種不同路線版本，剩下 2 次丟進群組給旅伴一人玩一次剛剛好！</span></span>
         </li>
         <li class="tier">
-          <span class="tier-price">NT$ 300</span>
-          <span class="tier-info"><span class="tier-name">✨ 極致慢旅鐵粉</span><span class="tier-desc">解鎖 1 次規劃 ＋ 讓創作者有動力開發更多私房路線</span></span>
+          <span class="tier-price">NT$ 488</span>
+          <span class="tier-info"><span class="tier-name">✨ 慢旅玩家全票（10 次額度） <span class="tier-badge">🔥 最划算</span></span><span class="tier-desc">平均 $48.8/次（逼近半價）· 適合 4 人以上親友團出遊，或今年準備出國好幾趟的深度旅人（無使用期限）。</span></span>
         </li>
       </ul>
       <p class="modal-body">
-        三種金額權益相同：每次贊助都會換得 <strong>1 組專屬一次性解鎖序號</strong>，付款完成後 1~3 分鐘內自動寄送至您的信箱（信中附一鍵帶入連結）。
+        付款完成後 1~3 分鐘內，序號會自動寄送至您的信箱（信中附一鍵帶入連結，序號無使用期限）。
       </p>
       <a href="https://portaly.cc/samya_traveler" target="_blank" rel="noopener noreferrer" class="btn-portaly" id="portalyLink">
         ❤️ 前往 Portaly 隨喜贊助支持
       </a>
       <div class="form-group" style="margin-bottom: 12px;">
         <label class="form-label" for="modalRedeemInput">已完成贊助？請輸入信件中的解鎖序號</label>
-        <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="SLOW-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+        <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="SM5-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
         <p class="error-msg" id="modalCodeError" role="alert">序號無效或已被使用，請確認信件中的序號。</p>
       </div>
       <button type="button" class="btn-primary" id="modalVerifyBtn">驗證序號並立即生成</button>
@@ -2284,11 +2291,11 @@
   </div>
 
   <!-- 管理員戰情室（?admin=1 才顯示入口；金鑰由後端 ADMIN_SECRET 驗證） -->
-  <button type="button" class="admin-entry-btn" id="adminEntryBtn">🔐 慢旅伴戰情室</button>
+  <button type="button" class="admin-entry-btn" id="adminEntryBtn">🔐 SlowMate 戰情室</button>
   <div class="modal-backdrop" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
     <div class="modal-card admin-modal-card">
       <button type="button" class="modal-close" data-close-modal="adminModal" aria-label="關閉">&times;</button>
-      <h3 class="modal-title" id="adminTitle">🔐 慢旅伴戰情室</h3>
+      <h3 class="modal-title" id="adminTitle">🔐 SlowMate 戰情室</h3>
 
       <div id="adminLogin">
         <p class="modal-body">請輸入後端的 <strong>ADMIN_SECRET</strong> 解鎖。金鑰只會存在這個瀏覽器，不會寫進網址或頁面。</p>
@@ -2328,32 +2335,32 @@
           <h4 id="adminGenTitle">一鍵批次產碼</h4>
           <form class="admin-form" id="adminGenForm" novalidate>
             <div class="admin-mode" role="radiogroup" aria-label="產生模式">
-              <label><input type="radio" name="genMode" value="random" checked> 隨機批次產生</label>
+              <label><input type="radio" name="genMode" value="batch" checked> 隨機批次產生</label>
               <label><input type="radio" name="genMode" value="custom"> 指定自訂代碼</label>
             </div>
             <div class="admin-fields">
-              <label data-gen-mode="random">組數（1~100）
+              <label data-gen-mode="batch">組數（1~100）
                 <input type="number" class="form-input" id="genCount" min="1" max="100" value="20" />
               </label>
-              <label data-gen-mode="random">前綴
-                <input type="text" class="form-input code-input" id="genPrefix" value="SLOW" maxlength="10" autocapitalize="characters" spellcheck="false" />
+              <label data-gen-mode="batch">前綴（例：GIFT10-、EARLY1-）
+                <input type="text" class="form-input code-input" id="genPrefix" value="GIFT10-" maxlength="11" autocapitalize="characters" spellcheck="false" />
               </label>
-              <label data-gen-mode="custom" hidden>自訂代碼
-                <input type="text" class="form-input code-input" id="genCode" placeholder="NANA-SLOW" maxlength="32" autocapitalize="characters" spellcheck="false" />
+              <label data-gen-mode="custom" hidden>自訂公用碼（已存在則更新次數與規則）
+                <input type="text" class="form-input code-input" id="genCode" placeholder="NOV-VIP" maxlength="32" autocapitalize="characters" spellcheck="false" />
               </label>
               <label>每組可用次數
                 <input type="number" class="form-input" id="genMaxUses" min="1" max="500" value="1" list="genMaxUsesPresets" />
               </label>
               <label>活動標籤 campaign_tag
-                <input type="text" class="form-input code-input" id="genCampaign" placeholder="REELS_GIVEAWAY" maxlength="32" list="genCampaignPresets" autocapitalize="characters" spellcheck="false" />
+                <input type="text" class="form-input code-input" id="genCampaign" placeholder="REELS_BIRTH" maxlength="32" list="genCampaignPresets" autocapitalize="characters" spellcheck="false" />
               </label>
               <label class="admin-check">
                 <input type="checkbox" id="genAllowSame" />
-                同一信箱可重複使用（贊助福袋 / 閨蜜包）；不勾選則每個信箱限用 1 次（KOC 粉絲碼 / 聖誕公用碼）
+                不限信箱，可重複使用到次數用完（抽獎碼、早鳥加贈碼）；不勾選則每個信箱限用 1 次（活動 VIP 公用碼）
               </label>
             </div>
             <datalist id="genMaxUsesPresets"><option value="1"></option><option value="3"></option><option value="10"></option><option value="50"></option><option value="80"></option></datalist>
-            <datalist id="genCampaignPresets"><option value="REELS_GIVEAWAY"></option><option value="KOC_NANA"></option><option value="XMAS"></option><option value="PORTALY"></option></datalist>
+            <datalist id="genCampaignPresets"><option value="REELS_BIRTH"></option><option value="THREADS_EARLY100"></option><option value="NOV_GIFT"></option><option value="REELS_GIVEAWAY"></option></datalist>
             <p class="error-msg" id="genError"></p>
             <button type="submit" class="btn-primary" id="genSubmitBtn">✨ 產生序號</button>
           </form>
@@ -2388,7 +2395,7 @@
   <div class="toast" id="toastMsg" role="status" aria-live="polite"></div>
 
   <footer>
-    Curated Slow Travel by <a href="../">@samya_traveler</a> · SlowMate - AI 慢旅行程規劃助手 · <a href="../posts/2026/10/slowmate-ai-slow-travel-planner/">使用教學與常見問題</a>
+    Curated Slow Travel by <a href="../">@samya_traveler</a> · SlowMate · AI 慢旅行程規劃助手 · <a href="../posts/2026/10/slowmate-ai-slow-travel-planner/">使用教學與常見問題</a>
   </footer>
 
   <script>
@@ -2400,6 +2407,24 @@
      * ============================================================
      */
     const API_BASE_URL = 'https://slowmate-api.azurewebsites.net/api';
+    /**
+     * 🎄 聖誕限時囤票祭開關：true 時贊助彈窗改為 199 / 300 / 488 加量方案。
+     * 後端 App Setting PROMO_MODE 也要同步設為 XMAS（發碼的次數與前綴以後端為準）。
+     */
+    const IS_XMAS_PROMO = false;
+
+    const PROMO_COPY = IS_XMAS_PROMO
+      ? {
+        title: '🎄 聖誕限時 2 週「把明年的旅行買起來」囤票祭！',
+        intro: '明年春節、賞櫻、賞楓打算去哪放空？聖誕限時「加量不加價」，所有序號永久有效無期限，先把明年的慢旅額度囤起來！',
+        tiers: [
+          { price: 199, name: '🎄 聖誕雙人福袋（3 次額度）', orig: '原價 $264', desc: '不限本人或旅伴皆可用完 3 次！明年春節或連假雙人出遊微調剛剛好。' },
+          { price: 300, name: '🦌 聖誕旅伴加碼包（5+2＝7 次額度）', badge: '⭐ 激推爆款', featured: true, desc: '原價 $616，限時免費多送 2 次（平均 $42/次）！把明年春節、賞櫻、賞楓的旅行靈感一次囤起來，還能分給旅伴體驗！' },
+          { price: 488, name: '🎅 2027 全年慢旅年票（10+4＝14 次額度）', badge: '🔥 下殺 39 折', desc: '原價 $1,232，限時狂送 4 次（平均 $34/次）！無使用期限，一整年國內外慢旅＋分給整個親友團都用不完！' }
+        ]
+      }
+      : null; // 常態方案直接寫在 #paywallModal 的 HTML 中
+
     const DAILY_LIMIT = 50;       // 每日免費席
     const VIP_POOL_LIMIT = 30;    // 每日序號專屬保留席
     const MAX_DAYS = 14;
@@ -2415,9 +2440,9 @@
     const STORAGE_DRAFT_KEY = 'slowmate_form_draft';
 
     // 行程頁尾、純文字行程、HTML 行程信統一使用的小叮嚀
-    const SLOW_NOTE_TITLE = '🌿 SlowMate - AI 慢旅行程規劃助手的小叮嚀：';
+    const SLOW_NOTE_TITLE = '🌿 SlowMate · AI 慢旅行程規劃助手的小叮嚀：';
     // 複製純文字行程最上方與最下方的品牌簽名（列印手冊底部的 .brand-sign 使用同一段文案）
-    const BRAND_SIGNATURE = '✨ 本行程由【SlowMate AI 慢旅行程規劃助手】生成 —— 一天只排 2-3 個重點，把時間留給路上的風景 👉 https://samya-traveler.github.io/slowmate/';
+    const BRAND_SIGNATURE = '✨ 本行程由【SlowMate · AI 慢旅行程規劃助手】生成 —— 一天只排 2-3 個重點，把時間留給路上的風景 👉 https://samya-traveler.github.io/slowmate/';
     const SLOW_NOTE_BODY = '這份提案是為你梳理的旅行靈感。最迷人的風景往往藏在不期而遇的街角——實際出發時，請隨當天的天氣、體力與心情自由增減步調；造訪獨立小店或寺院前，也別忘了點擊「📍 導航」再次確認當日的營業時間與最新預約資訊喔！';
     const DRAFT_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -2829,6 +2854,7 @@
      * ============================================================ */
     document.addEventListener('DOMContentLoaded', () => {
       renderSvgTheme('default_train');
+      renderPromoCopy();
       initDefaultDates();
       loadSavedUserState();
       const draftRestored = restoreFormDraft();
@@ -2946,7 +2972,7 @@
     }
 
     /**
-     * ?admin=1 顯示「🔐 慢旅伴戰情室」入口（在面板內輸入金鑰）、?admin=off 關閉；
+     * ?admin=1 顯示「🔐 SlowMate 戰情室」入口（在面板內輸入金鑰）、?admin=off 關閉；
      * 舊版 ?admin=<金鑰> 仍可直接啟用。讀取後立即從網址移除，避免留在瀏覽紀錄或被分享出去
      */
     function applyAdminParam() {
@@ -3070,15 +3096,28 @@
       return restored;
     }
 
-    /* ---------- Magic Link：?code=SLOW-XXXX-YYYY 自動帶入序號 ---------- */
+    /* ---------- 贊助彈窗：聖誕囤票祭文案（IS_XMAS_PROMO） ---------- */
+    function renderPromoCopy() {
+      if (!PROMO_COPY) return;
+      $('paywallTitle').textContent = PROMO_COPY.title;
+      $('paywallIntro').textContent = PROMO_COPY.intro;
+      $('tierList').innerHTML = PROMO_COPY.tiers.map((t) => `<li class="tier${t.featured ? ' is-featured' : ''}">
+          <span class="tier-price">NT$ ${t.price}${t.orig ? `<span class="tier-orig">${escapeHtml(t.orig)}</span>` : ''}</span>
+          <span class="tier-info"><span class="tier-name">${escapeHtml(t.name)}${t.badge ? ` <span class="tier-badge">${escapeHtml(t.badge)}</span>` : ''}</span><span class="tier-desc">${escapeHtml(t.desc)}</span></span>
+        </li>`).join('');
+    }
+
+    /* ---------- Magic Link：?code=XXXX（&email=YYYY）自動帶入序號與信箱 ---------- */
     function applyMagicLinkCode() {
       let params;
       try { params = new URLSearchParams(window.location.search); } catch (_) { return false; }
       const raw = params.get('code');
       if (raw === null) return false;
+      const linkEmail = (params.get('email') || '').trim().toLowerCase();
 
       // 先清除網址參數，保持網址乾淨（重新整理也不會重複帶入）
       params.delete('code');
+      params.delete('email');
       const query = params.toString();
       try {
         history.replaceState(history.state, '', window.location.pathname + (query ? `?${query}` : '') + window.location.hash);
@@ -3088,10 +3127,13 @@
       if (!code) return false;
 
       redeemCodeInput.value = code;
-      $('codeCollapseBox').classList.add('show');
-      $('toggleCodeBtn').setAttribute('aria-expanded', 'true');
-      showToast('✨ 已自動帶入您的贊助解鎖序號！');
+      if (isValidEmail(linkEmail)) emailInput.value = linkEmail;
+      setCodeBoxOpen(true);
+      showToast(isValidEmail(linkEmail) ? '✨ 已自動帶入您的序號與 Email！' : '✨ 已自動帶入您的贊助解鎖序號！');
       checkRedeemCode(); // 背景唯讀查詢序號狀態，於輸入框下方顯示「✅ 序號有效」或錯誤原因
+      // 引導填下一個欄位：缺目的地先填目的地，否則補 Email
+      const next = !destinationInput.value.trim() ? destinationInput : !isValidEmail(emailInput.value.trim()) ? emailInput : null;
+      if (next) setTimeout(() => next.focus({ preventScroll: true }), 0);
       return true;
     }
 
@@ -3203,9 +3245,18 @@
       openModal('limitModal', kind === 'free' ? $('limitCodeBtn') : $('limitCloseBtn'));
     }
 
+    const EMAIL_HINT_DEFAULT = '首次使用驗證信箱即可免費規劃一次';
+    const EMAIL_HINT_CODE = '輸入您的 Email（買家本人可無限次使用，旅伴分享或活動 VIP 碼每人限用 1 次，免收驗證碼）';
+
+    /** 展開 / 收合序號區：展開時 Email 欄提示改為序號規則（使用序號免 OTP，但仍需 Email 判斷買家或旅伴） */
+    function setCodeBoxOpen(open) {
+      $('codeCollapseBox').classList.toggle('show', open);
+      $('toggleCodeBtn').setAttribute('aria-expanded', String(open));
+      $('emailSubHint').textContent = open ? EMAIL_HINT_CODE : EMAIL_HINT_DEFAULT;
+    }
+
     function openCodeBox() {
-      $('codeCollapseBox').classList.add('show');
-      $('toggleCodeBtn').setAttribute('aria-expanded', 'true');
+      setCodeBoxOpen(true);
       redeemCodeInput.focus();
     }
 
@@ -3307,9 +3358,8 @@
 
       // 展開序號欄位
       $('toggleCodeBtn').addEventListener('click', () => {
-        const box = $('codeCollapseBox');
-        const open = box.classList.toggle('show');
-        $('toggleCodeBtn').setAttribute('aria-expanded', String(open));
+        const open = !$('codeCollapseBox').classList.contains('show');
+        setCodeBoxOpen(open);
         if (open) redeemCodeInput.focus();
       });
 
@@ -3487,8 +3537,7 @@
       }
       if (code && !CODE_RE.test(code)) {
         redeemCodeInput.classList.add('is-invalid');
-        $('codeCollapseBox').classList.add('show');
-        $('toggleCodeBtn').setAttribute('aria-expanded', 'true');
+        setCodeBoxOpen(true);
         showToast(CODE_FORMAT_MSG);
         firstInvalid = firstInvalid || redeemCodeInput;
       }
@@ -3505,6 +3554,7 @@
       return {
         email,
         redeem_code: code,
+        redeemCode: code,
         destination,
         start_date: startDateInput.value,
         end_date: endDateInput.value,
@@ -3709,10 +3759,9 @@
           if (result.code_preserved) {
             notices.push('🎁 貼心提醒：本次已優先使用您的首次免費額度，您的序號【完好未扣次數】，已保留至下次使用！');
           }
-          if (result.entitlement === 'redeem_code' && typeof result.code_remaining_uses === 'number') {
-            notices.push(result.code_remaining_uses > 0
-              ? `✨ 序號核銷成功！此序號尚餘 ${result.code_remaining_uses} 次可用額度`
-              : '✨ 序號核銷成功！此序號的可用額度已全部用完');
+          const remainingUses = result.remainingUses ?? result.code_remaining_uses;
+          if (result.entitlement === 'redeem_code' && remainingUses !== undefined) {
+            notices.push(`🔑 序號核銷成功！本組序號還剩餘 ${remainingUses} 次規劃額度。`);
           }
           if (result.entitlement === 'redeem_code' && result.free_quota_preserved) {
             notices.push('🎁 您的首次免費額度仍完整保留，下次驗證 Email 即可免費規劃一次！');
@@ -3745,6 +3794,13 @@
           openOtpModal(payload.email, { retryAfter: 0 });
           const needResend = result.error !== 'invalid_otp' || result.attempts_left === 0;
           showOtpError(result.message || '驗證碼不正確，請再試一次。', { requireResend: needResend });
+          return;
+        }
+
+        // 402 序號不存在 / 次數用完、403 旅伴或活動碼此信箱已用過（皆未扣額度）
+        if (result.error === 'code_unavailable' || result.error === 'code_email_used') {
+          $('modalRedeemInput').value = '';
+          openPaywall('invalid_code', result.message);
           return;
         }
 
@@ -3826,7 +3882,8 @@
         });
         const result = await readJsonSafe(res);
         if (res.ok && result.status === 'valid') {
-          setCodeStatus('valid', '✅ ' + (result.message || '序號有效！填好表單後即可直接開始規劃。'));
+          const msg = result.message || '序號有效！填好表單後即可直接開始規劃。';
+          setCodeStatus('valid', msg.startsWith('✅') ? msg : `✅ ${msg}`);
         } else {
           setCodeStatus('invalid', result.message || '序號無效或已被使用，請確認信件中的序號。');
         }
@@ -3925,7 +3982,7 @@
         showAdminView();
         return true;
       } catch (_) {
-        showToast('無法連接慢旅伴伺服器，請確認網路後再試');
+        showToast('無法連接SlowMate 伺服器，請確認網路後再試');
         return false;
       } finally {
         btn.disabled = false;
@@ -4021,9 +4078,9 @@
         campaign_tag: $('genCampaign').value.trim().toUpperCase()
       };
       if (mode === 'custom') {
-        body.code = $('genCode').value.trim().toUpperCase();
-        if (!CODE_RE.test(body.code)) {
-          err.textContent = '自訂代碼需為 4~32 碼英數字與連字號（例如 NANA-SLOW、XMAS-2026）。';
+        body.custom_code = $('genCode').value.trim().toUpperCase();
+        if (!CODE_RE.test(body.custom_code)) {
+          err.textContent = '自訂代碼需為 4~32 碼英數字與連字號（例如 NOV-VIP、XMAS-2026）。';
           err.classList.add('show');
           $('genCode').focus();
           return;
@@ -4050,7 +4107,7 @@
         renderGenerated(data.codes || []);
         loadAdminStats();
       } catch (_) {
-        err.textContent = '無法連接慢旅伴伺服器，請確認網路後再試。';
+        err.textContent = '無法連接SlowMate 伺服器，請確認網路後再試。';
         err.classList.add('show');
       } finally {
         btn.disabled = false;
@@ -4063,7 +4120,8 @@
       $('genResult').hidden = !codes.length;
       if (!codes.length) return;
       const c0 = codes[0];
-      $('genResultTitle').textContent = `已產生 ${codes.length} 組【${c0.campaign_tag}】序號・每組 ${c0.max_uses} 次${c0.allow_same_email ? '' : '・每信箱限 1 次'}`;
+      const verb = c0.updated ? `已更新公用碼（剩餘 ${c0.remaining_uses} 次）` : `已產生 ${codes.length} 組`;
+      $('genResultTitle').textContent = `${verb}【${c0.campaign_tag}】序號・每組 ${c0.max_uses} 次${c0.allow_same_email ? '' : '・每信箱限 1 次'}`;
       $('genResultList').innerHTML = codes.map((c, i) => `<li>
         <div class="admin-gen-text">
           <div class="admin-code">${escapeHtml(c.code)}</div>
@@ -4578,7 +4636,7 @@
       ctx.fillStyle = SAGE_DARK;
       ctx.font = `700 24px ${SANS}`;
       if ('letterSpacing' in ctx) ctx.letterSpacing = '3px';
-      ctx.fillText('SLOWMATE JOURNAL｜慢旅伴企劃', M, y + 12);
+      ctx.fillText('SLOWMATE JOURNAL｜慢旅企劃', M, y + 12);
       if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
 
       const dateLabel = shareDateLabel(tripData);
@@ -4799,7 +4857,7 @@
       ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.moveTo(M, footerTop); ctx.lineTo(W - M, footerTop); ctx.stroke();
 
-      const brand = '🌿 SlowMate 慢旅伴｜AI 慢旅行程規劃師';
+      const brand = '🌿 SlowMate · AI 慢旅行程規劃助手';
       const footY = footerTop + (compact ? 40 : 48);
       let brandSize = compact ? 26 : 28;
       let urlSize = compact ? 23 : 25;
@@ -4834,7 +4892,7 @@
       const s = trip.trip_summary || {};
       const destination = s.destination || '慢旅';
       const tagDest = destination.replace(/[\s\p{P}\p{S}]+/gu, '');
-      return `剛用「SlowMate 慢旅伴」排好了我的【${destination}】不趕路散步行程 🌿✨\n${s.theme_title || ''}\n\n👉 不到 1 分鐘生成你的日系慢旅企劃：\n${SHARE_URL}\n#SlowMate #慢旅伴 #${tagDest}自由行 #慢旅`;
+      return `剛用「SlowMate · AI 慢旅行程規劃助手」排好了我的【${destination}】不趕路散步行程 🌿✨\n${s.theme_title || ''}\n\n👉 不到 1 分鐘生成你的日系慢旅企劃：\n${SHARE_URL}\n#SlowMate #慢旅伴 #${tagDest}自由行 #慢旅`;
     }
 
     function shareFileName(trip, ratio) {
@@ -4851,7 +4909,7 @@
         ...(trip.daily_itinerary || []).map((d) => `${d.day_title} ${(d.timeline || []).map((t) => t.title).join('')}`),
         ...(trip.pre_trip_prep?.transport_passes || []).map((p) => `${p.name}${p.buy_timing}`),
         ...(trip.pre_trip_prep?.todo_checklist || []).slice(0, 2),
-        'SLOWMATE JOURNAL｜慢旅伴企劃 DAILY HIGHLIGHTS｜每日慢旅亮點 TRAVEL NOTES｜行前亮點・推薦票券必備提醒 SlowMate 慢旅伴｜AI 慢旅行程規劃師 還有天的慢活散步時光 0123456789.-·…★'
+        'SLOWMATE JOURNAL｜慢旅企劃 DAILY HIGHLIGHTS｜每日慢旅亮點 TRAVEL NOTES｜行前亮點・推薦票券必備提醒 SlowMate · AI 慢旅行程規劃助手 還有天的慢活散步時光 0123456789.-·…★'
       ].filter(Boolean).join('');
       const loads = [
         document.fonts.load(`700 60px "Noto Serif TC"`, text),
@@ -4957,7 +5015,7 @@
 
       const canShareFiles = !!(navigator.share && navigator.canShare && navigator.canShare({ files: [file] }));
       if (canShareFiles) {
-        navigator.share({ files: [file], text, title: 'SlowMate 慢旅伴' })
+        navigator.share({ files: [file], text, title: 'SlowMate · AI 慢旅行程規劃助手' })
           .then(() => showToast('💡 已為您自動複製貼文文案，貼上即可發布！'))
           .catch((err) => {
             if (err && err.name === 'AbortError') return; // 使用者取消分享
