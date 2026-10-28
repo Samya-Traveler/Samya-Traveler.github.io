@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <script>
+    // 戰情室（?admin=…）不讓搜尋引擎收錄；一般的 /slowmate/ 主頁維持完全開放索引
+    if (/[?&]admin=/.test(location.search)) {
+      var robotsMeta = document.createElement('meta');
+      robotsMeta.name = 'robots';
+      robotsMeta.content = 'noindex, nofollow';
+      document.head.appendChild(robotsMeta);
+    }
+  </script>
   <title>SlowMate · AI 慢旅行程規劃助手</title>
   <meta name="description" content="SlowMate 是免下載、免註冊的 AI 慢旅行程規劃助手。輸入目的地和日期，不到 1 分鐘排好一天 2～3 個重點的留白行程，並整理交通周遊券、需提前預約項目與行前清單，第一次免費。" />
   <meta name="keywords" content="AI 行程規劃, AI 排行程, 慢旅行, 自由行行程, 日本自由行, 京都行程, 旅遊規劃工具, SlowMate" />
@@ -2275,7 +2284,7 @@
             目的地城市 / 地區
             <span class="form-sub">例：京都、東京近郊、台東、清邁</span>
           </label>
-          <input type="text" id="destinationInput" class="form-input" placeholder="請輸入你想去的地方..." maxlength="60" autocomplete="off" required />
+          <input type="text" id="destinationInput" class="form-input" placeholder="請輸入你想去的地方..." maxlength="30" autocomplete="off" required />
           <p class="error-msg" id="destinationErrorMsg">請輸入目的地城市或地區。</p>
         </div>
 
@@ -2329,7 +2338,7 @@
             <button type="button" class="vibe-chip" aria-pressed="false" data-vibe="避開排隊名店">🚫 避開排隊名店</button>
             <button type="button" class="vibe-chip" aria-pressed="false" data-vibe="極慢步調/長輩友善">🐢 極慢步調/長輩友善</button>
           </div>
-          <textarea id="wishesInput" class="form-textarea" rows="3" maxlength="500" placeholder="例如：想去清水寺、鴨川野餐、找安靜的老屋咖啡店、不喜歡排隊名店..."></textarea>
+          <textarea id="wishesInput" class="form-textarea" rows="3" maxlength="300" placeholder="例如：想去清水寺、鴨川野餐、找安靜的老屋咖啡店、不喜歡排隊名店..."></textarea>
         </div>
 
         <div class="form-group">
@@ -3354,8 +3363,8 @@
     function appendVibe(vibe) {
       const cur = wishesInput.value.replace(/[\s、，,]+$/, '');
       const next = cur ? `${cur}${VIBE_SEP}${vibe}` : vibe;
-      if (next.length > 500) {
-        showToast('心願清單已接近 500 字上限');
+      if (next.length > 300) {
+        showToast('心願清單已接近 300 字上限');
         return false;
       }
       wishesInput.value = next;
@@ -3412,8 +3421,8 @@
       }
 
       let restored = false;
-      if (draft.destination) { destinationInput.value = String(draft.destination).slice(0, 60); restored = true; }
-      if (draft.user_wishes) { wishesInput.value = String(draft.user_wishes).slice(0, 500); restored = true; }
+      if (draft.destination) { destinationInput.value = String(draft.destination).slice(0, 30); restored = true; }
+      if (draft.user_wishes) { wishesInput.value = String(draft.user_wishes).slice(0, 300); restored = true; }
       if (draft.arrival_time) { arrivalTimeInput.value = String(draft.arrival_time).slice(0, 20); restored = true; }
       if (draft.departure_time) { departureTimeInput.value = String(draft.departure_time).slice(0, 20); restored = true; }
       if (Array.isArray(draft.vibes)) {
@@ -4097,11 +4106,11 @@
         stopLoadingQuotes();
 
         // 401 管理員金鑰無效 → 清除本機金鑰，改走一般流程
-        if (res.status === 401 && result.error === 'invalid_admin_token') {
+        if ((res.status === 401 && result.error === 'invalid_admin_token') || (res.status === 429 && result.error === 'admin_locked')) {
           setView('form');
           store.remove(STORAGE_ADMIN_KEY);
           updateAdminHint();
-          showToast('管理員金鑰無效，已關閉管理員模式（可從戰情室重新輸入）');
+          showToast(res.status === 429 ? result.message : '管理員金鑰無效，已關閉管理員模式（可從戰情室重新輸入）');
           return;
         }
 
@@ -4324,10 +4333,12 @@
       btn.disabled = true;
       try {
         const { res, data } = await adminFetch('GET');
-        if (res.status === 401) {
+        // 401 金鑰錯誤 / 429 同一 IP 錯誤太多次被暫時鎖定 → 清除本機金鑰、回到登入畫面
+        if (res.status === 401 || (res.status === 429 && data.error === 'admin_locked')) {
           store.remove(STORAGE_ADMIN_KEY);
           updateAdminHint();
           showAdminView();
+          $('adminLoginError').textContent = res.status === 429 ? data.message : '金鑰不正確，請再確認一次。';
           $('adminLoginError').classList.add('show');
           $('adminSecretInput').focus();
           return false;
@@ -5691,7 +5702,7 @@
         if (res.ok) {
           showToast('✉️ 行程已寄出！若未收到，請檢查垃圾郵件匣或促銷分頁。');
           lockEmailButton(EMAIL_COOLDOWN_SEC);
-        } else if (res.status === 429 && result.error === 'email_cooldown') {
+        } else if (res.status === 429 && (result.error === 'email_cooldown' || result.error === 'ip_rate_limited')) {
           showToast(result.message || '剛剛已寄出行程，請稍後再試');
           lockEmailButton(Number(result.retry_after) || EMAIL_COOLDOWN_SEC);
         } else {
