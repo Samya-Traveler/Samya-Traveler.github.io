@@ -2029,24 +2029,79 @@
       .budget-grid { grid-template-columns: 1fr; }
     }
 
-    /* ========== 🎁 0 元裂變解鎖卡 ========== */
-    .unlock-card {
+    /* ========== 🎁 免費解鎖更多慢旅額度（問卷 + 曬圖雙重任務卡） ========== */
+    .free-unlock {
       margin: -6px 0 18px;
-      padding: 14px 16px;
-      background: #FFF4D6;
-      border: 1px solid #EBCB7E;
-      border-radius: var(--radius-md);
-      font-size: 0.86rem;
-      line-height: 1.7;
-      color: #6B4A12;
+      padding: 14px;
+      background: #FBF4E4;
+      border: 1px solid #E8D6AE;
+      border-radius: var(--radius-lg);
     }
 
-    .unlock-card[hidden] { display: none; }
-    .unlock-title { font-weight: 700; color: #5A3A0A; margin-bottom: 4px; }
+    .free-unlock[hidden] { display: none; }
 
-    .unlock-link {
-      display: inline-block;
-      margin-top: 6px;
+    .free-unlock-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    /* 手機上下排列；寬螢幕並排 */
+    .task-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 10px;
+    }
+
+    .task-card {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #FFFDF7;
+      border: 1px solid var(--brand-sage);
+      border-left-width: 5px;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      font-size: 0.84rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .task-card.is-share { border-color: var(--accent-coral); }
+
+    .task-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--brand-sage);
+    }
+
+    .task-card.is-share .task-label { color: var(--accent-coral); }
+
+    .task-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.55;
+      color: var(--text-main);
+    }
+
+    .task-btn {
+      align-self: flex-start;
+      margin-top: 4px;
+      padding: 9px 14px;
+      border-radius: 99px;
+      background: var(--brand-sage);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.86rem;
+      text-decoration: none;
+    }
+
+    .task-btn:hover { background: var(--brand-sage-dark); }
+
+    .task-link {
+      align-self: flex-start;
       font-weight: 700;
       color: var(--accent-coral);
     }
@@ -2074,13 +2129,21 @@
 
     .perk-list strong { font-size: 0.86rem; color: var(--brand-sage-dark); }
 
-    .share-free-note {
-      font-size: 0.78rem;
-      line-height: 1.6;
-      color: var(--text-muted);
-      text-align: center;
-      margin: -6px 0 16px;
+    /* 贊助彈窗：免費解鎖提示盒 */
+    .free-tip-box {
+      margin: 0 0 14px;
+      padding: 12px 14px;
+      background: #FFF4D6;
+      border: 1px solid #EBCB7E;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: #6B4A12;
     }
+
+    .free-tip-box p { margin: 0; }
+    .free-tip-box p + p { margin-top: 4px; }
+    .free-tip-box a { color: var(--accent-coral); font-weight: 700; }
 
     /* 列印手冊品牌簽名（畫面上隱藏，列印時固定在最後） */
     .brand-sign {
@@ -2164,7 +2227,7 @@
       body { display: block; font-size: 11pt; color: #222; }
       .navbar, .quota-badge-bar, .restore-banner, #formView, .action-bar,
       #resetPlanBtn, .print-btn, .modal-backdrop, .toast, footer,
-      #shareCardModal, #shareCardBtn, .admin-entry-btn, .preview-bar, .unlock-card,
+      #shareCardModal, #shareCardBtn, .admin-entry-btn, .preview-bar, .free-unlock,
       .screen-only, .countdown-badge, .result-notice {
         display: none !important;
       }
@@ -2423,12 +2486,24 @@
         <button type="button" class="btn-secondary" id="copyTextBtn">📋 複製純文字行程</button>
       </div>
 
-      <!-- 🎁 0 元裂變解鎖卡（範例預覽時不顯示） -->
-      <aside class="unlock-card" id="unlockCard" aria-label="分享免費領取額度">
-        <p class="unlock-title">🎁 想要再微調一版行程嗎？曬出你的慢旅人格，免費領 VIP 額度！</p>
-        <p>點擊上方按鈕生成你的專屬【慢旅雜誌分享圖】，發佈至 IG 限時動態或 Threads 並標註 <strong>@samya_traveler</strong>，私訊截圖給我們，直接免費加贈 <strong>1 次 VIP 專屬通道額度</strong>！</p>
-        <a class="unlock-link" href="https://www.instagram.com/samya_traveler/" target="_blank" rel="noopener noreferrer">💌 前往 IG 私訊 @samya_traveler</a>
-      </aside>
+      <!-- 🎁 免費解鎖更多慢旅額度：問卷 + 曬圖雙重任務（只給實際生成 / 恢復自己行程的人；翻閱期刊範例時隱藏） -->
+      <section class="free-unlock" id="freeUnlock" aria-labelledby="freeUnlockTitle">
+        <h2 class="free-unlock-title" id="freeUnlockTitle">🎁 免費解鎖更多慢旅額度</h2>
+        <div class="task-cards">
+          <article class="task-card is-survey">
+            <span class="task-label">福利 A｜📝 1 分鐘問卷回饋</span>
+            <p class="task-title">🎉 填寫 1 分鐘回饋問卷，立即贈送【雙人慢旅共享禮（共 2 組 VIP 序號）】！</p>
+            <p>告訴我們你的體驗心得，問卷送出後的完成畫面將直接顯示 2 組 VIP 序號 —— 1 組讓你微調自己的下一版行程，另 1 組讓你直接貼進 LINE 群組送給旅伴排他的版本！（不限期限、隨填隨領✨）</p>
+            <a class="task-btn" href="https://forms.gle/WeFcWEu2NrPP8AWy8" target="_blank" rel="noopener noreferrer">📝 前往填寫問卷領取 2 組 VIP 序號 ➔</a>
+          </article>
+          <article class="task-card is-share">
+            <span class="task-label">福利 B｜📸 社群曬圖加碼</span>
+            <p class="task-title">📸 曬出你的慢旅人格圖，私訊免費再領 1 次 VIP 額度！</p>
+            <p>點擊上方「產生慢旅分享圖」按鈕，將你的專屬日系行程卡發佈至 IG 限時動態或 Threads 並標註 <strong>@samya_traveler</strong>，截圖私訊我們的 IG，立即加贈 1 組 VIP 專屬通關序號！</p>
+            <a class="task-link" href="https://www.instagram.com/samya_traveler/" target="_blank" rel="noopener noreferrer">💌 前往 IG 私訊 @samya_traveler</a>
+          </article>
+        </div>
+      </section>
 
       <!-- 🧭 慢旅動線與日均花費速覽 -->
       <div class="card" id="journeyCard">
@@ -2535,13 +2610,17 @@
           <span class="tier-info"><span class="tier-name">🍱 NT$ 488｜鐵道駅弁應援團 <span class="tier-badge">🔥 逼近半價</span></span><span class="tier-desc">慢旅玩家全票・10 次額度（平均 $48.8/次，買家本人無限用＋親友團共享）</span></span>
         </li>
       </ul>
+      <div class="free-tip-box" role="note">
+        <p>💡 <strong>想先免費解鎖額度嗎？</strong></p>
+        <p>• <strong>方法 1（拿 2 組）</strong>：填寫 <a href="https://forms.gle/WeFcWEu2NrPP8AWy8" target="_blank" rel="noopener noreferrer">1 分鐘體驗問卷</a>，提交畫面直接領 <strong>【雙人慢旅共享禮（共 2 組 VIP 序號）】</strong>（1 組自用微調、1 組送 LINE 群組旅伴）！</p>
+        <p>• <strong>方法 2（拿 1 組）</strong>：將【慢旅分享圖】發至 IG 限動 / Threads 標註 @samya_traveler 並私訊截圖，免費再贈 <strong>1 組 VIP 序號</strong>！</p>
+      </div>
       <p class="modal-body">
         🎁 贊助專屬回饋：依方案獲得 1 / 5 / 10 次慢旅規劃額度（無使用期限），付款完成後 1～3 分鐘內自動寄送至您的信箱！
       </p>
       <a href="https://portaly.cc/samya_traveler" target="_blank" rel="noopener noreferrer" class="btn-portaly" id="portalyLink">
         ❤️ 前往 Portaly 隨喜贊助支持
       </a>
-      <p class="share-free-note">💡 或是將剛剛的【慢旅分享圖】發到 IG 限動 / Threads 標註 @samya_traveler 私訊截圖，也能免費領取體驗序號喔！</p>
       <div class="form-group" style="margin-bottom: 12px;">
         <label class="form-label" for="modalRedeemInput">已完成贊助？請輸入信件中的解鎖序號</label>
         <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="SM5-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
@@ -4730,10 +4809,10 @@
       noticeEl.classList.toggle('show', !!notice);
       noticeEl.classList.toggle('is-sample', sample);
 
-      // 範例預覽：顯示浮動 CTA 條、隱藏「分享免費領額度」卡
+      // 範例預覽：顯示浮動 CTA 條、隱藏「免費解鎖更多慢旅額度」任務卡（防止沒排過行程就領序號）
       document.documentElement.style.setProperty('--nav-h', `${document.querySelector('.navbar')?.offsetHeight || 60}px`);
       $('previewBar').hidden = !sample;
-      $('unlockCard').hidden = sample;
+      $('freeUnlock').hidden = sample;
       renderJourneyCard(data);
 
       const summary = data.trip_summary || {};
