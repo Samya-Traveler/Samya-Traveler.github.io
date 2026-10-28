@@ -1777,42 +1777,293 @@
       color: #7A4A12;
     }
 
-    /* 免填表單範例行程 */
-    .sample-box {
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px dashed var(--border-soft);
+    /* ========== 📖 慢旅期刊精選（免填表單、零成本一鍵預覽） ========== */
+    .magazine-picks {
+      margin-bottom: 20px;
+      padding: 14px 14px 16px;
+      background: #FBF6EC;
+      border: 1px solid #C9D8CE;
+      border-radius: var(--radius-md);
     }
 
-    .sample-title {
-      font-size: 0.85rem;
-      font-weight: 600;
+    .magazine-head { margin-bottom: 10px; }
+
+    .magazine-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.02rem;
+      color: var(--text-main);
+    }
+
+    .magazine-sub {
+      font-size: 0.8rem;
       color: var(--text-muted);
-      margin-bottom: 10px;
     }
 
-    .sample-chips {
+    /* 手機：橫向滑動卡片；寬螢幕：雙欄 */
+    .magazine-cards {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 82%;
+      gap: 10px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @media (min-width: 560px) {
+      .magazine-cards { grid-auto-flow: row; grid-template-columns: 1fr 1fr; overflow-x: visible; }
+    }
+
+    .magazine-card {
+      position: relative;
+      scroll-snap-align: start;
       display: flex;
       flex-direction: column;
+      gap: 6px;
+      text-align: left;
+      font-family: inherit;
+      color: var(--text-main);
+      background: #FFFDF8;
+      border: 1px solid var(--brand-sage);
+      border-radius: var(--radius-md);
+      padding: 14px 14px 12px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .magazine-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .magazine-pill {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--brand-sage);
+      border-radius: 99px;
+      padding: 2px 8px;
+    }
+
+    .magazine-issue {
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: var(--brand-sage);
+    }
+
+    .magazine-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.45;
+      padding-right: 4px;
+    }
+
+    .magazine-persona {
+      align-self: flex-start;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #9A4A33;
+      background: #FFF1EC;
+      border: 1px solid #F3C3B4;
+      border-radius: 99px;
+      padding: 2px 10px;
+    }
+
+    .magazine-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 8px;
+      font-size: 0.74rem;
+      color: var(--brand-sage-dark);
+    }
+
+    .magazine-cta {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-coral);
+      margin-top: 2px;
+    }
+
+    /* 範例預覽浮動提示條（Sticky CTA Bar） */
+    .preview-bar {
+      position: sticky;
+      top: calc(var(--nav-h, 60px) + 8px);
+      z-index: 90;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      margin-bottom: 16px;
+      padding: 12px 14px;
+      background: #FFF6E9;
+      border: 1px solid #F2D7A9;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      animation: previewBarIn 0.35s ease-out;
+    }
+
+    .preview-bar[hidden] { display: none; }
+
+    .preview-bar p {
+      flex: 1 1 220px;
+      font-size: 0.86rem;
+      color: #7A4A12;
+      line-height: 1.6;
+    }
+
+    .preview-bar-btn {
+      flex: 0 0 auto;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--accent-coral);
+      border: none;
+      border-radius: 99px;
+      padding: 9px 16px;
+      cursor: pointer;
+    }
+
+    @keyframes previewBarIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== 🧭 慢旅動線與日均花費速覽 ========== */
+    .journey-manifesto {
+      font-size: 0.86rem;
+      line-height: 1.7;
+      color: var(--brand-sage-dark);
+      background: var(--brand-sage-light);
+      border-left: 4px solid var(--brand-sage);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      margin-bottom: 14px;
+    }
+
+    .route-ribbon {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 4px;
+      margin-bottom: 14px;
+    }
+
+    .route-stop {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      border-radius: 99px;
+      padding: 4px 11px;
+    }
+
+    .route-stop.is-place {
+      font-weight: 700;
+      color: var(--text-main);
+      background: #FFFDF8;
+      border: 1px solid var(--brand-sage);
+    }
+
+    .route-stop.is-move {
+      color: var(--brand-sage-dark);
+      background: var(--bg-subtle);
+      border: 1px dashed #B8C4BE;
+    }
+
+    .route-arrow {
+      font-size: 0.78rem;
+      color: #A8B3AD;
+      padding: 0 2px;
+    }
+
+    .budget-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
 
-    .sample-chip {
-      font-family: inherit;
-      font-size: 0.86rem;
-      font-weight: 600;
-      color: var(--brand-sage-dark);
-      background: var(--bg-cream);
-      border: 1px solid var(--border-soft);
-      border-radius: 99px;
-      padding: 9px 14px;
-      cursor: pointer;
-      text-align: left;
-      transition: background 0.2s, border-color 0.2s, transform 0.1s;
+    .budget-tile {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: #FFF6E9;
+      border: 1px solid #F2D7A9;
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
     }
 
-    .sample-chip:hover { background: var(--brand-sage-light); border-color: var(--brand-sage); }
-    .sample-chip:active { transform: scale(0.99); }
+    .budget-label { font-size: 0.74rem; color: #8A5A24; font-weight: 600; }
+    .budget-value { font-size: 0.95rem; font-weight: 700; color: var(--text-main); line-height: 1.45; }
+
+    .budget-note {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 360px) {
+      .budget-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========== 🎁 0 元裂變解鎖卡 ========== */
+    .unlock-card {
+      margin: -6px 0 18px;
+      padding: 14px 16px;
+      background: #FFF4D6;
+      border: 1px solid #EBCB7E;
+      border-radius: var(--radius-md);
+      font-size: 0.86rem;
+      line-height: 1.7;
+      color: #6B4A12;
+    }
+
+    .unlock-card[hidden] { display: none; }
+    .unlock-title { font-weight: 700; color: #5A3A0A; margin-bottom: 4px; }
+
+    .unlock-link {
+      display: inline-block;
+      margin-top: 6px;
+      font-weight: 700;
+      color: var(--accent-coral);
+    }
+
+    /* ========== 贊助彈窗：三大特權 ========== */
+    .perk-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .perk-list li {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      background: var(--brand-sage-light);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+    }
+
+    .perk-list strong { font-size: 0.86rem; color: var(--brand-sage-dark); }
+
+    .share-free-note {
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      text-align: center;
+      margin: -6px 0 16px;
+    }
 
     /* 列印手冊品牌簽名（畫面上隱藏，列印時固定在最後） */
     .brand-sign {
@@ -1896,7 +2147,7 @@
       body { display: block; font-size: 11pt; color: #222; }
       .navbar, .quota-badge-bar, .restore-banner, #formView, .action-bar,
       #resetPlanBtn, .print-btn, .modal-backdrop, .toast, footer,
-      #shareCardModal, #shareCardBtn, .admin-entry-btn,
+      #shareCardModal, #shareCardBtn, .admin-entry-btn, .preview-bar, .unlock-card,
       .screen-only, .countdown-badge, .result-notice {
         display: none !important;
       }
@@ -1938,7 +2189,7 @@
       }
       .svg-float, .svg-cloud, .svg-breathe, .svg-sway, .svg-wave,
       .suitcase-loader, .loading-dots span,
-      .timeline-animate, .day-tab.active, .modal-card {
+      .timeline-animate, .day-tab.active, .modal-card, .preview-bar, .magazine-card, .magazine-card:hover {
         animation: none !important;
         transform: none !important;
       }
@@ -1993,6 +2244,32 @@
     <!-- 狀態 1：輸入表單 Form View -->
     <section id="formView" class="card" aria-label="慢旅規劃表單">
       <form id="plannerForm" novalidate>
+        <!-- 📖 慢旅期刊精選：免填表單、一鍵預覽內建範例（純前端靜態資料，不呼叫 API、不扣額度） -->
+        <section class="magazine-picks" aria-labelledby="magazineTitle">
+          <div class="magazine-head">
+            <h2 class="magazine-title" id="magazineTitle">📖 慢旅期刊精選</h2>
+            <p class="magazine-sub">一鍵翻閱 AI 策展手冊（免扣額度）</p>
+          </div>
+          <div class="magazine-cards">
+            <button type="button" class="magazine-card" data-sample="kyoto">
+              <span class="magazine-pill">✨ 0 秒預覽</span>
+              <span class="magazine-issue">VOL.01 · KYOTO</span>
+              <span class="magazine-name">《京都 5 日・晚秋青苔與老屋咖啡慢旅》</span>
+              <span class="magazine-persona">🍵 古都老屋駐留者</span>
+              <span class="magazine-tags"><span>#一日2至3重點</span><span>#百年喫茶</span><span>#鴨川散策</span></span>
+              <span class="magazine-cta">翻閱這本手冊 →</span>
+            </button>
+            <button type="button" class="magazine-card" data-sample="chiangmai">
+              <span class="magazine-pill">✨ 0 秒預覽</span>
+              <span class="magazine-issue">VOL.02 · CHIANG MAI</span>
+              <span class="magazine-name">《清邁 7 日・山林木屋與手沖放空日誌》</span>
+              <span class="magazine-persona">🌿 山林呼吸採集者</span>
+              <span class="magazine-tags"><span>#森林系咖啡</span><span>#手作市集</span><span>#不趕路漫遊</span></span>
+              <span class="magazine-cta">翻閱這本手冊 →</span>
+            </button>
+          </div>
+        </section>
+
         <div class="form-group">
           <label class="form-label" for="destinationInput">
             目的地城市 / 地區
@@ -2093,14 +2370,6 @@
           <span>✨ 開始慢旅規劃</span>
         </button>
 
-        <!-- 免填表單、一鍵預覽範例（純前端靜態資料，不呼叫 API、不扣額度） -->
-        <div class="sample-box">
-          <p class="sample-title">還不確定去哪嗎？先看看慢旅範例：</p>
-          <div class="sample-chips">
-            <button type="button" class="sample-chip" data-sample="kyoto">👀 預覽範例：京都 5 日老屋咖啡慢旅</button>
-            <button type="button" class="sample-chip" data-sample="chiangmai">👀 預覽範例：清邁 7 日山林放空散策</button>
-          </div>
-        </div>
       </form>
 
       <!-- 載入中微動態與冷啟動金句 -->
@@ -2120,12 +2389,45 @@
 
     <!-- 狀態 2：行程展示 Result View -->
     <section id="resultView" aria-label="慢旅行程結果">
+      <!-- 範例預覽浮動提示條（只在翻閱慢旅期刊範例時顯示） -->
+      <div class="preview-bar" id="previewBar" role="region" aria-label="範例預覽提示" hidden>
+        <p>👀 您正在翻閱【慢旅期刊範例】—— 喜歡這種不趕路的留白節奏嗎？</p>
+        <button type="button" class="preview-bar-btn" id="previewStartBtn">✨ 立即免費排一趟我的專屬慢旅</button>
+      </div>
+
       <div class="result-notice" id="resultNotice" role="status"></div>
 
       <div class="action-bar">
         <button type="button" class="btn-share-card" id="shareCardBtn">📸 產生慢旅分享圖 (IG / Threads)</button>
         <button type="button" class="btn-secondary" id="openEmailModalBtn">✉️ 寄送行程到信箱</button>
         <button type="button" class="btn-secondary" id="copyTextBtn">📋 複製純文字行程</button>
+      </div>
+
+      <!-- 🎁 0 元裂變解鎖卡（範例預覽時不顯示） -->
+      <aside class="unlock-card" id="unlockCard" aria-label="分享免費領取額度">
+        <p class="unlock-title">🎁 想要再微調一版行程嗎？曬出你的慢旅人格，免費領 VIP 額度！</p>
+        <p>點擊上方按鈕生成你的專屬【慢旅雜誌分享圖】，發佈至 IG 限時動態或 Threads 並標註 <strong>@samya_traveler</strong>，私訊截圖給我們，直接免費加贈 <strong>1 次 VIP 專屬通道額度</strong>！</p>
+        <a class="unlock-link" href="https://www.instagram.com/samya_traveler/" target="_blank" rel="noopener noreferrer">💌 前往 IG 私訊 @samya_traveler</a>
+      </aside>
+
+      <!-- 🧭 慢旅動線與日均花費速覽 -->
+      <div class="card" id="journeyCard">
+        <h2 class="section-title">🧭 慢旅動線與日均花費速覽</h2>
+        <p class="journey-manifesto" id="journeyManifesto"></p>
+        <ol class="route-ribbon" id="routeRibbon" aria-label="移動動線"></ol>
+        <div id="budgetBox">
+          <div class="budget-grid">
+            <div class="budget-tile">
+              <span class="budget-label">💰 當地日均慢旅花費</span>
+              <span class="budget-value" id="budgetDaily"></span>
+            </div>
+            <div class="budget-tile">
+              <span class="budget-label">🗓️ 整趟當地開銷概算（不含機酒）</span>
+              <span class="budget-value" id="budgetTotal"></span>
+            </div>
+          </div>
+          <p class="budget-note" id="budgetNote"></p>
+        </div>
       </div>
 
       <!-- 航班與抵達提醒卡片 -->
@@ -2197,26 +2499,29 @@
         <span id="paywallUsedLine" hidden>免費體驗額度已使用完畢。<br><br></span>
         <span id="paywallIntro">排一趟滿意的自由行，通常需要換 2～3 種路線版本，或跟旅伴各自排看看再討論。選擇多人方案，你自己的信箱可重複使用所有次數，還能把序號丟進 LINE 群組分給旅伴（每位旅伴信箱限免費體驗 1 次）！</span>
       </p>
+      <ul class="perk-list" aria-label="贊助者專屬特權">
+        <li><strong>⚡ 特權 1｜每日 30 席 VIP 專屬保留通道</strong><span>全站免費名額每日限 50 席，持有贊助序號者直接走 VIP 保留席，熱門時段免排隊、免驗信箱秒速生成。</span></li>
+        <li><strong>👯‍♀️ 特權 2｜一人贊助、LINE 群組旅伴共享</strong><span>主推 NT$ 300 旅伴同樂包，買家本人可重複微調，還能把同一組序號丟進群組讓旅伴各自排一版來投票！</span></li>
+        <li><strong>🌿 特權 3｜守護 100% 零商業業配的純淨推薦</strong><span>不塞廣告餐廳與訂房分潤，只推薦在地人私藏的散步路線。</span></li>
+      </ul>
       <ul class="tier-list" id="tierList" aria-label="隨喜贊助方案">
         <li class="tier">
-          <span class="tier-price">NT$ 88</span>
-          <span class="tier-info"><span class="tier-name">☕ 單人微調體驗（1 次額度）</span><span class="tier-desc">適合已經決定好路線、只想微調最後一次的你。</span></span>
+          <span class="tier-info"><span class="tier-name">☕ NT$ 88｜街角手沖咖啡</span><span class="tier-desc">單人微調・1 次額度（適合確定大方向後微調最後路線）</span></span>
         </li>
         <li class="tier is-featured">
-          <span class="tier-price">NT$ 300</span>
-          <span class="tier-info"><span class="tier-name">🌿 旅伴同樂包（5 次額度） <span class="tier-badge">⭐ 最多人選</span></span><span class="tier-desc">平均 $60/次（現省 $140）· 自己試排 3 種不同路線版本，剩下 2 次丟進群組給旅伴一人玩一次剛剛好！</span></span>
+          <span class="tier-info"><span class="tier-name">🌿 NT$ 300｜喫茶店午後甜點組 <span class="tier-badge">⭐ 最推薦</span></span><span class="tier-desc">旅伴同樂包・5 次額度（平均 $60/次，買家本人可重複使用，也可分給旅伴共用）</span></span>
         </li>
         <li class="tier">
-          <span class="tier-price">NT$ 488</span>
-          <span class="tier-info"><span class="tier-name">✨ 慢旅玩家全票（10 次額度） <span class="tier-badge">🔥 最划算</span></span><span class="tier-desc">平均 $48.8/次（逼近半價）· 適合 4 人以上親友團出遊，或今年準備出國好幾趟的深度旅人（無使用期限）。</span></span>
+          <span class="tier-info"><span class="tier-name">🍱 NT$ 488｜鐵道駅弁應援團 <span class="tier-badge">🔥 逼近半價</span></span><span class="tier-desc">慢旅玩家全票・10 次額度（平均 $48.8/次，買家本人無限用＋親友團共享）</span></span>
         </li>
       </ul>
       <p class="modal-body">
-        付款完成後 1~3 分鐘內，序號會自動寄送至您的信箱（信中附一鍵帶入連結，序號無使用期限）。
+        🎁 贊助專屬回饋：依方案獲得 1 / 5 / 10 次慢旅規劃額度（無使用期限），付款完成後 1～3 分鐘內自動寄送至您的信箱！
       </p>
-      <a href="https://portaly.cc/samya_traveler" target="_blank" rel="noopener noreferrer" class="btn-portaly" id="portalyLink">
+      <a href="https://portaly.cc/samya_traveler/fu/3d04" target="_blank" rel="noopener noreferrer" class="btn-portaly" id="portalyLink">
         ❤️ 前往 Portaly 隨喜贊助支持
       </a>
+      <p class="share-free-note">💡 或是將剛剛的【慢旅分享圖】發到 IG 限動 / Threads 標註 @samya_traveler 私訊截圖，也能免費領取體驗序號喔！</p>
       <div class="form-group" style="margin-bottom: 12px;">
         <label class="form-label" for="modalRedeemInput">已完成贊助？請輸入信件中的解鎖序號</label>
         <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="SM5-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
@@ -2599,7 +2904,6 @@
      * 免填表單、一鍵預覽的範例行程（純前端靜態資料：不呼叫 API、不扣額度、不寫入「上次行程」快取）
      * 結構與 /api/plan 回傳的 data 完全相同，直接交給 renderTripResult 渲染。
      * ============================================================ */
-    const SAMPLE_NOTICE = '🌿 目前顯示為【預設範例行程】，想規劃自己的專屬旅程，歡迎於上方表單輸入目的地免費體驗！';
     const T_WALK = { type: '步行', color_code: '#5B7B6A' };
     const T_BUS = { type: '巴士', color_code: '#E07A5F' };
     const T_SUBWAY = { type: '地鐵', color_code: '#4A90E2' };
@@ -2608,7 +2912,7 @@
     const T_GRAB = { type: 'Grab', color_code: '#9C27B0' };
     const T_SONGTHAEW = { type: '雙條車', color_code: '#E07A5F' };
 
-    const SAMPLE_TRIPS = {
+    const PRESET_MAGAZINE_TRIPS = {
       kyoto: {
         trip_summary: {
           destination: '京都',
@@ -2619,7 +2923,14 @@
           flight_card: {
             outbound_hint: '建議搭早班機飛關西機場（KIX），入境後在 JR 售票處購買「ICOCA & HARUKA」，搭 HARUKA 特急約 75 分鐘直達京都車站，中午前就能放好行李開始散步。',
             inbound_hint: '回程搭 HARUKA 回關西機場，建議起飛前 3 小時抵達；晚秋賞楓季機場人多，預留時間採買伴手禮與排隊通關。'
-          }
+          },
+          route_ribbon: ['關西機場 (KIX)', '🚆 JR HARUKA (75分)', '京都五條', '🚶 鴨川與東山散策', '🚌 市巴士 (20分)', '下鴨・出町柳', '🚃 嵐電慢車', '嵯峨野・苔寺', '🚇 地鐵東西線', '岡崎・琵琶湖疏水'],
+          budget_estimate: {
+            daily_average_twd: 'NT$ 2,200 ~ 2,800 / 日',
+            total_local_twd: '約 NT$ 12,500 / 人（5日）',
+            budget_note: '含當地老屋咖啡、京料理餐飲、市區交通券與寺院拜觀料（不含國際機票與住宿，實際依個人豐儉調整）'
+          },
+          retention_stat_note: '✨ 慢旅減法原則：五天只留給老屋咖啡、苔庭與鴨川三件事，每日 2～3 個重心，把時間還給街角光影。'
         },
         pre_trip_prep: {
           transport_passes: [
@@ -2697,13 +3008,20 @@
         trip_summary: {
           destination: '清邁',
           theme_title: '涼季清邁・山林、早市與尼曼巷弄的七日放空',
-          traveler_persona: '🌿 山林早市漫遊者',
+          traveler_persona: '🌿 山林呼吸採集者',
           vibe_description: '十二月的清邁早晚微涼，在森林寺院的鳥鳴裡醒來，到早市買剛出爐的可頌，下午就躲進樹蔭下的咖啡館，什麼都不做也很好。',
           svg_theme: 'nature_mountain',
           flight_card: {
             outbound_hint: '台北有直飛清邁的航班（班次依季節調整），或經曼谷轉機；抵達清邁國際機場後用 Grab 叫車，約 15 分鐘到尼曼區。',
             inbound_hint: '清邁機場不大，國際線建議起飛前 2.5 小時抵達；尼曼或古城叫 Grab 到機場約 15~20 分鐘，尖峰時段多預留一點。'
-          }
+          },
+          route_ribbon: ['清邁國際機場 (CNX)', '🚕 Grab (15分)', '尼曼區', '🚶 森林寺院散步', '悟孟寺・蘇提寺', '🛻 雙條車上山', '素帖山', '🚶 古城牆內散策', '契迪龍寺', '🚕 Grab (40分)', '湄林山谷'],
+          budget_estimate: {
+            daily_average_twd: 'NT$ 1,200 ~ 1,800 / 日',
+            total_local_twd: '約 NT$ 10,500 / 人（7日）',
+            budget_note: '含山林咖啡館、泰式餐飲與夜市、Grab 與雙條車交通、料理課與泰式按摩（不含國際機票與住宿，實際依個人豐儉調整）'
+          },
+          retention_stat_note: '✨ 慢旅減法原則：七天只追森林、早市與手沖三種節奏，每日最多 2 個重心，把下午留給樹蔭與發呆。'
         },
         pre_trip_prep: {
           transport_passes: [
@@ -2792,11 +3110,11 @@
       }
     };
 
-    /** 點擊範例按鈕：直接渲染靜態範例，不呼叫 API、不寫入上次行程快取 */
+    /** 點擊慢旅期刊卡片：直接渲染內建範例，不呼叫 API、不扣額度、不寫入上次行程快取 */
     function showSampleTrip(key) {
-      const trip = SAMPLE_TRIPS[key];
+      const trip = PRESET_MAGAZINE_TRIPS[key];
       if (!trip) return;
-      renderTripResult(trip, { notice: SAMPLE_NOTICE, sample: true });
+      renderTripResult(trip, { sample: true });
       const target = $('resultView');
       const navH = document.querySelector('.navbar')?.offsetHeight || 0;
       requestAnimationFrame(() => {
@@ -3448,20 +3766,12 @@
       });
 
       // 重新規劃
-      $('resetPlanBtn').addEventListener('click', () => {
-        setView('form');
-        countdownBadge.classList.remove('show');
-        renderSvgTheme('default_train');
-        heroTitle.textContent = HERO_DEFAULT_TITLE;
-        heroDesc.textContent = HERO_DEFAULT_DESC;
-        heroPersona.classList.remove('show');
-        loadSavedUserState();
-        window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
-        destinationInput.focus({ preventScroll: true });
-      });
+      $('resetPlanBtn').addEventListener('click', () => backToForm());
+      // 範例預覽提示條：回到表單並聚焦目的地
+      $('previewStartBtn').addEventListener('click', () => backToForm({ toForm: true }));
 
-      // 免填表單的範例行程
-      document.querySelectorAll('.sample-chip').forEach((btn) => {
+      // 📖 慢旅期刊精選（免填表單的範例行程）
+      document.querySelectorAll('.magazine-card').forEach((btn) => {
         btn.addEventListener('click', () => showSampleTrip(btn.dataset.sample));
       });
 
@@ -3491,6 +3801,21 @@
     /* ============================================================
      * 狀態機：form ⇄ loading → result
      * ============================================================ */
+    /** 回到表單：重設 Hero；toForm 時捲到表單（扣掉導覽列高度），否則回頁首 */
+    function backToForm({ toForm = false } = {}) {
+      setView('form');
+      countdownBadge.classList.remove('show');
+      renderSvgTheme('default_train');
+      heroTitle.textContent = HERO_DEFAULT_TITLE;
+      heroDesc.textContent = HERO_DEFAULT_DESC;
+      heroPersona.classList.remove('show');
+      loadSavedUserState();
+      const navH = document.querySelector('.navbar')?.offsetHeight || 0;
+      const top = toForm ? Math.max(0, formView.getBoundingClientRect().top + window.scrollY - navH - 12) : 0;
+      window.scrollTo({ top, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+      destinationInput.focus({ preventScroll: true });
+    }
+
     function setView(view) {
       state.view = view;
       if (view === 'form') {
@@ -3648,7 +3973,7 @@
         }
         if (fromModal) closeModal('otpModal');
         if (res.status === 402) {
-          openPaywall('payment_required', result.message, result.portaly_url);
+          openPaywall('payment_required', result.message);
           return;
         }
         if (res.status === 429 && (result.error === 'free_pool_full' || result.error === 'token_limit_reached')) {
@@ -3840,7 +4165,7 @@
 
         // 402 需要贊助（管理員模式不會觸發）
         if (res.status === 402) {
-          openPaywall('payment_required', result.message, result.portaly_url);
+          openPaywall('payment_required', result.message);
           return;
         }
 
@@ -4249,7 +4574,7 @@
     }
 
     /* ---------- 贊助 / 序號 Modal ---------- */
-    function openPaywall(reason, message, portalyUrl) {
+    function openPaywall(reason, message) {
       const err = $('modalCodeError');
       err.classList.remove('show');
 
@@ -4260,7 +4585,6 @@
         err.textContent = message || '序號無效或已被使用，請確認信件中的序號。';
         err.classList.add('show');
       }
-      if (portalyUrl) $('portalyLink').href = portalyUrl;
       if (reason !== 'invalid_code' && !$('modalRedeemInput').value) {
         $('modalRedeemInput').value = redeemCodeInput.value.trim().toUpperCase();
       }
@@ -4323,6 +4647,48 @@
       return { ...trip, daily_itinerary: [...days.slice(0, -1), { ...last, timeline }] };
     }
 
+    /* ---------- 🧭 慢旅動線與日均花費速覽（舊快取行程沒有這些欄位時自動補） ---------- */
+    const DEFAULT_MANIFESTO = '✨ 慢旅減法原則：每日只保留 2～3 個靈魂重心，把時間還給街角光影與散步的留白。';
+    const MOVE_EMOJI = { 步行: '🚶', 巴士: '🚌', 公車: '🚌', 地鐵: '🚇', 捷運: '🚇', 電車: '🚃', JR: '🚆', 高鐵: '🚄', 台鐵: '🚆', 計程車: '🚕', Grab: '🚕', 渡輪: '⛴️', 自行車: '🚲', 開車: '🚗', 雙條車: '🛻' };
+    const STARTS_WITH_EMOJI = /^\p{Extended_Pictographic}/u;
+
+    function moveEmoji(type) {
+      return MOVE_EMOJI[type] || '🚃';
+    }
+
+    /** 沒有 route_ribbon 時：每天取必去（或第一個）景點，中間以當天第一段交通相連，最多 6 天 */
+    function fallbackRibbon(trip) {
+      const out = [];
+      (trip.daily_itinerary || []).slice(0, 6).forEach((day, i) => {
+        const items = day.timeline || [];
+        const pick = items.find((t) => t.is_must_visit) || items[0];
+        if (!pick) return;
+        const type = items[0]?.transport_tag?.type || '';
+        if (i > 0 && type) out.push(`${moveEmoji(type)} ${type}`);
+        const title = String(pick.title || '').split(/[・，,]/)[0].slice(0, 16);
+        if (title) out.push(title);
+      });
+      return out;
+    }
+
+    function renderJourneyCard(trip) {
+      const s = trip.trip_summary || {};
+      $('journeyManifesto').textContent = s.retention_stat_note || DEFAULT_MANIFESTO;
+      const ribbon = Array.isArray(s.route_ribbon) && s.route_ribbon.length >= 2 ? s.route_ribbon : fallbackRibbon(trip);
+      $('routeRibbon').innerHTML = ribbon
+        .map((stop) => `<li class="route-stop ${STARTS_WITH_EMOJI.test(stop) ? 'is-move' : 'is-place'}">${escapeHtml(stop)}</li>`)
+        .join('<li class="route-arrow" aria-hidden="true">➔</li>');
+      $('routeRibbon').hidden = !ribbon.length;
+      const b = s.budget_estimate || {};
+      const hasBudget = !!(b.daily_average_twd || b.total_local_twd);
+      $('budgetBox').hidden = !hasBudget;
+      if (hasBudget) {
+        $('budgetDaily').textContent = b.daily_average_twd || '—';
+        $('budgetTotal').textContent = b.total_local_twd || '—';
+        $('budgetNote').textContent = b.budget_note || '不含國際機票與住宿，實際依個人豐儉調整。';
+      }
+    }
+
     function setFlightAdjust(id, text) {
       const el = $(id);
       el.textContent = text;
@@ -4341,6 +4707,12 @@
       noticeEl.textContent = notice;
       noticeEl.classList.toggle('show', !!notice);
       noticeEl.classList.toggle('is-sample', sample);
+
+      // 範例預覽：顯示浮動 CTA 條、隱藏「分享免費領額度」卡
+      document.documentElement.style.setProperty('--nav-h', `${document.querySelector('.navbar')?.offsetHeight || 60}px`);
+      $('previewBar').hidden = !sample;
+      $('unlockCard').hidden = sample;
+      renderJourneyCard(data);
 
       const summary = data.trip_summary || {};
       const destination = summary.destination || '';
