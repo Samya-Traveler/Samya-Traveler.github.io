@@ -1788,7 +1788,7 @@
 
     /* ========== 📖 慢旅期刊精選（免填表單、零成本一鍵預覽） ========== */
     .magazine-picks {
-      margin-bottom: 20px;
+      margin-top: 20px;
       padding: 14px 14px 16px;
       background: #FBF6EC;
       border: 1px solid #C9D8CE;
@@ -1844,10 +1844,17 @@
 
     .magazine-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
+    /* 卡片頂部：期號在左、「✨ 0 秒預覽」膠囊在右，空間不夠時自動換行，不會壓字 */
+    .magazine-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .magazine-pill {
-      position: absolute;
-      top: 10px;
-      right: 10px;
+      flex-shrink: 0;
       font-size: 0.68rem;
       font-weight: 700;
       color: #fff;
@@ -1858,7 +1865,8 @@
 
     .magazine-issue {
       font-size: 0.68rem;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
+      white-space: nowrap;
       font-weight: 700;
       color: var(--brand-sage);
     }
@@ -2253,32 +2261,6 @@
     <!-- 狀態 1：輸入表單 Form View -->
     <section id="formView" class="card" aria-label="慢旅規劃表單">
       <form id="plannerForm" novalidate>
-        <!-- 📖 慢旅期刊精選：免填表單、一鍵預覽內建範例（純前端靜態資料，不呼叫 API、不扣額度） -->
-        <section class="magazine-picks" aria-labelledby="magazineTitle">
-          <div class="magazine-head">
-            <h2 class="magazine-title" id="magazineTitle">📖 慢旅期刊精選</h2>
-            <p class="magazine-sub">一鍵翻閱 AI 策展手冊（免扣額度）</p>
-          </div>
-          <div class="magazine-cards">
-            <button type="button" class="magazine-card" data-sample="kyoto">
-              <span class="magazine-pill">✨ 0 秒預覽</span>
-              <span class="magazine-issue">VOL.01 · KYOTO</span>
-              <span class="magazine-name">《京都 5 日・晚秋青苔與老屋咖啡慢旅》</span>
-              <span class="magazine-persona">🍵 古都老屋駐留者</span>
-              <span class="magazine-tags"><span>#一日2至3重點</span><span>#百年喫茶</span><span>#鴨川散策</span></span>
-              <span class="magazine-cta">翻閱這本手冊 →</span>
-            </button>
-            <button type="button" class="magazine-card" data-sample="chiangmai">
-              <span class="magazine-pill">✨ 0 秒預覽</span>
-              <span class="magazine-issue">VOL.02 · CHIANG MAI</span>
-              <span class="magazine-name">《清邁 7 日・山林木屋與手沖放空日誌》</span>
-              <span class="magazine-persona">🌿 山林呼吸採集者</span>
-              <span class="magazine-tags"><span>#森林系咖啡</span><span>#手作市集</span><span>#不趕路漫遊</span></span>
-              <span class="magazine-cta">翻閱這本手冊 →</span>
-            </button>
-          </div>
-        </section>
-
         <div class="form-group">
           <label class="form-label" for="destinationInput">
             目的地城市 / 地區
@@ -2379,6 +2361,35 @@
           <span>✨ 開始慢旅規劃</span>
         </button>
 
+        <!-- 📖 慢旅期刊精選：免填表單、一鍵預覽內建範例（純前端靜態資料，不呼叫 API、不扣額度） -->
+        <section class="magazine-picks" aria-labelledby="magazineTitle">
+          <div class="magazine-head">
+            <h2 class="magazine-title" id="magazineTitle">📖 慢旅期刊精選</h2>
+            <p class="magazine-sub">一鍵翻閱 AI 策展手冊（免扣額度）</p>
+          </div>
+          <div class="magazine-cards">
+            <button type="button" class="magazine-card" data-sample="kyoto">
+              <span class="magazine-top">
+                <span class="magazine-issue">VOL.01 · KYOTO</span>
+                <span class="magazine-pill">✨ 0 秒預覽</span>
+              </span>
+              <span class="magazine-name">《京都 5 日・晚秋青苔與老屋咖啡慢旅》</span>
+              <span class="magazine-persona">🍵 古都老屋駐留者</span>
+              <span class="magazine-tags"><span>#一日2至3重點</span><span>#百年喫茶</span><span>#鴨川散策</span></span>
+              <span class="magazine-cta">翻閱這本手冊 →</span>
+            </button>
+            <button type="button" class="magazine-card" data-sample="chiangmai">
+              <span class="magazine-top">
+                <span class="magazine-issue">VOL.02 · CHIANG MAI</span>
+                <span class="magazine-pill">✨ 0 秒預覽</span>
+              </span>
+              <span class="magazine-name">《清邁 7 日・山林木屋與手沖放空日誌》</span>
+              <span class="magazine-persona">🌿 山林呼吸採集者</span>
+              <span class="magazine-tags"><span>#森林系咖啡</span><span>#手作市集</span><span>#不趕路漫遊</span></span>
+              <span class="magazine-cta">翻閱這本手冊 →</span>
+            </button>
+          </div>
+        </section>
       </form>
 
       <!-- 載入中微動態與冷啟動金句 -->
