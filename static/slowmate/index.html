@@ -1623,6 +1623,57 @@
       cursor: pointer;
     }
 
+    /* 🗺️ Google Maps 全行程 / 單日地圖 */
+    .btn-maps-all {
+      grid-column: 1 / -1;
+      padding: 12px 16px;
+      border: none;
+      border-radius: var(--radius-md);
+      background: var(--brand-sage);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-maps-all:hover { background: var(--brand-sage-dark); }
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-bottom: 14px;
+    }
+    .section-head .section-title { margin-bottom: 0; }
+    .btn-maps-mini {
+      padding: 6px 12px;
+      border: 1px solid var(--brand-sage);
+      border-radius: 99px;
+      background: var(--brand-sage-light);
+      color: var(--brand-sage-dark);
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-maps-mini:hover { background: #D0E2D8; }
+    .day-header-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .day-map-link {
+      flex-shrink: 0;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--brand-sage-dark);
+      background: #fff;
+      border: 1px solid #BFD3C6;
+      padding: 3px 10px;
+      border-radius: 99px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .day-map-link:hover { background: var(--brand-sage-light); }
+
     .btn-reroute {
       grid-column: 1 / -1;
       padding: 11px 16px;
@@ -2413,7 +2464,7 @@
       #shareCardModal, #shareCardBtn, .admin-entry-btn, .preview-bar, .free-unlock,
       .screen-only, .countdown-badge, .result-notice,
       .spot-tool-btn, .add-spot-pill, .add-spot-box, .day-remark, .shopping-add, .shop-del,
-      .shopping-sub, .shopping-card.is-empty, .btn-reroute {
+      .shopping-sub, .shopping-card.is-empty, .btn-reroute, .btn-maps-all, .btn-maps-mini, .day-map-link {
         display: none !important;
       }
       .print-only { display: block !important; }
@@ -2679,6 +2730,7 @@
 
       <div class="action-bar">
         <button type="button" class="btn-share-card" id="shareCardBtn">📸 產生慢旅分享圖 (IG / Threads)</button>
+        <button type="button" class="btn-maps-all" data-maps-all>🗺️ 在 Google Maps 查看全部景點 / 存清單</button>
         <button type="button" class="btn-secondary" id="openEmailModalBtn">✉️ 寄送行程到信箱</button>
         <button type="button" class="btn-secondary" id="copyTextBtn">📋 複製純文字行程</button>
         <button type="button" class="btn-reroute" id="rerouteBtn">🔄 帶回表單讓 AI 重新順路</button>
@@ -2751,7 +2803,10 @@
 
       <!-- 每日行程時間軸 -->
       <div class="card screen-only">
-        <h2 class="section-title">🌿 每日慢旅時間軸</h2>
+        <div class="section-head">
+          <h2 class="section-title">🌿 每日慢旅時間軸</h2>
+          <button type="button" class="btn-maps-mini" data-maps-all>🗺️ 在 Google Maps 查看全部景點 / 存清單</button>
+        </div>
         <div class="day-tabs-wrapper" id="dayTabs" role="tablist" aria-label="選擇行程日期"></div>
         <div id="dayContentBox" role="tabpanel" tabindex="0"></div>
       </div>
@@ -3978,6 +4033,12 @@
 
       // 🔄 帶回表單讓 AI 重新順路
       $('rerouteBtn').addEventListener('click', rerouteToForm);
+
+      // 🗺️ Google Maps 全部景點（操作列 + 時間軸標題各一顆）；本日地圖是一般連結，點擊時補上提示
+      document.querySelectorAll('[data-maps-all]').forEach((b) => b.addEventListener('click', openAllSpotsMap));
+      $('dayContentBox').addEventListener('click', (e) => {
+        if (e.target.closest('[data-day-map]')) showToast('🗺️ 已在 Google Maps 開啟本日景點！可直接點選景點加入「儲存清單」✨');
+      });
 
       // 慢旅風格快捷標籤
       document.querySelectorAll('.vibe-chip').forEach((chip) => chip.addEventListener('click', () => toggleVibe(chip)));
@@ -5283,6 +5344,11 @@
       }).join('');
 
       const dayLabel = dayObj.day_index || idx + 1;
+      // 全行程超過 10 個景點（總覽地圖只放得下前 10 個）時，每天附上「本日地圖」
+      const daySpots = mapSpots([dayObj]);
+      const dayMapHtml = interactive && daySpots.length && mapSpots(state.trip?.daily_itinerary || []).length > MAPS_MAX_SPOTS
+        ? `<a class="day-map-link" href="${escapeHtml(mapsRouteUrl(daySpots, destination))}" target="_blank" rel="noopener noreferrer" data-day-map aria-label="在 Google Maps 開啟 Day ${escapeHtml(dayLabel)} 所有景點">🗺️ 本日地圖</a>`
+        : '';
       let addHtml = '';
       let remarkHtml = '';
       if (interactive) {
@@ -5308,7 +5374,10 @@
 
       return `
         <div class="day-header-banner">
-          <div class="day-header-date">Day ${escapeHtml(dayObj.day_index || idx + 1)}${dayObj.date ? ' · ' + escapeHtml(dayObj.date) + ' ' + escapeHtml(formatTabDate(dayObj.date).replace(/^.*?（/, '（')) : ''}</div>
+          <div class="day-header-top">
+            <div class="day-header-date">Day ${escapeHtml(dayObj.day_index || idx + 1)}${dayObj.date ? ' · ' + escapeHtml(dayObj.date) + ' ' + escapeHtml(formatTabDate(dayObj.date).replace(/^.*?（/, '（')) : ''}</div>
+            ${dayMapHtml}
+          </div>
           <div class="day-header-title">${escapeHtml(dayObj.day_title || '')}</div>
         </div>
         <ol class="timeline-list">${timelineHtml}</ol>
@@ -5371,7 +5440,7 @@
      * 全部存在本機 localStorage（STORAGE_EDITS_KEY），以行程內容的指紋對應同一趟行程
      * edits = { id, days: { [dayIdx]: { timeline?: [...], remark?: '' } }, shopping: { done: {}, custom: [{ text, done }] } }
      * ============================================================ */
-    const SLOT_OPTIONS = ['上午', '下午', '傍晚'];
+    const SLOT_OPTIONS = ['上午', '下午', '傍晚', '晚上'];
     const TRANSPORT_OPTIONS = [
       { type: '步行', color: '#5B7B6A' },
       { type: '地鐵', color: '#4A90E2' },
@@ -5628,6 +5697,45 @@
       state.edits.shopping.custom.splice(Number(key.slice(2)), 1);
       commitEdits({ rerender: false });
       renderShoppingList();
+    }
+
+    /* ---------- 🗺️ Google Maps 全行程 / 單日景點串連 ---------- */
+    const MAPS_MAX_SPOTS = 10; // Google Maps 路線網址的途經點有上限，取前 10 個核心景點
+    const MAPS_TOAST = '🗺️ 已為您在 Google Maps 標出全行程景點！您可直接於地圖上點選景點加入您的「儲存清單」✨';
+
+    /** 依行程順序取出景點名稱（去重）；移動、入住、機場類節點不放進地圖，除非是使用者自己加的 */
+    function mapSpots(days) {
+      const all = [];
+      const places = [];
+      days.forEach((d) => (d?.timeline || []).forEach((t) => {
+        const name = String(t.title || '').trim();
+        if (!name) return;
+        all.push(name);
+        if (t.user_added || !NON_PLACE_RE.test(name)) places.push(name);
+      }));
+      return [...new Set(places.length ? places : all)];
+    }
+
+    /** 1 個景點用搜尋網址；2 個以上用路線網址（origin → waypoints → destination，大眾運輸） */
+    function mapsRouteUrl(spots, destination) {
+      const q = (name) => encodeURIComponent(`${destination} ${name}`.trim());
+      const list = spots.slice(0, MAPS_MAX_SPOTS);
+      if (list.length === 1) return `https://www.google.com/maps/search/?api=1&query=${q(list[0])}`;
+      const middle = list.slice(1, -1);
+      return 'https://www.google.com/maps/dir/?api=1' +
+        `&origin=${q(list[0])}` +
+        `&destination=${q(list[list.length - 1])}` +
+        (middle.length ? `&waypoints=${encodeURIComponent(middle.map((s) => `${destination} ${s}`.trim()).join('|'))}` : '') +
+        '&travelmode=transit';
+    }
+
+    function openAllSpotsMap() {
+      const trip = state.trip;
+      if (!trip) return;
+      const spots = mapSpots(trip.daily_itinerary || []);
+      if (!spots.length) { showToast('目前行程中沒有可標示的景點'); return; }
+      window.open(mapsRouteUrl(spots, trip.trip_summary?.destination || ''), '_blank', 'noopener,noreferrer');
+      showToast(MAPS_TOAST);
     }
 
     /* ---------- 🔄 帶回表單讓 AI 重新順路 ---------- */
