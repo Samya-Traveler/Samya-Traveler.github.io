@@ -1456,6 +1456,187 @@
       margin-top: 14px;
     }
 
+    /* 🎟️ Magic Link 已掛載序號提示 */
+    .magic-code-banner {
+      display: block;
+      margin: 0 0 16px;
+      padding: 9px 14px;
+      border-radius: 99px;
+      background: var(--brand-sage-light);
+      border: 1px solid #BFD3C6;
+      color: var(--brand-sage-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .magic-code-banner[hidden] { display: none; }
+
+    .code-paste-btn {
+      flex-shrink: 0;
+      padding: 0 12px;
+      border: 1px solid var(--brand-sage);
+      border-radius: var(--radius-md);
+      background: #fff;
+      color: var(--brand-sage-dark);
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .code-paste-btn:hover { background: var(--brand-sage-light); }
+
+    .code-rules { margin-top: 8px; font-size: 0.8rem; color: var(--text-muted); }
+    .code-rules summary { cursor: pointer; font-weight: 600; color: var(--brand-sage-dark); width: fit-content; }
+    .code-rules ul { margin: 6px 0 0 18px; line-height: 1.7; }
+
+    /* ✏️ 時間軸微調 / 新增地點 / 當日備忘 */
+    .spot-tools { display: flex; gap: 6px; flex-shrink: 0; align-items: center; margin-left: auto; }
+    /* 有微調按鈕的畫面版：手機寬度不夠時，按鈕整排換到標題下方，不擠壓店名 */
+    #dayContentBox .spot-title-row { flex-wrap: wrap; row-gap: 6px; }
+    #dayContentBox .spot-title { flex: 1 1 170px; }
+    .spot-tool-btn {
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 99px;
+      border: 1px solid var(--border-soft);
+      background: #fff;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .spot-tool-btn:hover { background: var(--bg-subtle); color: var(--text-main); }
+    .user-spot-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: #FFF6E9;
+      color: #7A4A12;
+      border: 1px solid #F2D7A9;
+    }
+    .spot-edit-form {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      background: var(--bg-subtle);
+      border-radius: var(--radius-md);
+    }
+    .spot-edit-form .form-input, .spot-edit-form .form-textarea { font-size: 0.9rem; }
+    .spot-edit-row { display: flex; gap: 8px; }
+    .spot-edit-row > * { flex: 1; min-width: 0; }
+    .spot-edit-actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+    .spot-edit-actions button, .maps-search-btn {
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+    }
+    .btn-mini-primary { border: none; background: var(--brand-sage); color: #fff; }
+    .btn-mini-primary:hover { background: var(--brand-sage-dark); }
+    .btn-mini-ghost { border: 1px solid var(--border-soft); background: #fff; color: var(--text-muted); }
+    .maps-search-btn {
+      border: 1px dashed var(--brand-sage);
+      background: #fff;
+      color: var(--brand-sage-dark);
+      text-align: left;
+    }
+    .add-spot-pill {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      padding: 10px 14px;
+      border: 1.5px dashed #A9C4B3;
+      border-radius: 99px;
+      background: #F7FAF8;
+      color: var(--brand-sage-dark);
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .add-spot-pill:hover { background: var(--brand-sage-light); }
+    .add-spot-box { margin-top: 16px; }
+    .add-spot-box .spot-edit-form { border: 1.5px dashed #A9C4B3; }
+    .day-remark { margin-top: 16px; }
+    .day-remark-label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
+    .day-remark textarea {
+      width: 100%;
+      min-height: 86px;
+      padding: 10px 12px;
+      border: 1px dashed var(--border-soft);
+      border-radius: var(--radius-md);
+      background: #FFFDF7;
+      font-family: inherit;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-main);
+      resize: vertical;
+    }
+    .day-remark textarea:focus { outline: none; border-color: var(--brand-sage); border-style: solid; }
+    .day-remark-print { white-space: pre-wrap; font-size: 0.88rem; }
+
+    /* 🛍️ 慢旅伴手禮＆購物清單 */
+    .shopping-sub { font-size: 0.8rem; color: var(--text-muted); margin: -6px 0 8px; }
+    .shop-row { display: flex; align-items: flex-start; gap: 6px; border-bottom: 1px solid var(--bg-subtle); }
+    .shop-row:last-child { border-bottom: none; }
+    .shop-row .todo-item { flex: 1; border-bottom: none; }
+    .shop-ai-tag {
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--brand-sage-dark);
+      background: var(--brand-sage-light);
+      padding: 1px 6px;
+      border-radius: 6px;
+      vertical-align: 1px;
+    }
+    .shop-del {
+      flex-shrink: 0;
+      margin-top: 8px;
+      width: 28px;
+      height: 28px;
+      border: none;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .shop-del:hover { background: #FCE8E6; color: var(--danger); }
+    .shopping-add { display: flex; gap: 8px; margin-top: 10px; }
+    .shopping-add .form-input { flex: 1; min-width: 0; font-size: 0.9rem; }
+    .shopping-add button {
+      flex-shrink: 0;
+      padding: 0 14px;
+      border: none;
+      border-radius: var(--radius-md);
+      background: var(--brand-sage);
+      color: #fff;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-reroute {
+      grid-column: 1 / -1;
+      padding: 11px 16px;
+      border: 1.5px dashed var(--brand-sage);
+      border-radius: var(--radius-md);
+      background: #F7FAF8;
+      color: var(--brand-sage-dark);
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-reroute:hover { background: var(--brand-sage-light); }
+
     /* 可打勾待辦清單 Checklist */
     .todo-progress {
       font-size: 0.8rem;
@@ -2230,7 +2411,9 @@
       .navbar, .quota-badge-bar, .restore-banner, #formView, .action-bar,
       #resetPlanBtn, .print-btn, .modal-backdrop, .toast, footer,
       #shareCardModal, #shareCardBtn, .admin-entry-btn, .preview-bar, .free-unlock,
-      .screen-only, .countdown-badge, .result-notice {
+      .screen-only, .countdown-badge, .result-notice,
+      .spot-tool-btn, .add-spot-pill, .add-spot-box, .day-remark, .shopping-add, .shop-del,
+      .shopping-sub, .shopping-card.is-empty, .btn-reroute {
         display: none !important;
       }
       .print-only { display: block !important; }
@@ -2326,6 +2509,7 @@
     <!-- 狀態 1：輸入表單 Form View -->
     <section id="formView" class="card" aria-label="慢旅規劃表單">
       <form id="plannerForm" novalidate>
+        <p class="magic-code-banner" id="magicCodeBanner" role="status" hidden>🎟️ 已自動掛載 VIP 專屬序號（免收信箱驗證碼，填寫下方目的地即可直接生成！）</p>
         <div class="form-group">
           <label class="form-label" for="destinationInput">
             目的地城市 / 地區
@@ -2412,13 +2596,24 @@
             <p class="vip-pool-line" id="vipPoolLine" role="status" aria-live="polite">✨ VIP 序號通道：每日另有 30 席序號專屬保留席</p>
             <label class="form-label" for="redeemCodeInput">
               贊助 / 活動解鎖序號
-              <span class="form-sub">成功生成行程才會扣次數；尚有首次免費額度時會優先使用免費名額</span>
+              <span class="form-sub">💡 填寫序號與您的 Email 即可免驗證直接規劃</span>
             </label>
             <div class="code-verify-row">
-              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="SM5-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="SM5-XXXX-YYYY" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+              <button type="button" class="code-paste-btn" id="pasteCodeBtn" aria-label="從剪貼簿貼上序號">📋 貼上</button>
               <button type="button" class="code-verify-btn" id="checkCodeBtn">驗證</button>
             </div>
             <p class="code-status" id="codeStatus" role="status" aria-live="polite"></p>
+            <details class="code-rules">
+              <summary>ⓘ 規則說明</summary>
+              <ul>
+                <li>成功生成行程才會扣次數，生成失敗不扣。</li>
+                <li>尚有首次免費額度時，會優先使用免費名額、保留序號次數。</li>
+                <li>贊助序號：買家本人（購買信箱）可重複使用全部次數；分享給旅伴時，每位旅伴信箱限用 1 次。</li>
+                <li>活動 VIP 序號：每個信箱限用 1 次。</li>
+                <li>使用序號免收信箱驗證碼，但仍需填寫 Email 以辨識買家或旅伴。</li>
+              </ul>
+            </details>
           </div>
         </div>
 
@@ -2486,6 +2681,7 @@
         <button type="button" class="btn-share-card" id="shareCardBtn">📸 產生慢旅分享圖 (IG / Threads)</button>
         <button type="button" class="btn-secondary" id="openEmailModalBtn">✉️ 寄送行程到信箱</button>
         <button type="button" class="btn-secondary" id="copyTextBtn">📋 複製純文字行程</button>
+        <button type="button" class="btn-reroute" id="rerouteBtn">🔄 帶回表單讓 AI 重新順路</button>
       </div>
 
       <!-- 🎁 免費解鎖更多慢旅額度：問卷 + 曬圖雙重任務（只給實際生成 / 恢復自己行程的人；翻閱期刊範例時隱藏） -->
@@ -2569,6 +2765,17 @@
         <p class="todo-progress" id="todoProgressText"></p>
         <div class="todo-progress-bar" aria-hidden="true"><div class="todo-progress-fill" id="todoProgressFill"></div></div>
         <div id="todoListContainer"></div>
+      </div>
+
+      <!-- 🛍️ 慢旅伴手禮＆購物清單：AI 推薦 3 項 + 自行新增（勾選與自訂項目存在本機） -->
+      <div class="card shopping-card" id="shoppingCard">
+        <h2 class="section-title">🛍️ 慢旅伴手禮＆購物清單</h2>
+        <p class="shopping-sub">AI 推薦的在地好物可直接打勾；也能加入自己想買的清單，會自動儲存於手機中</p>
+        <div id="shoppingList"></div>
+        <form class="shopping-add" id="shoppingAddForm" novalidate>
+          <input type="text" id="shoppingInput" class="form-input" placeholder="+ 輸入想買的伴手禮或藥妝..." maxlength="40" autocomplete="off" aria-label="新增想買的伴手禮或藥妝" />
+          <button type="submit">加入</button>
+        </form>
       </div>
 
       <button type="button" class="btn-primary btn-dark" id="resetPlanBtn">🔄 重新規劃另一趟旅程</button>
@@ -2866,6 +3073,7 @@
     const STORAGE_TODOS_KEY = 'slowmate_todo_state';
     const STORAGE_EMAIL_LOCK_KEY = 'slowmate_email_lock_until';
     const STORAGE_DRAFT_KEY = 'slowmate_form_draft';
+    const STORAGE_EDITS_KEY = 'slowmate_trip_edits'; // 時間軸微調、當日備忘、購物清單（只保留最近一趟行程）
 
     // 行程頁尾、純文字行程、HTML 行程信統一使用的小叮嚀
     const SLOW_NOTE_TITLE = '🌿 SlowMate · AI 慢旅行程規劃助手的小叮嚀：';
@@ -3050,6 +3258,11 @@
             '一雙好走的鞋（每天步行約 1~1.5 萬步）',
             '準備少量日圓現金與零錢包（老舖與寺院香油錢）',
             '下載 Google Maps 離線地圖，收藏想去的咖啡店'
+          ],
+          shopping_list: [
+            '一保堂茶舖 焙茶：寺町本店的日常好茶，回家泡一壺就是京都的午後',
+            '開化堂 茶筒：明治創業的手作銅罐，越用越有光澤',
+            '錦市場 漬物：挑幾樣京都人餐桌上的醃菜，真空包裝方便帶回'
           ]
         },
         daily_itinerary: [
@@ -3141,6 +3354,11 @@
             '涼季早晚約 15~18°C：帶一件薄外套，上素帖山更涼',
             '進寺院需遮肩、過膝：準備一條輕薄長褲或圍巾',
             '防曬乳、防蚊液與少量泰銖現金（早市與雙條車用）'
+          ],
+          shopping_list: [
+            '清邁山區咖啡豆：在地烘豆坊的單品豆，帶走山林的果香',
+            'Baan Kang Wat 手作陶器：藝術村職人小碗，日常也能慢下來',
+            '泰北棉麻布料：Warorot 市場的手織布，做成桌巾或圍巾都好看'
           ]
         },
         daily_itinerary: [
@@ -3571,11 +3789,9 @@
       redeemCodeInput.value = code;
       if (isValidEmail(linkEmail)) emailInput.value = linkEmail;
       setCodeBoxOpen(true);
-      showToast(isValidEmail(linkEmail) ? '✨ 已自動帶入您的序號與 Email！' : '✨ 已自動帶入您的贊助解鎖序號！');
+      $('magicCodeBanner').hidden = false; // 表單頂部綠色膠囊：已掛載序號、免收驗證碼
       checkRedeemCode(); // 背景唯讀查詢序號狀態，於輸入框下方顯示「✅ 序號有效」或錯誤原因
-      // 引導填下一個欄位：缺目的地先填目的地，否則補 Email
-      const next = !destinationInput.value.trim() ? destinationInput : !isValidEmail(emailInput.value.trim()) ? emailInput : null;
-      if (next) setTimeout(() => next.focus({ preventScroll: true }), 0);
+      setTimeout(() => destinationInput.focus({ preventScroll: true }), 0);
       return true;
     }
 
@@ -3610,6 +3826,7 @@
     function saveTrip(trip) {
       store.set(STORAGE_TRIP_KEY, JSON.stringify(trip));
       store.remove(STORAGE_TODOS_KEY); // 新行程 → 重置勾選狀態
+      store.remove(STORAGE_EDITS_KEY); // 新行程 → 清掉上一趟的微調、備忘與購物清單
     }
 
     /* ---------- 今日雙水池名額 (GET /api/plan) ---------- */
@@ -3688,7 +3905,7 @@
     }
 
     const EMAIL_HINT_DEFAULT = '首次使用驗證信箱即可免費規劃一次';
-    const EMAIL_HINT_CODE = '輸入您的 Email（買家本人可無限次使用，旅伴分享或活動 VIP 碼每人限用 1 次，免收驗證碼）';
+    const EMAIL_HINT_CODE = '使用序號免收驗證碼（使用規則見下方「ⓘ 規則說明」）';
 
     /** 展開 / 收合序號區：展開時 Email 欄提示改為序號規則（使用序號免 OTP，但仍需 Email 判斷買家或旅伴） */
     function setCodeBoxOpen(open) {
@@ -3741,7 +3958,26 @@
 
       // 序號折疊區「驗證」：唯讀查詢，不核銷
       $('checkCodeBtn').addEventListener('click', checkRedeemCode);
-      redeemCodeInput.addEventListener('input', () => setCodeStatus('', ''));
+      redeemCodeInput.addEventListener('input', () => {
+        setCodeStatus('', '');
+        if (!redeemCodeInput.value.trim()) $('magicCodeBanner').hidden = true;
+      });
+      $('pasteCodeBtn').addEventListener('click', pasteRedeemCode);
+
+      // ✏️ 時間軸微調 / ➕ 新增地點 / 當日備忘（事件委派，切換 Day 後依然有效）
+      $('dayContentBox').addEventListener('click', onTimelineAction);
+      $('dayContentBox').addEventListener('input', onRemarkInput);
+      $('dayContentBox').addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && state.editing) { state.editing = null; rerenderActiveDay(); }
+      });
+
+      // 🛍️ 購物清單
+      $('shoppingAddForm').addEventListener('submit', (e) => { e.preventDefault(); addShoppingItem(); });
+      $('shoppingList').addEventListener('change', onShoppingToggle);
+      $('shoppingList').addEventListener('click', onShoppingDelete);
+
+      // 🔄 帶回表單讓 AI 重新順路
+      $('rerouteBtn').addEventListener('click', rerouteToForm);
 
       // 慢旅風格快捷標籤
       document.querySelectorAll('.vibe-chip').forEach((chip) => chip.addEventListener('click', () => toggleVibe(chip)));
@@ -3972,6 +4208,27 @@
      * ============================================================ */
     // 贊助序號 SLOW-XXXX-YYYY 與活動代碼（NANA-SLOW、XMAS-2026…）：4~32 碼英數與連字號
     const CODE_RE = /^[A-Z0-9][A-Z0-9-]{2,30}[A-Z0-9]$/;
+    /** 從剪貼簿文字（可能是整封信或 LINE 訊息）挑出序號：優先含連字號的片段 */
+    function extractRedeemCode(text) {
+      const tokens = String(text || '').toUpperCase().split(/[^A-Z0-9-]+/).filter((t) => CODE_RE.test(t));
+      return tokens.find((t) => t.includes('-')) || tokens[0] || '';
+    }
+
+    async function pasteRedeemCode() {
+      let text = '';
+      try {
+        if (navigator.clipboard?.readText) text = await navigator.clipboard.readText();
+      } catch (_) { text = ''; }
+      const code = extractRedeemCode(text);
+      if (!code) {
+        showToast(text ? '剪貼簿裡沒有找到序號，請直接貼到輸入框' : '無法讀取剪貼簿，請長按輸入框貼上序號');
+        redeemCodeInput.focus();
+        return;
+      }
+      redeemCodeInput.value = code;
+      checkRedeemCode();
+    }
+
     const CODE_FORMAT_MSG = '序號格式不正確，請確認信件或活動貼文中的序號（4~32 碼英數字）。';
 
     function collectForm() {
@@ -4231,6 +4488,7 @@
 
           if (result.entitlement === 'redeem_code') {
             redeemCodeInput.value = '';
+            $('magicCodeBanner').hidden = true;
             if (!notice) showToast('☕ 感謝贊助！序號已核銷，行程已存在此裝置');
           } else if (result.entitlement === 'admin') {
             showToast('🛠️ 管理員白名單：未扣除每日名額');
@@ -4803,7 +5061,12 @@
      * ============================================================ */
     function renderTripResult(data, { notice = '', sample = false } = {}) {
       data = applyDepartureCutoff(data); // 分享圖、複製文字、寄信都沿用切斷後的行程
-      state.trip = data;
+      // 使用者的時間軸微調、當日備忘與購物清單疊加在 AI 原始行程上（範例行程只存在記憶體）
+      state.baseTrip = data;
+      state.editsPersist = !sample;
+      state.edits = loadTripEdits(data, !sample);
+      state.editing = null;
+      state.trip = applyTripEdits(data, state.edits);
       setView('result');
 
       const noticeEl = $('resultNotice');
@@ -4815,6 +5078,7 @@
       document.documentElement.style.setProperty('--nav-h', `${document.querySelector('.navbar')?.offsetHeight || 60}px`);
       $('previewBar').hidden = !sample;
       $('freeUnlock').hidden = sample;
+      $('rerouteBtn').hidden = sample;
       renderJourneyCard(data);
 
       const summary = data.trip_summary || {};
@@ -4861,11 +5125,12 @@
 
       // 日期切換 Tabs 與每日時間軸
       state.activeDayIndex = 0;
-      renderDayTabs(data.daily_itinerary || [], destination);
-      renderPrintAllDays(data.daily_itinerary || [], destination);
+      renderDayTabs(state.trip.daily_itinerary || [], destination);
+      renderPrintAllDays(state.trip.daily_itinerary || [], destination);
 
       // 待辦清單 Checkbox（支援狀態記憶）
       renderTodoChecklist(data.pre_trip_prep?.todo_checklist || [], { persist: !sample });
+      renderShoppingList();
 
       window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
     }
@@ -4934,7 +5199,9 @@
         btn.classList.remove('active'); void btn.offsetWidth; btn.classList.add('active');
         if (focus) btn.focus();
         btn.scrollIntoView({ block: 'nearest', inline: 'center', behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
-        renderSingleDayTimeline(days[idx], destination, idx);
+        state.editing = null;
+        // 讀 state.trip：使用者微調過的時間軸切回該天時要看到最新版本
+        renderSingleDayTimeline((state.trip?.daily_itinerary || days)[idx], destination, idx);
       };
 
       tabs.forEach((btn, idx) => {
@@ -4965,17 +5232,36 @@
       return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(title + ' ' + destination)}`;
     }
 
-    function renderSingleDayTimeline(dayObj, destination, idx) {
-      const box = $('dayContentBox');
-      box.setAttribute('aria-labelledby', `day-tab-${idx}`);
-      box.innerHTML = `<div class="timeline-animate">${buildDayHtml(dayObj, destination, idx)}</div>`;
+    /** 使用者新增 / 微調過的地點：以「目的地 + 新名稱」搜尋，避免同名店家跑到別的城市 */
+    function itemMapsUrl(item, destination) {
+      if (item.user_added || item.user_edited) {
+        return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(destination + ' ' + (item.title || ''))}`;
+      }
+      return mapsUrl(item.title || '', destination);
     }
 
-    /** 單日時間軸 HTML（畫面切換 Tab 與列印全部天數共用） */
-    function buildDayHtml(dayObj, destination, idx) {
-      const timelineHtml = (dayObj.timeline || []).map((item) => {
+    function renderSingleDayTimeline(dayObj, destination, idx, { animate = true } = {}) {
+      const box = $('dayContentBox');
+      box.setAttribute('aria-labelledby', `day-tab-${idx}`);
+      const html = buildDayHtml(dayObj, destination, idx, { interactive: true });
+      box.innerHTML = animate ? `<div class="timeline-animate">${html}</div>` : `<div>${html}</div>`;
+    }
+
+    /** 單日時間軸 HTML（畫面切換 Tab 與列印全部天數共用；interactive 時附上微調、新增與備忘欄） */
+    function buildDayHtml(dayObj, destination, idx, { interactive = false } = {}) {
+      const editing = interactive ? state.editing : null;
+      const timelineHtml = (dayObj.timeline || []).map((item, i) => {
+        if (editing && editing.day === idx && editing.item === i) {
+          return `<li class="timeline-node">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            ${spotFormHtml({ mode: 'edit', slot: item.time_slot, title: item.title, note: item.description })}
+          </li>`;
+        }
         const tagColor = safeColor(item.transport_tag?.color_code);
         const tagType = item.transport_tag?.type || '移動';
+        const tools = interactive ? `
+                <button type="button" class="spot-tool-btn" data-act="edit" data-item="${i}" aria-label="微調 ${escapeHtml(item.title)}">✏️ 微調</button>
+                <button type="button" class="spot-tool-btn" data-act="delete" data-item="${i}" aria-label="刪除 ${escapeHtml(item.title)}">🗑️</button>` : '';
         return `
           <li class="timeline-node ${item.is_must_visit ? 'is-must' : ''}">
             <span class="timeline-dot" aria-hidden="true"></span>
@@ -4983,15 +5269,34 @@
               <span class="slot-time">${escapeHtml(item.time_slot)}</span>
               <span class="transport-tag" style="background:${tagColor}">${escapeHtml(tagType)}</span>
               ${item.is_must_visit ? '<span class="must-visit-tag">★ 必去</span>' : ''}
+              ${item.user_added ? '<span class="user-spot-tag">✍️ 我的私房</span>' : ''}
             </div>
             <div class="spot-title-row">
               <span class="spot-title">${escapeHtml(item.title)}</span>
-              <a href="${escapeHtml(mapsUrl(item.title || '', destination))}" target="_blank" rel="noopener noreferrer" class="map-link" aria-label="在 Google Maps 導航至 ${escapeHtml(item.title)}">📍 導航</a>
+              <span class="spot-tools">
+                <a href="${escapeHtml(itemMapsUrl(item, destination))}" target="_blank" rel="noopener noreferrer" class="map-link" aria-label="在 Google Maps 導航至 ${escapeHtml(item.title)}">📍 導航</a>${tools}
+              </span>
             </div>
-            <p class="spot-desc">${escapeHtml(item.description)}</p>
+            ${item.description ? `<p class="spot-desc">${escapeHtml(item.description)}</p>` : ''}
           </li>
         `;
       }).join('');
+
+      const dayLabel = dayObj.day_index || idx + 1;
+      let addHtml = '';
+      let remarkHtml = '';
+      if (interactive) {
+        addHtml = editing && editing.day === idx && editing.adding
+          ? `<div class="add-spot-box">${spotFormHtml({ mode: 'add' })}</div>`
+          : `<button type="button" class="add-spot-pill" data-act="add-open">➕ 在 Day ${escapeHtml(dayLabel)} 加入我想去的地點 / 私房店家</button>`;
+        remarkHtml = `
+        <div class="day-remark">
+          <label class="day-remark-label" for="dayRemark${idx}">✏️ 當日隨手備忘 (Remark)</label>
+          <textarea id="dayRemark${idx}" data-remark-day="${idx}" maxlength="300" rows="3" placeholder="點此記下怕忘記的小事（例：這天穿好走的鞋、順路買郵票、餐廳預約代號...）會自動儲存於手機中">${escapeHtml(dayObj.user_remark || '')}</textarea>
+        </div>`;
+      } else if (dayObj.user_remark) {
+        remarkHtml = `<div class="stay-box day-remark-print"><strong>📌 當日備忘：</strong>${escapeHtml(dayObj.user_remark)}</div>`;
+      }
 
       const stay = dayObj.stay_info;
       const stayHtml = stay && (stay.area_recommendation || stay.hotel_vibe) ? `
@@ -5007,6 +5312,8 @@
           <div class="day-header-title">${escapeHtml(dayObj.day_title || '')}</div>
         </div>
         <ol class="timeline-list">${timelineHtml}</ol>
+        ${addHtml}
+        ${remarkHtml}
         ${stayHtml}
       `;
     }
@@ -5057,6 +5364,320 @@
     function updateTodoProgress(done, total) {
       $('todoProgressText').textContent = total ? `已完成 ${done} / ${total} 項${done === total ? ' · 準備就緒，出發吧！🎒' : ''}` : '';
       $('todoProgressFill').style.width = total ? `${Math.round((done / total) * 100)}%` : '0';
+    }
+
+    /* ============================================================
+     * ✏️ 互動式行程：時間軸微調 / 新增地點、當日備忘、伴手禮購物清單
+     * 全部存在本機 localStorage（STORAGE_EDITS_KEY），以行程內容的指紋對應同一趟行程
+     * edits = { id, days: { [dayIdx]: { timeline?: [...], remark?: '' } }, shopping: { done: {}, custom: [{ text, done }] } }
+     * ============================================================ */
+    const SLOT_OPTIONS = ['上午', '下午', '傍晚'];
+    const TRANSPORT_OPTIONS = [
+      { type: '步行', color: '#5B7B6A' },
+      { type: '地鐵', color: '#4A90E2' },
+      { type: '電車', color: '#3F51B5' },
+      { type: '巴士', color: '#E07A5F' },
+      { type: '計程車', color: '#9C27B0' }
+    ];
+    const PLACE_MAX = 40;
+    const NOTE_MAX = 160;
+
+    function tripFingerprint(trip) {
+      const text = JSON.stringify(trip);
+      let h = 5381;
+      for (let i = 0; i < text.length; i++) h = ((h * 33) ^ text.charCodeAt(i)) >>> 0;
+      return `${h.toString(36)}-${text.length.toString(36)}`;
+    }
+
+    function emptyEdits(id) {
+      return { id, days: {}, shopping: { done: {}, custom: [] } };
+    }
+
+    function loadTripEdits(trip, persist) {
+      const id = tripFingerprint(trip);
+      if (!persist) return emptyEdits(id);
+      try {
+        const saved = JSON.parse(store.get(STORAGE_EDITS_KEY) || 'null');
+        if (saved && saved.id === id && saved.days && saved.shopping) {
+          saved.shopping.done = saved.shopping.done || {};
+          saved.shopping.custom = Array.isArray(saved.shopping.custom) ? saved.shopping.custom : [];
+          return saved;
+        }
+      } catch (_) {}
+      return emptyEdits(id);
+    }
+
+    /** 原始行程 + 使用者修改 → 畫面、列印、複製文字、分享圖與寄信共用的行程 */
+    function applyTripEdits(base, edits) {
+      const trip = JSON.parse(JSON.stringify(base));
+      (trip.daily_itinerary || []).forEach((day, i) => {
+        const e = edits.days[i];
+        if (!e) return;
+        if (Array.isArray(e.timeline)) day.timeline = JSON.parse(JSON.stringify(e.timeline));
+        if (e.remark) day.user_remark = e.remark;
+      });
+      trip.shopping_items = shoppingItems(trip, edits);
+      return trip;
+    }
+
+    function shoppingItems(trip, edits) {
+      const ai = (trip.pre_trip_prep?.shopping_list || []).map((text, i) => ({ key: `ai-${i}`, text, ai: true, done: !!edits.shopping.done[`ai-${i}`] }));
+      const custom = edits.shopping.custom.map((c, i) => ({ key: `c-${i}`, text: c.text, ai: false, done: !!c.done }));
+      return [...ai, ...custom];
+    }
+
+    function commitEdits({ rerender = true } = {}) {
+      state.trip = applyTripEdits(state.baseTrip, state.edits);
+      if (state.editsPersist) store.set(STORAGE_EDITS_KEY, JSON.stringify(state.edits));
+      if (rerender) rerenderActiveDay();
+      renderPrintAllDays(state.trip.daily_itinerary || [], state.trip.trip_summary?.destination || '');
+    }
+
+    function rerenderActiveDay() {
+      const idx = state.activeDayIndex;
+      const day = state.trip?.daily_itinerary?.[idx];
+      if (day) renderSingleDayTimeline(day, state.trip.trip_summary?.destination || '', idx, { animate: false });
+    }
+
+    /** 第一次修改某天時，把當天的 AI 時間軸複製一份成為可編輯版本 */
+    function editableTimeline(dayIdx) {
+      const e = state.edits.days[dayIdx] || (state.edits.days[dayIdx] = {});
+      if (!Array.isArray(e.timeline)) e.timeline = JSON.parse(JSON.stringify(state.baseTrip.daily_itinerary[dayIdx]?.timeline || []));
+      return e.timeline;
+    }
+
+    /** 時段排序：上午 → 中午 → 下午 → 傍晚 → 晚上；「抵達後」等無法判斷的回傳 -1 */
+    function slotRank(slot) {
+      const t = String(slot || '');
+      if (/深夜/.test(t)) return 6;
+      if (/傍晚|黃昏|夕/.test(t)) return 4;
+      if (/晚/.test(t)) return 5;
+      if (/下午|午後/.test(t)) return 3;
+      if (/中午|午餐/.test(t)) return 2;
+      if (/上午|早|晨/.test(t)) return 1;
+      return -1;
+    }
+
+    /** 依時段插到同時段的最後面（排在第一個「時段更晚」的行程之前） */
+    function insertBySlot(timeline, item) {
+      const rank = slotRank(item.time_slot);
+      const at = rank < 0 ? -1 : timeline.findIndex((t) => slotRank(t.time_slot) > rank);
+      if (at < 0) timeline.push(item);
+      else timeline.splice(at, 0, item);
+    }
+
+    function spotFormHtml({ mode, slot = '上午', title = '', note = '' }) {
+      const slots = SLOT_OPTIONS.includes(slot) ? SLOT_OPTIONS : [slot, ...SLOT_OPTIONS];
+      const slotSelect = `<select class="form-input" data-field="slot" aria-label="時段">${slots.map((o) => `<option value="${escapeHtml(o)}"${o === slot ? ' selected' : ''}>${escapeHtml(o)}</option>`).join('')}</select>`;
+      if (mode === 'edit') {
+        return `<div class="spot-edit-form" data-form="edit">
+          ${slotSelect}
+          <input type="text" class="form-input" data-field="title" value="${escapeHtml(title)}" maxlength="${PLACE_MAX}" placeholder="景點 / 店家名稱" aria-label="景點名稱" />
+          <textarea class="form-textarea" data-field="note" rows="3" maxlength="${NOTE_MAX}" placeholder="描述（選填）" aria-label="景點描述">${escapeHtml(note)}</textarea>
+          <div class="spot-edit-actions">
+            <button type="button" class="btn-mini-ghost" data-act="cancel">取消</button>
+            <button type="button" class="btn-mini-primary" data-act="save-edit">✓ 儲存微調</button>
+          </div>
+        </div>`;
+      }
+      return `<div class="spot-edit-form" data-form="add">
+        <div class="spot-edit-row">
+          ${slotSelect}
+          <select class="form-input" data-field="transport" aria-label="交通方式">${TRANSPORT_OPTIONS.map((o) => `<option value="${o.type}">${o.type}</option>`).join('')}</select>
+        </div>
+        <input type="text" class="form-input" data-field="title" maxlength="${PLACE_MAX}" placeholder="地點 / 私房店家名稱" aria-label="地點名稱" />
+        <button type="button" class="maps-search-btn" data-act="maps-search">🔍 先去 Google Maps 搜尋確認店名</button>
+        <input type="text" class="form-input" data-field="note" maxlength="${NOTE_MAX}" placeholder="備註（選填，例：想吃招牌布丁、11:00 開門）" aria-label="備註" />
+        <div class="spot-edit-actions">
+          <button type="button" class="btn-mini-ghost" data-act="cancel">取消</button>
+          <button type="button" class="btn-mini-primary" data-act="save-add">✓ 加入行程</button>
+        </div>
+      </div>`;
+    }
+
+    function focusSpotForm() {
+      requestAnimationFrame(() => $('dayContentBox').querySelector('.spot-edit-form [data-field="title"]')?.focus());
+    }
+
+    function onTimelineAction(e) {
+      const btn = e.target.closest('[data-act]');
+      if (!btn || !state.trip) return;
+      const act = btn.dataset.act;
+      const dayIdx = state.activeDayIndex;
+      const destination = state.trip.trip_summary?.destination || '';
+      const form = btn.closest('.spot-edit-form');
+      const field = (name) => form?.querySelector(`[data-field="${name}"]`);
+      const read = (name, max) => (field(name)?.value || '').replace(/\s+/g, ' ').trim().slice(0, max);
+
+      if (act === 'edit') {
+        state.editing = { day: dayIdx, item: Number(btn.dataset.item) };
+        rerenderActiveDay();
+        focusSpotForm();
+      } else if (act === 'add-open') {
+        state.editing = { day: dayIdx, adding: true };
+        rerenderActiveDay();
+        focusSpotForm();
+      } else if (act === 'cancel') {
+        state.editing = null;
+        rerenderActiveDay();
+      } else if (act === 'delete') {
+        const i = Number(btn.dataset.item);
+        const item = state.trip.daily_itinerary[dayIdx]?.timeline?.[i];
+        if (!item || !window.confirm(`確定要從行程中移除「${item.title || '這個地點'}」嗎？`)) return;
+        editableTimeline(dayIdx).splice(i, 1);
+        state.editing = null;
+        commitEdits();
+        showToast('🗑️ 已移除，下方可再加入想去的地點');
+      } else if (act === 'maps-search') {
+        const keyword = read('title', PLACE_MAX);
+        if (!keyword) {
+          showToast('請先輸入想搜尋的店名或關鍵字');
+          field('title')?.focus();
+          return;
+        }
+        window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(destination + ' ' + keyword)}`, '_blank', 'noopener');
+      } else if (act === 'save-edit' || act === 'save-add') {
+        const title = read('title', PLACE_MAX);
+        if (!title) {
+          showToast('請輸入地點名稱');
+          field('title')?.focus();
+          return;
+        }
+        const slot = read('slot', 20) || '上午';
+        const note = read('note', NOTE_MAX);
+        const timeline = editableTimeline(dayIdx);
+        if (act === 'save-edit') {
+          const i = state.editing?.item;
+          const item = timeline[i];
+          if (!item) return;
+          const changed = item.title !== title || item.description !== note;
+          Object.assign(item, { title, description: note, ...(changed ? { user_edited: true } : {}) });
+          if (item.time_slot !== slot) {
+            item.time_slot = slot;
+            timeline.splice(i, 1);
+            insertBySlot(timeline, item);
+          }
+          showToast('✏️ 已儲存微調');
+        } else {
+          const transport = TRANSPORT_OPTIONS.find((o) => o.type === read('transport', 10)) || TRANSPORT_OPTIONS[0];
+          insertBySlot(timeline, {
+            time_slot: slot,
+            title,
+            is_must_visit: false,
+            transport_tag: { type: transport.type, color_code: transport.color },
+            description: note,
+            user_added: true
+          });
+          showToast(`📍 已加入 Day ${state.trip.daily_itinerary[dayIdx]?.day_index || dayIdx + 1}`);
+        }
+        state.editing = null;
+        commitEdits();
+      }
+    }
+
+    function onRemarkInput(e) {
+      const box = e.target.closest('[data-remark-day]');
+      if (!box || !state.edits) return;
+      const dayIdx = Number(box.dataset.remarkDay);
+      const e2 = state.edits.days[dayIdx] || (state.edits.days[dayIdx] = {});
+      e2.remark = box.value.slice(0, 300);
+      commitEdits({ rerender: false }); // 不重畫，避免輸入中失去焦點
+    }
+
+    /* ---------- 🛍️ 伴手禮＆購物清單 ---------- */
+    function renderShoppingList() {
+      const items = state.trip?.shopping_items || [];
+      $('shoppingCard').classList.toggle('is-empty', !items.length);
+      $('shoppingList').innerHTML = items.length ? items.map((it) => `
+        <div class="shop-row">
+          <label class="todo-item">
+            <input type="checkbox" class="todo-checkbox" data-shop="${it.key}" ${it.done ? 'checked' : ''} />
+            <span class="todo-text">${escapeHtml(it.text)}${it.ai ? '<span class="shop-ai-tag">AI 推薦</span>' : ''}</span>
+          </label>
+          ${it.ai ? '' : `<button type="button" class="shop-del" data-shop-del="${it.key}" aria-label="刪除 ${escapeHtml(it.text)}">✕</button>`}
+        </div>
+      `).join('') : '<p class="empty-note">還沒有清單，在下方輸入想買的伴手禮或藥妝吧！</p>';
+    }
+
+    function addShoppingItem() {
+      const input = $('shoppingInput');
+      const text = input.value.replace(/\s+/g, ' ').trim().slice(0, 40);
+      if (!text || !state.edits) { input.focus(); return; }
+      if (state.edits.shopping.custom.length >= 30) { showToast('購物清單最多 30 項'); return; }
+      state.edits.shopping.custom.push({ text, done: false });
+      input.value = '';
+      commitEdits({ rerender: false });
+      renderShoppingList();
+      input.focus();
+    }
+
+    function onShoppingToggle(e) {
+      const key = e.target.dataset?.shop;
+      if (!key || !state.edits) return;
+      if (key.startsWith('ai-')) state.edits.shopping.done[key] = e.target.checked;
+      else {
+        const c = state.edits.shopping.custom[Number(key.slice(2))];
+        if (c) c.done = e.target.checked;
+      }
+      commitEdits({ rerender: false });
+    }
+
+    function onShoppingDelete(e) {
+      const key = e.target.closest('[data-shop-del]')?.dataset.shopDel;
+      if (!key || !state.edits) return;
+      state.edits.shopping.custom.splice(Number(key.slice(2)), 1);
+      commitEdits({ rerender: false });
+      renderShoppingList();
+    }
+
+    /* ---------- 🔄 帶回表單讓 AI 重新順路 ---------- */
+    const REROUTE_PREFIX = '請務必將以下我指定的地點排入順路行程中：';
+    const NON_PLACE_RE = /機場|車站|入住|退房|返程|搭機|前往|抵達|寄放|Check|check/;
+
+    function rerouteToForm() {
+      const trip = state.trip;
+      if (!trip) return;
+      const s = trip.trip_summary || {};
+      const days = trip.daily_itinerary || [];
+
+      // 優先順序：自己新增 → 自己微調 → ★必去 → 其他保留的景點；交通與入住類的節點不帶
+      const groups = [[], [], [], []];
+      days.forEach((d) => (d.timeline || []).forEach((t) => {
+        const name = String(t.title || '').trim();
+        if (!name) return;
+        if (t.user_added) groups[0].push(name);
+        else if (t.user_edited) groups[1].push(name);
+        else if (NON_PLACE_RE.test(name)) return;
+        else groups[t.is_must_visit ? 2 : 3].push(name);
+      }));
+      const picked = [];
+      let text = REROUTE_PREFIX;
+      for (const name of [...new Set(groups.flat())]) {
+        const next = `${REROUTE_PREFIX}${[...picked, name].join('、')}。`;
+        if (next.length > 300) break;
+        picked.push(name);
+        text = next;
+      }
+
+      destinationInput.value = String(s.destination || '').slice(0, 30);
+      const isDate = (v) => /^\d{4}-\d{2}-\d{2}$/.test(v || '');
+      const first = days[0]?.date;
+      const last = days[days.length - 1]?.date;
+      if (isDate(first) && isDate(last)) {
+        startDateInput.value = first;
+        endDateInput.min = first;
+        endDateInput.value = last;
+      }
+      arrivalTimeInput.value = String(s.arrival_time || '').slice(0, 20);
+      departureTimeInput.value = String(s.departure_time || '').slice(0, 20);
+      wishesInput.value = picked.length ? text : '';
+      syncVibeChips();
+      validateDateRange();
+      saveFormDraft();
+
+      backToForm({ toForm: true });
+      setTimeout(() => wishesInput.focus({ preventScroll: true }), 0);
+      showToast(picked.length ? '🔄 已帶回你指定的地點，確認後按「開始慢旅規劃」重新順路' : '🔄 已帶回目的地與日期，可在心願欄補充想去的地點');
     }
 
     /* ============================================================
@@ -5707,9 +6328,10 @@
         lines.push(`📅 Day ${d.day_index || i + 1}${d.date ? ` (${d.date})` : ''}｜${d.day_title || ''}`);
         (d.timeline || []).forEach((t) => {
           const must = t.is_must_visit ? '[★必去] ' : '';
-          lines.push(`  - 【${t.time_slot || ''}｜${t.transport_tag?.type || ''}】${must}${t.title || ''}：${t.description || ''}`);
-          lines.push(`    📍 ${mapsUrl(t.title || '', dest)}`);
+          lines.push(`  - 【${t.time_slot || ''}｜${t.transport_tag?.type || ''}】${must}${t.title || ''}${t.description ? `：${t.description}` : ''}`);
+          lines.push(`    📍 ${itemMapsUrl(t, dest)}`);
         });
+        if (d.user_remark) lines.push(`  📌 備忘：${d.user_remark}`);
         if (d.stay_info?.area_recommendation) {
           lines.push(`  🛏️ 住宿建議：${d.stay_info.area_recommendation}（${d.stay_info.hotel_vibe || ''}）`);
         }
@@ -5719,6 +6341,12 @@
       if (prep.todo_checklist?.length) {
         lines.push('☑️ 行前待辦：');
         prep.todo_checklist.forEach((t) => lines.push(`☐ ${t}`));
+        lines.push('');
+      }
+
+      if (trip.shopping_items?.length) {
+        lines.push('🛍️ 伴手禮＆購物清單：');
+        trip.shopping_items.forEach((it) => lines.push(`${it.done ? '☑' : '☐'} ${it.text}`));
         lines.push('');
       }
 
