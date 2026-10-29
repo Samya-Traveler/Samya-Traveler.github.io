@@ -1641,9 +1641,12 @@
     }
     .day-map-link:hover { background: var(--brand-sage-light); }
 
+    /* 結果頁底部：帶回表單 → 重新規劃 → 列印，垂直堆疊 */
     .btn-reroute {
-      grid-column: 1 / -1;
-      padding: 11px 16px;
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 13px 16px;
       border: 1.5px dashed var(--brand-sage);
       border-radius: var(--radius-md);
       background: #F7FAF8;
@@ -1654,6 +1657,81 @@
       cursor: pointer;
     }
     .btn-reroute:hover { background: var(--brand-sage-light); }
+    .btn-reroute[hidden] { display: none; }
+
+    /* ========== 📂 摺疊卡片（預設收合，點標題展開） ========== */
+    .collapsible-card {
+      display: block;
+      margin-bottom: 14px;
+      background: #FBF8F1;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .collapsible-card[hidden] { display: none; }
+    .collapsible-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 56px;
+      padding: 10px 16px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .collapsible-summary::-webkit-details-marker { display: none; }
+    .collapsible-summary::marker { content: ''; }
+    .collapsible-summary:focus-visible { outline: 2px solid var(--brand-sage); outline-offset: -2px; border-radius: var(--radius-lg); }
+    .collapsible-title {
+      flex: 0 0 auto;
+      max-width: 78%;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+    .collapsible-hint {
+      flex: 0 1 auto;
+      min-width: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: #fff;
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      font-size: 0.74rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .collapsible-hint > span:first-child { overflow: hidden; text-overflow: ellipsis; }
+    .collapsible-chev { flex-shrink: 0; display: inline-block; transition: transform 0.25s ease; }
+    @media (max-width: 420px) {
+      .collapsible-summary { padding: 10px 10px 10px 14px; gap: 6px; }
+      .collapsible-title { font-size: 0.9rem; }
+      .collapsible-hint { font-size: 0.68rem; padding: 3px 7px; gap: 2px; }
+    }
+    .collapsible-card[open] .collapsible-chev { transform: rotate(180deg); }
+    .collapsible-card[open] .collapsible-summary { border-bottom: 1px dashed var(--border-soft); }
+    .collapsible-body { padding: 14px 16px 16px; background: var(--bg-card); }
+    .collapsible-card[open] .collapsible-body { animation: collapsibleIn 0.3s ease; }
+    @keyframes collapsibleIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* 🎁 任務卡維持暖色調 */
+    .collapsible-card.free-unlock { background: #FBF4E4; border-color: #E8D6AE; }
+    .collapsible-card.free-unlock .collapsible-body { background: #FBF4E4; padding-top: 12px; }
+    .collapsible-card.free-unlock .collapsible-hint { color: #7A4A12; border-color: #F2D7A9; }
 
     /* 可打勾待辦清單 Checklist */
     .todo-progress {
@@ -2229,22 +2307,10 @@
     }
 
     /* ========== 🎁 免費解鎖更多慢旅額度（問卷 + 曬圖雙重任務卡） ========== */
-    .free-unlock {
-      margin: -6px 0 18px;
-      padding: 14px;
-      background: #FBF4E4;
-      border: 1px solid #E8D6AE;
-      border-radius: var(--radius-lg);
-    }
+    .free-unlock { margin: -6px 0 14px; }
 
     .free-unlock[hidden] { display: none; }
 
-    .free-unlock-title {
-      font-family: 'Noto Serif TC', serif;
-      font-size: 1rem;
-      color: var(--text-main);
-      margin-bottom: 10px;
-    }
 
     /* 手機上下排列；寬螢幕並排 */
     .task-cards {
@@ -2435,6 +2501,12 @@
         display: none !important;
       }
       .print-only { display: block !important; }
+      /* 摺疊卡片列印時一律展開（beforeprint 也會先打開 details），標題改回一般卡片樣式 */
+      .collapsible-card.print-expand { background: #fff; border: 1px solid #ccc; box-shadow: none !important; break-inside: avoid; page-break-inside: avoid; }
+      .collapsible-card.print-expand::details-content { content-visibility: visible; display: block; }
+      .collapsible-card.print-expand .collapsible-body { display: block !important; animation: none !important; }
+      .collapsible-hint { display: none !important; }
+      .collapsible-summary { min-height: 0; padding: 12px 16px 4px; border-bottom: none !important; }
       .brand-sign {
         display: block !important;
         break-inside: avoid;
@@ -2699,12 +2771,15 @@
         <button type="button" class="btn-share-card" id="shareCardBtn">📸 產生慢旅分享圖 (IG / Threads)</button>
         <button type="button" class="btn-secondary" id="openEmailModalBtn">✉️ 寄送行程到信箱</button>
         <button type="button" class="btn-secondary" id="copyTextBtn">📋 複製純文字行程</button>
-        <button type="button" class="btn-reroute" id="rerouteBtn">🔄 帶回表單讓 AI 重新順路</button>
       </div>
 
       <!-- 🎁 免費解鎖更多慢旅額度：問卷 + 曬圖雙重任務（只給實際生成 / 恢復自己行程的人；翻閱期刊範例時隱藏） -->
-      <section class="free-unlock" id="freeUnlock" aria-labelledby="freeUnlockTitle">
-        <h2 class="free-unlock-title" id="freeUnlockTitle">🎁 免費解鎖更多慢旅額度</h2>
+      <details class="collapsible-card free-unlock" id="freeUnlock">
+        <summary class="collapsible-summary">
+          <h2 class="collapsible-title">🎁 免費解鎖更多慢旅額度</h2>
+          <span class="collapsible-hint"><span>填問卷領 2 組 VIP 序號</span><span class="collapsible-chev" aria-hidden="true">▾</span></span>
+        </summary>
+        <div class="collapsible-body">
         <div class="task-cards">
           <article class="task-card is-survey">
             <span class="task-label">福利 A｜📝 1 分鐘問卷回饋</span>
@@ -2719,11 +2794,16 @@
             <a class="task-link" href="https://www.instagram.com/samya_traveler/" target="_blank" rel="noopener noreferrer">💌 前往 IG 私訊 @samya_traveler</a>
           </article>
         </div>
-      </section>
+        </div>
+      </details>
 
       <!-- 🧭 慢旅動線與日均花費速覽 -->
-      <div class="card" id="journeyCard">
-        <h2 class="section-title">🧭 慢旅動線與日均花費速覽</h2>
+      <details class="collapsible-card print-expand" id="journeyCard">
+        <summary class="collapsible-summary">
+          <h2 class="collapsible-title">🧭 慢旅動線與日均花費速覽</h2>
+          <span class="collapsible-hint"><span id="journeyHint">查看動線與預算</span><span class="collapsible-chev" aria-hidden="true">▾</span></span>
+        </summary>
+        <div class="collapsible-body">
         <p class="journey-manifesto" id="journeyManifesto"></p>
         <ol class="route-ribbon" id="routeRibbon" aria-label="移動動線"></ol>
         <div id="budgetBox">
@@ -2739,11 +2819,16 @@
           </div>
           <p class="budget-note" id="budgetNote"></p>
         </div>
-      </div>
+        </div>
+      </details>
 
       <!-- 航班與抵達提醒卡片 -->
-      <div class="card">
-        <h2 class="section-title">✈️ 航班與進出城建議</h2>
+      <details class="collapsible-card print-expand" id="flightCard">
+        <summary class="collapsible-summary">
+          <h2 class="collapsible-title">✈️ 航班與進出城建議</h2>
+          <span class="collapsible-hint"><span>去回程交通提醒</span><span class="collapsible-chev" aria-hidden="true">▾</span></span>
+        </summary>
+        <div class="collapsible-body">
         <div class="flight-grid">
           <div class="flight-item">
             <span class="flight-tag">Outbound 去程建議</span>
@@ -2756,7 +2841,8 @@
             <p class="flight-adjust" id="departureAdjust"></p>
           </div>
         </div>
-      </div>
+        </div>
+      </details>
 
       <!-- 交通周遊券與事前預約卡片 -->
       <div class="card">
@@ -2797,6 +2883,7 @@
         </form>
       </div>
 
+      <button type="button" class="btn-reroute" id="rerouteBtn">🔄 帶回表單讓 AI 重新順路</button>
       <button type="button" class="btn-primary btn-dark" id="resetPlanBtn">🔄 重新規劃另一趟旅程</button>
       <button type="button" class="btn-secondary print-btn" id="printBtn">🖨️ 列印 / 另存 PDF 手冊</button>
 
@@ -4004,6 +4091,16 @@
 
       // 列印 / 另存 PDF
       $('printBtn').addEventListener('click', () => window.print());
+      // 列印時展開「動線與花費」「航班」兩張摺疊卡，印完恢復原本的開合狀態
+      let printOpened = [];
+      window.addEventListener('beforeprint', () => {
+        printOpened = Array.from(document.querySelectorAll('details.print-expand:not([open])'));
+        printOpened.forEach((d) => { d.open = true; });
+      });
+      window.addEventListener('afterprint', () => {
+        printOpened.forEach((d) => { d.open = false; });
+        printOpened = [];
+      });
 
       // 抵達 / 離開時間：填寫後即暫存草稿，重新整理也不會遺失
       [arrivalTimeInput, departureTimeInput].forEach((el) => el.addEventListener('change', saveFormDraft));
@@ -5067,6 +5164,9 @@
         $('budgetTotal').textContent = b.total_local_twd || '—';
         $('budgetNote').textContent = b.budget_note || '不含國際機票與住宿，實際依個人豐儉調整。';
       }
+      // 收合標題列右側：有日均預算就顯示精簡版（NT$ 2,200 ~ 2,800 / 日 → 日均 $2,200~2,800），手機寬度放得下
+      const daily = String(b.daily_average_twd || '').replace(/\s*\/\s*(日|天|day)\s*$/i, '').replace(/\s+/g, '').replace(/^NT\$/i, '$');
+      $('journeyHint').textContent = daily ? `日均 ${daily}` : '查看動線與預算';
     }
 
     function setFlightAdjust(id, text) {
@@ -5097,6 +5197,8 @@
       document.documentElement.style.setProperty('--nav-h', `${document.querySelector('.navbar')?.offsetHeight || 60}px`);
       $('previewBar').hidden = !sample;
       $('freeUnlock').hidden = sample;
+      // 摺疊卡片：每次顯示新行程都回到收合狀態
+      ['freeUnlock', 'journeyCard', 'flightCard'].forEach((id) => { $(id).open = false; });
       $('rerouteBtn').hidden = sample;
       renderJourneyCard(data);
 
