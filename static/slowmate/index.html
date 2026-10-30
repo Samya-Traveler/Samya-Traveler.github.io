@@ -44,7 +44,7 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "zh-TW",
         "image": "https://samya-traveler.github.io/slowmate/og.jpg",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD", "description": "第一次免費，之後可隨喜贊助取得解鎖序號（1 次 / 5 次 / 10 次額度）" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD", "description": "第一次免費，之後可隨喜贊助取得解鎖序號（NT$ 69 / 99 / 299：1 次 / 3 次 / 10 次額度）" },
         "author": { "@type": "Person", "name": "Samya", "url": "https://samya-traveler.github.io/" }
       },
       {
@@ -53,7 +53,7 @@
           { "@type": "Question", "name": "SlowMate 要下載 App 或註冊帳號嗎？",
             "acceptedAnswer": { "@type": "Answer", "text": "不用。用瀏覽器打開網頁就能使用，第一次使用只需要驗證 Email。" } },
           { "@type": "Question", "name": "SlowMate 要付費嗎？",
-            "acceptedAnswer": { "@type": "Answer", "text": "第一次免費規劃一次。之後可到 Portaly 贊助 NT$ 88（1 次）、300（5 次）或 488（10 次）取得解鎖序號，多次方案可分給旅伴使用，不是訂閱制。" } },
+            "acceptedAnswer": { "@type": "Answer", "text": "第一次免費規劃一次。之後可到 Portaly 贊助 NT$ 69（1 次）、99（3 次）或 299（10 次）取得解鎖序號，多次方案可分給旅伴使用，免綁月費訂閱。" } },
           { "@type": "Question", "name": "SlowMate 和直接問 ChatGPT 排行程有什麼不同？",
             "acceptedAnswer": { "@type": "Answer", "text": "SlowMate 只需要填表單，不用自己寫提示詞，會固定整理出一天 2～3 個重點的時間軸、交通周遊券、需提前預約項目和行前清單，並可一鍵寄信或印成 PDF。" } },
           { "@type": "Question", "name": "SlowMate 最多可以規劃幾天？",
@@ -2689,7 +2689,7 @@
               <span class="form-sub">💡 填寫序號與您的 Email 即可免驗證直接規劃</span>
             </label>
             <div class="code-verify-row">
-              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="SM5-XXXX-YYYY" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="SM3-XXXX-YYYY" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
               <button type="button" class="code-paste-btn" id="pasteCodeBtn" aria-label="從剪貼簿貼上序號">📋 貼上</button>
               <button type="button" class="code-verify-btn" id="checkCodeBtn">驗證</button>
             </div>
@@ -2699,7 +2699,8 @@
               <ul>
                 <li>成功生成行程才會扣次數，生成失敗不扣。</li>
                 <li>尚有首次免費額度時，會優先使用免費名額、保留序號次數。</li>
-                <li>贊助序號：買家本人（購買信箱）可重複使用全部次數；分享給旅伴時，每位旅伴信箱限用 1 次。</li>
+                <li>NT$ 69 / 99 序號：不限信箱，買家本人或同行旅伴皆可自由用完全部次數。</li>
+                <li>NT$ 299 同樂包：買家本人（購買信箱）可重複使用全部 10 次；分享給旅伴時，每位旅伴信箱限用 1 次。</li>
                 <li>活動 VIP 序號：每個信箱限用 1 次。</li>
                 <li>使用序號免收信箱驗證碼，但仍需填寫 Email 以辨識買家或旅伴。</li>
               </ul>
@@ -2907,22 +2908,25 @@
       <h3 class="modal-title" id="paywallTitle">☕ 支持獨立開發，解鎖更多慢旅靈感（還能分給旅伴！）</h3>
       <p class="modal-body">
         <span id="paywallUsedLine" hidden>免費體驗額度已使用完畢。<br><br></span>
-        <span id="paywallIntro">排一趟滿意的自由行，通常需要換 2～3 種路線版本，或跟旅伴各自排看看再討論。選擇多人方案，你自己的信箱可重複使用所有次數，還能把序號丟進 LINE 群組分給旅伴（每位旅伴信箱限免費體驗 1 次）！</span>
+        <span id="paywallIntro">排一趟滿意的自由行，通常需要換 2～3 種路線風格微調，或跟旅伴各自排看看再討論。免綁月費訂閱、無廣告干擾，選擇最適合你的慢旅方案：</span>
       </p>
       <ul class="perk-list" aria-label="贊助者專屬特權">
         <li><strong>⚡ 特權 1｜每日 30 席 VIP 專屬保留通道</strong><span>全站免費名額每日限 50 席，持有贊助序號者直接走 VIP 保留席，熱門時段免排隊、免驗信箱秒速生成。</span></li>
-        <li><strong>👯‍♀️ 特權 2｜一人贊助、LINE 群組旅伴共享</strong><span>主推 NT$ 300 旅伴同樂包，買家本人可重複微調，還能把同一組序號丟進群組讓旅伴各自排一版來投票！</span></li>
+        <li><strong>👯‍♀️ 特權 2｜一人贊助、LINE 群組旅伴共享</strong><span>NT$ 299 慢旅玩家同樂包，買家本人可重複微調，還能把同一組序號丟進群組讓旅伴各自排一版來投票！</span></li>
         <li><strong>🌿 特權 3｜守護 100% 零商業業配的純淨推薦</strong><span>不塞廣告餐廳與訂房分潤，只推薦在地人私藏的散步路線。</span></li>
       </ul>
       <ul class="tier-list" id="tierList" aria-label="隨喜贊助方案">
         <li class="tier">
-          <span class="tier-info"><span class="tier-name">☕ NT$ 88｜街角手沖咖啡</span><span class="tier-desc">單人微調・1 次額度（適合確定大方向後微調最後路線）</span></span>
+          <span class="tier-price">NT$ 69</span>
+          <span class="tier-info"><span class="tier-name">☕ 單次試調體驗（1 次額度）</span><span class="tier-desc">單次 $69 · 免綁月租！適合已經決定好路線、只想微調最後一次完美路線的你。</span></span>
         </li>
         <li class="tier is-featured">
-          <span class="tier-info"><span class="tier-name">🌿 NT$ 300｜喫茶店午後甜點組 <span class="tier-badge">⭐ 最推薦</span></span><span class="tier-desc">旅伴同樂包・5 次額度（平均 $60/次，買家本人可重複使用，也可分給旅伴共用）</span></span>
+          <span class="tier-price">NT$ 99</span>
+          <span class="tier-info"><span class="tier-name">🌿 單趟旅程微調包（3 次額度） <span class="tier-badge">⭐ 最多人選</span></span><span class="tier-desc">平均 $33/次 · 排一趟旅行最從容！試排老屋咖啡版、自然散步版或長輩友善版，不限信箱皆可用完 3 次。</span></span>
         </li>
         <li class="tier">
-          <span class="tier-info"><span class="tier-name">🍱 NT$ 488｜鐵道駅弁應援團 <span class="tier-badge">🔥 逼近半價</span></span><span class="tier-desc">慢旅玩家全票・10 次額度（平均 $48.8/次，買家本人無限用＋親友團共享）</span></span>
+          <span class="tier-price">NT$ 299</span>
+          <span class="tier-info"><span class="tier-name">🍱 慢旅玩家同樂包（10 次額度） <span class="tier-badge">🔥 逼近半價・最划算</span></span><span class="tier-desc">平均 $29.9/次 · 買家本人無限重複用，還能丟進 LINE 群組分給親友團旅伴（每人限 1 次），多人出遊必備！</span></span>
         </li>
       </ul>
       <div class="free-tip-box" role="note">
@@ -2931,14 +2935,14 @@
         <p>• <strong>方法 2（拿 1 組）</strong>：將【慢旅分享圖】發至 IG 限動或 Threads 標註 <a href="https://www.instagram.com/samya_traveler/" target="_blank" rel="noopener noreferrer">@samya_traveler</a>，追蹤並截圖私訊我的 IG，立即加贈 1 組 VIP 專屬通關序號！</p>
       </div>
       <p class="modal-body">
-        🎁 贊助專屬回饋：依方案獲得 1 / 5 / 10 次慢旅規劃額度（無使用期限），付款完成後 1～3 分鐘內自動寄送至您的信箱！
+        💡 付款完成後 1～3 分鐘內，系統會自動寄出專屬序號與一鍵帶入連結。行程成功生成才扣額度，失敗或滿額絕不誤扣！
       </p>
       <a href="https://portaly.cc/samya_traveler" target="_blank" rel="noopener noreferrer" class="btn-portaly" id="portalyLink">
         ❤️ 前往 Portaly 隨喜贊助支持
       </a>
       <div class="form-group" style="margin-bottom: 12px;">
         <label class="form-label" for="modalRedeemInput">已完成贊助？請輸入信件中的解鎖序號</label>
-        <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="SM5-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+        <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="SM3-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
         <p class="error-msg" id="modalCodeError" role="alert">序號無效或已被使用，請確認信件中的序號。</p>
       </div>
       <button type="button" class="btn-primary" id="modalVerifyBtn">驗證序號並立即生成</button>
@@ -4011,7 +4015,7 @@
     }
 
     const EMAIL_HINT_DEFAULT = '首次使用驗證信箱即可免費規劃一次';
-    const EMAIL_HINT_CODE = '使用序號免收驗證碼（使用規則見下方「ⓘ 規則說明」）';
+    const EMAIL_HINT_CODE = '買家本人可重複使用，旅伴分享每人限用 1 次，免收驗證碼';
 
     /** 展開 / 收合序號區：展開時 Email 欄提示改為序號規則（使用序號免 OTP，但仍需 Email 判斷買家或旅伴） */
     function setCodeBoxOpen(open) {
@@ -4594,7 +4598,7 @@
             // 活動公用碼：不顯示公用池剩餘次數
             notices.push('🎉 已成功使用活動專屬 VIP 序號解鎖本次慢旅規劃！');
           } else if (result.entitlement === 'redeem_code' && remainingUses !== undefined) {
-            notices.push(`🔑 序號核銷成功！本組序號還剩餘 ${remainingUses} 次規劃額度。`);
+            notices.push(`🔑 序號核銷成功！本組序號還剩餘 ${remainingUses} 次規劃額度`);
           }
           if (result.entitlement === 'redeem_code' && result.free_quota_preserved) {
             notices.push('🎁 您的首次免費額度仍完整保留，下次驗證 Email 即可免費規劃一次！');
