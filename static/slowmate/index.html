@@ -1641,6 +1641,79 @@
     }
     .day-map-link:hover { background: var(--brand-sage-light); }
 
+    /* 🗺️ 旅圖 Lutu 匯出 */
+    .btn-lutu {
+      grid-column: 1 / -1;
+      padding: 12px 16px;
+      border: 1.5px solid #3F7A8C;
+      border-radius: var(--radius-md);
+      background: #EAF3F5;
+      color: #2B5A68;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-lutu:hover { background: #D9EBEF; }
+    .lutu-card { max-width: 480px; }
+    .lutu-sub { font-size: 0.86rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 10px; }
+    .lutu-limit {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #7A4A12;
+      background: #FFF6E9;
+      border: 1px solid #F2D7A9;
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      margin-bottom: 10px;
+    }
+    .lutu-limit[hidden] { display: none; }
+    .lutu-steps { list-style: none; counter-reset: lutu; margin: 0 0 12px; padding: 0; display: grid; gap: 8px; }
+    .lutu-steps li {
+      counter-increment: lutu;
+      position: relative;
+      padding: 10px 12px 10px 46px;
+      background: #FBF8F1;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+    .lutu-steps li::before {
+      content: counter(lutu);
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--brand-sage);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 24px;
+      text-align: center;
+    }
+    .lutu-steps strong { display: block; color: var(--text-main); }
+    .lutu-steps span { color: var(--text-muted); }
+    .lutu-preview { margin-bottom: 14px; font-size: 0.8rem; }
+    .lutu-preview summary { cursor: pointer; font-weight: 600; color: var(--brand-sage-dark); }
+    .lutu-preview textarea {
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      background: #FFFDF7;
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.74rem;
+      line-height: 1.5;
+      color: var(--text-main);
+      resize: vertical;
+    }
+    .lutu-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .lutu-actions .btn-secondary, .lutu-actions .btn-primary { width: 100%; margin: 0; padding: 12px 10px; font-size: 0.9rem; }
+
     /* 結果頁底部：帶回表單 → 重新規劃 → 列印，垂直堆疊 */
     .btn-reroute {
       display: block;
@@ -2497,7 +2570,7 @@
       #shareCardModal, #shareCardBtn, .admin-entry-btn, .preview-bar, .free-unlock,
       .screen-only, .countdown-badge, .result-notice,
       .spot-tool-btn, .add-spot-pill, .add-spot-box, .day-remark, .shopping-add, .shop-del,
-      .shopping-sub, .shopping-card.is-empty, .btn-reroute, .day-map-link {
+      .shopping-sub, .shopping-card.is-empty, .btn-reroute, .day-map-link, .btn-lutu, #lutuModal {
         display: none !important;
       }
       .print-only { display: block !important; }
@@ -2772,6 +2845,7 @@
         <button type="button" class="btn-share-card" id="shareCardBtn">📸 產生慢旅分享圖 (IG / Threads)</button>
         <button type="button" class="btn-secondary" id="openEmailModalBtn">✉️ 寄送行程到信箱</button>
         <button type="button" class="btn-secondary" id="copyTextBtn">📋 複製純文字行程</button>
+        <button type="button" class="btn-lutu" id="lutuExportBtn">🗺️ 複製【旅圖 Lutu】專用格式</button>
       </div>
 
       <!-- 🎁 免費解鎖更多慢旅額度：問卷 + 曬圖雙重任務（只給實際生成 / 恢復自己行程的人；翻閱期刊範例時隱藏） -->
@@ -3010,6 +3084,31 @@
       <p class="modal-body" id="limitBody"></p>
       <button type="button" class="btn-primary" id="limitCodeBtn" hidden>🔑 我有序號，開啟 VIP 保留通道</button>
       <button type="button" class="btn-secondary" data-close-modal="limitModal" id="limitCloseBtn" style="width:100%;margin-top:10px;">好的，明天再來</button>
+    </div>
+  </div>
+
+  <!-- 🗺️ 旅圖 Lutu 匯入教學 -->
+  <div class="modal-backdrop" id="lutuModal" role="dialog" aria-modal="true" aria-labelledby="lutuTitle">
+    <div class="modal-card lutu-card">
+      <button type="button" class="modal-close" data-close-modal="lutuModal" aria-label="關閉">&times;</button>
+      <h3 class="modal-title" id="lutuTitle">✅ 已複製【旅圖 Lutu】專用行程格式！</h3>
+      <p class="lutu-sub">不需登入或串接帳號，只要打開「旅圖 Lutu」照著以下 5 步貼上，就能一鍵變成你的互動地圖行程：</p>
+      <p class="lutu-limit" id="lutuLimitNote" hidden>💡 旅圖單次匯入上限為 10 天，已為您自動打包前 10 天行程</p>
+      <ol class="lutu-steps">
+        <li><strong>已自動複製</strong><span>剛剛點擊按鈕時，系統已將包含 JSON 的整段慢旅行程複製到你的剪貼簿。</span></li>
+        <li><strong>打開旅圖</strong><span>在旅圖主頁點選「我的旅行」右邊的「＋」，選擇「請 AI 幫忙排」。</span></li>
+        <li><strong>選擇出發日</strong><span>在旅圖內選好你的「出發日」（日期由旅圖決定）。</span></li>
+        <li><strong>貼上行程</strong><span>點選「已經有回答了」➔ 按「貼上」➔ 按「看看整理的結果」。</span></li>
+        <li><strong>建立完成</strong><span>自由勾掉不需要的景點，按下「建立旅行」即大功告成！（※ 已經建好的旅行，也能在時間軸下方點「請 AI 幫忙排」把某幾天的景點加進去喔！）</span></li>
+      </ol>
+      <details class="lutu-preview">
+        <summary>👀 查看已複製的 JSON 內容（若未自動複製可長按手動全選）</summary>
+        <textarea id="lutuPreview" readonly rows="10" aria-label="旅圖專用格式內容"></textarea>
+      </details>
+      <div class="lutu-actions">
+        <button type="button" class="btn-secondary" id="lutuCopyAgainBtn">📋 再次複製</button>
+        <button type="button" class="btn-primary" data-close-modal="lutuModal">✨ 太棒了，我知道了</button>
+      </div>
     </div>
   </div>
 
@@ -4242,6 +4341,11 @@
 
       // 一鍵複製純文字行程
       $('copyTextBtn').addEventListener('click', copyItineraryAsText);
+      $('lutuExportBtn').addEventListener('click', exportToLutu);
+      $('lutuCopyAgainBtn').addEventListener('click', async () => {
+        const ok = await copyTextQuietly($('lutuPreview').value);
+        showToast(ok ? '📋 已再次複製旅圖專用格式！' : '⚠️ 無法自動複製，請展開下方預覽框長按全選複製');
+      });
 
       // 寄送行程到信箱
       $('openEmailModalBtn').addEventListener('click', () => {
@@ -5676,8 +5780,10 @@
           const item = timeline[i];
           if (!item) return;
           const changed = item.title !== title || item.description !== note;
+          if (item.title !== title) delete item.address; // 換了地點，AI 給的地址就不準了
           Object.assign(item, { title, description: note, ...(changed ? { user_edited: true } : {}) });
           if (item.time_slot !== slot) {
+            delete item.time; // 時段改了，匯出旅圖時依新時段重新推算時間
             item.time_slot = slot;
             timeline.splice(i, 1);
             insertBySlot(timeline, item);
@@ -5811,6 +5917,100 @@
         `&destination=${encodeURIComponent(list[list.length - 1])}` +
         (middle.length ? `&waypoints=${encodeURIComponent(middle.join('|'))}` : '') +
         '&travelmode=transit';
+    }
+
+    /* ---------- 🗺️ 匯出至旅圖 Lutu ----------
+     * 把 SlowMate 行程（含使用者微調 / 新增的景點）轉成旅圖「請 AI 幫忙排 → 已經有回答了」可貼上的格式。
+     * 只輸出旅圖認得的欄位；日期由旅圖決定，所以不帶 date。
+     */
+    const LUTU_MAX_DAYS = 10;
+    const LUTU_MAX_STOPS = 15;
+    const LUTU_CODES = ['walk', 'train', 'subway', 'bus', 'taxi', 'flight'];
+    const LUTU_TYPE_RULES = [
+      [/步|走|散步/, 'walk'],
+      [/電車|火車|JR|新幹線|高鐵|鐵道|嵐電/, 'train'],
+      [/地鐵|捷運/, 'subway'],
+      [/公車|巴士|客運/, 'bus'],
+      [/計程車|包車|自駕|開車|單車|腳踏車/, 'taxi'],
+      [/飛機|航班/, 'flight']
+    ];
+
+    function lutuTransport(tag) {
+      const code = String(tag?.lutu_code || '').toLowerCase();
+      if (LUTU_CODES.includes(code)) return code;
+      const type = String(tag?.type || '');
+      return LUTU_TYPE_RULES.find(([re]) => re.test(type))?.[1] || '';
+    }
+
+    const LUTU_TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+    const toMinutes = (hhmm) => Number(hhmm.slice(0, 2)) * 60 + Number(hhmm.slice(3));
+    const toHHMM = (min) => `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
+
+    /** 舊行程沒有 time：依時段推算，同時段多個景點自動往後遞增，確保永遠是合法的 HH:MM */
+    function lutuTimes(stops) {
+      let prev = -1;
+      return stops.map((item, idx) => {
+        if (LUTU_TIME_RE.test(item.time || '')) {
+          prev = toMinutes(item.time);
+          return item.time;
+        }
+        const slot = String(item.time_slot || '');
+        let min = /上午|早上|早|晨/.test(slot) ? 570
+          : /中午|午餐/.test(slot) ? 720
+          : /下午|午後/.test(slot) ? 870
+          : /傍晚|晚上|夜間|夜|晚|黃昏/.test(slot) ? 1080
+          : 570 + idx * 150;
+        if (min <= prev) min = prev + 60;
+        min = Math.min(min, 23 * 60 + 30);
+        prev = min;
+        return toHHMM(min);
+      });
+    }
+
+    function buildLutuExportText(tripData) {
+      const s = tripData?.trip_summary || {};
+      const destination = String(s.destination || '').trim();
+      const days = (tripData?.daily_itinerary || []).slice(0, LUTU_MAX_DAYS).map((d) => {
+        const stops = (d.timeline || []).filter((t) => String(t.title || '').trim()).slice(0, LUTU_MAX_STOPS);
+        const times = lutuTimes(stops);
+        const area = d.stay_info?.area_recommendation;
+        const tip = (d.day_title ? (area ? `${d.day_title}（宿：${area}）` : d.day_title) : '').slice(0, 120);
+        return {
+          ...(tip ? { tip } : {}),
+          stops: stops.map((item, idx) => {
+            const stop = { title: String(item.title).trim().slice(0, 40), time: times[idx] };
+            if (item.address) stop.address = String(item.address).slice(0, 120);
+            if (item.description) stop.note = String(item.description).slice(0, 200);
+            const transport = idx > 0 ? lutuTransport(item.transport_tag) : '';
+            if (transport) {
+              stop.transport = transport;
+              if (item.transport_tag?.duration) stop.duration = String(item.transport_tag.duration).slice(0, 12);
+            }
+            if (item.is_must_visit === true) stop.mustGo = true;
+            const tags = Array.isArray(item.tags) ? item.tags.map(String).filter((t) => t && [...t].length <= 6).slice(0, 4) : [];
+            if (tags.length) stop.tags = tags;
+            return stop;
+          })
+        };
+      });
+      const lutuObj = {
+        title: (s.theme_title || `${destination}慢旅`).slice(0, 24),
+        ...(destination ? { destination: destination.slice(0, 30) } : {}),
+        days
+      };
+      return `🌿 由 SlowMate 慢旅伴為您策劃的【${destination || '慢旅'}】行程（可直接貼入「旅圖 Lutu」匯入）：\n\`\`\`json\n${JSON.stringify(lutuObj, null, 2)}\n\`\`\``;
+    }
+
+    async function exportToLutu() {
+      const trip = state.trip;
+      if (!trip) return;
+      const text = buildLutuExportText(trip);
+      $('lutuPreview').value = text;
+      $('lutuLimitNote').hidden = (trip.daily_itinerary || []).length <= LUTU_MAX_DAYS;
+      const ok = await copyTextQuietly(text);
+      $('lutuTitle').textContent = ok ? '✅ 已複製【旅圖 Lutu】專用行程格式！' : '📋 請手動複製【旅圖 Lutu】專用行程格式';
+      if (!ok) $('lutuModal').querySelector('.lutu-preview').open = true;
+      openModal('lutuModal');
     }
 
     /* ---------- 🔄 帶回表單讓 AI 重新順路 ---------- */
