@@ -44,7 +44,7 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "zh-TW",
         "image": "https://samya-traveler.github.io/slowmate/og.jpg",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD", "description": "第一次免費，之後可隨喜贊助取得解鎖序號（NT$ 69 / 99 / 299：1 次 / 3 次 / 10 次額度）" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD", "description": "第一次免費，之後可一次買斷終身通行證（NT$ 90 個人版 / NT$ 199 旅伴親友團版，每日 10 次自動補滿）" },
         "author": { "@type": "Person", "name": "Samya", "url": "https://samya-traveler.github.io/" }
       },
       {
@@ -53,7 +53,7 @@
           { "@type": "Question", "name": "SlowMate 要下載 App 或註冊帳號嗎？",
             "acceptedAnswer": { "@type": "Answer", "text": "不用。用瀏覽器打開網頁就能使用，第一次使用只需要驗證 Email。" } },
           { "@type": "Question", "name": "SlowMate 要付費嗎？",
-            "acceptedAnswer": { "@type": "Answer", "text": "第一次免費規劃一次。之後可到 Portaly 贊助 NT$ 69（1 次）、99（3 次）或 299（10 次）取得解鎖序號，多次方案可分給旅伴使用，免綁月費訂閱。" } },
+            "acceptedAnswer": { "@type": "Answer", "text": "第一次免費規劃一次。之後可到 Portaly 一次買斷終身通行證：NT$ 90 個人版或 NT$ 199 旅伴親友團版（可分給 15 位旅伴），每日 10 次額度、台灣時間 00:00 自動補滿，免綁月費訂閱。" } },
           { "@type": "Question", "name": "SlowMate 和直接問 ChatGPT 排行程有什麼不同？",
             "acceptedAnswer": { "@type": "Answer", "text": "SlowMate 只需要填表單，不用自己寫提示詞，會固定整理出一天 2～3 個重點的時間軸、交通周遊券、需提前預約項目和行前清單，並可一鍵寄信或印成 PDF。" } },
           { "@type": "Question", "name": "SlowMate 最多可以規劃幾天？",
@@ -230,6 +230,7 @@
     /* 每日名額標籤 */
     .quota-badge-bar {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       margin-bottom: 16px;
     }
@@ -1480,6 +1481,23 @@
       margin-top: 14px;
     }
 
+    /* ✨ 終身買斷 VIP 通行證徽章 */
+    .vip-pass-badge {
+      flex: 0 1 100%;
+      max-width: 100%;
+      margin-top: 8px;
+      padding: 7px 14px;
+      border-radius: 99px;
+      background: var(--brand-sage-light);
+      border: 1px solid #BFD3C6;
+      color: var(--brand-sage-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .vip-pass-badge[hidden] { display: none; }
+
     /* 🎟️ Magic Link 已掛載序號提示 */
     .magic-code-banner {
       display: block;
@@ -2665,12 +2683,13 @@
   </header>
 
   <main class="container">
-    <!-- 雙水池名額顯示：免費 50 席（序號另有 30 席保留席，展開序號區時顯示） -->
+    <!-- 雙水池名額顯示：免費 50 席（序號另有 60 席保留席，展開序號區時顯示）＋ 終身買斷 VIP 通行證徽章 -->
     <div class="quota-badge-bar">
       <div class="quota-pill" id="quotaBadge" role="status" aria-live="polite">
         <span aria-hidden="true">🌿</span>
         <span id="quotaText">今日慢旅免費名額：每日限定 50 席</span>
       </div>
+      <div class="vip-pass-badge" id="vipPassBadge" role="status" hidden></div>
     </div>
 
     <!-- 防重整遺失：恢復上次行程橫幅 -->
@@ -2779,13 +2798,13 @@
             </button>
           </div>
           <div class="code-collapse-box" id="codeCollapseBox">
-            <p class="vip-pool-line" id="vipPoolLine" role="status" aria-live="polite">✨ VIP 序號通道：每日另有 30 席序號專屬保留席</p>
+            <p class="vip-pool-line" id="vipPoolLine" role="status" aria-live="polite">✨ VIP 序號優先通道：每日另有 60 席 VIP 專屬保留席次</p>
             <label class="form-label" for="redeemCodeInput">
               贊助 / 活動解鎖序號
               <span class="form-sub">💡 填寫序號與您的 Email 即可免驗證直接規劃</span>
             </label>
             <div class="code-verify-row">
-              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="SM3-XXXX-YYYY" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+              <input type="text" id="redeemCodeInput" class="form-input code-input" placeholder="LIFE-XXXX-YYYY" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
               <button type="button" class="code-paste-btn" id="pasteCodeBtn" aria-label="從剪貼簿貼上序號">📋 貼上</button>
               <button type="button" class="code-verify-btn" id="checkCodeBtn">驗證</button>
             </div>
@@ -2795,8 +2814,9 @@
               <ul>
                 <li>成功生成行程才會扣次數，生成失敗不扣。</li>
                 <li>尚有首次免費額度時，會優先使用免費名額、保留序號次數。</li>
-                <li>NT$ 69 / 99 序號：不限信箱，買家本人或同行旅伴皆可自由用完全部次數。</li>
-                <li>NT$ 299 同樂包：買家本人（購買信箱）可重複使用全部 10 次；分享給旅伴時，每位旅伴信箱限用 1 次。</li>
+                <li>NT$ 90 個人終身買斷：僅限買家本人信箱，每日 10 次、台灣時間 00:00 自動補滿，沒有總次數上限。</li>
+                <li>NT$ 199 旅伴親友團買斷：買家本人每日 10 次；另可分給 15 位旅伴信箱，每位限用 1 次（同樣計入當日 10 次）。</li>
+                <li>舊版次數序號（SM1 / SM3 / SM5 / SM10 等）照舊依剩餘次數使用。</li>
                 <li>活動 VIP 序號：每個信箱限用 1 次。</li>
                 <li>使用序號免收信箱驗證碼，但仍需填寫 Email 以辨識買家或旅伴。</li>
               </ul>
@@ -3005,25 +3025,22 @@
       <h3 class="modal-title" id="paywallTitle">☕ 支持獨立開發，解鎖更多慢旅靈感（還能分給旅伴！）</h3>
       <p class="modal-body">
         <span id="paywallUsedLine" hidden>免費體驗額度已使用完畢。<br><br></span>
-        <span id="paywallIntro">排一趟滿意的自由行，通常需要換 2～3 種路線風格微調，或跟旅伴各自排看看再討論。免綁月費訂閱、無廣告干擾，選擇最適合你的慢旅方案：</span>
+        <span id="paywallLockLine" hidden>🔒 PDF 手冊、旅圖 Lutu 匯出與「帶回表單重新順路」是買斷通行證的專屬功能。<br><br></span>
+        <span id="paywallIntro">一次買斷、終身使用：每組通行證每日 10 次 AI 深度規劃額度，台灣時間 00:00 自動補滿，不再按次扣款。免綁月費訂閱、無廣告干擾，選擇最適合你的慢旅方案：</span>
       </p>
       <ul class="perk-list" aria-label="贊助者專屬特權">
-        <li><strong>⚡ 特權 1｜每日 30 席 VIP 專屬保留通道</strong><span>全站免費名額每日限 50 席，持有贊助序號者直接走 VIP 保留席，熱門時段免排隊、免驗信箱秒速生成。</span></li>
-        <li><strong>👯‍♀️ 特權 2｜一人贊助、LINE 群組旅伴共享</strong><span>NT$ 299 慢旅玩家同樂包，買家本人可重複微調，還能把同一組序號丟進群組讓旅伴各自排一版來投票！</span></li>
+        <li><strong>⚡ 特權 1｜每日 60 席 VIP 專屬保留席次</strong><span>全站免費名額每日限 50 席，買斷通行證直接走 VIP 保留席，熱門時段免排隊、免驗信箱秒速生成。</span></li>
+        <li><strong>👯‍♀️ 特權 2｜一人買斷、LINE 群組旅伴共享</strong><span>NT$ 199 旅伴親友團買斷版，買家本人終身每日 10 次，還能把同一組序號丟進群組，讓 15 位旅伴各自排一版來投票！</span></li>
         <li><strong>🌿 特權 3｜守護 100% 零商業業配的純淨推薦</strong><span>不塞廣告餐廳與訂房分潤，只推薦在地人私藏的散步路線。</span></li>
       </ul>
-      <ul class="tier-list" id="tierList" aria-label="隨喜贊助方案">
+      <ul class="tier-list" id="tierList" aria-label="終身買斷方案">
         <li class="tier">
-          <span class="tier-price">NT$ 69</span>
-          <span class="tier-info"><span class="tier-name">☕ 單次試調體驗（1 次額度）</span><span class="tier-desc">單次 $69 · 免綁月租！適合已經決定好路線、只想微調最後一次完美路線的你。</span></span>
+          <span class="tier-price">NT$ 90</span>
+          <span class="tier-info"><span class="tier-name">☕ 個人終身買斷版</span><span class="tier-desc">終身每日 10 次（每日 00:00 自動補滿）＋ 解鎖 PDF 手冊與旅圖匯出 ＋ 每日 60 席 VIP 免排隊通道。</span></span>
         </li>
         <li class="tier is-featured">
-          <span class="tier-price">NT$ 99</span>
-          <span class="tier-info"><span class="tier-name">🌿 單趟旅程微調包（3 次額度） <span class="tier-badge">⭐ 最多人選</span></span><span class="tier-desc">平均 $33/次 · 排一趟旅行最從容！試排老屋咖啡版、自然散步版或長輩友善版，不限信箱皆可用完 3 次。</span></span>
-        </li>
-        <li class="tier">
-          <span class="tier-price">NT$ 299</span>
-          <span class="tier-info"><span class="tier-name">🍱 慢旅玩家同樂包（10 次額度） <span class="tier-badge">🔥 逼近半價・最划算</span></span><span class="tier-desc">平均 $29.9/次 · 買家本人無限重複用，還能丟進 LINE 群組分給親友團旅伴（每人限 1 次），多人出遊必備！</span></span>
+          <span class="tier-price">NT$ 199</span>
+          <span class="tier-info"><span class="tier-name">🍱 旅伴親友團買斷版</span><span class="tier-desc">買家本人終身每日 10 次（每日 00:00 自動補滿）＋ 支援 15 位 LINE 群組旅伴各自免費排行程與匯出。</span></span>
         </li>
       </ul>
       <div class="free-tip-box" role="note">
@@ -3032,14 +3049,14 @@
         <p>• <strong>方法 2（拿 1 組）</strong>：將【慢旅分享圖】發至 IG 限動或 Threads 標註 <a href="https://www.instagram.com/samya_traveler/" target="_blank" rel="noopener noreferrer">@samya_traveler</a>，追蹤並截圖私訊我的 IG，立即加贈 1 組 VIP 專屬通關序號！</p>
       </div>
       <p class="modal-body">
-        💡 付款完成後 1～3 分鐘內，系統會自動寄出專屬序號與一鍵帶入連結。行程成功生成才扣額度，失敗或滿額絕不誤扣！
+        💡 付款完成後 1～3 分鐘內，系統會自動寄出終身通行證序號與一鍵帶入連結。行程成功生成才計入當日次數，失敗或滿額絕不誤扣！
       </p>
       <a href="https://portaly.cc/samya_traveler" target="_blank" rel="noopener noreferrer" class="btn-portaly" id="portalyLink">
         ❤️ 前往 Portaly 隨喜贊助支持
       </a>
       <div class="form-group" style="margin-bottom: 12px;">
         <label class="form-label" for="modalRedeemInput">已完成贊助？請輸入信件中的解鎖序號</label>
-        <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="SM3-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+        <input type="text" id="modalRedeemInput" class="form-input code-input" placeholder="LIFE-XXXX-YYYY 或活動代碼" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" />
         <p class="error-msg" id="modalCodeError" role="alert">序號無效或已被使用，請確認信件中的序號。</p>
       </div>
       <button type="button" class="btn-primary" id="modalVerifyBtn">驗證序號並立即生成</button>
@@ -3293,7 +3310,7 @@
       : null; // 常態方案直接寫在 #paywallModal 的 HTML 中
 
     const DAILY_LIMIT = 50;       // 每日免費席
-    const VIP_POOL_LIMIT = 30;    // 每日序號專屬保留席
+    const VIP_POOL_LIMIT = 60;    // 每日序號專屬保留席
     const MAX_DAYS = 14;
     const EMAIL_COOLDOWN_SEC = 60;
 
@@ -3306,6 +3323,8 @@
     const STORAGE_EMAIL_LOCK_KEY = 'slowmate_email_lock_until';
     const STORAGE_DRAFT_KEY = 'slowmate_form_draft';
     const STORAGE_EDITS_KEY = 'slowmate_trip_edits'; // 時間軸微調、當日備忘、購物清單（只保留最近一趟行程）
+    const STORAGE_VIP_PASS_KEY = 'slowmate_vip_pass'; // 終身買斷通行證 { code, email, daily_remaining, daily_limit, date }
+    const STORAGE_UNLOCK_KEY = 'slowmate_unlocked';   // 用過贊助 / 活動序號 → 解鎖 PDF、旅圖匯出、重新順路
 
     // 行程頁尾、純文字行程、HTML 行程信統一使用的小叮嚀
     const SLOW_NOTE_TITLE = '🌿 SlowMate · AI 慢旅行程規劃助手的小叮嚀：';
@@ -3751,6 +3770,8 @@
       loadSavedUserState();
       const draftRestored = restoreFormDraft();
       const magicApplied = applyMagicLinkCode();
+      if (!magicApplied) applyVipPass();
+      renderVipPassBadge();
       if (!magicApplied && draftRestored) showToast('📝 已為您恢復上次填寫的表單內容');
       validateDateRange();
       applyAdminParam();
@@ -3999,6 +4020,62 @@
         </li>`).join('');
     }
 
+    /* ---------- ✨ 終身買斷 VIP 通行證（存在此瀏覽器）與進階功能解鎖 ---------- */
+    /** 台灣日期 YYYY-MM-DD（每日額度在台灣時間 00:00 重置） */
+    function taipeiToday() {
+      return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+    }
+
+    function readVipPass() {
+      try {
+        const pass = JSON.parse(store.get(STORAGE_VIP_PASS_KEY) || 'null');
+        return pass && CODE_RE.test(pass.code || '') ? pass : null;
+      } catch (_) { return null; }
+    }
+
+    function saveVipPass(code, email, dailyRemaining, dailyLimit) {
+      store.set(STORAGE_VIP_PASS_KEY, JSON.stringify({ code, email, daily_remaining: dailyRemaining, daily_limit: dailyLimit || 10, date: taipeiToday() }));
+      store.set(STORAGE_UNLOCK_KEY, '1');
+      renderVipPassBadge();
+    }
+
+    /** 今日剩餘：記錄的日期不是今天（台灣時間）→ 已在 00:00 補滿 */
+    function vipPassRemaining(pass) {
+      const limit = Number(pass.daily_limit) || 10;
+      return pass.date === taipeiToday() ? Math.max(0, Math.min(limit, Number(pass.daily_remaining))) : limit;
+    }
+
+    function renderVipPassBadge() {
+      const pass = readVipPass();
+      const el = $('vipPassBadge');
+      el.hidden = !pass;
+      if (pass) {
+        const limit = Number(pass.daily_limit) || 10;
+        el.textContent = `✨ 終身買斷 VIP 通行證已啟動（今日剩餘 ${vipPassRemaining(pass)} / ${limit} 次・享 ${state.pools?.vip_limit || VIP_POOL_LIMIT} 席 VIP 優先通道）`;
+      }
+    }
+
+    /** 已有通行證：自動帶入序號與信箱，不用每次重貼 */
+    function applyVipPass() {
+      const pass = readVipPass();
+      if (!pass) return;
+      if (!redeemCodeInput.value) redeemCodeInput.value = pass.code;
+      if (!emailInput.value && pass.email) emailInput.value = pass.email;
+      setCodeBoxOpen(true);
+      renderVipPassBadge();
+    }
+
+    /** PDF 手冊、旅圖匯出、帶回表單重新順路：買斷通行證、用過序號或管理員才開放 */
+    function hasPaidUnlock() {
+      return !!readVipPass() || store.get(STORAGE_UNLOCK_KEY) === '1' || isAdmin();
+    }
+
+    function requirePaidUnlock() {
+      if (hasPaidUnlock()) return true;
+      openPaywall('feature_locked');
+      return false;
+    }
+
     /* ---------- Magic Link：?code=XXXX（&email=YYYY）自動帶入序號與信箱 ---------- */
     function applyMagicLinkCode() {
       let params;
@@ -4096,9 +4173,9 @@
       const p = state.pools;
       el.classList.toggle('is-full', !!p && p.code_total_remaining === 0);
       if (!p) {
-        el.textContent = `✨ VIP 序號通道：每日另有 ${VIP_POOL_LIMIT} 席序號專屬保留席`;
+        el.textContent = `✨ VIP 序號優先通道：每日另有 ${VIP_POOL_LIMIT} 席 VIP 專屬保留席次`;
       } else if (p.code_total_remaining > 0) {
-        el.textContent = `✨ VIP 序號通道開放中：今日尚有 ${p.code_total_remaining} 席可兌換（含 ${p.vip_pool_remaining} 席序號專屬保留席）`;
+        el.textContent = `✨ VIP 序號優先通道開放中：今日尚有 ${p.code_total_remaining} 席可兌換（含 ${p.vip_limit} 席 VIP 專屬保留席）`;
       } else {
         el.textContent = '🌙 今日 VIP 序號通道也已額滿，明日 00:00 重置（序號會完整保留）';
       }
@@ -4137,7 +4214,7 @@
     }
 
     const EMAIL_HINT_DEFAULT = '首次使用驗證信箱即可免費規劃一次';
-    const EMAIL_HINT_CODE = '買家本人可重複使用，旅伴分享每人限用 1 次，免收驗證碼';
+    const EMAIL_HINT_CODE = '買斷通行證：買家本人每日 10 次，旅伴分享每人限用 1 次，免收驗證碼';
 
     /** 展開 / 收合序號區：展開時 Email 欄提示改為序號規則（使用序號免 OTP，但仍需 Email 判斷買家或旅伴） */
     function setCodeBoxOpen(open) {
@@ -4209,14 +4286,15 @@
       $('shoppingList').addEventListener('click', onShoppingDelete);
 
       // 🔄 帶回表單讓 AI 重新順路
-      $('rerouteBtn').addEventListener('click', rerouteToForm);
+      // 進階功能（重新順路、PDF 手冊、旅圖匯出）：免費試用者先看到買斷方案
+      $('rerouteBtn').addEventListener('click', () => { if (requirePaidUnlock()) rerouteToForm(); });
 
       // 慢旅風格快捷標籤
       document.querySelectorAll('.vibe-chip').forEach((chip) => chip.addEventListener('click', () => toggleVibe(chip)));
       wishesInput.addEventListener('input', syncVibeChips);
 
       // 列印 / 另存 PDF
-      $('printBtn').addEventListener('click', () => window.print());
+      $('printBtn').addEventListener('click', () => { if (requirePaidUnlock()) window.print(); });
       // 列印時展開「動線與花費」「航班」兩張摺疊卡，印完恢復原本的開合狀態
       let printOpened = [];
       window.addEventListener('beforeprint', () => {
@@ -4364,7 +4442,7 @@
 
       // 一鍵複製純文字行程
       $('copyTextBtn').addEventListener('click', copyItineraryAsText);
-      $('lutuExportBtn').addEventListener('click', exportToLutu);
+      $('lutuExportBtn').addEventListener('click', () => { if (requirePaidUnlock()) exportToLutu(); });
       $('lutuCopyAgainBtn').addEventListener('click', async () => {
         const ok = await copyTextQuietly($('lutuPreview').value);
         showToast(ok ? '📋 已再次複製旅圖專用格式！' : '⚠️ 無法自動複製，請展開下方預覽框長按全選複製');
@@ -4721,7 +4799,13 @@
             notices.push('🎁 貼心提醒：本次已優先使用您的首次免費額度，您的序號【完好未扣次數】，已保留至下次使用！');
           }
           const remainingUses = result.remainingUses ?? result.code_remaining_uses;
-          if (result.entitlement === 'redeem_code' && result.codeKind === 'public') {
+          if (result.entitlement === 'redeem_code') store.set(STORAGE_UNLOCK_KEY, '1');
+          if (result.isLifetimeVip && result.lifetimeOwner) {
+            saveVipPass(payload.redeem_code, payload.email, result.dailyRemaining, result.dailyLimit);
+            notices.push(`✨ 終身買斷 VIP 通行證：今日剩餘 ${result.dailyRemaining} / ${result.dailyLimit} 次（每日 00:00 自動補滿）`);
+          } else if (result.isLifetimeVip) {
+            notices.push('🎉 已使用旅伴親友團序號解鎖本次慢旅規劃！');
+          } else if (result.entitlement === 'redeem_code' && result.codeKind === 'public') {
             // 活動公用碼：不顯示公用池剩餘次數
             notices.push('🎉 已成功使用活動專屬 VIP 序號解鎖本次慢旅規劃！');
           } else if (result.entitlement === 'redeem_code' && remainingUses !== undefined) {
@@ -4734,7 +4818,8 @@
           renderTripResult(result.data, { notice });
 
           if (result.entitlement === 'redeem_code') {
-            redeemCodeInput.value = '';
+            // 買斷通行證留在輸入框，下次直接用；一般序號用完就清掉
+            if (!(result.isLifetimeVip && result.lifetimeOwner)) redeemCodeInput.value = '';
             $('magicCodeBanner').hidden = true;
             if (!notice) showToast('☕ 感謝贊助！序號已核銷，行程已存在此裝置');
           } else if (result.entitlement === 'admin') {
@@ -4772,6 +4857,16 @@
         // 402 需要贊助（管理員模式不會觸發）
         if (res.status === 402) {
           openPaywall('payment_required', result.message);
+          return;
+        }
+
+        // 429 終身買斷碼今日 10 次已用完（台灣時間 00:00 補滿）
+        if (res.status === 429 && result.error === 'code_daily_limit') {
+          const pass = readVipPass();
+          if (pass && pass.code === payload.redeem_code) saveVipPass(pass.code, pass.email, 0, pass.daily_limit);
+          setCodeBoxOpen(true);
+          setCodeStatus('invalid', result.message);
+          showToast(result.message);
           return;
         }
 
@@ -4847,6 +4942,10 @@
         });
         const result = await readJsonSafe(res);
         if (res.ok && result.status === 'valid') {
+          store.set(STORAGE_UNLOCK_KEY, '1');
+          if (result.is_lifetime && result.is_owner && isValidEmail(emailInput.value.trim().toLowerCase())) {
+            saveVipPass(code, emailInput.value.trim().toLowerCase(), result.daily_remaining, result.daily_limit);
+          }
           const msg = result.message || '序號有效！填好表單後即可直接開始規劃。';
           setCodeStatus('valid', msg.startsWith('✅') ? msg : `✅ ${msg}`);
         } else {
@@ -5094,10 +5193,10 @@
         : '<p class="admin-empty">還沒有任何序號。</p>';
 
       const top = d.top_codes || [];
-      const statusLabel = { unused: '可使用', processing: '生成中', exhausted: '已用完' };
+      const statusLabel = { unused: '可使用', processing: '生成中', exhausted: '已用完', lifetime: '♾️ 終身買斷' };
       $('adminTopCodes').innerHTML = top.length
         ? `<table class="admin-table"><thead><tr><th>#</th><th>序號</th><th>活動</th><th class="num">已用 / 上限</th><th>狀態</th></tr></thead><tbody>${
-          top.map((c, i) => `<tr><td>${i + 1}</td><td class="admin-code">${escapeHtml(c.code)}</td><td>${escapeHtml(c.campaign_tag)}</td><td class="num">${c.used_count} / ${c.max_uses}</td><td>${escapeHtml(statusLabel[c.status] || c.status)}${c.allow_same_email ? '' : '・每信箱 1 次'}</td></tr>`).join('')
+          top.map((c, i) => `<tr><td>${i + 1}</td><td class="admin-code">${escapeHtml(c.code)}</td><td>${escapeHtml(c.campaign_tag)}</td><td class="num">${c.is_lifetime ? `${c.used_count}（每日 ${c.daily_limit}）` : `${c.used_count} / ${c.max_uses}`}</td><td>${escapeHtml(statusLabel[c.status] || c.status)}${c.is_lifetime ? (c.group_max_friends ? `・旅伴 ${c.group_max_friends} 位` : '・限本人') : c.allow_same_email ? '' : '・每信箱 1 次'}</td></tr>`).join('')
         }</tbody></table>`
         : '<p class="admin-empty">還沒有任何序號。</p>';
     }
@@ -5188,6 +5287,7 @@
 
       // 「免費體驗額度已使用完畢」只在後端回 402 時顯示；從 Navbar / 表單主動打開時不顯示
       $('paywallUsedLine').hidden = reason !== 'payment_required';
+      $('paywallLockLine').hidden = reason !== 'feature_locked';
 
       if (reason === 'invalid_code') {
         err.textContent = message || '序號無效或已被使用，請確認信件中的序號。';
